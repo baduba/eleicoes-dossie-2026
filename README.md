@@ -29,4 +29,4 @@ Abra uma *issue* com o número ou a tabela contestada, o script que reproduz a s
 Código: MIT. Texto, tabelas e figuras: CC BY 4.0. Os dados de origem são do TSE e não são redistribuídos aqui.
 
 ## Autoria
-{{AUTORIA}}
+Projeto sem autoria nominal, mantido pela conta baduba no GitHub. Contato, correções e contestações por *issue* em https://github.com/baduba/eleicoes-dossie-2026/issues.

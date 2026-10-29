@@ -21,4 +21,4 @@ Análise estatística dos dados oficiais do TSE por seção (BWeb de 2014, 2018,
 Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md) e a lista de **NÃO EXECUTADO**: cruzamento com boletins impressos (sem insumo), assinatura criptográfica da urna, curva de divulgação do site Resultados, perfil de comparecimento de 2026/2º turno, 2014 na curva de apuração, as "472 urnas" do vídeo.
 
 ## Autoria
-{{AUTORIA}}
+Projeto sem autoria nominal, mantido pela conta baduba no GitHub. Contato, correções e contestações por *issue* em https://github.com/baduba/eleicoes-dossie-2026/issues.
