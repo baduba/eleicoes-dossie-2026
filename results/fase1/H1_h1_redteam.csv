@@ -1,0 +1,15 @@
+teste,ano,turno,coef_manual,ep
+S0 + dummies de modelo de urna,2022,1,-0.005833332206503508,0.0016623219144834805
+S0 + dummies de modelo de urna,2022,2,0.014511251574399076,0.0018011223397545503
+S0 + dummies de modelo de urna,2026,1,0.07385705988817481,0.0025103178691129827
+S0 + dummies de modelo de urna,2026,2,0.06928554739429053,0.0024348820173866696
+S1 Lula votos/apto (so lag proprio),2022,2,0.026706314906469134,0.0010017087634295297
+S1 Lula votos/apto + T1 de todos os candidatos e brancos/nulos,2022,2,0.025040687593068003,0.0009539265797173223
+S1 Flavio/Bolsonaro votos/apto (so lag proprio),2022,2,-0.0005067228203539026,0.000750472940758083
+S1 Flavio/Bolsonaro votos/apto + T1 de todos os candidatos e brancos/nulos,2022,2,-8.601292908348964e-05,0.0007223030090204064
+S1 Lula votos/apto (so lag proprio),2026,2,0.019147352739984837,0.0011141274587555439
+S1 Lula votos/apto + T1 de todos os candidatos e brancos/nulos,2026,2,0.017166828817444146,0.0010342310637157467
+S1 Flavio/Bolsonaro votos/apto (so lag proprio),2026,2,0.00897777397465025,0.0009493307100716867
+S1 Flavio/Bolsonaro votos/apto + T1 de todos os candidatos e brancos/nulos,2026,2,0.020413633590908864,0.0009500478928946296
+comparecimento T2 ~ taxa manual + comparecimento T1,2022,2,0.030900456722340916,0.0011326295038277387
+comparecimento T2 ~ taxa manual + comparecimento T1,2026,2,0.04434352727196833,0.001178679390465074

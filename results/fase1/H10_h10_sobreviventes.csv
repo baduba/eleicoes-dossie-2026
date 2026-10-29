@@ -1,0 +1,3 @@
+H,teste,sentido,p_holm,votos_max_margem,votos_max_pior_caso,pct_pior_caso,veredito
+H1,S1 Flavio/Bolsonaro votos/apto,OPO,5.2845598622823974e-14,122543.43214608819,122543.43214608819,2.7660981692682816,EXCESSO DETECTADO e relevante (pior caso >= 1% da margem)
+H2,"delta voto Lula (2022->2026) ~ delta taxa manual, T2",PT,6.668165553806381e-09,38393.9583357629,38393.9583357629,0.8666434096354514,"excesso detectavel, magnitude irrelevante (<1% da margem)"

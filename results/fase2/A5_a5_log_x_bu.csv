@@ -1,0 +1,3 @@
+ano,secoes,votos_computados_log_igual_comparecimento,pct,divergentes,divergentes_com_urna_de_contingencia,divergentes_sem_contingencia,habilitado_maior_que_comparecimento,habilitado_menor_que_comparecimento,gap_minimo_entre_habilitacoes_s,secoes_com_gap_menor_10s
+2026,14067,14005,99.55925215042298,62,62,0,256,62,18.0,0
+2022,12554,12462,99.26716584355584,92,91,1,585,91,13.0,0

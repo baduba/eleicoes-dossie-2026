@@ -1,0 +1,5 @@
+ano,instituto,divulgacao,pt_pct_validos_pesquisa,oponente_pct_validos_pesquisa,margem_erro_declarada_pp,fonte,pt_pct_validos_resultado,erro_pp_pt,fora_da_margem_declarada
+2018,Datafolha,2018-10-27,45.0,55.0,2,https://www.jornalopcao.com.br/ultimas-noticias/datafolha-bolsonaro-tem-55-e-haddad-45-dos-votos-validos-145482/,44.87,0.13,False
+2022,Datafolha,2022-10-29,52.0,48.0,2,https://www.opovo.com.br/eleicoes-2022/2022/10/29/pesquisa-datafolha-lula-52-bolsonaro-48-no-2-turno.html,50.9,1.1,False
+2026,Datafolha,2026-10-24,49.0,51.0,2,https://www.jornalopcao.com.br/ultimas-noticias/flavio-bolsonaro-tem-51-dos-votos-validos-contra-49-de-lula-no-segundo-turno-aponta-datafolha-879307/,51.79,-2.79,True
+2026,AtlasIntel,2026-10-24,49.2,50.8,1,https://www.bloomberglinea.com.br/brasil/flavio-bolsonaro-tem-508-dos-votos-validos-contra-492-de-lula-aponta-atlasintel/,51.79,-2.59,True

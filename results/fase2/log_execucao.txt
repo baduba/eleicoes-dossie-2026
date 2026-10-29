@@ -1,0 +1,53 @@
+[H1] ok em 10s
+[H2] ok em 5s
+[H3] ok em 2s
+[H4] ok em 5s
+[H5] ok em 10s
+[H6] ok em 12s
+[H7] ok em 1s
+[H8] ok em 12s
+[ABC] ok em 0s
+[H9] ok em 41s
+NAO EXECUTADO [A1 2014/T2]: sem horario de totalizacao em 2014
+[A1] ok em 107s
+./scripts/f2_a1_a3.py:167: UserWarning: Parameter `variant` has been introduced to replace `midrank`; `midrank` will be removed in SciPy 1.19.0. Specify `variant` to silence this warning. Note that the returned object will no longer be unpackable as a tuple, and `critical_values` will be omitted.
+  ad[(a, b_)] = stats.anderson_ksamp([s1, s2]).statistic
+./scripts/f2_a1_a3.py:167: UserWarning: p-value floored: true value smaller than 0.001. Consider specifying `method` (e.g. `method=stats.PermutationMethod()`.)
+  ad[(a, b_)] = stats.anderson_ksamp([s1, s2]).statistic
+[A2] ok em 5s
+[A3] ok em 6s
+[A4] ok em 0s
+[A5] ok em 7s
+[A6] ok em 5s
+NAO EXECUTADO [A7 parcial]: so Datafolha 2018, 2022, 2026 e AtlasIntel 2026 tem resultado com fonte
+[A7] ok em 0s
+[A8] ok em 5s
+NAO EXECUTADO [A9 T1->T2 2026]: perfil de 2026 so tem o 1o turno
+./scripts/lib_auditoria.py:117: RuntimeWarning: invalid value encountered in scalar divide
+  pr.append(dict(nome=nome, b=b0, se=s0, diff=diff, sed=sed, z=diff / sed, p1=float(stats.norm.sf(diff / sed)),
+./scripts/lib_auditoria.py:118: RuntimeWarning: invalid value encountered in scalar divide
+  p2=float(2 * stats.norm.sf(abs(diff / sed)))))
+[A9] ok em 3s
+[A10] ok em 2s
+NAO EXECUTADO [A11 UF 2026 AP]: ValueError: amostra insuficiente para y_PT ~ ['x_pro_Flavio', 'x_esquerda', 'x_Renan', 'x_PCO', 'x_outros', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1914
+NAO EXECUTADO [A11 UF 2026 RR]: ValueError: amostra insuficiente para y_PT ~ ['x_pro_Flavio', 'x_esquerda', 'x_Renan', 'x_PCO', 'x_outros', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1519
+NAO EXECUTADO [A11 UF 2022 AP]: ValueError: amostra insuficiente para y_PT ~ ['x_terc1_n15', 'x_terc2_n12', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1740
+NAO EXECUTADO [A11 UF 2022 RR]: ValueError: amostra insuficiente para y_PT ~ ['x_terc1_n15', 'x_terc2_n12', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1268
+NAO EXECUTADO [A11 UF 2018 AP]: ValueError: amostra insuficiente para y_PT ~ ['x_terc1_n12', 'x_terc2_n45', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1632
+NAO EXECUTADO [A11 UF 2018 RR]: ValueError: amostra insuficiente para y_PT ~ ['x_terc1_n12', 'x_terc2_n45', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1171
+[A11] ok em 5s
+./scripts/f2_a11_a15.py:185: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  out["a12_secoes_zero_2026"] = det[keep].round(4)
+[A12] ok em 4s
+[A13] ok em 214s
+[A14] ok em 0s
+[A15] ok em 3s
+[C1] ok em 81s
+[C2] ok em 2s
+[C3] ok em 8s
+[C12] ok em 9s
+[H10] ok em 0s
+[BU] NAO EXECUTADO: NaoExecutado: teste direto com boletins impressos: nenhuma foto/PDF de BU foi fornecido (nem em Downloads, nem no projeto). Envie imagens com o QR code visivel ou uma planilha zona;secao;turno;votos para o cruzamento com o BWeb. Divergencia de qualquer tamanho sera reportada.
+
+38 testes no registro; 14 nao executados
+FIM

@@ -1,0 +1,15 @@
+teste,motivo
+A1/A1 2014/T2,o produto detalhe_votacao_secao de 2014 nao tem DT_RECEBIMENTO_BU_HOR_TSE nem DT_PRIM_TOT_PARCIAL_HOR_TSE; o BWeb de 2014 so tem a data (sem hora) de recebimento
+A7/A7 2014 e demais institutos,"nao foi localizada, com fonte, uma pesquisa final de 2014 com data confirmada; Quaest e Paraná Pesquisas de 24/10/2026 nao foram localizadas com resultado; o TSE publica so o registro das pesquisas, sem resultados"
+A9/A9 T1->T2 2026,o perfil de comparecimento e abstencao de 2026 foi publicado em 21/10/2026 e so tem o 1o turno; a variacao T1->T2 por faixa etaria nao pode ser calculada
+A11/A11 UF 2026 AP,"amostra insuficiente para y_PT ~ ['x_pro_Flavio', 'x_esquerda', 'x_Renan', 'x_PCO', 'x_outros', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1914"
+A11/A11 UF 2026 RR,"amostra insuficiente para y_PT ~ ['x_pro_Flavio', 'x_esquerda', 'x_Renan', 'x_PCO', 'x_outros', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1519"
+A11/A11 UF 2022 AP,"amostra insuficiente para y_PT ~ ['x_terc1_n15', 'x_terc2_n12', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1740"
+A11/A11 UF 2022 RR,"amostra insuficiente para y_PT ~ ['x_terc1_n15', 'x_terc2_n12', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1268"
+A11/A11 UF 2018 AP,"amostra insuficiente para y_PT ~ ['x_terc1_n12', 'x_terc2_n45', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1632"
+A11/A11 UF 2018 RR,"amostra insuficiente para y_PT ~ ['x_terc1_n12', 'x_terc2_n45', 'x_outros_terc', 'x_PT', 'x_OPO', 'x_BN'] | mun: n=1171"
+A13/A13 2014/T2 e 2002-2010,o produto detalhe_votacao_secao de 2014 nao tem horario de totalizacao e nao ha dado por secao com horario para 2002 a 2010 no catalogo aberto
+"A13/A13 video 'Prof. Marcelo Trindade' (472 urnas, 60-65%)","NAO REPRODUZIVEL: o video, os dados e o codigo das '472 urnas' nao foram fornecidos"
+A13/A13/A14 snapshots do site Resultados,nao ha serie publica de snapshots do site Resultados com horario; so o horario de totalizacao por secao
+A14/A14 curva de divulgacao e atraso totalizado->divulgado,"nao ha snapshots publicos do site Resultados com horario; e o video original, onde a captura sugere 7,28%, nao foi fornecido"
+BU,"NaoExecutado: teste direto com boletins impressos: nenhuma foto/PDF de BU foi fornecido (nem em Downloads, nem no projeto). Envie imagens com o QR code visivel ou uma planilha zona;secao;turno;votos para o cruzamento com o BWeb. Divergencia de qualquer tamanho sera reportada."
