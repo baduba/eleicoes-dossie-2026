@@ -1,0 +1,2 @@
+simulacoes_sem_manipulacao,esperado_pelo_estimador_do_T1,esperado_verdadeiro_dos_vizinhos,razao_media_simulada_pelo_T1,razoes_dos_placebos,simulacoes_acusadas_pelo_teste_original,pct_acusadas
+200,9.85899717846742,13.15678583188436,1.3302569990225643,"[0.716, 0.524, 0.266]",88,44.0
