@@ -1,4 +1,4 @@
-# Phase 3: adversarial hypotheses (A20 to A33)
+# Phase 3: adversarial hypotheses (A20 to A35)
 
 > **Unit: margin votes** (change in the Lula-minus-Flávio difference; switching one vote changes the margin by 2; definition in [Methodology](metodologia.md)). Official margin: 4,430,191. Every ceiling is a **worst-case ceiling, not an estimate**. The form tests have no ceiling in votes.
 
@@ -16,6 +16,8 @@ Predictions, criteria, and what each test covers were registered in [Addendum 8]
 | [A26](#a26) Publication integrity | published file altered afterwards | 233 files: same size in 233; official hash equal in 224 of 224; none modified after the first download | n/a | NO ALTERATION DETECTED |
 | [A27](#a27) Fabricated sections | sections without real voters | 427 new sections with turnout ≥ 95%: profile below | 44,735 margin votes (worst-case ceiling, not an estimate; 1.0% of the margin): all Lula votes in the 427 sections, assumed invalid | TESTED-INCONCLUSIVE |
 | [A32](#a32) Manual voter release as a channel for local abuse | manual authorizations in bursts, late in the day, or excessive for the age | no burst under the registered definition (which cannot see them); manual releases do not concentrate at the end of the day; sections with more than 30% manual release: 3,995 in 2022 and 348 in 2026; no association with turnout or vote | registered 1,852,233 (inflated by negative shift, Addendum 11c); beyond the 2022 model noise: 55,862 margin votes (worst-case ceiling, not an estimate; 1.26% of the margin) | TESTED-INCONCLUSIVE (partial logs) |
+| [A34](#a34) Duration of the vote per voter | "express" voting in bulk (votes without a voter) | median of 9 s in 2026 and 13 s in 2022 in the 2nd round (the pre-registered prediction, 40 s to 2 min, was wrong); 99th-percentile rule: 2.06% of sections above against 1% expected, **which falls to 1.24% when comparing states with the same ballot composition** (post hoc diagnostic); models with no excess | extrapolated and inflated by construction: 339,311 margin votes (worst-case ceiling, not an estimate; 7.7% of the margin); in factor 1 of the sample, 23,093 | TESTED-INCONCLUSIVE (partial logs); EXCESS DETECTED (form) under the registered rule, **with a composition caveat** |
+| [A35](#a35) Extremes in the whole universe | zero blank and null in a large section; 100% turnout | observed **below** expected in every year (ratio 0.69 in 2026, 0.70 in 2022); does not exceed all placebos; E2 (12 sections with turnout equal to registered voters) only descriptive | 41,614 margin votes (worst-case ceiling, not an estimate; 0.94% of the margin); in factor 1, 403,773, inflated by construction | TESTED-INCONCLUSIVE; within expectation |
 | [A28](#a28) LAI (Access to Information Law) requests | data only the government holds | 7 requests ready in `lai/` (07, for the tally sheet and the signature sheet, belongs to A32), with agency and channel for each, and a request template for parties; **none filed** | n/a | NOT RUN |
 | [A31b](#a31b) Municipalities with the opponent at +1 vote or fewer | concentrated vote switching or selective abstention | 748 municipalities (14.0%), compatible with the national shift; regional profile with a strong PT electorate; most with a turnout drop | ceiling A of 234,746 margin votes (worst-case ceiling, not an estimate), and **zero** beyond what the simulated national shift already gives | TESTED-INCONCLUSIVE |
 | [A32b](#a32b) Manual-release bursts (absolute threshold) | manual authorizations in sequence | observed/expected ratio of 1.0 to 1.2 in both years; bursts less frequent in 2026 than in 2022; 2026 coefficients indistinguishable from zero | powerless ceiling (extrapolated), **not plotted** | TESTED-INCONCLUSIVE |
@@ -892,3 +894,116 @@ Coverage (partial logs, see A32): 2022 T1: 1,182 schools (27 states); 2022 T2: 1
 **Reading.** There is a small synchrony in **both years** (ratio of 1.05 to 1.11 in 2022; 1.05 to 1.10 in 2026), with high z because there are millions of events. It is the same size in both years (in 2026 it is equal or smaller), and null N2 gives ratios of 1.04 to 1.08 in both years: sections of the same school share queue, peak time, and poll workers, which explains a small synchrony. **There is no 2026 synchrony above 2022's**, which was the "with a scheme" prediction.
 
 **Status.** TESTED-INCONCLUSIVE. Three of the four "no scheme" predictions are fulfilled (no excess over the placebos, even though the 2026 coefficient is more negative than 2022's; no synchrony above 2022; extreme schools small in votes). The fourth, "extremes explained by age", is **not** fulfilled, and that remains open. The test does not see what each manual release was. **What would close it:** printed BU, authorization list, and tally sheet of the 20 schools (LAI 07), and the logs of all sections. Code: `scripts/44_a33_escolas.py`; tables: `results/fase3/A33_*.csv`.
+
+<a id="a34"></a>
+
+## A34. Duration of the vote per voter (from check-in to confirmation)
+
+**Pre-registration:** [Addendum 16, 16a and 16b](preregistro.md); 16a (wrong prediction, metric D6) was written after seeing Roraima and before comparing with 2022; 16b (composition diagnostic) after seeing the full result of the registered tests and before stratifying. **Question.** Does the act of voting take, in each section, a time compatible with a voter being present? All earlier temporal tests measure intervals between events; this one measures the **duration of the act**, from the event "Eleitor foi habilitado" to the next "Voto confirmado para [Presidente]", in the voting-machine log (no voter identifier is read). Same sample as A32 (random stratum plus Roraima), section-days with a consistent log and 100 check-ins or more: 2022 R1: 12,022; 2022 R2: 12,375; 2026 R1: 13,644; 2026 R2: 13,788. **Partial logs; logs of all sections: NOT RUN.**
+
+**Distribution (seconds; D3 = fraction of votes under 20 s).**
+
+| ano | round | section-days | paired votes | section median, p5 | section median, p50 | section median, p95 | median D3 | % check-ins with no vote |
+|---|---|---|---|---|---|---|---|---|
+| 2022 | 1 | 12,022 | 3,514,638 | 40 | 47 | 61 | 0.00 | 0.09 |
+| 2022 | 2 | 12,375 | 3,629,624 | 8 | 13 | 18 | 0.85 | 0.02 |
+| 2026 | 1 | 13,644 | 3,661,743 | 45 | 52 | 66 | 0.00 | 0.06 |
+| 2026 | 2 | 13,788 | 3,799,063 | 7 | 9 | 12 | 0.95 | 0.01 |
+
+**The Addendum 16 prediction was not fulfilled** (I had predicted a median of 40 s to 2 min, by mistake; Addendum 16a): in the 2nd round the section median is 9 s in 2026 and 13 s in 2022; in the 1st round, 52 s and 47 s, because the voter votes for several offices in the same session.
+
+**Result of the registered tests, unchanged.** Paired difference of 2026 minus 2022 in the same sections (standard error clustered by municipality):
+
+| metric | comparison | paired sections | mean difference | standard error | z |
+|---|---|---|---|---|---|
+| D1 | 2026/2nd round against 2022/2nd round | 12,240 | -3.127 | 0.997 | -3.1 |
+| D1 | 2026/1st round against 2022/1st round (reference) | 11,762 | 4.225 | 0.399 | 10.6 |
+| D3 | 2026/2nd round against 2022/2nd round | 12,240 | 0.105 | 0.033 | 3.2 |
+| D3 | 2026/1st round against 2022/1st round (reference) | 11,762 | -0.001 | 0.000 | -2.0 |
+| D6 | 2026/2nd round against 2022/2nd round | 12,240 | 0.003 | 0.001 | 2.8 |
+| D6 | 2026/1st round against 2022/1st round (reference) | 11,762 | 0.000 | 0.000 | 1.7 |
+| W1 | 2026/2nd round against 2022/2nd round | 12,240 | 3.459 | 0.838 | 4.1 |
+| W1 | 2026/1st round against 2022/1st round (reference) | 11,762 | 0.020 | 0.692 | 0.0 |
+
+**99th-percentile rule (D3 and D6):** 2.06% of the 2026/2nd-round sections have D3 above the 99th percentile of 2022/2nd round and 2.43% have D6 above, against 1% expected (binomial standard error of 0.08 point): **EXCESS DETECTED (form), with the caveat below.** The form placebo (the same test on the wrong side, from the vote to the next check-in) shows **no** excess (0.08%), so the design is not broken. The range of the placebos (2022 R1, 2022 R2, 2026 R1) **does not** contain the 2026/2nd-round distribution at any quantile of D1 and D3 (`A34_faixa_placebos.csv`), for the same reason.
+
+**Caveat: ballot composition (post hoc diagnostic, Addendum 16b).** The duration depends on how many offices are voted for in the session. The D1 median by state in the 2nd round is 15 to 17 s in 12 states in 2022 (AL, AM, BA, ES, MS, PB, PE, RO, RS, SC, SE, SP) and 15 to 16 s in 6 states in 2026 (AC, AM, DF, ES, RN, TO), and 9 to 10 s in the others. **I assume** these are the states with a gubernatorial runoff (a longer duration is what one expects from one more office in the session), but **I did not check that list against an official source**. The national comparison mixes the two compositions, and the national 99th percentile of 2022 is a mixture. In the **states with the same class in both years** (13 states, 6,667 sections of 2026), the paired difference of D1 is **-0.2 s** (z = -0.9), the fraction above the 99th percentile of each class is **1.24% in D3** (decision threshold of 1.24%: 2.1 standard errors, borderline) and **0.93% in D6** (no excess).
+
+| class | metric | states | 2026/2nd-round sections | fraction above p99 | standard error | excess (> 2 SE) |
+|---|---|---|---|---|---|---|
+| one office | D3 | 11 | 6,535 | 1.25% | 0.12 p.p. | True |
+| one office | D6 | 11 | 6,535 | 0.95% | 0.12 p.p. | False |
+| two offices | D3 | 2 | 132 | 0.76% | 0.87 p.p. | False |
+| two offices | D6 | 2 | 132 | 0.00% | 0.87 p.p. | False |
+| all same-class states | D3 | 13 | 6,667 | 1.24% | 0.12 p.p. | True |
+| all same-class states | D6 | 13 | 6,667 | 0.93% | 0.12 p.p. | False |
+
+The diagnostic **explains almost everything** (from 2.06% to 1.24% in D3 and from 2.43% to 0.93% in D6), but **D3 stays at the limit** (about 16 sections above expectation out of 6,667), and the threshold comes from a percentile estimated on only 12 thousand sections of 2022. **I do not claim that the rest is noise or that it is an effect.** The class comes from the duration itself (median by state), not from an external list of states with a state runoff; the coincidence with 2022 is a plausibility check. Table by state: `results/fase4/A34_diag_classe_por_UF.csv`.
+
+**Association with turnout and vote** (2nd round; polling-place fixed effect; 1st-round control; 2022 placebo; main sample = random stratum plus Roraima; A34 family with its own Holm):
+
+| test | 2026 coef. | 2026 se | 2022 coef. (placebo) | 2022 se | p (excess) | p (Holm) | ceiling, margin votes | % of margin | verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| M1 Lula's share ~ D3: 2026/R2 against 2022/R2 (polling-place FE, R1 control) | -0.0100 | 0.0266 | -0.0337 | 0.0284 | 0.271 | 0.814 | 21,701,093 | 490 | INCONCLUSIVE (no excess, but ceiling >= 1% of the margin) |
+| M2 turnout ~ D3: 2026/R2 against 2022/R2 (polling-place FE, R1 control) | -0.1056 | 0.0372 | -0.0502 | 0.0225 | 0.899 | 0.899 | 2,531,991 | 57 | INCONCLUSIVE (no excess, but ceiling >= 1% of the margin) |
+| M4 D1 ~ poll-receipt manual-release rate (excess = shorter D1): 2026/R2 against 2022/R2 (polling-place FE, R1 control) | 1.1166 | 1.3610 | 0.6430 | 1.7588 | 0.416 | 0.831 | n/a | n/a | NO EXCESS (form test, no conversion into votes) |
+
+No 2026 coefficient exceeds the 2022 placebo (excess p of 0.27, 0.90 and 0.42). **The ceilings in this table are useless** (57% to 490% of the margin): they come from lack of power (large standard error over a sample of 1,467 sections) and are **not plotted in G3** (display rule). M3 (descriptive): the median duration fell 3 s from 2022 to 2026 in the same sections, which composition explains.
+
+**Ceiling (worst-case ceiling, not an estimate).** Under Addendum 16, in the 2026/2nd-round sections with D3 above the 99th percentile of 2022: (a) **79,433** valid votes in 284 sample sections (factor 1), (b) 2,287 of Lula gain over the neighborhood (factor 2). **In the diagnostic (same class):** (a) 23,093 in 83 sections, (b) 563. If the excess of 0.24 percentage point over 1% held for the 497,897 sections of the country and every vote of those sections were read as belonging to one side: **339,311 margin votes (7.7% of the margin), inflated by construction, not plotted in G3** (a fast vote is not a switched vote; it is a mechanical upper bound).
+
+**Status.** TESTED-INCONCLUSIVE. Under the registered rules, the form shows excess, and the composition diagnostic (post hoc, labelled) reduces it to a borderline residual in D3 and to nothing in D6 and D1. The duration of the vote does not support the reading of "express voting" in bulk (a 9 s median is the time to type two candidates and confirm) and does not distinguish a present voter from a vote typed without a voter. **What would close it:** the logs of all sections (power), an official list of states with a state runoff by year to fix the class without using the outcome, and the log with all offices (to measure the whole session). Code: `scripts/45_a34_extrai_duracoes.py`, `scripts/47_a34_duracao_do_voto.py`, `scripts/48_a34_diagnostico_composicao.py`; tables: `results/fase4/A34_*.csv`.
+
+<a id="a35"></a>
+
+## A35. Extremes in the whole universe: zero blank and null in a large section and 100% turnout
+
+**Pre-registration:** [Addendum 17](preregistro.md), written before counting any section of the whole universe. **Question.** Within the 106 sections with zero votes for the opponent (A12b) there were large sections without blank and null votes. Does that repeat in the universe of all tallied sections (497,897 in 2026), or is it what chance gives? The expectation uses the **same estimator as A12b** (blank-and-null rate of the other sections of the same polling place; without that, the municipality), now for all sections; the standard error comes from 1,000 resamples of municipalities (seed 20261029).
+
+**E1. Zero blank and null with turnout of 100 or more** (sensitivity thresholds: 200 and 400):
+
+| ano | round | sections in the universe | zero BN observed | expected | observed/expected | standard error |
+|---|---|---|---|---|---|---|
+| 2014 | 2 | 417,305 | 517 | 827 | 0.62 | 0.029 |
+| 2018 | 2 | 443,822 | 160 | 246 | 0.65 | 0.050 |
+| 2022 | 2 | 465,724 | 1,161 | 1,669 | 0.70 | 0.021 |
+| 2026 | 1 | 493,034 | 907 | 1,218 | 0.74 | 0.022 |
+| 2026 | 2 | 492,958 | 2,989 | 4,315 | 0.69 | 0.012 |
+
+**Reading.** In every year the observed count is **below** the expected one (ratio of 0.62 in 2014, 0.65 in 2018, 0.70 in 2022 and 0.69 in 2026, 2nd round): the 2026 ratio is the 2022 one. The estimator seems to overestimate the expectation in every year (probably because the blank-and-null rate varies within the polling place; I did not test it), which does not affect the comparison across years. The raw 2026 count (2,989 sections with 100 voters or more) is larger than 2022's (1,161) because blank and null votes fell: 3.24% of voters in 2026 and 4.59% in 2022, in the 2nd round. **Addendum 17 rule** (ratio above each placebo by more than 2 standard errors): **not** fulfilled (z against 2022 of -0.12, against the 2026 1st round of -2.05); **within expectation**, with an excess p for the worst placebo of 0.98. With 200 voters or more the 2026 ratio (0.55) exceeds 2014's and 2018's by more than 8 standard errors, but **not** 2022's nor the 2026 1st round's (verdict: within expectation; intersection-union rule).
+
+**E2. Turnout equal to the number of registered voters (descriptive, no p: abstention is not independent, and the binomial approximation underestimates the expectation):**
+
+| ano | round | turnout = registered | expected | observed/expected | of those, with 100 registered or more |
+|---|---|---|---|---|---|
+| 2014 | 2 | 16 | 4.9 | 3.3 | 6 |
+| 2018 | 2 | 10 | 1.9 | 5.3 | 2 |
+| 2022 | 2 | 4 | 1.5 | 2.6 | 2 |
+| 2026 | 1 | 15 | 1.8 | 8.6 | 3 |
+| 2026 | 2 | 12 | 1.6 | 7.4 | 3 |
+
+There are 12 sections in 2026/2nd round (3 with 100 registered voters or more; the largest have 103 and 163), against 16, 10 and 4 in the 2nd rounds of 2014, 2018 and 2022. The ratio rises from 2022 to 2026 (from 2.6 to 7.4), but with small counts, and the 2026 ratio was already 8.6 in the 1st round. List in `results/fase4/A35_E2_secoes_2026T2.csv` (small schools, community centers, one Indigenous school and one socio-educational center). **No p, no verdict.**
+
+**E3. 100% of nominal votes for one candidate, with 30 voters or more (count):**
+
+| ano | round | side | sections | votes in them |
+|---|---|---|---|---|
+| 2014 | 2 | Lula | 176 | 14,934 |
+| 2014 | 2 | opponent | 3 | 159 |
+| 2018 | 2 | Lula | 305 | 36,194 |
+| 2018 | 2 | opponent | 3 | 275 |
+| 2022 | 2 | Lula | 132 | 16,247 |
+| 2022 | 2 | opponent | 2 | 118 |
+| 2026 | 1 | Lula | 32 | 3,552 |
+| 2026 | 1 | opponent | 2 | 130 |
+| 2026 | 2 | Lula | 103 | 14,816 |
+| 2026 | 2 | opponent | 4 | 296 |
+
+Lula's side has unanimous sections in every year (103 in 2026/2nd round, 132 in 2022, 305 in 2018). The opponent's side has 2 to 4. **The 2026 count is smaller than 2018's, 2014's and 2022's.** Pure count, no test, as pre-registered.
+
+**Ceiling (worst-case ceiling, not an estimate).** E1, factor 1 (all votes of the majority candidate in the 2,989 flagged sections): **403,773** margin votes (9.1% of the margin), against 149,535 in 2022. **This number is inflated by construction** (there are fewer flagged sections than chance gives, and almost none would change the result if read as one side's votes) and so it is **not plotted in G3**. E1, factor 2 (switch expected from the neighborhood): **41,614** (0.94% of the margin), against 18,685 in 2022; this is the plotted value. E3: 15,112 in factor 1 and 5,363 in factor 2 (2022: 16,365 and 5,330). E2: 0.
+
+**Characterization of the 2026/2nd-round E1 sections** (`results/fase4/A35_E1_sinalizadas_2026T2.csv`, with state, municipality, type of place, registered voters and the same section in 2018 and 2022): ordinary school: 2,807; rural community: 93; Indigenous: 82; quilombola: 7. The great majority are ordinary schools.
+
+**Status.** TESTED-INCONCLUSIVE on the ceiling, **within expectation** under the pre-registered rule. **What would close it:** printed poll-receipts of the flagged sections (list ready), which would show whether blank and null were zero on paper too. **What the test does not do:** it does not measure what each section was; the expectation inherits the A12b bias in years with relevant third candidates. Code: `scripts/46_a35_extremos_universo.py`; tables: `results/fase4/A35_*.csv`.
+

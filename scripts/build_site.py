@@ -10,12 +10,12 @@ REPO = "https://github.com/baduba/eleicoes-dossie-2026"
 AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
 NAV = [("index", "Início"), ("perguntas-em-aberto", "Perguntas"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
        ("resultados-fase2", "Resultados: Fase 2 (A1 a A10)"), ("regua-historica", "Régua histórica"), ("alegacoes", "Inventário de alegações"), ("relatorio-original", "O relatório original"),
-       ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A33)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
+       ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A35)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
        ("changelog", "Changelog e correções"), ("referencias", "Referências")]
 NAV_EN = {"index": "Home", "perguntas-em-aberto": "Open questions", "metodologia": "Methodology", "preregistro": "Pre-registration",
           "resultados-fase1": "Results: Phase 1 (H1 to H10)", "resultados-fase2": "Results: Phase 2 (A1 to A10)", "regua-historica": "Historical timeline",
           "alegacoes": "Allegations inventory", "relatorio-original": "The original report", "pontos-cegos": "Blind spots",
-          "fase3": "Phase 3: adversarial hypotheses (A20 to A33)", "a18-alteracao-no-meio": "A18: mid-course alteration",
+          "fase3": "Phase 3: adversarial hypotheses (A20 to A35)", "a18-alteracao-no-meio": "A18: mid-course alteration",
           "a19-voto-digitado": "A19: typed vote vs. recorded vote", "boletins-impressos": "Printed bulletins", "base-legal": "Legal basis and history",
           "dados-reproducao": "Data and reproduction", "residuos": "Open issues", "changelog": "Changelog and corrections", "referencias": "References"}
 HDR = {"pt": "Auditoria independente reproduzível: 2º turno presidencial de 2026",

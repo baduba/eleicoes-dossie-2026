@@ -37,6 +37,13 @@ Each card presents the question, the status, the direction of the effect (in who
 > What would close it: Cross-matching the voter registry with the civil death registry, by an oversight body; voter profile by section, not only by electoral zone.  
 > [Technical page](fase3.html#a20) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20%20A-A20)
 
+<a id="a-a34"></a>
+> **Is the duration of the vote, from check-in to confirmation, compatible with a voter being present in each section? The 99th-percentile rule shows excess in 2026, but ballot composition explains almost all of it.**  
+> Status: **TESTED-INCONCLUSIVE** · Direction: no identifiable direction  
+> Ceiling: **worst-case ceiling, not an estimate: 339,311 margin votes (7.66% of the margin)** (ceiling extrapolated from the excess of 0.24 percentage point over 1% (about 16 sections out of 6,667 in states with the same ballot composition) to the 497,897 sections, with every vote read as belonging to one side: **inflated by construction, not plotted in G3**; in factor 1 of the sample it is 23,093 margin votes; under the registered rule, 2.06% of the 2026/2nd-round sections have D3 above the 99th percentile of 2022 against 1% expected (form excess), which falls to 1.24% in states with the same composition (post hoc diagnostic); the pre-registered prediction for the median (40 s to 2 min) was wrong (the median is 9 s); median and association models with no excess)  
+> What would close it: Logs of all sections (power), an official list of the states with a state runoff in each year (to fix the ballot composition without using the outcome) and the log with all offices.  
+> [Technical page](fase3.html#a34) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A34%20A-A34)
+
 <a id="a-a20b"></a>
 > **In sections with the most voters aged 80 or older, does runoff turnout rise more than in 2022 and 2018?**  
 > Status: **TESTED-INCONCLUSIVE** · Direction: no identifiable direction  
@@ -50,6 +57,13 @@ Each card presents the question, the status, the direction of the effect (in who
 > Ceiling: **worst-case ceiling, not an estimate: 234,746 margin votes (5.30% of the margin)** (the 14.0% fraction is compatible with the national growth of the opponent in 2026 (expected 13.2% to 15.4% with 2018 and 2022 shifted); 70.6% of these municipalities had a drop in turnout; the ceiling is the whole deficit of Flávio relative to the growth of the state attributed to vote switching, and the excess over what the national shift reproduces is 0; **the test does not distinguish vote switching from selective abstention**)  
 > What would close it: Printed bulletins of the sections of the 20 municipalities with the largest loss for Flávio (list in `results/fase3/A31b_20_secoes.csv`) and the check-in lists.  
 > [Technical page](fase3.html#a31b) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A31b%20A-A31b)
+
+<a id="a-a33-placebo"></a>
+> **Why is the 2026 coefficient of the school's manual release on Lula's gain (-0.017) more negative than the 2022 placebo's (-0.002)?**  
+> Status: **TESTED-INCONCLUSIVE** · Direction: no identifiable direction  
+> Ceiling: **worst-case ceiling, not an estimate: 221,830 margin votes (5.01% of the margin)** (**cause not identified**; the sign is the opposite of the pre-registered scheme (more manual release, less Lula gain and lower turnout), the 2018 placebo has the same negative sign, and no excess test passes Holm; the ceiling comes from the coefficient's uncertainty times exposure, not from a measured effect, and so **it is not plotted in G3** (display rule, CHANGELOG))  
+> What would close it: Abstention by age group and by section for the 2nd round (TSE product not yet published) and the composition of the schools (rural, age), to separate a composition effect from an effect of manual release.  
+> [Technical page](fase3.html#a33) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33-placebo%20A-A33-placebo)
 
 <a id="a-a10"></a>
 > **Do voting machines of the newest model (UE2022) vote differently from the others within the same polling place?**  
@@ -86,6 +100,13 @@ Each card presents the question, the status, the direction of the effect (in who
 > What would close it: Origin of the voter transfers into those sections and the history of the polling places (nominal registry, by the Electoral Court).  
 > [Technical page](fase3.html#a27) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-H5%20A-H5)
 
+<a id="a-a35"></a>
+> **Are there more large sections without blank and null votes, or with turnout of 100% of registered voters, than chance gives?**  
+> Status: **TESTED-INCONCLUSIVE** · Direction: no identifiable direction  
+> Ceiling: **worst-case ceiling, not an estimate: 41,614 margin votes (0.94% of the margin)** (ceiling = switch expected from the neighborhood (factor 2); in factor 1 (all votes of the majority candidate in those sections) it would be 403,773 margin votes, inflated by construction; the observed count is **below** the expected one in every year (ratio 0.69 in 2026 and 0.70 in 2022), within expectation under the pre-registered rule; 12 sections with turnout equal to registered voters (descriptive, no p))  
+> What would close it: Printed poll-receipts of the flagged sections (list in `results/fase4/A35_E1_sinalizadas_2026T2.csv`, 2,989 sections with 100 voters or more and zero blank and null; and the 12 with turnout equal to registered voters in `results/fase4/A35_E2_secoes_2026T2.csv`).  
+> [Technical page](fase3.html#a35) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A35%20A-A35)
+
 <a id="a-a12b"></a>
 > **Why do 29 of the 106 sections with zero votes for Flávio also have zero blank and null votes, more than their neighbors indicate (and also in 2022 and 2018)?**  
 > Status: **TESTED-INCONCLUSIVE** · Direction: in favor of Lula (ceiling) or Flávio (symmetric side)  
@@ -99,6 +120,13 @@ Each card presents the question, the status, the direction of the effect (in who
 > Ceiling: **worst-case ceiling, not an estimate: 8,125 margin votes (0.18% of the margin)** (ceiling = the excess of manual voter release beyond the noise of the model, read as votes for one side only (factor 1); without that cut, the ceiling is 29,654 margin votes; at school level, more manual release is associated with **less** Lula gain and lower turnout in 2026 (placebos show no excess); synchrony in the logs is the same as in 2022; 92% of the extreme schools have 3 sections or fewer)  
 > What would close it: Minutes, voting sheet and printed bulletin of the 20 most extreme schools (`results/fase3/A33_20_escolas_secoes.csv`, 40 sections; request `lai/07_ata_e_folha_de_votacao.md`) and the logs of all sections.  
 > [Technical page](fase3.html#a33) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33%20A-A33)
+
+<a id="a-a33-idade"></a>
+> **Why are the schools with extreme manual release not explained by the age of the electorate, as the A33 pre-registration predicted?**  
+> Status: **TESTED-INCONCLUSIVE** · Direction: no identifiable direction  
+> Ceiling: **worst-case ceiling, not an estimate: 8,125 margin votes (0.18% of the margin)** (**the pre-registered prediction (extremes explained by age) was not fulfilled**: in the first 20, the mean age is 32 to 59 years, the predicted rate is 6% to 15% and the observed 30% to 82%; ceiling = the excess of manual release beyond the noise of the model, read as votes for one side only (factor 1); without that cut, 29,654 margin votes; 92% have 3 sections or fewer; on average, Lula gained less in them (+1.5 point) than nationwide (+3.0); already described in card A-A33)  
+> What would close it: Minutes, voting sheet and printed poll-receipt of the 20 most extreme schools (`results/fase3/A33_20_escolas_secoes.csv`, 40 sections) and the logs of all sections; the operational cause (a faulty biometric reader, for example) is only confirmed or ruled out with the section's log and minutes.  
+> [Technical page](fase3.html#a33) · [Open an issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33-idade%20A-A33-idade)
 
 <a id="a-a20b-95"></a>
 > **Why did voters aged 95 or older who voted in 2026 exceed what the 2022 ratio predicts?**  
