@@ -22,6 +22,12 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 
 ### a) Resíduos sem causa identificada (testes executados, inconclusivos)
 
+> **Por que 348 seções têm mais de 30% de liberação manual no 2º turno, 97 delas com mais de 50%, sobretudo na Bahia e no Rio Grande do Sul?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 1.852.233 votos de margem (41,81% da margem)** (teto registrado, inflado pelo deslocamento negativo (Adendo 11c); a parte além do ruído do modelo de 2022 é 55.862; a liberação manual caiu de 2022 para 2026 (3.995 seções acima de 30% em 2022); sem rajadas e sem associação com comparecimento ou voto)  
+> O que fecharia: Ata da mesa receptora e folha de votação das 50 seções de maior excesso (`lai/07_secoes.csv`; pedido `lai/07_ata_e_folha_de_votacao.md`), os logs de todas as seções e a verificação da assinatura dos logs.  
+> [Página técnica](fase3.html#a32) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A32%20A-A32)
+
 > **Nas seções com mais eleitores de 80 anos ou mais, a participação de Lula e de Flávio difere da dos anos anteriores?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula (teto) ou de Flávio (lado simétrico)  
 > Teto: **teto de pior caso, não estimativa: 1.787.533 votos de margem (40,35% da margem)** (o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de 790.398)  
@@ -36,7 +42,7 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 
 > **O voto para presidente combina com o voto para governador na mesma seção, como em 2022 e 2018?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Flávio ou de Lula (lados simétricos)  
-> Teto: **teto de pior caso, não estimativa: 548.671 votos de margem (12,38% da margem)** (variante exploratória (Adendo 9b). só AM e DF. pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de 169.390; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada))  
+> Teto: **teto de pior caso, não estimativa: 548.671 votos de margem (12,38% da margem)** (variante exploratória (Adendo 9b), só AM e DF, pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de 169.390; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada))  
 > O que fecharia: Os votos por candidato em todos os cargos por seção nas 27 UFs, com uma regra de alinhamento definida por quem conhece as alianças locais; ou deputados federais por partido nas UFs sem 2º turno de governador.  
 > [Página técnica](fase3.html#a22) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A22%20A-A22)
 
@@ -76,9 +82,15 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: Origem das transferências de eleitores para essas seções e o histórico dos locais (cadastro nominal, pela Justiça Eleitoral).  
 > [Página técnica](fase3.html#a27) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-H5%20A-H5)
 
+> **Por que 29 das 106 seções com zero voto para Flávio também têm zero brancos e nulos, mais do que as vizinhas indicam (e também em 2022 e 2018)?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula (teto) ou de Flávio (lado simétrico)  
+> Teto: **teto de pior caso, não estimativa: 14.860 votos de margem (0,34% da margem)** (a alegação "0% de brancos e nulos" vale para 29 de 106; o excesso sobre o esperado existe em todas as eleições (razão de 1,4 em 2026, 1,4 em 2022 e 2,2 em 2018); teto: todos os votos de Lula nas 106 seções, se fossem inválidos)  
+> O que fecharia: Boletins impressos e listas de habilitação dessas 106 seções (lista em `results/fase3/A12b_106_secoes.csv`) e as dos conjuntos equivalentes de 2022 e 2018.  
+> [Página técnica](fase3.html#a12b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A12b%20A-A12b)
+
 > **Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
-> Teto: **teto de pior caso, não estimativa: 7.059 votos de margem (0,16% da margem)** (z = 2.42. Holm 0.054: passa no corte de 2 erros padrão e não passa no Holm; cerca de 4.205 votantes a mais. de 16.659)  
+> Teto: **teto de pior caso, não estimativa: 7.059 votos de margem (0,16% da margem)** (z = 2,42, Holm 0,054: passa no corte de 2 erros padrão e não passa no Holm; cerca de 4.205 votantes a mais, de 16.659)  
 > O que fecharia: Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.  
 > [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-95%20A-A20b-95)
 
@@ -141,7 +153,7 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > **O que o TSE e os TREs respondem aos pedidos de acesso à informação?**  
 > Situação: **NÃO TESTADO** · Direção: n/a  
 > Teto: sem número ainda (teste não executado)  
-> O que fecharia: Protocolar os seis pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.  
+> O que fecharia: Protocolar os sete pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.  
 > [Página técnica](fase3.html#a28) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A28%20A-A28)
 
 ### c) Pontos cegos estruturais (A18, A19)

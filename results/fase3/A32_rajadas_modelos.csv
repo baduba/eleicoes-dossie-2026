@@ -1,0 +1,9 @@
+amostra,k,desfecho,erro
+principal: R + Roraima completa,3,comparecimento,"colineariedade em ['indb3', 'turnout_t1'] (variacao intra-grupo insuficiente)"
+principal: R + Roraima completa,3,participacao de Lula,"colineariedade em ['indb3', 'lula_sh_t1'] (variacao intra-grupo insuficiente)"
+principal: R + Roraima completa,5,comparecimento,"colineariedade em ['indb5', 'turnout_t1'] (variacao intra-grupo insuficiente)"
+principal: R + Roraima completa,5,participacao de Lula,"colineariedade em ['indb5', 'lula_sh_t1'] (variacao intra-grupo insuficiente)"
+sensibilidade: todos os estratos (selecao no desfecho),3,comparecimento,"colineariedade em ['indb3', 'turnout_t1'] (variacao intra-grupo insuficiente)"
+sensibilidade: todos os estratos (selecao no desfecho),3,participacao de Lula,"colineariedade em ['indb3', 'lula_sh_t1'] (variacao intra-grupo insuficiente)"
+sensibilidade: todos os estratos (selecao no desfecho),5,comparecimento,"colineariedade em ['indb5', 'turnout_t1'] (variacao intra-grupo insuficiente)"
+sensibilidade: todos os estratos (selecao no desfecho),5,participacao de Lula,"colineariedade em ['indb5', 'lula_sh_t1'] (variacao intra-grupo insuficiente)"

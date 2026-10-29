@@ -79,6 +79,15 @@ def medidas(ts, tp, close_s):
         out[f"b{k}"], out[f"in_b{k}"] = nb, inb
         e = esperado_exato(lig, n, m, k)
         out[f"esp_b{k}"] = e; out[f"p_ge1_b{k}"] = 1 - float(np.exp(-e))
+        # suplementar (Adendo 11d): agrupamento sem condicao de tempo
+        nr, inr = rajadas(ts, arr, 1e18, k)
+        out[f"g{k}"], out[f"in_g{k}"] = nr, inr
+        eg = esperado_exato(np.ones(n - 1, dtype=bool), n, m, k)
+        out[f"esp_g{k}"] = eg; out[f"p_ge1_g{k}"] = 1 - float(np.exp(-eg))
+    # intervalos que precedem cada habilitacao, por tipo (para os quantis agregados)
+    if n > 1:
+        out["gaps_pre_M"] = [float(x) for x in gaps[isM[1:]]]
+        out["gaps_pre_B"] = [float(x) for x in gaps[(tpl == "B")[1:]]]
     return out
 
 
@@ -91,28 +100,20 @@ def carrega_logs(dl, pq):
             d = pd.read_parquet(os.path.join(pq, f"bu_{a}_t{t}.parquet"), columns=KEY + ["QT_APTOS", "QT_COMPARECIMENTO", "turnout", "lula_sh", "valid2", "lula", "ab_nominal_min", "uf_local", "manual_rate", "DS_TIPO_URNA"])
             bw[(a, t)] = d.rename(columns={c: f"{c}" for c in d.columns})
     linhas = []
+    GAPS = {}
     for (a, t), g in L.groupby(["ano", "dia"]):
         b = bw[(a, t)][KEY + ["QT_COMPARECIMENTO", "ab_nominal_min"]]
         g = g.merge(b, on=KEY, how="left")
         for r in g.itertuples():
             close = (r.ab_nominal_min + 540) * 60 if r.ab_nominal_min == r.ab_nominal_min else 17 * 3600
             m = medidas(r.ts, r.tp, close)
+            gm, gb = m.pop("gaps_pre_M", []), m.pop("gaps_pre_B", [])
+            GAPS.setdefault((a, t), ([], []))[0].extend(gm); GAPS[(a, t)][1].extend(gb)
             linhas.append(dict(SG_UF=r.SG_UF, CD_MUNICIPIO=r.CD_MUNICIPIO, NR_ZONA=r.NR_ZONA, NR_SECAO=r.NR_SECAO, ano=a, turno=t, comparecimento_bu=r.QT_COMPARECIMENTO, **m))
-    return pd.DataFrame(linhas), bw
+    return pd.DataFrame(linhas), bw, GAPS
 
 
-def main(dl, pq, damostra, durna, saida):
-    os.makedirs(saida, exist_ok=True)
-    M, bw = carrega_logs(dl, pq)
-    est = pd.read_parquet(os.path.join(damostra, "amostra_estratos.parquet"))[KEY + ["estrato"]]
-    est = est.groupby(KEY).estrato.agg(lambda s: "".join(sorted(set(s)))).reset_index()
-    M = M.merge(est, on=KEY, how="left")
-    M["estrato"] = M.estrato.fillna("RR_completo")
-    M["consistente"] = ((M.n_hab - M.comparecimento_bu).abs() <= TOL * M.comparecimento_bu.clip(lower=1)) & (M.n_hab >= NMIN)
-    M["share_manual"] = M.n_m / M.n_hab
-    for k in KS:
-        M[f"ind{k}"] = (M[f"b{k}"] >= 1).astype(float).where(M[f"b{k}"].notna())
-    M.to_parquet(os.path.join(damostra, "A32_medidas_secao_dia.parquet"), index=False)
+def bloco_(M, bw, pref, suf, fam_h, kprin, saida, SAIDAS):
     # --- prevalencia por ano e dia
     pv = []
     for (a, t), g in M[M.consistente].groupby(["ano", "turno"]):
@@ -121,27 +122,26 @@ def main(dl, pq, damostra, durna, saida):
                        manual_ultima_hora_media=float(gg.manual_ultima_hora.mean()), hab_ultima_hora_media=float(gg.hab_ultima_hora.mean()),
                        dif_manual_menos_todas_ultima_hora=float((gg.manual_ultima_hora - gg.hab_ultima_hora).mean()), ep_dif=float((gg.manual_ultima_hora - gg.hab_ultima_hora).std(ddof=1) / np.sqrt(gg.manual_ultima_hora.notna().sum())))
             for k in KS:
-                row[f"pct_secoes_com_rajada_k{k}"] = 100 * float(gg[f"ind{k}"].mean()); row[f"rajadas_k{k}_total"] = int(gg[f"b{k}"].sum())
-                row[f"esperado_pct_com_rajada_k{k}_permutacao"] = 100 * float(gg[f"p_ge1_b{k}"].mean())
-                row[f"razao_obs_esp_rajadas_k{k}"] = float(gg[f"b{k}"].sum() / gg[f"esp_b{k}"].sum()) if gg[f"esp_b{k}"].sum() > 0 else np.nan
+                row[f"pct_secoes_com_rajada_k{k}"] = 100 * float(gg[f"ind{pref}{k}"].mean()); row[f"rajadas_k{k}_total"] = int(gg[f"{pref}{k}"].sum())
+                row[f"esperado_pct_com_rajada_k{k}_permutacao"] = 100 * float(gg[f"p_ge1_{pref}{k}"].mean())
+                row[f"razao_obs_esp_rajadas_k{k}"] = float(gg[f"{pref}{k}"].sum() / gg[f"esp_{pref}{k}"].sum()) if gg[f"esp_{pref}{k}"].sum() > 0 else np.nan
             pv.append(row)
-    PV = pd.DataFrame(pv); PV.to_csv(os.path.join(saida, "A32_rajadas_prevalencia.csv"), index=False)
-    cons = M.groupby(["ano", "turno"]).agg(secoes_dia=("n_hab", "size"), consistentes=("consistente", "sum"), n_hab_menor_100=("n_hab", lambda s: int((s < NMIN).sum()))).reset_index(); cons.to_csv(os.path.join(saida, "A32_logs_cobertura.csv"), index=False)
-
+    PV = pd.DataFrame(pv); PV.to_csv(os.path.join(saida, f"A32_rajadas_prevalencia{suf}.csv"), index=False)
+    
     # --- frequencia 2026 x 2022 nas mesmas secoes (efeito fixo de secao)
     reg = Registro(); fr = []
     for t in (1, 2):
         w = M[M.consistente & (M.turno == t)]
         for k in KS:
-            x = w[["SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO", "ano", f"ind{k}"]].dropna()
+            x = w[["SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO", "ano", f"ind{pref}{k}"]].dropna()
             x["a26"] = (x.ano == 2026).astype(float); x["sec"] = x.SG_UF + "_" + x.CD_MUNICIPIO.astype(str) + "_" + x.NR_ZONA.astype(str) + "_" + x.NR_SECAO.astype(str); x["mun"] = x.SG_UF + "_" + x.CD_MUNICIPIO.astype(str)
             both = x.groupby("sec").ano.transform("nunique") == 2
             try:
-                r = fe_ols(x[both], f"ind{k}", ["a26"], "sec", "mun").iloc[0]
+                r = fe_ols(x[both], f"ind{pref}{k}", ["a26"], "sec", "mun").iloc[0]
                 fr.append(dict(turno=t, k=k, secoes_nos_dois_anos=int(x[both].sec.nunique()), diferenca_2026_menos_2022_em_pontos_de_proporcao=float(100 * r.coef), ep=float(100 * r.se), z=float(r.coef / r.se), p=float(r.p)))
             except ValueError as e:
                 fr.append(dict(turno=t, k=k, erro=str(e)))
-    pd.DataFrame(fr).to_csv(os.path.join(saida, "A32_rajadas_frequencia_2026_vs_2022.csv"), index=False)
+    pd.DataFrame(fr).to_csv(os.path.join(saida, f"A32_rajadas_frequencia_2026_vs_2022{suf}.csv"), index=False)
 
     # --- associacao com comparecimento e voto (2o turno), amostra principal e sensibilidade
     def junta(a):
@@ -154,18 +154,18 @@ def main(dl, pq, damostra, durna, saida):
     mod = []
     for amostra, filtro in (("principal: R + Roraima completa", lambda w: w[w.estrato.str.contains("R")]), ("sensibilidade: todos os estratos (selecao no desfecho)", lambda w: w)):
         for k in KS:
-            for y, xs, nome, sent, fator, expo in (("turnout", [f"ind{k}", "turnout_t1"], "comparecimento", "PT+OPO", 1.0, expo_a), ("lula_sh", [f"ind{k}", "lula_sh_t1"], "participacao de Lula", "PT", 2.0, expo_v)):
+            for y, xs, nome, sent, fator, expo in (("turnout", [f"ind{pref}{k}", "turnout_t1"], "comparecimento", "PT+OPO", 1.0, expo_a), ("lula_sh", [f"ind{pref}{k}", "lula_sh_t1"], "participacao de Lula", "PT", 2.0, expo_v)):
                 try:
-                    r26 = fe_ols(filtro(A[2026]).dropna(subset=[f"ind{k}"]), y, xs, "uf_local").iloc[0]
-                    r22 = fe_ols(filtro(A[2022]).dropna(subset=[f"ind{k}"]), y, xs, "uf_local").iloc[0]
+                    r26 = fe_ols(filtro(A[2026]).dropna(subset=[f"ind{pref}{k}"]), y, xs, "uf_local").iloc[0]
+                    r22 = fe_ols(filtro(A[2022]).dropna(subset=[f"ind{pref}{k}"]), y, xs, "uf_local").iloc[0]
                 except ValueError as e:
                     mod.append(dict(amostra=amostra, k=k, desfecho=nome, erro=str(e))); continue
                 mod.append(dict(amostra=amostra, k=k, desfecho=nome, coef_2026=float(r26.coef), ep_2026=float(r26.se), coef_2022_placebo=float(r22.coef), ep_2022=float(r22.se), n_2026=int(r26.n), locais_2026=int(r26.grupos)))
-                if amostra.startswith("principal") and k == 3:
-                    reg.add("A32", f"rajada de liberacao manual (k = {k}) e {nome}: 2026/T2 contra 2022/T2 (EF de local, controle do T1)", float(r26.coef), float(r26.se), [("2022/T2", float(r22.coef), float(r22.se))], expo=expo, fator=fator, sentido=sent,
+                if amostra.startswith("principal") and k == kprin:
+                    reg.add(fam_h, f"{'agrupamento' if pref == 'g' else 'rajada'} de liberacao manual (k = {k}) e {nome}: 2026/T2 contra 2022/T2 (EF de local, controle do T1)", float(r26.coef), float(r26.se), [("2022/T2", float(r22.coef), float(r22.se))], expo=expo, fator=fator, sentido=sent,
                             nota=f"{int(r26.n)} secoes, {int(r26.grupos)} locais; amostra principal (R + Roraima); teto = extrapolacao do coeficiente para todo o pais, so limite superior")
-    pd.DataFrame(mod).to_csv(os.path.join(saida, "A32_rajadas_modelos.csv"), index=False)
-    fam = reg.frame(); fam.to_csv(os.path.join(saida, "A32_rajadas_testes.csv"), index=False)
+    pd.DataFrame(mod).to_csv(os.path.join(saida, f"A32_rajadas_modelos{suf}.csv"), index=False)
+    fam = reg.frame(); fam.to_csv(os.path.join(saida, f"A32_rajadas_testes{suf}.csv"), index=False)
 
     # M3 (descritiva): variacao 2022 -> 2026 do comparecimento do T2 contra a rajada de 2026
     a26, a22 = A[2026], A[2022][KEY + ["turnout"]].rename(columns={"turnout": "turnout_2022"})
@@ -174,12 +174,39 @@ def main(dl, pq, damostra, durna, saida):
     for amostra, filtro in (("principal: R + Roraima completa", lambda x: x[x.estrato.str.contains("R")]), ("todos os estratos (selecao no desfecho)", lambda x: x)):
         for k in KS:
             try:
-                r = fe_ols(filtro(w).dropna(subset=[f"ind{k}", "dturn"]), "dturn", [f"ind{k}"], "uf_local").iloc[0]
+                r = fe_ols(filtro(w).dropna(subset=[f"ind{pref}{k}", "dturn"]), "dturn", [f"ind{pref}{k}"], "uf_local").iloc[0]
                 m3.append(dict(amostra=amostra, k=k, coef=float(r.coef), ep=float(r.se), p=float(r.p), n=int(r.n)))
             except ValueError as e:
                 m3.append(dict(amostra=amostra, k=k, erro=str(e)))
-    pd.DataFrame(m3).to_csv(os.path.join(saida, "A32_rajadas_M3_descritiva.csv"), index=False)
+    pd.DataFrame(m3).to_csv(os.path.join(saida, f"A32_rajadas_M3_descritiva{suf}.csv"), index=False)
+    SAIDAS[pref] = dict(PV=PV, fr=pd.DataFrame(fr), mod=pd.DataFrame(mod), fam=fam, m3=pd.DataFrame(m3))
 
+
+def main(dl, pq, damostra, durna, saida):
+    os.makedirs(saida, exist_ok=True)
+    M, bw, GAPS = carrega_logs(dl, pq)
+    est = pd.read_parquet(os.path.join(damostra, "amostra_estratos.parquet"))[KEY + ["estrato"]]
+    est = est.groupby(KEY).estrato.agg(lambda s: "".join(sorted(set(s)))).reset_index()
+    M = M.merge(est, on=KEY, how="left")
+    M["estrato"] = M.estrato.fillna("RR_completo")
+    M["consistente"] = ((M.n_hab - M.comparecimento_bu).abs() <= TOL * M.comparecimento_bu.clip(lower=1)) & (M.n_hab >= NMIN)
+    M["share_manual"] = M.n_m / M.n_hab
+    for pref in ("b", "g"):
+        for k in KS:
+            M[f"ind{pref}{k}"] = (M[f"{pref}{k}"] >= 1).astype(float).where(M[f"{pref}{k}"].notna())
+    M.to_parquet(os.path.join(damostra, "A32_medidas_secao_dia.parquet"), index=False)
+    cons = M.groupby(["ano", "turno"]).agg(secoes_dia=("n_hab", "size"), consistentes=("consistente", "sum"), n_hab_menor_100=("n_hab", lambda s: int((s < NMIN).sum()))).reset_index(); cons.to_csv(os.path.join(saida, "A32_logs_cobertura.csv"), index=False)
+    # quantis do intervalo que precede cada habilitacao (agregado)
+    qq = []
+    for (a, t), (gm, gb) in sorted(GAPS.items()):
+        for tipo, v in (("manual", gm), ("biometrica", gb)):
+            v = np.asarray(v)
+            qq.append(dict(ano=a, turno=t, tipo=tipo, n=len(v), p1=np.percentile(v, 1), p5=np.percentile(v, 5), p25=np.percentile(v, 25), mediana=np.percentile(v, 50), p75=np.percentile(v, 75), p95=np.percentile(v, 95)))
+    QQ = pd.DataFrame(qq); QQ.to_csv(os.path.join(saida, "A32_intervalos_por_tipo.csv"), index=False)
+    est_ok = pd.read_parquet(os.path.join(damostra, "A32_medidas_secao_dia.parquet"))
+    SAIDAS = {}
+    for pref, suf, fam_h, kprin in (("b", "", "A32", 3), ("g", "_sup", "A32-sup", 5)):
+        bloco_(M, bw, pref, suf, fam_h, kprin, saida, SAIDAS)
     # --- item 4: hash do log na lista assinada (amostra de A4/A5)
     hs = []
     for a in (2022, 2026):
@@ -190,7 +217,10 @@ def main(dl, pq, damostra, durna, saida):
                        lista_hash_ok=int(d.lista_hash_ok.sum()) if "lista_hash_ok" in d else np.nan))
     pd.DataFrame(hs).to_csv(os.path.join(saida, "A32_hash_log_na_lista.csv"), index=False)
     pd.set_option("display.width", 260); pd.set_option("display.max_columns", 50)
-    print(cons.to_string()); print(PV.round(3).T.to_string()); print(pd.DataFrame(fr).round(3).to_string()); print(pd.DataFrame(mod).round(4).to_string()); print(fam.T.to_string() if len(fam) else "sem familia"); print(pd.DataFrame(m3).round(4).to_string()); print(pd.DataFrame(hs).to_string())
+    print(cons.to_string()); print(QQ.round(1).to_string())
+    for pref, d in SAIDAS.items():
+        print("=====", pref); print(d["PV"].round(3).T.to_string()); print(d["fr"].round(3).to_string()); print(d["mod"].round(4).to_string()); print(d["fam"].T.to_string() if len(d["fam"]) else "sem familia"); print(d["m3"].round(4).to_string())
+    print(pd.DataFrame(hs).to_string())
 
 
 if __name__ == "__main__":

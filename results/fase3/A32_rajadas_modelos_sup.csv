@@ -1,0 +1,9 @@
+amostra,k,desfecho,coef_2026,ep_2026,coef_2022_placebo,ep_2022,n_2026,locais_2026,erro
+principal: R + Roraima completa,3,comparecimento,0.0030758912822962895,0.003989605963475166,-0.0006072728530322638,0.0036208714216346403,1467.0,296.0,
+principal: R + Roraima completa,3,participacao de Lula,0.0002218156819693904,0.0031131308344654785,-0.0009715164343960474,0.004139958195958881,1467.0,296.0,
+principal: R + Roraima completa,5,comparecimento,,,,,,,"colineariedade em ['indg5', 'turnout_t1'] (variacao intra-grupo insuficiente)"
+principal: R + Roraima completa,5,participacao de Lula,,,,,,,"colineariedade em ['indg5', 'lula_sh_t1'] (variacao intra-grupo insuficiente)"
+sensibilidade: todos os estratos (selecao no desfecho),3,comparecimento,0.0024532435093646333,0.0006493559864871393,0.0027369201016272217,0.0005862339661206609,11318.0,1802.0,
+sensibilidade: todos os estratos (selecao no desfecho),3,participacao de Lula,-0.000339433089841156,0.0006171800683569711,0.0006365475794648765,0.0006698017957642643,11318.0,1802.0,
+sensibilidade: todos os estratos (selecao no desfecho),5,comparecimento,0.001377701567690358,0.004324240699436109,0.004573687387198259,0.0024849327020864394,11318.0,1802.0,
+sensibilidade: todos os estratos (selecao no desfecho),5,participacao de Lula,-0.003956430168963487,0.0040450328957492045,0.0031909650127742825,0.00200427651570506,11318.0,1802.0,
