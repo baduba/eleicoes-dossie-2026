@@ -22,23 +22,26 @@ def meio(f):
     return float(np.mean(n)) if n else np.nan
 
 
+def uma(args):
+    zdir, ano, uf = args
+    z = os.path.join(zdir, f"perfil_eleitor_secao_{ano}_{uf}.zip")
+    d = p30.le(z, ano)
+    d["ponto"] = d.faixa.map(meio)
+    d = d[d.ponto.notna()]
+    d["soma_idade"] = d.apt * d.ponto
+    for nome, lo, hi in GRUPOS:
+        d[nome] = np.where((d.ponto >= lo) & (d.ponto <= hi), d.apt, 0.0)
+    agg = d.groupby(p30.KEY + ["NR_LOCAL_VOTACAO"], dropna=False).agg(apt=("apt", "sum"), bio=("bio", "sum"), soma_idade=("soma_idade", "sum"), **{n: (n, "sum") for n, _, _ in GRUPOS}).reset_index()
+    print(ano, uf, len(agg), flush=True)
+    return agg
+
+
 def main(zdir, saida, anos):
+    from concurrent.futures import ProcessPoolExecutor
     os.makedirs(saida, exist_ok=True)
     for ano in anos:
-        partes = []
-        for uf in p30.UFS:
-            if uf == "ZZ":
-                continue
-            z = os.path.join(zdir, f"perfil_eleitor_secao_{ano}_{uf}.zip")
-            d = p30.le(z, ano)
-            d["ponto"] = d.faixa.map(meio)
-            d = d[d.ponto.notna()]
-            d["soma_idade"] = d.apt * d.ponto
-            for nome, lo, hi in GRUPOS:
-                d[nome] = np.where((d.ponto >= lo) & (d.ponto <= hi), d.apt, 0.0)
-            agg = d.groupby(p30.KEY + ["NR_LOCAL_VOTACAO"], dropna=False).agg(apt=("apt", "sum"), bio=("bio", "sum"), soma_idade=("soma_idade", "sum"), **{n: (n, "sum") for n, _, _ in GRUPOS}).reset_index()
-            partes.append(agg)
-            print(ano, uf, len(agg), flush=True)
+        with ProcessPoolExecutor(6) as ex:
+            partes = list(ex.map(uma, [(zdir, ano, uf) for uf in p30.UFS if uf != "ZZ"]))
         s = pd.concat(partes, ignore_index=True)
         s["idade_media"] = s.soma_idade / s.apt.replace(0, np.nan)
         for n, _, _ in GRUPOS:

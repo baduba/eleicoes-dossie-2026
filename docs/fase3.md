@@ -449,3 +449,74 @@ _Leitura de f_hat: no 1º turno, Flávio teve 60% do comparecimento de Silva Jar
 **7. Análise suplementar (pós-hoc, exploratória, Adendo 10b; não substitui a linha principal).** Como f é instável com pool pequeno, repetida com estatísticas bem condicionadas: o ganho de cada candidato por apto do 1º turno, com os mesmos regressores e efeito fixo de UF, resíduo padronizado dentro de decis de tamanho. Silva Jardim em 2026: z do PT = 0,01 e z do oponente = -2,13; Holm 1,00 e 1,00: **comum**, nos quatro anos (z do oponente de -2,17 a -0,29). Cauda mais leve (cerca de 6 a 8 graus de liberdade; valor crítico de |z| de 10 a 13). Em 2026, 1 município sai da cauda por essa medida: Marechal Thaumaturgo/AC (z do oponente -10,4: o oponente perdeu 1.352 votos); teto de pior caso além da cauda: 136 votos de margem (0,003% da margem). Itacoatiara/AM, o primeiro do modelo principal, tem z de -1,97 e -1,60 nesta medida: comum.
 
 **Situação.** Silva Jardim: TESTADO, DENTRO DA CAUDA ESPERADA (nos dois métodos). Três municípios pequenos saem da cauda do modelo principal por artefato da razão com pool pequeno (fluxos brutos de 15 a 40 vezes o pool); na medida suplementar um outro município (Marechal Thaumaturgo/AC) sai da cauda, com teto abaixo de 0,01% da margem: **TESTADO-INCONCLUSIVO** para esses, porque a explicação (municípios com forte queda de comparecimento entre os turnos) não pode ser conferida sem os boletins impressos e as listas de habilitação. **O que fecharia:** BUs impressos de Silva Jardim, Itacoatiara, Santo Antônio de Lisboa e Rafael Godeiro; a variação de comparecimento por seção entre os turnos nesses municípios. **O que o teste não faz:** não identifica em quem cada eleitor votou, não prova nem descarta manipulação em nenhum município; vale para a forma da distribuição entre municípios. Tabelas em `results/fase3/A31_*.csv`; código em `scripts/35_a31_transferencia_municipal.py`.
+
+<a id="a12b"></a>
+
+## A12b. A alegação "106 urnas com 100% para Lula e 0% de brancos, nulos e Flávio"
+
+**Pré-registro:** [Adendo 12](preregistro.md), escrito antes de calcular as probabilidades. **Alegação.** A imagem afirma que 106 urnas deram 100% a Lula e 0% de brancos, nulos e Flávio.
+
+**1. Contagem.** Das **106** seções com zero voto para Flávio em 2026/T2 (a contagem de A12; nenhuma tem comparecimento zero), **29** (27%) têm também zero brancos e zero nulos. As outras 77 têm brancos ou nulos. No conjunto das 106: 24 brancos e 338 nulos, 2,4% do comparecimento de 15.222 votantes. **"0% de brancos e nulos" não vale para o conjunto das 106**, só para 29. São seções pequenas (comparecimento mediano 128; aptos medianos 161); as 29 com tripla zero são ainda menores (mediana 56 votantes, contra 139).
+
+**2. Onde estão.** Por tipo de local (classificação de A27 pelo nome do local) e por UF:
+
+| tipo de local | seções | com zero brancos e nulos | comparecimento mediano |
+|---|---|---|---|
+| escola_outro | 55 | 11 | 103,0 |
+| indigena | 41 | 15 | 145,0 |
+| prisional | 2 | 1 | 21,5 |
+| quilombola | 1 | 1 | 54,0 |
+| rural_comunidade | 7 | 1 | 68,0 |
+
+| UF | seções | com zero brancos e nulos | votos de Lula |
+|---|---|---|---|
+| AC | 3 | 0 | 386 |
+| AM | 30 | 1 | 6.477 |
+| BA | 4 | 1 | 215 |
+| CE | 2 | 1 | 86 |
+| ES | 1 | 1 | 41 |
+| MA | 20 | 4 | 2.068 |
+| MG | 2 | 0 | 116 |
+| MS | 1 | 1 | 56 |
+| MT | 5 | 3 | 813 |
+| PA | 16 | 10 | 1.733 |
+| PB | 1 | 1 | 10 |
+| PE | 1 | 0 | 227 |
+| PI | 1 | 1 | 16 |
+| PR | 1 | 0 | 314 |
+| RO | 1 | 0 | 104 |
+| RR | 8 | 4 | 1.207 |
+| RS | 2 | 1 | 104 |
+| TO | 7 | 0 | 887 |
+
+As 106 estão em 18 UFs, com concentração em AM (30), MA (20) e PA (16); 41 são em locais indígenas. Para cada uma: UF, município, tipo de local, aptos, comparecimento, votos de Lula, brancos, nulos, resultado no 1º turno de 2026 e na mesma seção em 2022: `results/fase3/A12b_106_secoes.csv`.
+
+**3. Esperado.** Para cada seção, a probabilidade de zero brancos e zero nulos é (1 - r)^n, com n o comparecimento da própria seção e r a taxa de brancos e nulos das **outras seções do mesmo local** (do município, se o local tem só uma seção ou poucos votantes). O número esperado é a soma; o p exato vem da distribuição Poisson-binomial. Série, com as seções de zero oponente de cada eleição (definição "todas as apuradas" de A12):
+
+| ano | turno | seções com zero oponente | tripla zero observada | esperada (taxa do local) | p (observado ou mais) | esperada (taxa do município) | observado / esperado |
+|---|---|---|---|---|---|---|---|
+| 2014 | 1 | 709 | 23 | 19,9 | 0,219 | 19,7 | 1,15 |
+| 2014 | 2 | 194 | 28 | 22,6 | 0,084 | 22,8 | 1,24 |
+| 2018 | 1 | 674 | 61 | 27,2 | < 0,001 | 16,9 | 2,24 |
+| 2018 | 2 | 328 | 42 | 19,2 | < 0,001 | 16,0 | 2,19 |
+| 2022 | 1 | 161 | 39 | 23,2 | < 0,001 | 16,9 | 1,68 |
+| 2022 | 2 | 143 | 29 | 20,8 | 0,018 | 18,9 | 1,39 |
+| 2026 | 1 | 81 | 28 | 17,0 | < 0,001 | 10,1 | 1,65 |
+| 2026 | 2 | 106 | 29 | 20,4 | 0,009 | 17,0 | 1,42 |
+
+**Leitura.** A previsão do Adendo 12 (observado próximo do esperado) **não se cumpre ao pé da letra**: em 2026/T2 há 29 seções com tripla zero contra 20,4 esperadas (p = 0,009; com a taxa do município, p < 0,001). **Mas o excesso sobre o esperado existe em todas as eleições e tem razão parecida em 2022 (T2 1,39) e maior em 2018 (T2 2,19) do que em 2026 (1,42)**, inclusive nos 1º turnos. Uma explicação possível, **não testada aqui**: seções com zero voto para o oponente são locais pequenos e unânimes, onde brancos e nulos podem ser menos frequentes do que nas vizinhas; se for isso, é limitação do esperado, não característica de 2026. O que a série mostra é só que o excesso não é específico de 2026.
+
+**4. Unânimes e a diferença entre as afirmações.**
+
+| ano | turno | conjunto (seções com 30 votos válidos ou mais) | seções | com zero brancos e nulos | % com zero brancos e nulos | mediana de brancos e nulos (% do comparecimento) |
+|---|---|---|---|---|---|---|
+| 2026 | 2 | 100% dos válidos para o PT | 103 | 26 | 25,2 | 1,52 |
+| 2026 | 2 | 100% dos válidos para o oponente | 4 | 1 | 25,0 | 1,87 |
+| 2022 | 2 | 100% dos válidos para o PT | 130 | 23 | 17,7 | 1,88 |
+| 2022 | 2 | 100% dos válidos para o oponente | 2 | 0 | 0,0 | 3,08 |
+
+O relatório original dizia "100% dos votos válidos" (seções unânimes com 30 votos válidos ou mais, [página do relatório](relatorio-original.md)): 103 seções do PT em 2026/T2. **"100% dos válidos" admite brancos e nulos acima de zero; "0% de brancos e nulos" é uma afirmação mais forte.** E 106 (zero voto para Flávio, qualquer tamanho) não é o mesmo conjunto que 103 (unânimes com 30 válidos ou mais). Entre as 103, 26 têm zero brancos e nulos.
+
+**5. Teto, em votos de margem (teto de pior caso, não estimativa).** Votos de Lula nas 106 seções: **14.860**. (i) Se todos fossem inválidos (como em A27, fator 1): **14.860 votos de margem (0,34% da margem)**. (ii) Se esses votos fossem trocados, pelo que as seções vizinhas dariam ao oponente (2.700 votos esperados; fator 2): **5.401 votos de margem (0,12% da margem)**. Nenhum cenário com essas seções se aproxima da margem de 4.430.191 votos.
+
+**Situação.** TESTADO: a alegação "0% de brancos e nulos" não reproduz para o conjunto (só para parte); o excesso de tripla zero sobre o esperado é geral e não específico de 2026. **O que o teste não faz:** não mostra por que seções pequenas e unânimes têm menos brancos e nulos (sigilo do voto, perfil dos locais, ou outra coisa); só mostra que isso ocorre em todas as eleições. Código: `scripts/36_a12b_zero_brancos_nulos.py`; tabelas: `results/fase3/A12b_*.csv`.

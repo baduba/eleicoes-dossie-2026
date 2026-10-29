@@ -7,6 +7,8 @@ import pandas as pd
 
 R, RAIZ = sys.argv[1], sys.argv[2]
 MARGEM = 4_430_191
+F3 = os.path.join(RAIZ, 'results', 'fase3')
+rd3 = lambda f: pd.read_csv(os.path.join(F3, f))
 rd = lambda f: pd.read_csv(os.path.join(R, f)) if os.path.exists(os.path.join(R, f)) else None
 
 
@@ -27,6 +29,10 @@ reg = rd("registro_testes.csv")
 a12c, a12e = rd("A12_a12_contagens.csv"), rd("A12_a12_esperado_vs_observado.csv")
 a13 = rd("A13_a13_inversoes_e_trechos.csv"); a14 = rd("A14_a14_pontos_chave.csv"); a15 = rd("A15_a15_modelo_urna.csv"); a2 = rd("A2_a2_perdas.csv")
 a5n = rd("A5_a5_estimativa_nacional_votos_apos_nominal.csv"); h3 = rd("H3_h3_recontagem_relogio_cru.csv"); tot = rd("H2_h2_totais_absolutos.csv").set_index(["ano", "turno"])
+b12 = rd3("A12b_resumo_106.csv").iloc[0]
+s12 = rd3("A12b_serie.csv"); s12 = s12[s12.universo.str.startswith("todas")].set_index(["ano", "turno"])
+u12 = rd3("A12b_unanimes_x_zero_bn.csv"); u26 = u12[(u12.ano == 2026) & u12.conjunto.str.contains("PT")].iloc[0]
+a31 = rd3("A31_sj_resumo.csv").iloc[0]
 z26 = a12c[(a12c.ano == 2026) & (a12c.turno == 2) & (a12c.definicao == "todas as apuradas")].iloc[0]
 c = lambda a, t, col: int(h3[(h3.ano == a) & (h3.turno == t) & (h3.recorte == "com exterior")][col].iloc[0])
 x1934 = a14[(a14.ano == 2026) & (a14.turno == 2) & (a14.hora == "19:34")].iloc[0]
@@ -47,6 +53,14 @@ linhas = [
          resultado="nacionalmente, nenhuma conversão é necessária (Lula +10,38 milhões, Flávio +3,72 milhões; a soma é exatamente o conjunto de votos disponíveis); a perda líquida do oponente por seção (383 mil votos) tem espelho em 2022 (PT, 459 mil)", veredito="não sustentada pelos dados agregados; individual NÃO TESTÁVEL (sigilo)"),
     dict(alegacao="109 seções com zero voto para Flávio", quem="como informado", data="n/d", link="n/d (nenhuma reportagem localizada)", testavel="sim", teste="A12",
          resultado=f"em 2026/T2: {n(z26.zero_oponente)} seções (1º turno: 81); o 109 não reproduz em nenhuma definição; o oponente teve zero voto em 143 (2022), 328 (2018) e 192 (2014) seções; observado próximo do esperado", veredito="109 não reproduz; contagem real não excede o esperado"),
+    dict(alegacao="Imagem: \"106 urnas com 100% para Lula e 0% de branco, nulo e Flávio\"", quem="como informado (imagem; autoria n/d)", data="n/d", link="n/d (imagem sem fonte localizada)", testavel="sim", teste="A12b",
+         resultado=(f"das {n(b12['secoes'])} seções com zero voto para Flávio em 2026/T2, {n(b12['com_zero_brancos_e_nulos'])} também têm zero brancos e zero nulos; as outras {n(b12['secoes'] - b12['com_zero_brancos_e_nulos'])} têm {n(b12['brancos'] + b12['nulos'])} brancos e nulos ({n(b12['bn_pct_do_comparecimento'], 1)}% do comparecimento). "
+                    f"Esperado de tripla-zero pela taxa das vizinhas: {n(s12.loc[(2026, 2), 'esperado_pela_taxa_vizinha'], 1)}; razão observado/esperado {n(s12.loc[(2026, 2), 'observado_sobre_esperado'], 2)} (2022/T2: {n(s12.loc[(2022, 2), 'observado_sobre_esperado'], 2)}; 2018/T2: {n(s12.loc[(2018, 2), 'observado_sobre_esperado'], 2)}; 2014/T2: {n(s12.loc[(2014, 2), 'observado_sobre_esperado'], 2)}). "
+                    f"Votos de Lula nas 106: {n(b12['votos_lula'])} (teto de pior caso, não estimativa: {n(b12['teto_a_pct_margem'], 2)}% da margem, se todos fossem inválidos; {n(b12['teto_b_pct_margem'], 2)}% se fossem trocados). O relatório original dizia \"100% dos votos válidos\" (seções unânimes com 30 válidos ou mais: {n(u26['secoes'])}, das quais {n(u26['com_zero_brancos_e_nulos'])} com zero brancos e nulos): essa afirmação admite brancos e nulos acima de zero; \"0% de brancos e nulos\" é mais forte e vale só para uma fração das seções."),
+         veredito=f"\"0% de brancos e nulos\" não reproduz (só {n(b12['com_zero_brancos_e_nulos'])} de {n(b12['secoes'])}); o excesso de tripla-zero sobre o esperado existe em todas as eleições, com razão parecida ou maior em 2022 e 2018; o conjunto é o de A12, de menos de 0,35% da margem no pior caso"),
+    dict(alegacao="Silva Jardim/RJ: \"Flávio +1, Lula +964, -104 eleitores\" entre o 1º e o 2º turno", quem="como informado", data="n/d", link="n/d", testavel="sim", teste="A31",
+         resultado=f"nos dados do BWeb, Flávio +{n(a31['dF'])}, comparecimento {n(a31['dC'])} (aptos +{n(a31['d_aptos'])}) e Lula +{n(a31['dL'])}, não +964. Dentro da cauda esperada de 5.357 municípios (z = {n(a31['z'], 2)}, Holm 1,00); em 2026, 14,0% dos municípios tiveram o oponente com +1 voto ou menos (2022: 0,15%)",
+         veredito="reproduz em parte (Lula +984, não +964); não é incomum entre os municípios de 2026; ver A31"),
     dict(alegacao="Apoios do 1º turno (Zema, Caiado, Cury, Clariana a Flávio; esquerda a Lula, crítico; Rui Costa Pimenta nulo; Renan Santos liberou)", quem="como informado", data="outubro de 2026", link="Conferido nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão a Flávio; Hertz Dias e Edmilson Costa com voto crítico em Lula; Renan Santos neutro; Wilson Grassi sem posição. Divergências: Samara Martins só por orientação do partido (UP, \"vote 13\"); Rui Costa Pimenta com duas posições registradas: sem posição definida (O Povo, 10/10/2026) e voto nulo (Space Money, fonte indicada ao autor, não verificada por HTTP 403). Segunda fonte indicada (Space Money) responde HTTP 403 e não foi aberta. Complemento: [A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/)", testavel="o efeito, só por agregado", teste="A11",
          resultado="ver [Resultados da Fase 2](resultados-fase2.md), seção A11 (contabilidade termo a termo e taxas aparentes, com a ressalva de falácia ecológica)", veredito="ver A11"),
     dict(alegacao="Modelos de urna antigos favoreciam Lula em 2022", quem="relatório do PL / Cerimedo (como informado)", data="n/d", link="n/d (texto não fornecido)", testavel="sim", teste="A15 e A10",

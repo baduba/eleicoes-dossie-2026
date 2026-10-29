@@ -90,7 +90,7 @@ item("A-A23", "b", "Onde houve fiscal de partido o voto foi diferente de onde n�
 item("A-A21", "b", "O ritmo dos votos ao longo do dia (rajadas, concentração na última hora) é igual ao de 2022?", NT, "n/a", np.nan, np.nan, "fase3.html#a21",
      "Reler os registros das urnas com a distribuição completa dos intervalos; o ano de nascimento não consta nos logs públicos.", "só as medidas já extraídas foram testadas")
 item("A-A28", "b", "O que o TSE e os TREs respondem aos pedidos de acesso à informação?", NT, "n/a", np.nan, np.nan, "fase3.html#a28",
-     "Protocolar os seis pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.")
+     "Protocolar os sete pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.")
 item("A-A18", "c", "Alguém poderia alterar os resultados depois da urna fechar e antes de os arquivos serem publicados, de modo coerente?", NTP, "n/a", np.nan, np.nan, "a18-alteracao-no-meio.html",
      "Verificar a assinatura de cada boletim com a chave oficial e conferir boletins impressos nas seções.")
 item("A-A19a", "c", "O voto que o eleitor digita é o mesmo que a urna registra?", NTP, "n/a", np.nan, np.nan, "a19-voto-digitado.html",
