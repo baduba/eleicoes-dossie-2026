@@ -1,0 +1,18 @@
+flowchart TB
+  E0["Cadastro de eleitores<br/><i>A20, A9</i><br/>◐ verificado parcialmente"]:::parc
+  E1["Habilitação (biometria / liberação manual)<br/><i>H1, H2, A5</i><br/>◐ verificado parcialmente"]:::parc
+  E2["Voto digitado → voto registrado (software)<br/><i>A19</i><br/>✕ não verificável com dados públicos"]:::nao
+  E3["RDV (registro digital do voto)<br/><i>A4</i><br/>✓ verificado pelos testes"]:::ok
+  E4["BU digital<br/><i>A4, H9</i><br/>✓ verificado pelos testes"]:::ok
+  E5["BU impresso<br/><i>A18, boletins</i><br/>✕ não verificável com dados públicos"]:::nao
+  E6["Assinatura digital<br/><i>A4, A18</i><br/>◐ verificado parcialmente"]:::parc
+  E7["Transmissão<br/><i>A18</i><br/>✕ não verificável com dados públicos"]:::nao
+  E8["Recepção<br/><i>A14, A18</i><br/>◐ verificado parcialmente"]:::parc
+  E9["Totalização<br/><i>H9</i><br/>✓ verificado pelos testes"]:::ok
+  E10["Publicação (BWeb)<br/><i>A26, H9</i><br/>✓ verificado pelos testes"]:::ok
+  E11["Divulgação ao vivo<br/><i>A1, A14</i><br/>◐ verificado parcialmente"]:::parc
+  E0 --> E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9 --> E10 --> E11
+  classDef ok fill:#e5f0f8,stroke:#0072B2,stroke-width:2px,color:#1c1c1e
+  classDef parc fill:#f7efdc,stroke:#9A6700,stroke-width:2px,stroke-dasharray:4 3,color:#1c1c1e
+  classDef nao fill:#ececec,stroke:#595959,stroke-width:2px,stroke-dasharray:2 2,color:#1c1c1e
+  style E2 stroke:#D55E00,stroke-width:5px

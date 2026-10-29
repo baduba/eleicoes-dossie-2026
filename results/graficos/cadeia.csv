@@ -1,0 +1,13 @@
+etapa,status,testes,pagina,nota
+Cadastro de eleitores,parcial,"A20, A9",fase3.html#a20,comparado ao Censo; sem cruzamento nominal
+Habilitação (biometria / liberação manual),parcial,"H1, H2, A5",resultados-fase1.html,"o log registra, mas não prova quem era o eleitor"
+Voto digitado → voto registrado (software),nao_verificavel,A19,a19-voto-digitado.html,verificado só por amostragem no teste de integridade
+RDV (registro digital do voto),verificado,A4,resultados-fase2.html#a4,recontado e igual ao boletim; mesmo software da urna
+BU digital,verificado,"A4, H9",resultados-fase2.html#a4,igual ao BWeb; mesmo software da urna
+BU impresso,nao_verificavel,"A18, boletins",boletins-impressos.html,0 boletins conferidos até agora
+Assinatura digital,parcial,"A4, A18",a18-alteracao-no-meio.html#2,certificado lido; assinatura 0% verificada
+Transmissão,nao_verificavel,A18,a18-alteracao-no-meio.html,canal não público
+Recepção,parcial,"A14, A18",a18-alteracao-no-meio.html#1,horários públicos; sem o registro interno
+Totalização,verificado,H9,resultados-fase1.html,"igual por seção, município e zona; mesmo fluxo"
+Publicação (BWeb),verificado,"A26, H9",fase3.html#a26,hash e tamanho iguais ao primeiro download
+Divulgação ao vivo,parcial,"A1, A14",resultados-fase2.html#a1,curva analisada; sem capturas da época
