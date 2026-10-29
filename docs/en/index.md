@@ -1,0 +1,94 @@
+# Reproducible independent audit: 2026 presidential runoff
+
+This is an **independent audit**. It is not an official report, expert examination, or homologated document: no authority has homologated it. It was built so that any expert, on any side, can reproduce every number and challenge whatever they disagree with.
+
+> **Preliminary version (v0.9.3).** v1.0 will be released after the consolidated TCU (federal audit court) report on the integrity tests (deadline Nov 24, 2026), the verification of the cryptographic signature, and an initial batch of checked printed poll-receipts ([how to submit](boletins-impressos.md)).
+
+## How much of the vote chain public verification covers
+
+<picture><source media="(max-width: 640px)" srcset="img/g0_verificacao_m.png"><img src="img/g0_verificacao.png" alt="Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). Below, a second bar indicates that 100% of votes pass through at least one non-verifiable link."></picture>
+
+- **33% of the vote chain fully verified with public data** (4 of 12 links; [full map, G1](#g1-mapa-da-cadeia-do-voto)).
+- **25% not verifiable** (3 of 12: typed vote → recorded vote, checked printed poll-receipt, transmission).
+- **100% of votes pass through at least one non-verifiable link.**
+- **0 tests found an effect capable of altering the outcome**; the largest worst-case ceiling, not an estimate, is 40.35% of the margin ([A20b](fase3.html#a20b)).
+
+This is not evidence of fraud: it is a map of where public verification ends.
+
+## What we know and what we do not yet know
+
+### Verified result
+
+- **RDV, BU, BWeb and total chain:** 0 discrepancies in the tests run (14,067 polling station sections in 27 states with voting-machine files; BWeb against tabulation by section, municipality and electoral zone).
+- **Summed measured excess:** about 99 thousand pro-Lula and 101 thousand pro-Flávio (margin votes), in opposite directions, against a margin of 4,430,191 votes.
+- **Votes after 5 p.m.:** about 23 thousand (vote count, not margin votes).
+- **Limit:** these tests compare files that the TSE itself publishes; they do not rule out a coherent alteration made before publication, nor do they verify that the recorded vote is the typed vote (see the questions below).
+- **No test run found an effect capable of altering the outcome.**
+
+## Open questions (summary)
+
+There are **26 open questions**: residues without an identified cause, hypotheses not yet tested, and structural blind spots. The largest worst-case ceiling, not an estimate, is 40.35% of the margin (A20b). **These are not evidence of manipulation; they are gaps.**
+
+Full list, with status, ceiling, and what would close each one: [Open questions](perguntas-em-aberto.html).
+
+
+## Where a failure could go unnoticed
+
+This section shows, with numbers, where public verification ends and how large a failure would need to be to change the outcome. Every value in votes is in margin votes (the change in the Lula-minus-Flávio difference; switching one vote changes the margin by 2).
+
+### G1. Map of the vote chain
+
+<picture><source media="(max-width: 640px)" srcset="img/g1_cadeia_m.svg"><img src="img/g1_cadeia.svg" alt="Map of the twelve-step vote chain, from voter registration to results publication. Each step has a status: verified by the tests, partially verified, or not verifiable with public data. The link between typed vote and recorded vote is highlighted as not verifiable, checked only by sampling in the integrity test."></picture>
+
+**In plain words:** the vote passes through twelve steps; the tests cover the steps after recording; the earlier steps and those occurring outside the public files remain partially verified or unverified. **Technical:** per-step status derived from A4, H9, A5, A18, A19, A20, A26; the typed vote → recorded vote link is verified only by sampling (integrity test). How to close this gap: [printed poll-receipts](boletins-impressos.html) and [official signature key](a18-alteracao-no-meio.html#2).
+
+### G2. Detection curves
+
+<picture><source media="(max-width: 640px)" srcset="img/g2_deteccao_m.png"><img src="img/g2_deteccao.png" alt="Curves of the chance of detecting at least one altered voting machine or section as a function of the altered fraction, from 0.1% to 20% on a logarithmic scale. The integrity test covering all machines detects small fractions; using only machines with biometrics, a much larger fraction is needed. Printed poll-receipts with 100, 300 and 1,000 checked appear as additional curves. Vertical lines mark the fractions of sections needed to change the margin with 200 and 50 switches per section."></picture>
+
+**In plain words:** the larger the altered share, the easier it is to see; printed poll-receipts and the integrity test detect small alterations that statistical tests do not. **Technical:** hypergeometric probability of seeing at least one altered voting machine; assumptions: random sample; in (b), software that behaves normally in the non-biometric test. It does not describe how an attack would be carried out. How to close this gap: [submit photos of poll-receipts](boletins-impressos.html), [LAI (access-to-information law) request 03](fase3.html#a28).
+
+### G3. Size of the impact of the open items
+
+<picture><source media="(max-width: 640px)" srcset="img/g3_impacto_m.png"><img src="img/g3_impacto.png" alt="Horizontal bars, in margin votes, for each open item that has a number: solid bar is measured excess, hatched bar is worst-case ceiling, not an estimate. A fixed vertical line marks the margin of 4,430,191 votes. Two panels: linear scale, where all bars are small next to the margin, and logarithmic scale, where small items become visible. Items without a number appear only in the legend as not measurable."></picture>
+
+**In plain words:** each open item, drawn next to the margin; the largest worst-case ceiling is smaller than the margin, and several items have no number because data are missing. **Technical:** solid bar = measured excess (positive central estimate); hatched bar = worst-case ceiling (loosest placebo), in margin votes; there is no summation. How to close this gap: [LAI requests](fase3.html#a28) and [party observer list](fase3.html#a23).
+
+### G4. How many sections would need to be altered
+
+<picture><source media="(max-width: 640px)" srcset="img/g4_secoes_m.png"><img src="img/g4_secoes.png" alt="Curve of the number of sections needed to change the margin as a function of votes switched per section, from 1 to 300, on a logarithmic scale on both axes. With 5 switches per section it would take 443,020 sections; with 50, 44,302; with 200, 11,076. The range to the right of 13 switches per section marks where an altered section would already appear as an outlier locally; to the left, it only shows up in aggregate, in printed poll-receipts or in the integrity test."></picture>
+
+**In plain words:** the fewer votes switched per section, the more sections would be needed, and the harder it is to see a single section. **Technical:** sections = ⌈2,215,096 / switches⌉; the 13-switches-per-section threshold = 3 standard deviations of the local residual (1.67 p.p.) with 256 valid votes. How to close this gap: [printed poll-receipts](boletins-impressos.html) and [comparison with other offices, A22](fase3.html#a22).
+
+> **These charts show where public verification ends. They do not indicate that a failure occurred; they indicate where a failure would not be seen by the available data and what would be needed to see it.**
+
+### What was not tested
+
+See [Open issues](residuos.md), [Blind spots](pontos-cegos.md), [Phase 3](fase3.md) and the **NOT RUN** list: cross-check against printed poll-receipts (0 checked; no input data), the voting machine's cryptographic signature (certificate read, signature 0% verified), the release curve of the Resultados website, the 2026 runoff turnout profile, 2014 in the counting curve, the "472 machines" from the video, and Phase 3 tests A21 (partial), A22, A23, A24 and A25 (partial).
+
+
+## How to contribute
+
+- **Photos of printed poll-receipts:** [collection page](boletins-impressos.html). Checked as of Oct 29, 2026: 0.
+- **Lists of sections with a party observer** (parties and coalitions): format in [A23](fase3.html#a23).
+- **Responses to LAI requests:** ready-made texts in [`lai/`](https://github.com/baduba/eleicoes-dossie-2026/tree/main/lai); send the response via an issue.
+- **Alternative code or method:** open an issue or a PR with a reproducible script.
+- **Challenging any number:** open an issue with the script and the expected value.
+
+
+## What was done
+Statistical analysis of official TSE data by section (BWeb for 2014, 2018, 2022 and 2026, with verified hash), plus the voting-machine files (BU, RDV, signature and log) from a sample of 14,067 sections of the 2026 runoff and the same sections in 2022 as placebo. Predictions were recorded before each analysis block ([Pre-registration](preregistro.md)); every test has a placebo and is symmetric; null results receive the same prominence as positive ones.
+
+## Summary of results (numbers without adjectives)
+- **Totals and consistency:** Lula 64,256,232, Flávio 59,826,041, margin 4,430,191. BWeb matches `votacao_secao` and the zone-level tabulation in 2026.
+- **Voting-machine chain (A4):** in 14,067 sections across 27 states, the digital BU matches BWeb, the recounted RDV matches the BU, and the hashes of BU, RDV, image and log appear in the list signed by the machine: 0 discrepancies. **This verifies consistency among files that the TSE publishes and does not rule out a coherent alteration made before publication** ([A18](a18-alteracao-no-meio.md)). The cryptographic signature itself **was not verified** (0% of sections; PARTIAL NOT RUN: the accessible official key is missing).
+- **Mid-chain alteration and typed vote vs. recorded vote (A18, A19):** the documented delays (1 hour in the first round; receipt withheld until 7 p.m. in the runoff) were tested through the clock window against placebos, with no excess detected, but these tests do not rule out a coherent alteration. The correspondence between typed vote and recorded vote is verified only by sampling in the integrity test, and the current model has no voter-verified record ([A19](a19-voto-digitado.md)). Photos of printed poll-receipts can be submitted by anyone ([how to submit](boletins-impressos.md)).
+- **Original report:** the closing table (339,593 sections between 5:01 p.m. and 5:15 p.m.), the 8.6 million manual voter releases (8,632,488) and the Bahia percentages reproduce; the conclusions do not hold ([page](relatorio-original.md)).
+- **Votes after 5 p.m. (A5):** estimate from the logs of 23,094 votes (count, not margin votes) nationwide (95% CI 16,895 to 29,704), 0.52% of the 4,430,191 margin (direct comparison of the count with the margin); many of the sections that closed late remained open without recording any vote after 5 p.m.
+- **Manual voter release:** fell 14% from 2022 to 2026; the association with the Lula vote exists in both rounds of 2026 and is not specific to the runoff.
+- **Counting curve, conversion and zero-vote (A1, A2, A3, A11, A12, A13, A14):** the real curve and its linear stretches fall within the range of simulated geographic orderings; no conversion from the opponent to the PT is needed to explain the national result; the "109 sections with zero votes" claim does not reproduce (there are 106 in the runoff; 143 in 2022, 328 in 2018); by 7:34 p.m. only 7.8% of BUs had been received, not 70%.
+- **Lines with a design caveat (A1, A2, A3, A12):** under the pre-registered criteria, they came out labeled as excess, but **the same test flags excess in series or years without manipulation** (A1: 20 of 20 clean simulations; A2: the 2022 PT; A3: negative coefficients in every year; A12: 44% of clean simulations). The corrected versions show no excess. Original and corrected results, side by side, in [Phase 2 Results](resultados-fase2.md) and [Open issues](residuos.md).
+- **Measured excess, all residues summed** (margin votes): **about 99,499 pro-Lula and 101,285 pro-Flávio**, 2.2% and 2.3% of the 4,430,191 margin, in opposite directions ([sum and reading](residuos.md)).
+- **Aggregate impact** (only tests without design caveats; unit: margin votes; worst-case ceiling, not an estimate): 38,394 margin votes pro-Lula and 122,543 pro-Flávio, worst-case ceilings; with the corrected versions in place of the originals, the result is the same (none of the four corrected versions shows excess). The margin is 4,430,191.
+## Authorship
+Project with no named authorship, maintained by the baduba account on GitHub. Contact, corrections and challenges via *issue* at https://github.com/baduba/eleicoes-dossie-2026/issues.

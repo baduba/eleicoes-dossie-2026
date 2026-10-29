@@ -12,6 +12,19 @@ NAV = [("index", "Início"), ("perguntas-em-aberto", "Perguntas"), ("metodologia
        ("resultados-fase2", "Resultados: Fase 2 (A1 a A10)"), ("regua-historica", "Régua histórica"), ("alegacoes", "Inventário de alegações"), ("relatorio-original", "O relatório original"),
        ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A33)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
        ("changelog", "Changelog e correções"), ("referencias", "Referências")]
+NAV_EN = {"index": "Home", "perguntas-em-aberto": "Open questions", "metodologia": "Methodology", "preregistro": "Pre-registration",
+          "resultados-fase1": "Results: Phase 1 (H1 to H10)", "resultados-fase2": "Results: Phase 2 (A1 to A10)", "regua-historica": "Historical timeline",
+          "alegacoes": "Allegations inventory", "relatorio-original": "The original report", "pontos-cegos": "Blind spots",
+          "fase3": "Phase 3: adversarial hypotheses (A20 to A33)", "a18-alteracao-no-meio": "A18: mid-course alteration",
+          "a19-voto-digitado": "A19: typed vote vs. recorded vote", "boletins-impressos": "Printed bulletins", "base-legal": "Legal basis and history",
+          "dados-reproducao": "Data and reproduction", "residuos": "Open issues", "changelog": "Changelog and corrections", "referencias": "References"}
+HDR = {"pt": "Auditoria independente reproduzível: 2º turno presidencial de 2026",
+       "en": "Independent reproducible audit: 2026 presidential runoff"}
+DESCR = {"pt": "Auditoria independente reproduzível do 2º turno presidencial de 2026",
+         "en": "Independent reproducible audit of the 2026 presidential runoff"}
+AVISO = {"pt": "Auditoria independente: não é laudo, perícia oficial nem documento homologado.",
+         "en": "Independent audit: not an official forensic report, expert examination or certified document."}
+VERSAO_TXT = {"pt": "Versão", "en": "Version"}
 CSS = """
 :root{--bg:#fff;--fg:#1c1c1e;--mut:#5a5f66;--bd:#d9dce1;--ac:#1d4e89;--cd:#f5f6f8}
 @media(prefers-color-scheme:dark){:root{--bg:#15171a;--fg:#e6e8eb;--mut:#a0a6ae;--bd:#32363c;--ac:#7fb0ea;--cd:#1d2024}}
@@ -24,6 +37,11 @@ code,pre{background:var(--cd);border-radius:4px;font-size:.88em}code{padding:.1e
 footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.82rem;padding:1rem 16px;text-align:center}
 .aviso{border-left:4px solid var(--ac);background:var(--cd);padding:.6rem .9rem;margin:1rem 0}
 blockquote{border-left:4px solid var(--ac);background:var(--cd);margin:1rem 0;padding:.5rem .9rem}blockquote p{margin:.35rem 0}
+.langsel{display:flex;gap:0;margin-top:.5rem;font-size:.95rem;font-weight:600;border:1.5px solid var(--ac);border-radius:999px;overflow:hidden;width:max-content}
+.langsel a,.langsel span{padding:.25rem 1rem;text-decoration:none;color:var(--ac)}
+.langsel a:hover{background:var(--cd)}
+.langsel span{background:var(--ac);color:var(--bg)}
+.langsel a+a,.langsel a+span,.langsel span+a{border-left:1.5px solid var(--ac)}
 """
 
 
@@ -43,12 +61,20 @@ def slug(valor, sep="-"):
     return slugify(valor, sep)
 
 
-def md(texto):
+def md(texto, lang="pt"):
     h = markdown.markdown(texto, extensions=["tables", "fenced_code", "toc", "attr_list"], extension_configs={"toc": {"slugify": slug}}, output_format="html5")
-    return re.sub(r'href="([A-Za-z0-9_\-]+)\.md(#[^"]*)?"', lambda m: f'href="{m.group(1)}.html{m.group(2) or ""}"', h)
+    h = re.sub(r'href="([A-Za-z0-9_\-]+)\.md(#[^"]*)?"', lambda m: f'href="{m.group(1)}.html{m.group(2) or ""}"', h)
+    if lang == "en":
+        # paginas EN ficam em site/en/: imagens e figuras sobem um nivel
+        h = re.sub(r'(src|href)="(img|figs)/', r'\1="../\2/', h)
+    return h
 
 
-def fonte(nome):
+def fonte(nome, lang="pt"):
+    if lang == "en":
+        # convencao EN: docs/en/<nome>.md, inclusive preregistro.md, resultados-fase1.md, changelog.md
+        p = os.path.join(RAIZ, "docs", "en", nome + ".md")
+        return open(p, encoding="utf-8").read() if os.path.exists(p) else None
     cand = [os.path.join(RAIZ, "docs", nome + ".md")]
     esp = {"preregistro": "00_preregistro.md", "resultados-fase1": "dossie.md", "changelog": "CHANGELOG.md"}
     if nome in esp:
@@ -59,12 +85,23 @@ def fonte(nome):
     return None
 
 
-def pagina(nome, titulo, corpo, c):
-    nav = " ".join(f'<a href="{n}.html"{" class=on" if n == nome else ""}>{html.escape(t)}</a>' for n, t in NAV)
-    return f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(titulo)} | Auditoria independente reproduzível</title><meta name="description" content="Auditoria independente reproduzível do 2º turno presidencial de 2026"><style>{CSS}</style></head>
-<body><header><b>Auditoria independente reproduzível: 2º turno presidencial de 2026</b><nav>{nav}</nav></header>
-<main>{corpo}</main><footer>Versão {VERSAO} · commit {c} · <a href="{REPO}">{REPO}</a> · Auditoria independente: não é laudo, perícia oficial nem documento homologado.</footer></body></html>"""
+def langsel(nome, lang, tem_en):
+    """Seletor PT | EN. Sem traducao EN, o link EN cai em en/index.html (fallback)."""
+    if lang == "pt":
+        destino_en = f"en/{nome}.html" if nome in tem_en else "en/index.html"
+        return f'<div class="langsel" role="navigation" aria-label="Idioma / Language"><span aria-current="true">PT</span><a href="{destino_en}" hreflang="en">EN</a></div>'
+    destino_pt = f"../{nome}.html"
+    return f'<div class="langsel" role="navigation" aria-label="Language / Idioma"><a href="{destino_pt}" hreflang="pt-BR">PT</a><span aria-current="true">EN</span></div>'
+
+
+def pagina(nome, titulo, corpo, c, lang="pt", tem_en=frozenset()):
+    nav_itens = NAV if lang == "pt" else [(n, NAV_EN[n]) for n, _ in NAV]
+    nav = " ".join(f'<a href="{n}.html"{" class=on" if n == nome else ""}>{html.escape(t)}</a>' for n, t in nav_itens)
+    hl = "pt-BR" if lang == "pt" else "en"
+    return f"""<!doctype html><html lang="{hl}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(titulo)} | {html.escape(HDR[lang])}</title><meta name="description" content="{html.escape(DESCR[lang])}"><style>{CSS}</style></head>
+<body><header><b>{html.escape(HDR[lang])}</b>{langsel(nome, lang, tem_en)}<nav>{nav}</nav></header>
+<main>{corpo}</main><footer>{VERSAO_TXT[lang]} {VERSAO} · commit {c} · <a href="{REPO}">{REPO}</a> · {html.escape(AVISO[lang])}</footer></body></html>"""
 
 
 def main():
@@ -73,13 +110,26 @@ def main():
     out = os.path.join(RAIZ, a.saida)
     shutil.rmtree(out, ignore_errors=True); os.makedirs(out)
     c = commit(); paginas = []
+    tem_en = {nome for nome, _ in NAV if fonte(nome, "en") is not None}
     for nome, titulo in NAV:
         t = fonte(nome)
         if t is None:
             print(f"AVISO: sem fonte para a pagina {nome}", file=sys.stderr); continue
         corpo = md(t)
         paginas.append((nome, titulo, corpo))
-        open(os.path.join(out, nome + ".html"), "w", encoding="utf-8").write(pagina(nome, titulo, corpo, c))
+        open(os.path.join(out, nome + ".html"), "w", encoding="utf-8").write(pagina(nome, titulo, corpo, c, "pt", tem_en))
+    out_en = os.path.join(out, "en")
+    n_en = 0
+    for nome, _ in NAV:
+        t = fonte(nome, "en")
+        if t is None:
+            continue
+        os.makedirs(out_en, exist_ok=True)
+        corpo = md(t, "en")
+        open(os.path.join(out_en, nome + ".html"), "w", encoding="utf-8").write(pagina(nome, NAV_EN[nome], corpo, c, "en", tem_en))
+        n_en += 1
+    if n_en:
+        print(f"paginas EN: {n_en} em {out_en} (faltando: {sorted(set(n for n, _ in NAV) - tem_en)})")
     for pasta in ("figs", "img"):
         for orig in (os.path.join(RAIZ, "docs", pasta), os.path.join(RAIZ, "results", pasta)):
             if os.path.isdir(orig):
