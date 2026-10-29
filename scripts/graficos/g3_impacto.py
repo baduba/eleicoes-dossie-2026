@@ -15,7 +15,7 @@ n = d[d.teto_grafico.notna() & (d.bloco == "a")].sort_values("teto_grafico", asc
 sem = d[(d.teto_pior_caso.isna())]
 cor = lambda s: AZUL if "Lula" in s else (VERM if "Flávio" in s else CINZA)
 M = MOVEL
-fig, axs = plt.subplots(2, 1, figsize=(4.7, 8.2), sharey=True) if M else plt.subplots(1, 2, figsize=(12.5, 4.9), sharey=True)
+fig, axs = plt.subplots(2, 1, figsize=(4.7, 11.8), sharey=True) if M else plt.subplots(1, 2, figsize=(12.5, 4.9), sharey=True)
 import textwrap
 for ax, esc in zip(axs, ("linear", "log")):
     for i, r in n.iterrows():
@@ -42,11 +42,11 @@ if M:
 fig.suptitle("Tamanho dos itens em aberto, em votos de margem,\ncontra a margem de 4.430.191" if M else "Tamanho dos itens em aberto, em votos de margem, contra a margem de 4.430.191", x=0.01, ha="left", fontsize=9 if M else 12, y=1.0 if not M else 0.995)
 leg = [Patch(fc=AZUL, label="excesso medido, a favor de Lula"), Patch(fc=VERM, label="excesso medido, a favor de Flávio"), Patch(fc=CINZA, label="sem direção identificável"),
        Patch(fc="white", ec=CINZA, hatch="///", label="hachurado: teto de pior caso, não estimativa")]
-fig.legend(handles=leg, loc="lower center", ncol=1 if M else 4, frameon=False, fontsize=6.8 if M else 8.6, bbox_to_anchor=(.5, -.08 if M else -.04))
+fig.legend(handles=leg, loc="lower center", ncol=1 if M else 4, frameon=False, fontsize=6.8 if M else 8.6, bbox_to_anchor=(.5, -.035 if M else -.04))
 nota = ("Não mensuráveis com os dados públicos (sem barra): curva de apuração do 1º turno; testes não executados (A21, A23 a A25, A28); voto digitado x voto registrado; alteração coerente antes da publicação.\n"
         "O que falta para medir cada um está na lista de perguntas em aberto. Cada barra é um item; não há soma. A escala linear começa em zero.\nTetos inflados por construção ou sem poder (por exemplo, o registrado de A32 e os de A31b e A32b) não são plotados; aparecem só como texto, com a razão (CHANGELOG, regra de exibição).")
 if M:
     nota = "\n".join(textwrap.fill(par, 70) for par in nota.split("\n"))
-fig.text(0.01, -0.2 if M else -0.13, nota, fontsize=6.4 if M else 8.4, color=SUAVE, ha="left")
+fig.text(0.01, -0.1 if M else -0.13, nota, fontsize=6.4 if M else 8.4, color=SUAVE, ha="left")
 salva(fig, RAIZ, "g3_impacto", "Tamanho dos itens em aberto", "Barras horizontais, em votos de margem, para cada item em aberto com número: excesso medido (sólida) e teto de pior caso (hachurada), contra a margem de 4.430.191 votos, em escala linear e logarítmica.")
 print("g3 ok")

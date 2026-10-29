@@ -100,6 +100,7 @@ python scripts/09_amostra_urna.py parquet amostra
 python scripts/08_arquivos_urna.py local|remoto ...   # ver docstring; uma saida por UF e ano
 python scripts/02_executa.py parquet results/fase2 --anos 2014 2018 2022 2026 --zips dados_tse --parquet2 parquet2 --cesp cesp --urna urna_out
 python scripts/10_figuras.py parquet results/fase2 docs/figs
+python scripts/16_figuras_en.py parquet results/fase2 docs/figs/en en   # versões em inglês de a1, a2, a5, a14 e Klimek; G0 a G4 em inglês: GRAF_LANG=en python scripts/graficos/g1_cadeia.py . [m] (idem g2, g3, g4 e scripts/g0_hero_verificacao.py)
 python scripts/03b_monta_fase2.py results/fase2 results/fase1 .   # e 03c, 03d, 03e, 03f (A18, A19, boletins); 13_cert_urna.py e 14_poder_estatistico.py geram as tabelas de assinatura e de poder
 python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.3.pdf
 ```
