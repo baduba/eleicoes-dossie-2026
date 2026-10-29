@@ -164,6 +164,16 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 - **O que resolveria:** n/a
 - **Causa:** não identificada.
 
+## A1 corrigido, 1º turno de 2026: trecho final da curva fora do envelope
+
+- **O que se observa:** a curva do 1º turno fica fora do envelope do nulo corrigido por 240 pontos consecutivos (dos 76% aos 100% das seções, das 19h18 às 22h28 de 04/10/2026). O alvo pré-registrado do A1 é o 2º turno; esta linha é análise posterior.
+- **Direção do efeito:** participação de Lula abaixo da mediana do nulo, com desvio decrescente até zero; maior desvio antes da janela de 19h às 20h.
+- **Estimativa em votos:** não convertível em votos (teste de forma; a soma final é idêntica em qualquer ordem).
+- **Explicações mundanas testadas:** coincidência com a janela do congestionamento de 19h às 20h: parcial (91 dos 241 pontos; a corrida começa na janela e continua depois); composição por UF: compatível, não demonstrada. Ver [A18](a18-alteracao-no-meio.md).
+- **Não testadas:** ordem dos municípios dentro de cada UF por porte e por perfil de voto.
+- **O que resolveria:** o log de recepção do Sistot (não público) e a ordem real de transmissão por município.
+- **Causa:** não identificada.
+
 ## Soma agregada (sem as linhas com ressalva de desenho)
 
 | sentido | itens_com_votos | soma_central | ic95 | soma_pior_caso | pct_margem_central | pct_margem_pior_caso |

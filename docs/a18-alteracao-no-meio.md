@@ -96,6 +96,49 @@ Parcela da variância do horário de recebimento explicada por UF e por municíp
 
 No 2º turno de 2026 o horário de recebimento depois das 19h tem mais estrutura geográfica (por UF) do que nos anos de comparação. Isso é o esperado quando o recebimento é retido até um horário e liberado por ordem de transmissão; não distingue essa explicação de outra.
 
+## 3b. A1 corrigido no 1º turno de 2026 e a janela do congestionamento (análise posterior)
+
+> Análise **posterior** (pedida depois de ver o resultado; não pré-registrada). Ela não muda o veredito do A1 corrigido, cujo alvo pré-registrado é o 2º turno.
+
+A curva do 1º turno de 2026, contra o nulo corrigido (municípios em ordem aleatória dentro de cada UF), fica fora do envelope em 241 dos 900 pontos avaliados, quase todos numa única corrida de 240 pontos consecutivos, de 76,0% a 99,9% das seções, das 19:18 às 22:28 do dia 04/10.
+
+- **Coincide com a janela de 19h às 20h?** Em parte. A corrida **começa** dentro da janela (19:18) e 91 dos 241 pontos fora do envelope (38%) caem entre 19h e 20h, contra 26,5% de todos os pontos da curva nessa janela. Mas a corrida **continua** até as 22:28, bem depois da retomada.
+- **O desvio não cresce na janela.** A curva fica abaixo da mediana do nulo (menos participação de Lula) em todo o trecho; o maior desvio é de -1,67 p.p., com 19,5% das seções (18:13), **antes** da janela. A partir daí o desvio diminui até zero (-0,86 p.p. aos 76%, -0,63 p.p. aos 84%, -0,25 p.p. aos 95%). O trecho "fora do envelope" é a parte final da curva, em que o envelope do nulo se estreita porque a curva acumulada converge para o total; ali um desvio pequeno já sai do envelope.
+
+- **Quais UFs chegaram nesse trecho.** As seções que chegaram na corrida vêm sobretudo de SP (20% da UF), BA (44% da UF), MG (30% da UF), RJ (41% da UF), CE (45% da UF), PE (38% da UF); BA, RJ, CE, PE, MA e AL pesam mais no trecho que no país (colunas abaixo). Nas seções cuja primeira totalização caiu entre 19h e 20h, as maiores contribuições são SP (26,8%), MG (12,1%), RJ (10,4%), BA (7,7%), CE (5,8%).
+
+Seções por UF no trecho fora do envelope (todas as UFs em `results/fase2/A1T1_ufs.csv`):
+
+| SG_UF | secoes | nas_corridas | pct_da_UF_nas_corridas | pct_das_secoes_nas_corridas | pct_das_secoes_do_pais |
+|---|---|---|---|---|---|
+| SP | 103.656 | 20.782 | 20,1 | 17,3 | 20,8 |
+| BA | 35.476 | 15.627 | 44,0 | 13,0 | 7,1 |
+| MG | 52.062 | 15.619 | 30,0 | 13,0 | 10,4 |
+| RJ | 37.675 | 15.430 | 41,0 | 12,8 | 7,5 |
+| CE | 23.765 | 10.693 | 45,0 | 8,9 | 4,8 |
+| PE | 21.418 | 8.108 | 37,9 | 6,7 | 4,3 |
+| MA | 18.093 | 6.283 | 34,7 | 5,2 | 3,6 |
+| PA | 20.827 | 5.388 | 25,9 | 4,5 | 4,2 |
+| AL | 7.101 | 4.035 | 56,8 | 3,4 | 1,4 |
+| SC | 17.326 | 2.549 | 14,7 | 2,1 | 3,5 |
+
+Seções cuja primeira totalização caiu entre 19h e 20h, por UF (todas em `results/fase2/A1T1_ufs_janela.csv`):
+
+| SG_UF | secoes | na_janela | pct_da_UF_na_janela | pct_das_secoes_da_janela | lula_pct_validos_na_janela |
+|---|---|---|---|---|---|
+| SP | 103.656 | 35.470 | 34,2 | 26,8 | 43,9 |
+| MG | 52.062 | 16.037 | 30,8 | 12,1 | 47,3 |
+| RJ | 37.675 | 13.808 | 36,6 | 10,4 | 42,3 |
+| BA | 35.476 | 10.245 | 28,9 | 7,7 | 69,4 |
+| CE | 23.765 | 7.749 | 32,6 | 5,8 | 66,2 |
+| PE | 21.418 | 6.883 | 32,1 | 5,2 | 67,2 |
+| SC | 17.326 | 5.257 | 30,3 | 4,0 | 25,9 |
+| RS | 27.547 | 5.204 | 18,9 | 3,9 | 39,7 |
+| MA | 18.093 | 5.051 | 27,9 | 3,8 | 67,0 |
+| PA | 20.827 | 4.791 | 23,0 | 3,6 | 51,6 |
+
+**Conclusão.** A janela do congestionamento **não explica** o trecho fora do envelope: ele começa dentro dela, mas continua depois e o desvio é decrescente. A composição por UF (nordeste e sudeste chegando depois) é compatível com o desvio, mas a explicação não foi demonstrada. O item vai para [Questões em aberto](residuos.md). Nada aqui indica alteração de votos; é uma forma da curva que o nulo usado não reproduz.
+
 ## 4. Poder de detecção dos boletins impressos
 
 Quantos boletins impressos de seções sorteadas ao acaso seriam necessários para detectar, com 95% e 99% de probabilidade, ao menos uma seção alterada, se uma fração das seções tivesse sido alterada (população de 499.248 seções, amostra sem reposição):
