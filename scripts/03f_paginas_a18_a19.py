@@ -30,6 +30,7 @@ a18 = rd("a18_testes.csv")
 a18a, a18b, var = rd("A18_a18a_resumo.csv"), rd("A18_a18b_resumo.csv"), rd("A18_a18b_variancia_do_horario.csv")
 cons, h30 = rd("A18_a18a_consistencia.csv"), rd("A18_a18a_recebimento_por_30min_2026T1.csv")
 cert = rd("cert_RR_2026.csv")
+t1r, t1c, t1u, t1j, t1p = rd("A1T1_resumo.csv").iloc[0], rd("A1T1_corridas.csv"), rd("A1T1_ufs.csv"), rd("A1T1_ufs_janela.csv"), rd("A1T1_pontos.csv")
 pbu, pinv = rd("poder_bu_impresso.csv"), rd("secoes_para_inverter_margem.csv")
 uf, pint, prem = rd("teste_integridade_por_uf_regra.csv"), rd("poder_teste_integridade.csv"), rd("poder_teste_integridade_premissas.csv").iloc[0]
 
@@ -66,6 +67,19 @@ A(tab(a18b, {"secoes_apos_19h": n, "coef_por_hora": lambda x: n(x, 5), "ep": lam
 A("\nParcela da variância do horário de recebimento explicada por UF e por município (descritivo, não é teste):\n")
 A(tab(var, {"secoes_apos_19h": n, "r2_horario_por_UF": lambda x: n(x, 2), "r2_horario_por_municipio": lambda x: n(x, 2), "horas_mediana_apos_19h": lambda x: n(x, 2)}))
 A("\nNo 2º turno de 2026 o horário de recebimento depois das 19h tem mais estrutura geográfica (por UF) do que nos anos de comparação. Isso é o esperado quando o recebimento é retido até um horário e liberado por ordem de transmissão; não distingue essa explicação de outra.\n")
+A("## 3b. A1 corrigido no 1º turno de 2026 e a janela do congestionamento (análise posterior)\n")
+A("> Análise **posterior** (pedida depois de ver o resultado; não pré-registrada). Ela não muda o veredito do A1 corrigido, cujo alvo pré-registrado é o 2º turno.\n")
+mx = t1p.iloc[100:].loc[t1p.iloc[100:].desvio_pp.abs().idxmax()]
+big = t1c.sort_values("n_pontos", ascending=False).iloc[0]
+A(f"A curva do 1º turno de 2026, contra o nulo corrigido (municípios em ordem aleatória dentro de cada UF), fica fora do envelope em {int(t1r.pontos_fora)} dos 900 pontos avaliados, quase todos numa única corrida de {int(big.n_pontos)} pontos consecutivos, de {n(big.pct_secoes_de,1)}% a {n(big.pct_secoes_ate,1)}% das seções, das {big.horario_de[11:16]} às {big.horario_ate[11:16]} do dia 04/10.\n")
+A(f"- **Coincide com a janela de 19h às 20h?** Em parte. A corrida **começa** dentro da janela ({big.horario_de[11:16]}) e {int(t1r.pontos_fora_na_janela)} dos {int(t1r.pontos_fora)} pontos fora do envelope ({n(t1r.pct_fora_dentro_da_janela,0)}%) caem entre 19h e 20h, contra {n(t1r.pct_pontos_na_janela,1)}% de todos os pontos da curva nessa janela. Mas a corrida **continua** até as {big.horario_ate[11:16]}, bem depois da retomada.\n- **O desvio não cresce na janela.** A curva fica abaixo da mediana do nulo (menos participação de Lula) em todo o trecho; o maior desvio é de {n(mx.desvio_pp,2)} p.p., com {n(mx.pct_secoes,1)}% das seções ({mx.horario[11:16]}), **antes** da janela. A partir daí o desvio diminui até zero ({n(t1p.iloc[757].desvio_pp,2)} p.p. aos 76%, {n(t1p.iloc[839].desvio_pp,2)} p.p. aos 84%, {n(t1p.iloc[950].desvio_pp,2)} p.p. aos 95%). O trecho \"fora do envelope\" é a parte final da curva, em que o envelope do nulo se estreita porque a curva acumulada converge para o total; ali um desvio pequeno já sai do envelope.\n")
+top = t1u.sort_values("pct_das_secoes_nas_corridas", ascending=False).head(6)
+A("- **Quais UFs chegaram nesse trecho.** As seções que chegaram na corrida vêm sobretudo de " + ", ".join(f"{r.SG_UF} ({n(r.pct_da_UF_nas_corridas,0)}% da UF)" for r in top.itertuples()) + "; BA, RJ, CE, PE, MA e AL pesam mais no trecho que no país (colunas abaixo). Nas seções cuja primeira totalização caiu entre 19h e 20h, as maiores contribuições são " + ", ".join(f"{r.SG_UF} ({n(r.pct_das_secoes_da_janela,1)}%)" for r in t1j.head(5).itertuples()) + ".\n")
+A("Seções por UF no trecho fora do envelope (todas as UFs em `results/fase2/A1T1_ufs.csv`):\n")
+A(tab(t1u.head(10), {"secoes": n, "nas_corridas": n, "pct_da_UF_nas_corridas": lambda x: n(x, 1), "pct_das_secoes_nas_corridas": lambda x: n(x, 1), "pct_das_secoes_do_pais": lambda x: n(x, 1)}))
+A("\nSeções cuja primeira totalização caiu entre 19h e 20h, por UF (todas em `results/fase2/A1T1_ufs_janela.csv`):\n")
+A(tab(t1j.head(10), {"secoes": n, "na_janela": n, "pct_da_UF_na_janela": lambda x: n(x, 1), "pct_das_secoes_da_janela": lambda x: n(x, 1), "lula_pct_validos_na_janela": lambda x: n(x, 1)}))
+A("\n**Conclusão.** A janela do congestionamento **não explica** o trecho fora do envelope: ele começa dentro dela, mas continua depois e o desvio é decrescente. A composição por UF (nordeste e sudeste chegando depois) é compatível com o desvio, mas a explicação não foi demonstrada. O item vai para [Questões em aberto](residuos.md). Nada aqui indica alteração de votos; é uma forma da curva que o nulo usado não reproduz.\n")
 A("## 4. Poder de detecção dos boletins impressos\n")
 A("Quantos boletins impressos de seções sorteadas ao acaso seriam necessários para detectar, com 95% e 99% de probabilidade, ao menos uma seção alterada, se uma fração das seções tivesse sido alterada (população de 499.248 seções, amostra sem reposição):\n")
 A(tab(pbu, {"secoes_alteradas": n, "n_para_95": n, "n_para_99": n}))

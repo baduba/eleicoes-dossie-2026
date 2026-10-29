@@ -5,7 +5,7 @@ import argparse, html, os, re, shutil, subprocess, sys
 import markdown
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VERSAO = "v1.0"
+VERSAO = "v0.9"
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
 AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
 NAV = [("index", "Início"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),

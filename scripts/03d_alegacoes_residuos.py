@@ -47,7 +47,7 @@ linhas = [
          resultado="nacionalmente, nenhuma conversão é necessária (Lula +10,38 milhões, Flávio +3,72 milhões; a soma é exatamente o conjunto de votos disponíveis); a perda líquida do oponente por seção (383 mil votos) tem espelho em 2022 (PT, 459 mil)", veredito="não sustentada pelos dados agregados; individual NÃO TESTÁVEL (sigilo)"),
     dict(alegacao="109 seções com zero voto para Flávio", quem="como informado", data="n/d", link="n/d (nenhuma reportagem localizada)", testavel="sim", teste="A12",
          resultado=f"em 2026/T2: {n(z26.zero_oponente)} seções (1º turno: 81); o 109 não reproduz em nenhuma definição; o oponente teve zero voto em 143 (2022), 328 (2018) e 192 (2014) seções; observado próximo do esperado", veredito="109 não reproduz; contagem real não excede o esperado"),
-    dict(alegacao="Apoios do 1º turno (Zema, Caiado, Cury, Clariana a Flávio; esquerda a Lula, crítico; Rui Costa Pimenta nulo; Renan Santos liberou)", quem="como informado", data="outubro de 2026", link="Conferido nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão a Flávio; Hertz Dias e Edmilson Costa com voto crítico em Lula; Renan Santos neutro; Wilson Grassi sem posição. Divergências: Samara Martins só por orientação do partido (UP, \"vote 13\"); Rui Costa Pimenta sem posição definida em 10/10 (não \"voto nulo\"). Segunda fonte indicada (Space Money) responde HTTP 403 e não foi aberta. Complemento: [A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/)", testavel="o efeito, só por agregado", teste="A11",
+    dict(alegacao="Apoios do 1º turno (Zema, Caiado, Cury, Clariana a Flávio; esquerda a Lula, crítico; Rui Costa Pimenta nulo; Renan Santos liberou)", quem="como informado", data="outubro de 2026", link="Conferido nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão a Flávio; Hertz Dias e Edmilson Costa com voto crítico em Lula; Renan Santos neutro; Wilson Grassi sem posição. Divergências: Samara Martins só por orientação do partido (UP, \"vote 13\"); Rui Costa Pimenta com duas posições registradas: sem posição definida (O Povo, 10/10/2026) e voto nulo (Space Money, fonte indicada ao autor, não verificada por HTTP 403). Segunda fonte indicada (Space Money) responde HTTP 403 e não foi aberta. Complemento: [A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/)", testavel="o efeito, só por agregado", teste="A11",
          resultado="ver [Resultados da Fase 2](resultados-fase2.md), seção A11 (contabilidade termo a termo e taxas aparentes, com a ressalva de falácia ecológica)", veredito="ver A11"),
     dict(alegacao="Modelos de urna antigos favoreciam Lula em 2022", quem="relatório do PL / Cerimedo (como informado)", data="n/d", link="n/d (texto não fornecido)", testavel="sim", teste="A15 e A10",
          resultado="UE2009 e UE2010 contra UE2020, mesmo local: sem controle do T1, efeito de ~+0,2 p.p. não distinguível de zero (como já no 1º turno); com o T1 como controle, −0,09 p.p., não significativo", veredito="não sustentada"),
@@ -123,6 +123,17 @@ for h, trecho, titulo, direcao, testadas, nao_testadas, resolve in ITENS:
     L.append(f"- **Explicações mundanas testadas:** {testadas}")
     L.append(f"- **Não testadas:** {nao_testadas}")
     L.append(f"- **O que resolveria:** {resolve}")
+    L.append("- **Causa:** não identificada.\n")
+t1r = rd("A1T1_resumo.csv")
+if t1r is not None:
+    t1r = t1r.iloc[0]
+    L.append("## A1 corrigido, 1º turno de 2026: trecho final da curva fora do envelope\n")
+    L.append(f"- **O que se observa:** a curva do 1º turno fica fora do envelope do nulo corrigido por {int(t1r.maior_corrida)} pontos consecutivos (dos 76% aos 100% das seções, das 19h18 às 22h28 de 04/10/2026). O alvo pré-registrado do A1 é o 2º turno; esta linha é análise posterior.")
+    L.append(f"- **Direção do efeito:** participação de Lula abaixo da mediana do nulo, com desvio decrescente até zero; maior desvio antes da janela de 19h às 20h.")
+    L.append(f"- **Estimativa em votos:** não convertível em votos (teste de forma; a soma final é idêntica em qualquer ordem).")
+    L.append(f"- **Explicações mundanas testadas:** coincidência com a janela do congestionamento de 19h às 20h: parcial ({int(t1r.pontos_fora_na_janela)} dos {int(t1r.pontos_fora)} pontos; a corrida começa na janela e continua depois); composição por UF: compatível, não demonstrada. Ver [A18](a18-alteracao-no-meio.md).")
+    L.append("- **Não testadas:** ordem dos municípios dentro de cada UF por porte e por perfil de voto.")
+    L.append("- **O que resolveria:** o log de recepção do Sistot (não público) e a ordem real de transmissão por município.")
     L.append("- **Causa:** não identificada.\n")
 L.append("## Soma agregada (sem as linhas com ressalva de desenho)\n")
 rows = []
