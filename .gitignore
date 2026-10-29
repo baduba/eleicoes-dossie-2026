@@ -12,3 +12,4 @@ site/
 site_teste/
 *.zip
 .pytest_cache/
+AUTORIA_OPCOES.md

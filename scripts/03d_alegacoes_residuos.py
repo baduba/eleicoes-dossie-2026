@@ -38,7 +38,7 @@ A16 = ["# Inventário de alegações\n",
 linhas = [
     dict(alegacao="Relatório \"pericial independente\": seções que fecharam depois das 17h, 8,6 milhões de liberações manuais, correlação com voto em Lula, seções unânimes, Benford, caso da Bahia", quem="documento anônimo (autoria não informada)", data="2026-10 (data exata n/d)", link="n/d (texto não fornecido a esta sessão)", testavel="sim, as contagens e a Bahia",
          teste="H1 a H8, A5 e a página [O relatório original](relatorio-original.md)", resultado=f"as contagens reproduzem ({n(c(2026,2,'de_17h01_a_17h15'))} seções; {n(tot.loc[(2026,2),'biom_nh_total'])} liberações; Bahia 72,31% x 71,31%); as conclusões não se sustentam", veredito="contagens reproduzidas; inferências refutadas"),
-    dict(alegacao="Vídeo do \"Prof. Marcelo Trindade\": curva de apuração com trechos lineares, uma única inversão de liderança, \"472 urnas\" com 60-65%", quem="Marcelo Trindade (como informado)", data="n/d", link="n/d (vídeo não fornecido; nenhuma fonte localizada)", testavel="a forma da curva, sim; as \"472 urnas\", não",
+    dict(alegacao="Vídeo do \"Prof. Marcelo Trindade\": curva de apuração com trechos lineares, uma única inversão de liderança, \"472 urnas\" com 60-65%", quem="Marcelo Trindade (como informado)", data="n/d", link="[Instagram (reel)](https://www.instagram.com/reel/DfAHZs9g4Ej/): a página não traz transcrição acessível; o arquivo de transcrição (`trindade_transcricao.txt`) ainda não foi fornecido, então a alegação segue nos termos em que foi informada ao autor, sem adjetivos e sem checagem contra a fala", testavel="a forma da curva, sim; as \"472 urnas\", não",
          teste="A13 e A1", resultado=f"inversões reais: 2026/T2 {int(inv.loc[(2026,2),'inversoes_real'])}, 2022/T2 {int(inv.loc[(2022,2),'inversoes_real'])}, 2018/T2 {int(inv.loc[(2018,2),'inversoes_real'])}, 2026/T1 {int(inv.loc[(2026,1),'inversoes_real'])} (ordens geográficas de 2026/T2: {inv.loc[(2026,2),'inversoes_B_ic95']}); trechos lineares dentro da faixa simulada; o método de emendar subidas dá \"vitória\" falsa em séries sem manipulação (Haddad 2018: {n(100*inv.loc[(2018,2),'emenda_subidas_share_final_real'],1)}%). \"472 urnas\": NÃO REPRODUZÍVEL sem os dados e o código", veredito="forma da curva: dentro do esperado; \"472 urnas\": NÃO REPRODUZÍVEL"),
     dict(alegacao="\"O TSE tinha 70% das urnas apuradas às 19h34 e liberava aos poucos\"", quem="como informado (a captura sugere 7,28%)", data="25/10/2026", link="n/d", testavel="recebimento e totalização, sim; divulgação, não",
          teste="A14", resultado=f"às 19h34: {n(x1934.pct_bu_recebido,2)}% dos BUs recebidos e {n(x1934.pct_totalizado,2)}% totalizados; 70% só depois das 20h; atraso recebimento → totalização de menos de 1 minuto. Divulgação: NÃO EXECUTADO (sem snapshots)", veredito="70% às 19h34 não reproduz; represamento recebido → totalizado não aparece; divulgação NÃO TESTÁVEL sem snapshots"),
@@ -47,7 +47,7 @@ linhas = [
          resultado="nacionalmente, nenhuma conversão é necessária (Lula +10,38 milhões, Flávio +3,72 milhões; a soma é exatamente o conjunto de votos disponíveis); a perda líquida do oponente por seção (383 mil votos) tem espelho em 2022 (PT, 459 mil)", veredito="não sustentada pelos dados agregados; individual NÃO TESTÁVEL (sigilo)"),
     dict(alegacao="109 seções com zero voto para Flávio", quem="como informado", data="n/d", link="n/d (nenhuma reportagem localizada)", testavel="sim", teste="A12",
          resultado=f"em 2026/T2: {n(z26.zero_oponente)} seções (1º turno: 81); o 109 não reproduz em nenhuma definição; o oponente teve zero voto em 143 (2022), 328 (2018) e 192 (2014) seções; observado próximo do esperado", veredito="109 não reproduz; contagem real não excede o esperado"),
-    dict(alegacao="Apoios do 1º turno (Zema, Caiado, Cury, Clariana a Flávio; esquerda a Lula, crítico; Rui Costa Pimenta nulo; Renan Santos liberou)", quem="como informado", data="outubro de 2026", link="Zema, Caiado, Cury e Renan: [A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/); demais: fonte não localizada", testavel="o efeito, só por agregado", teste="A11",
+    dict(alegacao="Apoios do 1º turno (Zema, Caiado, Cury, Clariana a Flávio; esquerda a Lula, crítico; Rui Costa Pimenta nulo; Renan Santos liberou)", quem="como informado", data="outubro de 2026", link="Conferido nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão a Flávio; Hertz Dias e Edmilson Costa com voto crítico em Lula; Renan Santos neutro; Wilson Grassi sem posição. Divergências: Samara Martins só por orientação do partido (UP, \"vote 13\"); Rui Costa Pimenta sem posição definida em 10/10 (não \"voto nulo\"). Segunda fonte indicada (Space Money) responde HTTP 403 e não foi aberta. Complemento: [A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/)", testavel="o efeito, só por agregado", teste="A11",
          resultado="ver [Resultados da Fase 2](resultados-fase2.md), seção A11 (contabilidade termo a termo e taxas aparentes, com a ressalva de falácia ecológica)", veredito="ver A11"),
     dict(alegacao="Modelos de urna antigos favoreciam Lula em 2022", quem="relatório do PL / Cerimedo (como informado)", data="n/d", link="n/d (texto não fornecido)", testavel="sim", teste="A15 e A10",
          resultado="UE2009 e UE2010 contra UE2020, mesmo local: sem controle do T1, efeito de ~+0,2 p.p. não distinguível de zero (como já no 1º turno); com o T1 como controle, −0,09 p.p., não significativo", veredito="não sustentada"),
@@ -91,6 +91,8 @@ L = ["# Questões em aberto (resíduos)\n",
      "> **Itens que os testes não conseguiram explicar nem confirmar. Não constituem evidência de manipulação; estão aqui para transparência e para investigação futura.**\n",
      "Entram nesta página todo resultado classificado como inconclusivo, \"excesso detectável\" ou \"excesso detectado\" e todo resíduo sem causa identificada. As estimativas centrais e os intervalos de 95% usam aproximação normal sobre o erro padrão do contraste contra o placebo mais exigente (não são bootstrap nem bayesianos). O **teto de pior caso** usa o placebo mais frouxo. Nenhuma probabilidade é atribuída a hipóteses sobre o processo; só aparecem quantidades medidas (votos em excesso, diferença entre anos). Margem oficial: 4.430.191 votos.\n"]
 agg = {"PT": [], "OPO": []}
+FLAW = {"A1", "A2", "A3", "A12"}
+pos = rd("posregistro_testes.csv")
 for h, trecho, titulo, direcao, testadas, nao_testadas, resolve in ITENS:
     r = reg[(reg.H == h) & reg.teste.str.contains(trecho, regex=False)]
     if not len(r):
@@ -98,6 +100,18 @@ for h, trecho, titulo, direcao, testadas, nao_testadas, resolve in ITENS:
     r = r.iloc[0]
     L.append(f"## {h}: {titulo}\n")
     L.append(f"- **Linha do registro:** {r.teste}")
+    if h in FLAW:
+        pr = pos[pos.H == h + "-corrigida"].iloc[0] if pos is not None and (pos.H == h + "-corrigida").any() else None
+        L.append("- **RESSALVA DE DESENHO (leia primeiro):** o desenho pré-registrado desta linha produz o rótulo de excesso sem manipulação (demonstração e correção em [Resultados da Fase 2](resultados-fase2.md)). O rótulo abaixo **não indica manipulação**.")
+        L.append(f"- **Pré-registrado (mantido):** {r.veredito}, com a ressalva de desenho acima" + (f" ({r.ressalva})" if isinstance(r.get('ressalva', ''), str) and r.get('ressalva', '') else ""))
+        L.append(f"- **Corrigido (pós-registro):** {pr.veredito if pr is not None else 'n/d'}")
+        L.append(f"- **Direção do efeito:** {direcao}")
+        L.append("- **Estimativa em votos:** sem interpretação causal nesta linha; valores no Apêndice \"Agregado sem interpretação causal\" de Resultados da Fase 2.")
+        L.append(f"- **Explicações mundanas testadas:** {testadas}")
+        L.append(f"- **Não testadas:** {nao_testadas}")
+        L.append(f"- **O que resolveria:** {resolve}")
+        L.append("- **Causa:** o desenho do teste (ver ressalva); não há resíduo a explicar nesta linha.\n")
+        continue
     L.append(f"- **Veredito pelo critério pré-registrado:** {r.veredito}" + (f" (ressalva de desenho: {r.ressalva})" if isinstance(r.get('ressalva', ''), str) and r.get('ressalva', '') else ""))
     L.append(f"- **Direção do efeito:** {direcao}")
     if pd.notna(r.get("votos_central")):
@@ -110,7 +124,7 @@ for h, trecho, titulo, direcao, testadas, nao_testadas, resolve in ITENS:
     L.append(f"- **Não testadas:** {nao_testadas}")
     L.append(f"- **O que resolveria:** {resolve}")
     L.append("- **Causa:** não identificada.\n")
-L.append("## Soma agregada\n")
+L.append("## Soma agregada (sem as linhas com ressalva de desenho)\n")
 rows = []
 for sent, nome in (("PT", "pró-Lula"), ("OPO", "pró-Flávio")):
     v = agg[sent]
@@ -118,6 +132,7 @@ for sent, nome in (("PT", "pró-Lula"), ("OPO", "pró-Flávio")):
         cen = sum(x[0] for x in v); dp = np.sqrt(sum(((x[2] - x[0]) / 1.96) ** 2 for x in v)); pw = sum(max(x[3], 0) for x in v if pd.notna(x[3]))
         rows.append(dict(sentido=nome, itens_com_votos=len(v), soma_central=n(cen), ic95=f"{n(cen - 1.96 * dp)} a {n(cen + 1.96 * dp)}", soma_pior_caso=n(pw), pct_margem_central=n(100 * cen / MARGEM, 2) + "%", pct_margem_pior_caso=n(100 * pw / MARGEM, 2) + "%"))
 L.append(tab(rows, ["sentido", "itens_com_votos", "soma_central", "ic95", "soma_pior_caso", "pct_margem_central", "pct_margem_pior_caso"]))
+L.append("\nEsta soma **exclui as linhas A1, A2, A3 e A12** (ressalva de desenho). As versões corrigidas dessas linhas não mostram excesso e não somam votos. Considerando todas as linhas, o agregado é publicado só no apêndice \"Agregado sem interpretação causal\" de [Resultados da Fase 2](resultados-fase2.md), porque inclui um teto sem sentido causal.\n")
 L.append("\nO intervalo da soma supõe independência entre os itens (aproximação declarada; os itens usam as mesmas seções, então o intervalo é aproximado). Os sentidos pró-Lula e pró-Flávio não se compensam. Itens de forma, sem conversão em votos, não entram na soma. Nenhum item, isolado ou somado, alcança a margem de 4.430.191 votos.\n")
 L.append("## Itens sem linha no registro\n")
 L.append("- **Comparecimento de idosos (A9):** o comparecimento de eleitores acima de 80 anos (voto facultativo) cresce mais que os aptos da faixa entre 2022 e 2026 no 1º turno. Não convertível em votos; causa não identificada; resolveria o perfil de 2026/2º turno e o histórico de cancelamentos de títulos.")

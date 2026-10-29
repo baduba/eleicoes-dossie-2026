@@ -73,13 +73,47 @@ a9c, a9b, a9o, a9f, a9a = rd("A9_a9_celulas.csv"), rd("A9_a9_consistencia_bweb.c
 a10m, a10e = rd("A10_a10_modelo_urna.csv"), rd("A10_a10_exterior.csv")
 h10 = rd("H10_h10_agregado.csv"); h10s = rd("H10_h10_sobreviventes.csv")
 h3c = rd("H3_h3_recontagem_relogio_cru.csv")
+pos = rd("posregistro_testes.csv")
+c1d, c1c = rd("C1_c1_demonstracao_original.csv"), rd("C1_c1_corrigido_nulo_D.csv")
+c2d, c2c = rd("C2_c2_demonstracao_original.csv"), rd("C2_c2_corrigido_lider_padronizado.csv")
+c3d, c3c = rd("C3_c3_demonstracao_original.csv"), rd("C3_c3_corrigido_taxa_restrita.csv")
+c12d, c12c = rd("C12_c12_demonstracao_original.csv"), rd("C12_c12_corrigido_vizinhos.csv")
+RESS = "COM RESSALVA DE DESENHO"
+
+
+def posl(h):
+    r = pos[pos.H == h] if pos is not None else []
+    return r.iloc[0] if len(r) else None
+
+
+def _p(h):
+    r = posl(h)
+    return r.veredito if r is not None else "n/d"
+
+
+def _v(h, trecho):
+    r = linha(h, trecho)
+    return r.veredito if r is not None else "n/d"
 tot = rd("H2_h2_totais_absolutos.csv").set_index(["ano", "turno"])
 
 L = []
 A = L.append
 A("# Resultados da Fase 2 (A1 a A10)\n")
 A(f"Previsões, critérios e placebos foram registrados no [Adendo 4 do pré-registro](preregistro.md) **antes** de rodar as análises. O registro de testes é combinado com o da Fase 1 ({len(reg)} testes); o p corrigido (Holm e Benjamini-Hochberg) é sobre a família completa. Veredito: regra do [Adendo 2](preregistro.md). Margem oficial: {n(MARGEM)} votos. Tetos em votos são limites superiores sob causalidade, não estimativas.\n")
-A("**Leitura rápida.** Pelos critérios pré-registrados, três análises (A1, A2, A3) saem como \"excesso detectado\"; cada uma tem **ressalva de desenho** documentada, porque um controle posterior mostrou que o desenho pré-registrado media outra coisa (ver cada seção e [Changelog](changelog.md)). As linhas foram mantidas como saíram e os dois cálculos de impacto agregado (com e sem essas linhas) são publicados.\n")
+A("**Leitura rápida.** Quatro análises (A1, A2, A3 e A12) saíram do critério pré-registrado com rótulo de excesso e têm **ressalva de desenho**: o mesmo teste acusa excesso em séries ou anos sem manipulação. O resultado original foi mantido e a versão corrigida está ao lado (seção seguinte). Nenhum rótulo de excesso destas linhas indica manipulação.\n")
+A("## Linhas com ressalva de desenho (leia primeiro)\n")
+A("> **Quatro linhas (A1, A2, A3 e A12) saíram do critério pré-registrado com o rótulo \"excesso\". Em todas, o desenho pré-registrado tinha uma falha que produz esse rótulo sem manipulação.** Abaixo, para cada uma: a falha, a demonstração (o mesmo teste original acusando \"excesso\" em séries ou anos sem manipulação) e a versão corrigida, publicadas **ao lado** do resultado original, que não foi alterado nem apagado. A correção é **pós-registro**: [Adendo 6](preregistro.md), escrito antes de rodar as versões corrigidas.\n")
+A("| teste | falha de desenho | demonstração (teste original sem manipulação) | pré-registrado (mantido) | corrigido (pós-registro) |\n|---|---|---|---|---|")
+d1 = c1d.iloc[0]
+A(f"| A1 curva de apuração | o nulo \"permutação dentro da UF\" supõe ordem aleatória dentro da UF; municípios chegam em blocos | {d1.iloc[0]} eleições reais saem do envelope, e {int(d1.simulacoes_que_saem_do_envelope_B_por_20_pontos_ou_mais)} de {int(d1.simulacoes_sem_manipulacao)} simulações sem manipulação também | {_v('A1', 'curva')} (**ressalva de desenho**) | {_p('A1-corrigida')} |")
+d2 = c2d.iloc[0]
+A(f"| A2 transições T1→T2 | o placebo por papel (oponente) ignora quem liderou o 1º turno e quantos votos de terceiros havia | o mesmo teste aplicado ao **PT de 2022** (líder do 1º turno; perde votos em {n(d2.pct_perde_votos, 1)}% das seções) também acusa: {d2.veredito_do_teste_original} | {_v('A2', 'oponente perde')} (**ressalva de desenho**) | {_p('A2-corrigida')} |")
+acus = c3d[c3d.acusado_pelo_teste_original]
+A(f"| A3 origem dos votos | todos os coeficientes ecológicos são negativos; o teste acusa o ano de maior coeficiente em qualquer conjunto de quatro; o teto em votos não tem sentido causal | o teste original acusa {len(acus)} dos {len(c3d)} anos, o de maior coeficiente ({', '.join(str(int(x)) for x in acus.ano_alvo)}); os demais não | {_v('A3', 'ecologica')} (**ressalva de desenho**; teto sem interpretação causal) | {_p('A3-corrigida')} |")
+d12 = c12d.iloc[0]
+A(f"| A12 zero voto | o estimador de p pelo 1º turno é enviesado onde havia terceiros relevantes (razões 0,27 a 0,72 nos placebos) | em {int(d12.simulacoes_sem_manipulacao)} simulações sem manipulação de 2026, o teste original acusa excesso em {n(d12.pct_acusadas, 0)}% (o esperado seria até 5%) | {_v('A12', 'zero voto')} (**ressalva de desenho**) | {_p('A12-corrigida')} |")
+A("\nO A3 corrigido estima a taxa de transição oponente→PT com restrição de 0 a 1 e dá 0 nos quatro anos: a restrição fica ativa e o bootstrap no limite subestima a incerteza. A leitura honesta é que os dados agregados **não identificam** transição positiva do oponente para o PT, não que ela seja provadamente zero.\n")
+A("Um ponto que a correção do A1 deixa visível: no 1º turno de 2026, a curva fica fora do envelope do nulo corrigido por " + n(c1c[(c1c.ano == 2026) & (c1c.turno == 1)].maior_sequencia_fora_envelope_D.iloc[0]) + " pontos consecutivos (desvio de " + n(c1c[(c1c.ano == 2026) & (c1c.turno == 1)].maxdev_vs_D_pp_ge10pct.iloc[0], 2) + " p.p., perto do limite de " + n(c1c[(c1c.ano == 2026) & (c1c.turno == 1)].maxdev_D_nulo_p95_pp.iloc[0], 2) + "). Isso **não** estava no alvo pré-registrado (o alvo é o 2º turno), por isso não entra no veredito; está registrado aqui por transparência e é coerente com a ordem de chegada irregular do 1º turno (A18).\n")
 A("## Tabela-resumo\n")
 rows = []
 def add(a, nome, r, texto):
@@ -97,32 +131,37 @@ add("A8", "coerência entre cargos", r8_, "0 seções fora da regra em 2018, 202
 add("A9", "perfil do comparecimento", r9_, "só 1º turno; T1→T2 de 2026 NÃO EXECUTADO")
 add("A10", "modelo de urna, exterior", linha("A10", "UE2022"), "modelo de urna sem efeito no voto dentro do local")
 rows[6]["veredito"] = "contexto, sem veredito"; rows[9]["veredito"] = "ver seção"
+for _i, (_h, _hc) in {0: ("A1", "A1-corrigida"), 1: ("A2", "A2-corrigida"), 2: ("A3", "A3-corrigida")}.items():
+    rows[_i]["veredito"] = f"{RESS}. Pré-registrado: {rows[_i]['veredito']}. Corrigido: {_p(_hc)}"
+    rows[_i]["pct_margem_pior_caso"] = "n/a (ver ressalva)"
 A(tab(pd.DataFrame(rows)))
 A("\nTodos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/`.\n")
 
 # ------------------------------------------------------------------------------------------------ A1
 A("## A1. Curva de apuração\n")
+A("> **Ressalva de desenho (leia primeiro).** O teste pré-registrado compara a curva real com permutações das seções dentro de cada UF. Essa ordem não é aleatória em nenhuma eleição, então o teste acusa saída do envelope em todas, e também em séries simuladas sem manipulação. Demonstração e versão corrigida no início desta página. O rótulo \"excesso\" desta linha **não indica manipulação**.\n")
 A("**Alegação testada:** \"a curva deveria subir e descer em blocos; linhas retas indicam manipulação\".\n")
 A("**Previsão registrada.** Sem manipulação: a curva real fica dentro do envelope de permutações das seções dentro de cada UF (mantida a sequência de UFs de chegada), e a soma final é idêntica em qualquer ordem. Critério: o desvio máximo (a partir de 1% das seções) só conta como excesso se superar o dos placebos e sair do envelope 95% simultâneo por 20 pontos consecutivos.\n")
 A("**Método.** Ordem real = horário da primeira totalização parcial por seção (`DT_PRIM_TOT_PARCIAL_HOR_TSE`). 1.000 ordens aleatórias totais (nulo A) e 1.000 permutações dentro de cada UF preservando a sequência de UFs (nulo B), sobre ~500 mil seções.\n")
 A(tab(a1[["ano", "turno", "secoes", "share_final", "maxdev_vs_B_pp", "maxdev_vs_B_pp_posterior_ge10pct", "maxdev_vs_A_pp", "maior_sequencia_fora_envelope", "fracao_explicada_por_geografia", "pct_secoes_totalizadas_antes_das_19h"]], {"secoes": F(), "share_final": F(4), "maxdev_vs_B_pp": F(2), "maxdev_vs_B_pp_posterior_ge10pct": F(2), "maxdev_vs_A_pp": F(2), "fracao_explicada_por_geografia": F(3), "pct_secoes_totalizadas_antes_das_19h": F(2)}))
 g = a1[(a1.ano == 2026) & (a1.turno == 2)].iloc[0]
 A(f"\n![Curva de apuração real contra os nulos A e B](figs/a1_curva_apuracao.png)\n")
-A(f"**Resultado pré-registrado.** O desvio máximo de 2026/T2 contra o nulo B é {n(g.maxdev_vs_B_pp,2)} p.p., maior que o dos placebos ({', '.join(f'{n(r.maxdev_vs_B_pp,2)}' for r in a1.itertuples() if not (r.ano==2026 and r.turno==2))}), e a curva sai do envelope por {n(g.maior_sequencia_fora_envelope)} pontos consecutivos. Pelo critério fixado, a linha sai como **excesso detectado (teste de forma)**.\n")
-A(f"**Ressalva de desenho.** (1) O nulo B é rejeitado nos quatro anos (maior sequência fora do envelope: {', '.join(n(x) for x in a1.maior_sequencia_fora_envelope)} de 990 pontos): a ordem de chegada dentro da UF não é aleatória em nenhuma eleição, porque municípios e zonas chegam em blocos. (2) Em 2026/T2 o desvio máximo ocorre nos primeiros 1 a 5% das seções; a partir de 10% das seções ele cai a {n(g.maxdev_vs_B_pp_posterior_ge10pct,2)} p.p., abaixo dos placebos ({', '.join(f'{n(r.maxdev_vs_B_pp_posterior_ge10pct,2)}' for r in a1.itertuples() if not (r.ano==2026 and r.turno==2))}); esta é uma análise **posterior**, não pré-registrada. (3) A geografia explica {pc(100*g.fracao_explicada_por_geografia,0)} do desvio contra a ordem aleatória total. O efeito sobre a soma final é zero por construção.\n")
+A(f"**Resultado pré-registrado.** O desvio máximo de 2026/T2 contra o nulo B é {n(g.maxdev_vs_B_pp,2)} p.p., maior que o dos placebos ({', '.join(f'{n(r.maxdev_vs_B_pp,2)}' for r in a1.itertuples() if not (r.ano==2026 and r.turno==2))}), e a curva sai do envelope por {n(g.maior_sequencia_fora_envelope)} pontos consecutivos. Pelo critério fixado (mantido, **com a ressalva de desenho acima**), a linha sai como excesso detectado (teste de forma), sem efeito sobre a soma final.\n")
+A(f"**Demonstração e correção.** (1) O nulo B é rejeitado nos quatro anos (maior sequência fora do envelope: {', '.join(n(x) for x in a1.maior_sequencia_fora_envelope)} de 990 pontos): a ordem de chegada dentro da UF não é aleatória em nenhuma eleição, porque municípios e zonas chegam em blocos. (2) Em 2026/T2 o desvio máximo ocorre nos primeiros 1 a 5% das seções; a partir de 10% das seções ele cai a {n(g.maxdev_vs_B_pp_posterior_ge10pct,2)} p.p., abaixo dos placebos ({', '.join(f'{n(r.maxdev_vs_B_pp_posterior_ge10pct,2)}' for r in a1.itertuples() if not (r.ano==2026 and r.turno==2))}); esta é uma análise **posterior**, não pré-registrada. (3) A geografia explica {pc(100*g.fracao_explicada_por_geografia,0)} do desvio contra a ordem aleatória total. O efeito sobre a soma final é zero por construção.\n")
 A(f"**Pausa da divulgação.** Em 2026/T2, só {pc(g.pct_secoes_totalizadas_antes_das_19h,2)} das seções tinham primeira totalização antes das 19h, contra {pc(a1[(a1.ano==2022)&(a1.turno==2)].pct_secoes_totalizadas_antes_das_19h.iloc[0],1)} em 2022 e {pc(a1[(a1.ano==2018)&(a1.turno==2)].pct_secoes_totalizadas_antes_das_19h.iloc[0],1)} em 2018. Isso é compatível com a pausa descrita pela imprensa (ver [Base legal](base-legal.md)); a fonte oficial não pôde ser aberta.\n")
 A("**Ordem de chegada por UF (2026/T2, posição mediana):** " + ", ".join(f"{r.SG_UF} {n(r.posicao_mediana,2)}" for r in a1u.head(6).itertuples()) + " (primeiras); " + ", ".join(f"{r.SG_UF} {n(r.posicao_mediana,2)}" for r in a1u.tail(6).itertuples()) + " (últimas). O PT tem " + ", ".join(f"{r.SG_UF} {pc(100*r.share_pt,0)}" for r in a1u.tail(4).itertuples()) + " nas últimas: estados com perfis diferentes chegam em momentos diferentes, e a curva reflete isso.\n")
 A("**NÃO EXECUTADO:** (i) 2014/T2: o produto `detalhe_votacao_secao` de 2014 não traz horário de totalização e o BWeb de 2014 só tem a data de recebimento; (ii) comparação numérica com o gráfico \"Evolução da apuração\" do g1 de 25/10/2026: o gráfico não foi fornecido como dado.\n")
 
 # ------------------------------------------------------------------------------------------------ A2
 A("## A2. Transições seção a seção, 1º para 2º turno\n")
+A("> **Ressalva de desenho (leia primeiro).** O placebo \"por papel\" (oponente) não considera quem liderou o 1º turno. Aplicado ao PT de 2022, o mesmo teste também acusa excesso. A versão corrigida compara o **líder do 1º turno** de cada ano, padronizando pela razão terceiros/líder. O rótulo \"excesso\" desta linha **não indica manipulação**.\n")
 A("**Alegação testada:** conversão de eleitores do oponente para o PT; compressão de margem ('113x30 vira 77x70'); formato do swing diferente do histórico.\n")
 A("**Previsão registrada.** Sem manipulação: frequência de perda de votos absolutos pelo oponente e forma do swing dentro da faixa dos anos placebo. Critério: frequência fora de [mín, máx] dos placebos, ou forma 'diferente' se a menor distância KS de 2026 a um placebo superar a maior distância entre pares de placebos.\n")
 A("**Perda de votos absolutos** em seções com comparecimento estável ou crescente (≥ 98% do T1):\n")
 A(tab(a2p, {"secoes_estaveis_ou_crescentes": F(), "secoes_com_perda": F(), "pct_secoes": F(2), "votos_perdidos": F(), "pct_dos_votos_T1_do_cand_nessas_secoes": F(3), "pct_secoes_perda_acima_de_20pct_do_T1": F(3)}))
 r = linha("A2", "oponente perde")
-A(f"\n**Resultado pré-registrado:** o oponente perde votos em {pc(a2p[(a2p.ano==2026)&(a2p.cand=='OPO')].pct_secoes.iloc[0],1)} das seções em 2026, fora da faixa dos placebos de oponente (2014, 2018, 2022: {', '.join(pc(x,1) for x in a2p[(a2p.cand=='OPO')&(a2p.ano!=2026)].pct_secoes)}). Pelo critério, **excesso detectado (teste de forma)**.\n")
-A(f"**Ressalva de desenho (análise posterior).** O placebo \"por papel\" (oponente) é inadequado: em 2022 foi o **PT**, que liderou o 1º turno, quem perdeu votos absolutos em {pc(a2p[(a2p.ano==2022)&(a2p.cand=='PT')].pct_secoes.iloc[0],1)} das seções, quase o espelho dos {pc(a2p[(a2p.ano==2026)&(a2p.cand=='OPO')].pct_secoes.iloc[0],1)} do oponente em 2026 (que liderou o 1º turno). Nos dois anos havia poucos votos de terceiros para repartir (cerca de 10 milhões e 9 milhões, contra 26 milhões em 2014 e 2018). Por faixa de \"votos de terceiros / votos do candidato no T1\" na seção, as frequências são parecidas:\n")
+A(f"\n**Resultado pré-registrado:** o oponente perde votos em {pc(a2p[(a2p.ano==2026)&(a2p.cand=='OPO')].pct_secoes.iloc[0],1)} das seções em 2026, fora da faixa dos placebos de oponente (2014, 2018, 2022: {', '.join(pc(x,1) for x in a2p[(a2p.cand=='OPO')&(a2p.ano!=2026)].pct_secoes)}). Pelo critério pré-registrado (mantido, **com a ressalva de desenho acima**): excesso detectado (teste de forma).\n")
+A(f"**Demonstração e correção.** O placebo \"por papel\" (oponente) é inadequado: em 2022 foi o **PT**, que liderou o 1º turno, quem perdeu votos absolutos em {pc(a2p[(a2p.ano==2022)&(a2p.cand=='PT')].pct_secoes.iloc[0],1)} das seções, quase o espelho dos {pc(a2p[(a2p.ano==2026)&(a2p.cand=='OPO')].pct_secoes.iloc[0],1)} do oponente em 2026 (que liderou o 1º turno). Nos dois anos havia poucos votos de terceiros para repartir (cerca de 10 milhões e 9 milhões, contra 26 milhões em 2014 e 2018). Por faixa de \"votos de terceiros / votos do candidato no T1\" na seção, as frequências são parecidas:\n")
 A(tab(a2m))
 A("\n![Espelho de perdas por faixa](figs/a2_espelho_perdas.png)\n")
 A("**Forma do swing** (resíduo da margem do T2 sobre a margem do T1, com efeito fixo de município):\n")
@@ -135,6 +174,7 @@ A("\n")
 
 # ------------------------------------------------------------------------------------------------ A3
 A("## A3. Origem dos votos novos de Lula\n")
+A("> **Ressalva de desenho (leia primeiro).** Os coeficientes ecológicos são negativos em todos os anos e o teste acusa o ano de maior coeficiente em qualquer conjunto de quatro. O teto em votos desta linha **não mede votos manipulados**. A versão corrigida (taxa restrita a 0 a 1) dá 0 nos quatro anos. O rótulo \"excesso\" **não indica manipulação**.\n")
 A("**Contabilidade nacional (identidade).** Como no 2º turno não há terceiros, `ΔPT + ΔOPO = Δcomparecimento + terceiros no T1 − Δ(brancos e nulos)`. A identidade fecha em todas as eleições:\n")
 A(tab(a3c[["ano", "PT_T1", "PT_T2", "OPO_T1", "OPO_T2", "TERCEIROS_T1", "BN_T1", "BN_T2", "dPT", "dOPO", "dCOMP", "pool", "identidade_ok", "pt_pct_do_pool", "opo_pct_do_pool"]], {c: F() for c in ["PT_T1", "PT_T2", "OPO_T1", "OPO_T2", "TERCEIROS_T1", "BN_T1", "BN_T2", "dPT", "dOPO", "dCOMP", "pool"]} | {"pt_pct_do_pool": F(1), "opo_pct_do_pool": F(1)}))
 c26 = a3c[a3c.ano == 2026].iloc[0]
@@ -147,7 +187,7 @@ A(tab(a3e[(a3e.destino_T2 == "PT") & (a3e.origem_T1.isin(["OPO_T1", "TERCEIROS_T
 A("\nCom efeito fixo de município (relativo à abstenção do T1):\n")
 A(tab(a3f[a3f.origem_T1 == "op1"], {"coef": F(3), "ep": F(3)}))
 r = linha("A3", "ecologica")
-A(f"\n**Resultado pré-registrado:** o coeficiente de 2026 ({n(r.est_2026T2,3)}) é o menos negativo dos quatro anos, e a linha sai como **excesso detectado e relevante** pelo teto calculado ({pc(r.pct_pior_caso)} da margem). **Ressalva de desenho:** todos os coeficientes são negativos (nenhum mede conversão); a diferença entre anos reflete geografia; com efeito fixo de município o coeficiente de 2026 é o **mais negativo** (−0,127 contra −0,042 a −0,070). O teto em votos derivado dessa diferença não tem interpretação causal. Por isso o H10 é publicado com e sem esta linha.\n")
+A(f"\n**Resultado pelo critério pré-registrado (mantido, com a ressalva acima):** o coeficiente de 2026 ({n(r.est_2026T2,3)}) é o menos negativo dos quatro anos e a linha sai como excesso; o teto em votos calculado para essa linha está no Apêndice B, sem interpretação causal. **Demonstração e correção:** todos os coeficientes são negativos (nenhum mede conversão); a diferença entre anos reflete geografia; com efeito fixo de município o coeficiente de 2026 é o **mais negativo** (−0,127 contra −0,042 a −0,070). O teto em votos derivado dessa diferença não tem interpretação causal (Apêndice B).\n")
 A("**Limites:** falácia ecológica; o 2º turno de 2026 tem eleitores de candidatos diferentes dos de 2022; a identidade usa o BWeb, que é o mesmo dado que se audita.\n")
 
 # ------------------------------------------------------------------------------------------------ A4
@@ -157,7 +197,14 @@ A("**Previsão registrada.** 0 divergências entre BU digital, RDV, BWeb e vínc
 A("**Amostra:** Roraima inteira; as seções que fecharam ≥115 min depois do horário (população completa fora de Roraima e do exterior); controles 1:1 no mesmo local; as seções com comparecimento ≥95%; 60 aleatórias por UF; e as mesmas seções em 2022 como placebo.\n")
 A(tab(a4, {"secoes": F()}))
 A("\n**O que foi verificado:** (c) o BU digital coincide com o BWeb em Lula, oponente, brancos, nulos e comparecimento; (b) o RDV recontado coincide com o BU (Lula, oponente, brancos e total; nulos pelo resíduo); vínculo de integridade: o SHA-512 de BU, RDV, imagem e log consta na lista assinada pela urna e o SHA-512 da lista confere com o hash do bloco assinado. A emissão do BU coincide com a do BWeb em " + (f"{n(a4e['iguais'])} de {n(a4e['secoes'])} seções." if a4e else "n/d") + "\n")
-A("**NÃO verificado:** (a) a assinatura criptográfica em si: a chave da urna usa uma curva de 521 bits com OID 1.3.6.1.4.1.44588.2.1, sem suporte em bibliotecas padrão, e a especificação ASN.1 e os scripts de exemplo do TSE não são acessíveis por automação (HTTP 403). Insumo que falta: especificação e ferramenta oficial de verificação. (d) a identificação do software contra a publicada na lacração: só foi possível listar a versão registrada no log (2026: 10.23.0.0; 2022: 8.26.0.0) e a verificação de assinatura de aplicação por etapa (6 etapas, todas \"SUCESSO\" em todos os logs lidos). Insumo que falta: hashes de lacração para comparar.\n")
+ce = rd("cert_RR_2026.csv")
+if ce is not None:
+    emi = ce.emissor_cn.value_counts()
+    A(f"**Assinatura criptográfica: NÃO EXECUTADO PARCIAL.** *Verificado:* o certificado X.509 embutido no arquivo de assinatura de cada seção de Roraima em 2026 ({n(len(ce))} seções lidas, {n(ce.get('erro', pd.Series(dtype=object)).notna().sum())} erros): o CN do certificado é `UEAO` + número da urna do BWeb em {n(ce.cn_confere_com_urna.sum())} de {n(len(ce))}; a validade cobre a data da eleição em {n(ce.valido_na_eleicao.sum())} de {n(len(ce))}; os emissores são " + ", ".join(f"`{k}` ({n(v)})" for k, v in emi.items()) + f" (organização `{ce.emissor_o.iloc[0]}`); o OID do algoritmo é `{ce.cert_alg_chave.iloc[0]}`, com chave de {int(ce.cert_chave_bytes.iloc[0])} bytes e assinatura de {int(ce.cert_assinatura_emissor_bytes.iloc[0])} bytes (tamanhos compatíveis com curva de 521 bits; o OID não corresponde a algoritmo de biblioteca padrão). *Não verificado:* a assinatura em si (**0% das seções verificadas**) e a cadeia até a raiz, porque o certificado raiz, a chave pública oficial e a especificação não puderam ser obtidos por fonte oficial (o site do TSE responde HTTP 403 a automação). **Nenhuma chave de fonte não oficial foi usada.** Uma apresentação do TSE de 2021 (vista apenas em resultado de busca, sem abrir o documento) cita assinaturas de curva elíptica de 256 bits e EdDSA/Curve25519 para o QR code do BU; é outro artefato e também não foi verificado aqui. Script: `scripts/13_cert_urna.py`; resultado: `results/fase2/cert_RR_2026.csv`. Os anos de 2022 não foram lidos (layout do arquivo diferente). Insumo que falta: certificados raiz e especificação oficiais acessíveis.\n")
+else:
+    A("**Assinatura criptográfica: NÃO EXECUTADO.** O certificado raiz e a especificação oficiais não puderam ser obtidos.\n")
+A("**NÃO verificado:** (d) a identificação do software contra a publicada na lacração: só foi possível listar a versão registrada no log (2026: 10.23.0.0; 2022: 8.26.0.0) e a verificação de assinatura de aplicação por etapa (6 etapas, todas \"SUCESSO\" em todos os logs lidos). Insumo que falta: hashes de lacração para comparar.\n")
+A("> **O que A4 e H9 verificam e o que não verificam.** Verificam **consistência entre arquivos que o próprio TSE publica** (BU, RDV, imagem do BU, log, BWeb, totalização) e o vínculo de hash entre eles. Esses arquivos são gerados pelo mesmo software da urna e pelo mesmo fluxo de totalização. Por isso **não excluem uma alteração coerente feita antes da publicação** (que alterasse todos os artefatos de modo consistente), nem verificam se o voto registrado corresponde ao voto digitado pelo eleitor. Ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md).\n")
 A("**Divergências individuais:**\n")
 A(tab(a4d) if a4d is not None and len(a4d) else "Nenhuma em 2026 nem em 2022.")
 A("\nO leitor de BU e RDV é genérico (decodificador BER) e cada campo foi validado contra o BWeb antes de ser usado (em Roraima: 1.519 de 1.519 seções).\n")
@@ -232,7 +279,7 @@ A("\nO exterior tem 0 seções com comparecimento ≥95% em todas as eleições;
 # ------------------------------------------------------------------------------------------------ A11
 a11v, a11c, a11e, a11g, a11h = rd("A11_a11_votos_t1_por_candidato.csv"), rd("A11_a11_contabilidade.csv"), rd("A11_a11_ecologica_EF_municipio.csv"), rd("A11_a11_goodman_restrito_2026.csv"), rd("A11_a11_heterogeneidade_por_uf.csv")
 A("## A11. Transferência de votos dos derrotados no 1º turno\n")
-A("**Contexto com fonte.** Zema, Caiado e Cury apoiaram Flávio no 2º turno e Renan Santos liberou os eleitores ([A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/); Caiado: [Diário do Nordeste](https://diariodonordeste.verdesmares.com.br/pontopoder/ronaldo-caiado-anuncia-apoio-a-flavio-bolsonaro-no-2-turno-das-eleicoes-2026-1.3796893)). Os apoios de Clariana Barão, Hertz Dias, Edmilson Costa e Samara Martins e a posição de Rui Costa Pimenta foram informados ao autor desta auditoria, mas **não foi localizada fonte**; os blocos seguem a classificação informada e isso está declarado.\n")
+A("**Contexto com fonte.** Zema, Caiado e Cury apoiaram Flávio no 2º turno e Renan Santos liberou os eleitores ([A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/); Caiado: [Diário do Nordeste](https://diariodonordeste.verdesmares.com.br/pontopoder/ronaldo-caiado-anuncia-apoio-a-flavio-bolsonaro-no-2-turno-das-eleicoes-2026-1.3796893)). Conferência nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão declararam apoio a Flávio; Hertz Dias e Edmilson Costa anunciaram voto crítico em Lula; Renan Santos ficou neutro; Wilson Grassi não se posicionou. **Divergências com a classificação informada:** Samara Martins aparece apenas como orientação do partido (UP: \"vote 13\"), e Rui Costa Pimenta aparece **sem posição definida** em 10/10 (o PCO faria uma conferência), não como voto nulo; Leonardo Alves não aparece. A segunda fonte indicada (Space Money) responde HTTP 403 a automação e não foi aberta. Os blocos seguem a classificação informada para Samara Martins e Rui Costa Pimenta, e isso está declarado.\n")
 A("**Votos de cada candidato no 1º turno, confirmados no BWeb:**\n")
 A(tab(a11v, {"votos_t1": F()}))
 A("\n**Contabilidade nacional, termo a termo** (identidade: ganho de Lula + ganho de Flávio = terceiros + queda de brancos e nulos + queda de abstenção + variação de aptos):\n")
@@ -250,6 +297,7 @@ A(f"\n**Resultado pré-registrado:** {r.veredito if r is not None else 'n/d'} (c
 # ------------------------------------------------------------------------------------------------ A12
 a12c, a12e, a12p, a12t = rd("A12_a12_contagens.csv"), rd("A12_a12_esperado_vs_observado.csv"), rd("A12_a12_perfil_zero_oponente_T2.csv"), rd("A12_a12_zero_oponente_por_tipo.csv")
 A("## A12. Seções com zero voto para um candidato\n")
+A("> **Ressalva de desenho (leia primeiro).** A linha pré-registrada compara a razão observado/esperado de 2026 com razões de anos em que o estimador de p pelo 1º turno é enviesado. Em simulações sem manipulação, o teste original acusa excesso em boa parte das séries. A versão corrigida (p pelos vizinhos do mesmo local) não mostra excesso. O rótulo \"excesso detectável\" **não indica manipulação**.\n")
 A("**Alegação testada:** \"109 seções com zero voto\". A origem do número não foi informada e nenhuma reportagem foi localizada; por isso reporto todas as definições razoáveis.\n")
 A(tab(a12c[a12c.definicao.isin(["todas as apuradas", "sem exterior, comparecimento >= 1"])], {c: F() for c in ["secoes", "zero_oponente", "zero_PT", "votos_PT_nas_zero_oponente", "votos_oponente_nas_zero_PT"]}))
 z26 = a12c[(a12c.ano == 2026) & (a12c.turno == 2) & (a12c.definicao == "todas as apuradas")].iloc[0]
@@ -263,7 +311,7 @@ if a12p is not None:
     A(tab(a12t))
 A("\nA lista seção a seção (UF, município, local, tipo, aptos, comparecimento, resultado em 2026 T1, 2022 e 2018, liberação manual, encerramento, modelo de urna) está em `results/fase2/A12_a12_secoes_zero_2026.csv`.\n")
 r = linha("A12", "zero voto")
-A(f"**Veredito:** {r.veredito if r is not None else 'n/d'}.\n")
+A(f"**Veredito pré-registrado (mantido, com a ressalva de desenho acima):** {r.veredito if r is not None else 'n/d'}. **Corrigido (pós-registro):** {_p('A12-corrigida')}.\n")
 
 # ------------------------------------------------------------------------------------------------ A13
 a13, a13u = rd("A13_a13_inversoes_e_trechos.csv"), rd("A13_a13_trechos_lineares_reais_por_uf.csv")
@@ -301,13 +349,37 @@ A("\nEm 2026 nenhum modelo difere da UE2020 dentro do mesmo local.\n")
 
 # ------------------------------------------------------------------------------------------------ H10 combinado
 A("## Impacto agregado (H10 combinado)\n")
-A(tab(h10, {c: F(0) for c in ["n_testes_com_votos", "n_sobreviventes", "soma_votos_sobreviventes_exigente", "soma_votos_sobreviventes_pior_caso", "maximo_individual_pior_caso", "soma_de_todos_exigente"]} | {"pct_margem_sobreviventes_pior_caso": F(2), "pct_margem_soma_todos_exigente": F(2)}))
-A("\nSobreviventes (Holm < 0,05) e a ressalva de cada um:\n")
-A(tab(h10s, {"p_holm": F(3), "votos_max_margem": F(), "votos_max_pior_caso": F(), "pct_pior_caso": lambda x: pc(x)}))
-A("\nOs tetos não são aditivos independentes e os sentidos PT e oponente não se compensam.\n")
+FLAW = {"A1", "A2", "A3", "A12"}
+agg_ex = h10[h10.criterio != "como registrado"].set_index("sentido")
+sob_ok = h10s[~h10s.H.isin(FLAW)]
+pos_exc = pos[pos.veredito.str.startswith(("EXCESSO", "excesso"))] if pos is not None else pos
+n_pos_exc = 0 if pos_exc is None else len(pos_exc)
+A("Aqui entram **apenas** os testes sem ressalva de desenho. Soma dos tetos de pior caso dos testes com excesso detectado (Holm < 0,05) em cada sentido:\n")
+A("| agregado | pró-Lula (votos) | % da margem | pró-Flávio (votos) | % da margem |\n|---|---|---|---|---|")
+A(f"| excluindo as linhas com ressalva de desenho (A1, A2, A3, A12) | {n(agg_ex.loc['PT','soma_votos_sobreviventes_pior_caso'])} | {pc(agg_ex.loc['PT','pct_margem_sobreviventes_pior_caso'])} | {n(agg_ex.loc['OPO','soma_votos_sobreviventes_pior_caso'])} | {pc(agg_ex.loc['OPO','pct_margem_sobreviventes_pior_caso'])} |")
+A(f"| com as versões corrigidas no lugar das originais ({n_pos_exc} das 4 versões corrigidas mostram excesso) | {n(agg_ex.loc['PT','soma_votos_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='PT'].votos_max_pior_caso.fillna(0).sum()))} | {pc(agg_ex.loc['PT','pct_margem_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='PT'].pct_pior_caso.fillna(0).sum()))} | {n(agg_ex.loc['OPO','soma_votos_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='OPO'].votos_max_pior_caso.fillna(0).sum()))} | {pc(agg_ex.loc['OPO','pct_margem_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='OPO'].pct_pior_caso.fillna(0).sum()))} |")
+A("\nSobreviventes (Holm < 0,05) sem ressalva de desenho:\n")
+A(tab(sob_ok[["H", "teste", "sentido", "p_holm", "votos_max_margem", "votos_max_pior_caso", "pct_pior_caso", "veredito"]], {"p_holm": F(3), "votos_max_margem": F(), "votos_max_pior_caso": F(), "pct_pior_caso": lambda x: pc(x)}))
+A("\nOs tetos não são aditivos independentes e os sentidos PT e oponente não se compensam. A margem é 4.430.191 votos.\n")
 
 A("## NÃO EXECUTADO (resumo)\n")
 A(tab(nao))
 A("\n")
+
+A("## Apêndice A: registro completo, com a ressalva na mesma linha\n")
+ap = reg[["H", "teste", "p_holm", "pct_pior_caso", "veredito"]].copy()
+ap["veredito"] = [(f"{v} (COM RESSALVA DE DESENHO; sem interpretação causal)" if h in FLAW else v) for h, v in zip(ap.H, ap.veredito)]
+ap["pct_pior_caso"] = [("n/a (ver ressalva)" if h in FLAW else ("n/d" if pd.isna(x) else pc(x))) for h, x in zip(ap.H, ap.pct_pior_caso)]
+A(tab(ap, {"p_holm": F(3)}))
+A("\nVersões corrigidas (pós-registro, [Adendo 6](preregistro.md)):\n")
+A(tab(pos[["H", "teste", "p_holm", "veredito"]], {"p_holm": F(3)}))
+
+A("\n## Apêndice B: Agregado sem interpretação causal\n")
+A("> **Esta tabela não mede votos manipulados.** Ela soma os tetos de pior caso de todas as linhas do registro, inclusive A3, cujo teto vem de um coeficiente ecológico negativo em todos os anos, multiplicado por um fator e pelos votos do oponente no 1º turno. O teto cresce com o tamanho do universo e **não** com qualquer evidência de troca de votos. Está aqui só para que quem faça a soma ingênua encontre o número com a explicação. Para o impacto agregado use a seção \"Impacto agregado (H10 combinado)\".\n")
+agg_all = h10[h10.criterio == "como registrado"].set_index("sentido")
+A("| sentido | soma dos tetos de todas as linhas do registro (votos) | % da margem | o que entra |\n|---|---|---|---|")
+for _s, _nome in (("PT", "pró-Lula"), ("OPO", "pró-Flávio")):
+    A(f"| {_nome} | {n(agg_all.loc[_s,'soma_votos_sobreviventes_pior_caso'])} | {pc(agg_all.loc[_s,'pct_margem_sobreviventes_pior_caso'])} | sem interpretação causal: inclui A3 |" if _s == "PT" else f"| {_nome} | {n(agg_all.loc[_s,'soma_votos_sobreviventes_pior_caso'])} | {pc(agg_all.loc[_s,'pct_margem_sobreviventes_pior_caso'])} | igual ao agregado sem ressalva |")
+A("\nPor que a linha A3 infla o total: o teto é fator × máx(0, diferença + 1,645·ep) × votos do oponente no 1º turno. Como todos os coeficientes dos quatro anos são negativos (nenhum mede conversão), a \"diferença\" entre 2026 e o placebo é uma diferença entre números negativos de geografias diferentes, e o produto pelos 56 milhões de votos do oponente dá milhões de votos sem que haja um voto trocado. A versão corrigida (taxa restrita a 0 a 1) dá 0 nos quatro anos.\n")
 open(os.path.join(DOCS, "resultados-fase2.md"), "w", encoding="utf-8").write("\n".join(L))
 print("escrito docs/resultados-fase2.md")

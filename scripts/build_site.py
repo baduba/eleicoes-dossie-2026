@@ -7,9 +7,10 @@ import markdown
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 VERSAO = "v1.0"
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
+AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
 NAV = [("index", "Início"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
        ("resultados-fase2", "Resultados: Fase 2 (A1 a A10)"), ("regua-historica", "Régua histórica"), ("alegacoes", "Inventário de alegações"), ("relatorio-original", "O relatório original"),
-       ("pontos-cegos", "Pontos cegos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
+       ("pontos-cegos", "Pontos cegos"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
        ("changelog", "Changelog e correções"), ("referencias", "Referências")]
 CSS = """
 :root{--bg:#fff;--fg:#1c1c1e;--mut:#5a5f66;--bd:#d9dce1;--ac:#1d4e89;--cd:#f5f6f8}
@@ -85,17 +86,28 @@ def glob_pdf():
     return [os.path.join(d, f) for f in os.listdir(d) if f.endswith(".pdf")] if os.path.isdir(d) else []
 
 
+def resumo_capa():
+    """Impacto agregado para a capa: so testes sem ressalva de desenho (numeros do CSV do H10)."""
+    import pandas as pd
+    h = pd.read_csv(os.path.join(RAIZ, "results", "fase2", "H10_h10_agregado.csv"))
+    h = h[h.criterio != "como registrado"].set_index("sentido")
+    f = lambda x: f"{x:,.0f}".replace(",", ".")
+    return (f"Impacto agregado (somente testes sem ressalva de desenho; tetos de pior caso): {f(h.loc['PT', 'soma_votos_sobreviventes_pior_caso'])} votos pró-Lula e {f(h.loc['OPO', 'soma_votos_sobreviventes_pior_caso'])} pró-Flávio, contra uma margem de 4.430.191. "
+            "As análises A1, A2, A3 e A12 têm ressalva de desenho: o mesmo teste acusa excesso em séries ou anos sem manipulação; resultado original e corrigido estão lado a lado nos Resultados da Fase 2.")
+
+
 def gera_pdf(paginas, saida, c):
     from weasyprint import HTML
     css = f"""@page{{size:A4;margin:22mm 16mm 20mm 16mm;@bottom-left{{content:"Auditoria independente reproduzível {VERSAO} · commit {c} · {REPO}";font-size:7.5pt;color:#555}}@bottom-right{{content:"p. " counter(page);font-size:8pt;color:#555}}}}
 body{{font:10pt/1.45 serif;color:#111}}h1{{font-size:17pt;page-break-before:always}}h2{{font-size:13pt}}h3{{font-size:11pt}}table{{border-collapse:collapse;font-size:7.5pt;width:100%;table-layout:auto}}th,td{{border:.5pt solid #999;padding:1.5pt 3pt;vertical-align:top}}th{{background:#eee}}
 code{{font-size:8pt;word-break:break-all}}pre{{font-size:7.5pt;white-space:pre-wrap}}img{{max-width:100%}}.capa{{text-align:center;margin-top:60mm}}.capa h1{{page-break-before:avoid;font-size:24pt}}a{{color:#111;text-decoration:none}}"""
     capa = (f'<div class="capa"><h1>Auditoria independente reproduzível</h1><h2>2º turno presidencial de 2026 (Lula x Flávio Bolsonaro)</h2>'
-            f'<p>Versão {VERSAO} · commit {c}</p><p>{REPO}</p><p><b>Autoria e contato:</b> [a preencher por Julio antes da publicação]</p>'
-            f'<p style="margin-top:30mm;font-size:9pt">Esta é uma auditoria independente. Não é laudo, perícia oficial nem documento homologado: nenhum órgão homologou.</p></div>')
+            f'<p>Versão {VERSAO} · commit {c}</p><p>{REPO}</p><p><b>Autoria e contato:</b> {html.escape(AUTORIA)}</p>'
+            f'<p style="margin-top:12mm;font-size:9.5pt">{resumo_capa()}</p>'
+            f'<p style="margin-top:20mm;font-size:9pt">Esta é uma auditoria independente. Não é laudo, perícia oficial nem documento homologado: nenhum órgão homologou.</p></div>')
     sumario = "<h1>Sumário</h1><ol>" + "".join(f"<li>{html.escape(t)}</li>" for _, t, _ in paginas) + "</ol>"
     corpo = "".join(f'<section>{cb}</section>' for _, _, cb in paginas)
-    HTML(string=f"<html lang='pt-BR'><head><meta charset='utf-8'><style>{css}</style></head><body>{capa}{sumario}{corpo}</body></html>", base_url=os.path.join(RAIZ, "docs")).write_pdf(saida)
+    HTML(string=f"<html lang='pt-BR'><head><meta charset='utf-8'><title>Auditoria independente reproduzível: 2º turno presidencial de 2026</title><style>{css}</style></head><body>{capa}{sumario}{corpo}</body></html>", base_url=os.path.join(RAIZ, "docs")).write_pdf(saida)
     print("pdf:", saida)
 
 
