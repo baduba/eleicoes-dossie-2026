@@ -42,7 +42,7 @@ P1R = pp.resultado(RAIZ) + "\n" + pp.perguntas(RAIZ, True) + "\n" + pp.contribui
 # pagina propria das perguntas em aberto (a secao saiu da pagina inicial; bloco 'Resultado verificado' vem antes, como la)
 PG = pp.perguntas(RAIZ).split("\n")
 PG[0] = PG[0][1:]
-PG.insert(1, "\n> **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem e nenhum teste encontrou efeito capaz de alterar o resultado. Números na [página inicial](index.md).\n")
+PG.insert(1, "\n> **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem. Os testes cobrem o que o TSE publica; uma alteração nos elos não publicados (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria. Números na [página inicial](index.md).\n")
 open(os.path.join(RAIZ, "docs", "perguntas-em-aberto.md"), "w", encoding="utf-8").write("\n".join(PG) + "\n")
 LAC = pp.lacunas(RAIZ, False, NT)
 LACR = pp.lacunas(RAIZ, True, NT.replace("](residuos.md)", "](docs/residuos.md)").replace("](pontos-cegos.md)", "](docs/pontos-cegos.md)").replace("](fase3.md)", "](docs/fase3.md)"))

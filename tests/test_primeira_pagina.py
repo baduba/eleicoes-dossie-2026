@@ -35,7 +35,7 @@ def test_todo_cartao_com_teto_traz_a_ressalva_na_mesma_linha():
 def test_resultado_vem_antes_das_perguntas():
     t = pagina(False)
     assert t.index("Resultado verificado") < t.index("Perguntas em aberto")
-    assert "Nenhum teste executado encontrou efeito capaz de alterar o resultado." in t
+    assert "nenhum teste deste dossiê a veria" in t
     assert "Não são evidências de manipulação. São lacunas." in t
 
 

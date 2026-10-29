@@ -1,6 +1,6 @@
 # Perguntas em aberto: o que os testes não conseguiram explicar nem confirmar
 
-> **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem e nenhum teste encontrou efeito capaz de alterar o resultado. Números na [página inicial](index.md).
+> **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem. Os testes cobrem o que o TSE publica; uma alteração nos elos não publicados (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria. Números na [página inicial](index.md).
 
 
 **Não são evidências de manipulação. São lacunas. Se você tem dados ou método para fechar alguma, contribua.**

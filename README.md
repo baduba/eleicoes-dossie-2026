@@ -14,7 +14,8 @@ Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) ·
 - **Excesso medido somado:** cerca de 99 mil pró-Lula e 101 mil pró-Flávio (votos de margem), em sentidos opostos, contra a margem de 4.430.191 votos.
 - **Votos depois das 17h:** cerca de 23 mil (contagem de votos, não votos de margem).
 - **Limite:** esses testes comparam arquivos que o próprio TSE publica; não excluem uma alteração coerente feita antes da publicação nem verificam se o voto registrado é o digitado (ver as perguntas abaixo).
-- **Nenhum teste executado encontrou efeito capaz de alterar o resultado.**
+
+Os testes cobrem o que o TSE publica, e aí o resultado é zero divergências. Se uma alteração acontecesse nos elos que não são publicados (o voto digitado, o boletim impresso, a transmissão), nenhum teste deste dossiê a veria. É por isso que as perguntas abaixo continuam abertas.
 
 ## Perguntas em aberto: o que os testes não conseguiram explicar nem confirmar
 

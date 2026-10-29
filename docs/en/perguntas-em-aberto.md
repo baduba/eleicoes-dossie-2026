@@ -1,6 +1,6 @@
 # Open questions: what the tests could neither explain nor confirm
 
-> **Before the gaps, the verified result:** 0 discrepancies across the RDV–BU–BWeb–tabulation chain; the summed measured excess is small next to the margin and no test found an effect capable of changing the outcome. Figures on the [home page](index.md).
+> **Before the gaps, the verified result:** 0 discrepancies across the RDV–BU–BWeb–tabulation chain; the summed measured excess is small next to the margin. The tests cover what the TSE publishes; an alteration in the links that are not published (typed vote, printed receipt, transmission) is something no test in this dossier would see. Figures on the [home page](index.md).
 
 
 **These are not evidence of manipulation. They are gaps. If you have data or a method to close any of them, contribute.**
