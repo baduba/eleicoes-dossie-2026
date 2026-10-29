@@ -22,17 +22,35 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 
 ### a) Resíduos sem causa identificada (testes executados, inconclusivos)
 
+> **Nas seções com mais eleitores de 80 anos ou mais, a participação de Lula e de Flávio difere da dos anos anteriores?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula (teto) ou de Flávio (lado simétrico)  
+> Teto: **teto de pior caso, não estimativa: 1.787.533 votos de margem (40,35% da margem)** (o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de 790.398)  
+> O que fecharia: Mais anos de comparação com o perfil do eleitorado por seção e as listas de habilitação das seções com mais idosos.  
+> [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-part%20A-A20b-part)
+
 > **Onde há mais liberação manual de eleitor, Lula vai melhor? O teste não tem precisão para responder.**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula  
 > Teto: **teto de pior caso, não estimativa: 1.337.198 votos de margem (30,18% da margem)** (teto vem da imprecisão do teste, sem efeito medido)  
 > O que fecharia: Listas assinadas de habilitação por seção (folhas de votação) e o log de todas as seções, não só da amostra.  
 > [Página técnica](residuos.html) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-H1-S0%20A-H1-S0)
 
+> **O voto para presidente combina com o voto para governador na mesma seção, como em 2022 e 2018?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Flávio ou de Lula (lados simétricos)  
+> Teto: **teto de pior caso, não estimativa: 548.671 votos de margem (12,38% da margem)** (variante exploratória (Adendo 9b). só AM e DF. pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de 169.390; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada))  
+> O que fecharia: Os votos por candidato em todos os cargos por seção nas 27 UFs, com uma regra de alinhamento definida por quem conhece as alianças locais; ou deputados federais por partido nas UFs sem 2º turno de governador.  
+> [Página técnica](fase3.html#a22) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A22%20A-A22)
+
 > **Há mais eleitores muito idosos aptos e votando do que a população do Censo comportaria?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
 > Teto: **teto de pior caso, não estimativa: 459.099 votos de margem (10,36% da margem)** (o teto é o comparecimento 80+ acima das taxas de 2022; o mesmo aumento aparece nas faixas de 70 a 79 anos)  
 > O que fecharia: Cruzamento do cadastro com o registro civil de óbitos, por entidade fiscalizadora; perfil do eleitorado por seção, não só por zona.  
 > [Página técnica](fase3.html#a20) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20%20A-A20)
+
+> **Nas seções com mais eleitores de 80 anos ou mais, o comparecimento do 2º turno sobe mais do que em 2022 e 2018?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 241.008 votos de margem (5,44% da margem)** (linha suplementar do Adendo 9d (só placebos com o mesmo controle); a linha original, com um comparador de outra especificação, dá 4,07 milhões; o coeficiente de participação de Lula nessas seções é negativo)  
+> O que fecharia: Listas assinadas de habilitação das seções com mais idosos e o cruzamento do cadastro com o registro civil de óbitos, por entidade fiscalizadora.  
+> [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b%20A-A20b)
 
 > **Urnas do modelo mais novo (UE2022) votam diferente das demais dentro do mesmo local?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula  
@@ -70,18 +88,18 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: O registro de recepção do sistema de totalização (pedido LAI 04) e a ordem real de transmissão por município.  
 > [Página técnica](a18-alteracao-no-meio.html#3b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A1T1%20A-A1T1)
 
-### b) Hipóteses ainda não testadas (Fase 3, A20 a A28)
+> **Onde há mais eleitores de 90 anos ou mais, há mais liberação manual, e isso cresce a cada eleição. Por quê?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: sem número (teste de forma, não convertível em votos) (teste de forma; o coeficiente sobe de 0,35 (2018) a 0,80 (2026, 2º turno))  
+> O que fecharia: A idade de quem foi liberado manualmente (lista de habilitação por seção) e a biometria cadastrada por eleitor, de forma agregada.  
+> [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-3b%20A-A20b-3b)
 
-> **O voto para presidente combina com o voto para governador e deputados na mesma seção, como em 2022 e 2018?**  
-> Situação: **NÃO TESTADO** · Direção: n/a  
-> Teto: sem número ainda (teste não executado) (é o teste para um desvio uniforme só no cargo de presidente)  
-> O que fecharia: A tabela de coligações por estado (candidato a governador alinhado a cada candidato presidencial) e a leitura dos votos por candidato em todos os cargos.  
-> [Página técnica](fase3.html#a22) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A22%20A-A22)
+### b) Hipóteses ainda não testadas (Fase 3, A20 a A28)
 
 > **As urnas que foram para o teste de integridade e foram substituídas nas seções votaram diferente das vizinhas?**  
 > Situação: **NÃO TESTADO** · Direção: n/a  
-> Teto: sem número ainda (teste não executado)  
-> O que fecharia: A lista das seções afetadas pelo teste (pedido LAI 03).  
+> Teto: sem número ainda (teste não executado) (script pronto; nenhuma lista lida)  
+> O que fecharia: A lista de zona e seção publicada por cada TRE, em `data/a24_secoes_teste_integridade.csv` (os sites dos TREs bloqueiam acesso automatizado), ou o pedido LAI 03.  
 > [Página técnica](fase3.html#a24) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A24%20A-A24)
 
 > **As seções em que a urna foi trocada votaram diferente antes e depois da troca?**  
@@ -105,7 +123,7 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > **O que o TSE e os TREs respondem aos pedidos de acesso à informação?**  
 > Situação: **NÃO TESTADO** · Direção: n/a  
 > Teto: sem número ainda (teste não executado)  
-> O que fecharia: Protocolar os seis pedidos prontos em `lai/` e registrar protocolo, prazo e resposta, inclusive a negativa.  
+> O que fecharia: Protocolar os seis pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.  
 > [Página técnica](fase3.html#a28) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A28%20A-A28)
 
 ### c) Pontos cegos estruturais (A18, A19)

@@ -27,6 +27,9 @@ def linha(h, trecho):
 a27 = pd.read_csv(os.path.join(F3, "A27_perfil.csv")).iloc[0]
 idosos = pd.read_csv(os.path.join(F3, "A20_comparecimento_acima_das_taxas_2022.csv"))
 ido80 = float(idosos[idosos.no_grupo_80mais].comparecimento_acima_das_taxas_de_2022.sum())
+a20b = pd.read_csv(os.path.join(F3, "A20b_4_suplementar_adendo9d.csv")).iloc[0]
+a20bp = pd.read_csv(os.path.join(F3, "A20b_testes.csv")); a20bp = a20bp[a20bp.H == "A20b-4"]
+a22 = pd.read_csv(os.path.join(F3, "A22_testes_9b.csv"))
 h1f, h1s0, a10, h6 = linha("H1", "S1 Flavio/Bolsonaro votos/apto"), linha("H1", "S0 sem lag, Lula% ~ taxa manual"), linha("A10", "UE2022"), linha("H6", "secoes novas")
 pos = lambda x: float(max(x, 0)) if pd.notna(x) else np.nan
 I = []
@@ -54,10 +57,19 @@ item("A-A1T1", "a", "Por que a curva de apuração do 1º turno de 2026 sai do e
      "O registro de recepção do sistema de totalização (pedido LAI 04) e a ordem real de transmissão por município.", "teste de forma; a soma final não depende da ordem")
 item("A-A5-2022", "a", "Por que uma seção de 2022 tem um voto a menos no log do que no boletim?", INC, "sem direção identificável", 1.0, 1.0, "resultados-fase2.html#a5",
      "O registro da urna daquela seção (RJ, zona 7, seção 479) e a ata de votação.", "uma seção de 2022: 348 comparecimentos no boletim, 347 votos no log")
-item("A-A22", "b", "O voto para presidente combina com o voto para governador e deputados na mesma seção, como em 2022 e 2018?", NT, "n/a", np.nan, np.nan, "fase3.html#a22",
-     "A tabela de coligações por estado (candidato a governador alinhado a cada candidato presidencial) e a leitura dos votos por candidato em todos os cargos.", "é o teste para um desvio uniforme só no cargo de presidente")
+item("A-A22", "a", "O voto para presidente combina com o voto para governador na mesma seção, como em 2022 e 2018?", INC, "a favor de Flávio ou de Lula (lados simétricos)", np.nan, float(a22.votos_max_pior_caso.max()), "fase3.html#a22",
+     "Os votos por candidato em todos os cargos por seção nas 27 UFs, com uma regra de alinhamento definida por quem conhece as alianças locais; ou deputados federais por partido nas UFs sem 2º turno de governador.",
+     f"variante exploratória (Adendo 9b), só AM e DF, pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de {a22.votos_max_pior_caso.min():,.0f}".replace(",", ".") + "; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada)")
+item("A-A20b", "a", "Nas seções com mais eleitores de 80 anos ou mais, o comparecimento do 2º turno sobe mais do que em 2022 e 2018?", INC, "sem direção identificável", np.nan, float(a20b.votos_max_pior_caso), "fase3.html#a20b",
+     "Listas assinadas de habilitação das seções com mais idosos e o cruzamento do cadastro com o registro civil de óbitos, por entidade fiscalizadora.",
+     "linha suplementar do Adendo 9d (só placebos com o mesmo controle); a linha original, com um comparador de outra especificação, dá 4,07 milhões; o coeficiente de participação de Lula nessas seções é negativo")
+item("A-A20b-part", "a", "Nas seções com mais eleitores de 80 anos ou mais, a participação de Lula e de Flávio difere da dos anos anteriores?", INC, "a favor de Lula (teto) ou de Flávio (lado simétrico)", np.nan, float(a20bp.iloc[0].votos_max_pior_caso), "fase3.html#a20b",
+     "Mais anos de comparação com o perfil do eleitorado por seção e as listas de habilitação das seções com mais idosos.",
+     f"o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de {a20bp.iloc[1].votos_max_pior_caso:,.0f}".replace(",", "."))
+item("A-A20b-3b", "a", "Onde há mais eleitores de 90 anos ou mais, há mais liberação manual, e isso cresce a cada eleição. Por quê?", INC, "sem direção identificável", np.nan, np.nan, "fase3.html#a20b",
+     "A idade de quem foi liberado manualmente (lista de habilitação por seção) e a biometria cadastrada por eleitor, de forma agregada.", "teste de forma; o coeficiente sobe de 0,35 (2018) a 0,80 (2026, 2º turno)")
 item("A-A24", "b", "As urnas que foram para o teste de integridade e foram substituídas nas seções votaram diferente das vizinhas?", NT, "n/a", np.nan, np.nan, "fase3.html#a24",
-     "A lista das seções afetadas pelo teste (pedido LAI 03).")
+     "A lista de zona e seção publicada por cada TRE, em `data/a24_secoes_teste_integridade.csv` (os sites dos TREs bloqueiam acesso automatizado), ou o pedido LAI 03.", "script pronto; nenhuma lista lida")
 item("A-A25", "b", "As seções em que a urna foi trocada votaram diferente antes e depois da troca?", NT, "n/a", np.nan, np.nan, "fase3.html#a25",
      "Horário e motivo de cada troca e o registro da urna original (pedido LAI 01). A comparação seção com troca x vizinhas já foi feita (A6) e não achou efeito.")
 item("A-A23", "b", "Onde houve fiscal de partido o voto foi diferente de onde não houve?", NT, "n/a", np.nan, np.nan, "fase3.html#a23",
@@ -65,7 +77,7 @@ item("A-A23", "b", "Onde houve fiscal de partido o voto foi diferente de onde n�
 item("A-A21", "b", "O ritmo dos votos ao longo do dia (rajadas, concentração na última hora) é igual ao de 2022?", NT, "n/a", np.nan, np.nan, "fase3.html#a21",
      "Reler os registros das urnas com a distribuição completa dos intervalos; o ano de nascimento não consta nos logs públicos.", "só as medidas já extraídas foram testadas")
 item("A-A28", "b", "O que o TSE e os TREs respondem aos pedidos de acesso à informação?", NT, "n/a", np.nan, np.nan, "fase3.html#a28",
-     "Protocolar os seis pedidos prontos em `lai/` e registrar protocolo, prazo e resposta, inclusive a negativa.")
+     "Protocolar os seis pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.")
 item("A-A18", "c", "Alguém poderia alterar os resultados depois da urna fechar e antes de os arquivos serem publicados, de modo coerente?", NTP, "n/a", np.nan, np.nan, "a18-alteracao-no-meio.html",
      "Verificar a assinatura de cada boletim com a chave oficial e conferir boletins impressos nas seções.")
 item("A-A19a", "c", "O voto que o eleitor digita é o mesmo que a urna registra?", NTP, "n/a", np.nan, np.nan, "a19-voto-digitado.html",
@@ -108,7 +120,7 @@ pd.DataFrame([dict(sd_residuo_local_pp=100 * sd_res, mediana_votos_validos=256, 
 
 # ---------------------------------------------------------------- G1: cadeia do voto
 V, P, X = "verificado", "parcial", "nao_verificavel"
-cad = [("Cadastro de eleitores", P, "A20, A9", "fase3.html#a20", "comparado ao Censo; sem cruzamento nominal"),
+cad = [("Cadastro de eleitores", P, "A20, A20b, A9", "fase3.html#a20", "comparado ao Censo; sem cruzamento nominal"),
        ("Habilitação (biometria / liberação manual)", P, "H1, H2, A5", "resultados-fase1.html", "o log registra, mas não prova quem era o eleitor"),
        ("Voto digitado → voto registrado (software)", X, "A19", "a19-voto-digitado.html", "verificado só por amostragem no teste de integridade"),
        ("RDV (registro digital do voto)", V, "A4", "resultados-fase2.html#a4", "recontado e igual ao boletim; mesmo software da urna"),

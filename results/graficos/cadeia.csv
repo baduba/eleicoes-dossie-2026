@@ -1,5 +1,5 @@
 etapa,status,testes,pagina,nota
-Cadastro de eleitores,parcial,"A20, A9",fase3.html#a20,comparado ao Censo; sem cruzamento nominal
+Cadastro de eleitores,parcial,"A20, A20b, A9",fase3.html#a20,comparado ao Censo; sem cruzamento nominal
 Habilitação (biometria / liberação manual),parcial,"H1, H2, A5",resultados-fase1.html,"o log registra, mas não prova quem era o eleitor"
 Voto digitado → voto registrado (software),nao_verificavel,A19,a19-voto-digitado.html,verificado só por amostragem no teste de integridade
 RDV (registro digital do voto),verificado,A4,resultados-fase2.html#a4,recontado e igual ao boletim; mesmo software da urna
