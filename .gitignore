@@ -13,3 +13,5 @@ site_teste/
 *.zip
 .pytest_cache/
 AUTORIA_OPCOES.md
+fontes/formulario/*
+!fontes/formulario/LEIAME.md

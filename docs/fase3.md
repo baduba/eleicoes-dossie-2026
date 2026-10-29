@@ -1,4 +1,4 @@
-# Fase 3: hipóteses adversariais (A20 a A33)
+# Fase 3: hipóteses adversariais (A20 a A35)
 
 > **Unidade: votos de margem** (variação da diferença Lula menos Flávio; trocar um voto muda a margem em 2; definição em [Metodologia](metodologia.md)). Margem oficial: 4.430.191. Todo teto é **teto de pior caso, não estimativa**. Os testes de forma não têm teto em votos.
 
@@ -19,6 +19,8 @@ Previsões, critérios e o que cada teste cobre foram registrados no [Adendo 8](
 | [A31b](#a31b) Municípios com oponente +1 voto ou menos | troca de voto ou abstenção seletiva concentrada | 748 municípios (14,0%), compatíveis com o deslocamento nacional; perfil regional e de eleitorado PT forte; a maioria com queda de comparecimento | teto A de 234.746 votos de margem (teto de pior caso, não estimativa), e **zero** além do que o deslocamento nacional simulado já dá | TESTADO-INCONCLUSIVO |
 | [A32b](#a32b) Rajadas de liberação manual (limiar absoluto) | habilitações manuais em sequência | razão observado/esperado de 1,0 a 1,2 nos dois anos; rajadas menos frequentes em 2026 que em 2022; coeficientes de 2026 indistinguíveis de zero | teto sem poder (extrapolado), **não plotado** | TESTADO-INCONCLUSIVO |
 | [A33](#a33) Liberação manual por escola | manual concentrada em locais de votação, com ganho de Lula ou comparecimento | sem associação positiva entre taxa manual da escola e ganho de Lula T1 → T2 (coeficiente de 2026 negativo, -0,017); placebos 2022 e 2018 sem excesso; sincronia nos logs igual à de 2022 | 29.654 votos de margem pelas 661 escolas extremas (teto de pior caso, não estimativa; 0,67% da margem); além do ruído do modelo: 8.125 | TESTADO-INCONCLUSIVO |
+| [A35](#a35) Extremos no universo geral | zero brancos e nulos em seção grande; comparecimento de 100% | observado **abaixo** do esperado em todos os anos (razão 0,69 em 2026, 0,70 em 2022); não supera todos os placebos; E2 (12 seções com comparecimento igual aos aptos) só descritivo | 41.614 votos de margem (teto de pior caso, não estimativa; 0,94% da margem); no fator 1, 403.773, inflado por construção | TESTADO-INCONCLUSIVO; dentro do esperado |
+| [A34](#a34) Duração do voto por eleitor | votação "expressa" em massa (votos sem eleitor) | mediana de 9 s em 2026 e 13 s em 2022 no 2º turno (a previsão do pré-registro, de 40 s a 2 min, estava errada); regra do p99: 2,06% das seções acima contra 1% esperado, **que cai para 1,24% quando se compara UFs com a mesma composição de cédula** (diagnóstico pós-hoc); modelos sem excesso | extrapolado e inflado por construção: 339.311 votos de margem (teto de pior caso, não estimativa; 7,7% da margem); no fator 1 da amostra, 23.093 | TESTADO-INCONCLUSIVO (logs parciais); EXCESSO DETECTADO (forma) pela regra registrada, **com ressalva de composição** |
 | [A28](#a28) Pedidos LAI | dados que só o poder público tem | 7 pedidos prontos em `lai/` (o 07, da ata e da folha de votação, é do A32), com órgão e canal de cada um, e um modelo de requerimento para partidos; **nenhum protocolado** | n/a | NÃO EXECUTADO |
 
 | [A31](#a31) Municípios extremos na transferência T1 → T2 (Silva Jardim) | transferência de votos entre turnos fora do que os municípios fazem | Silva Jardim: Flávio +1 e comparecimento -104 reproduzem; Lula é +984, não +964. Dentro da cauda esperada (z = 1,13, Holm 1,00); 14,0% dos municípios de 2026 têm oponente com +1 voto ou menos. Três municípios pequenos saem da cauda do modelo principal | Silva Jardim: 207 votos de margem (teto de pior caso, não estimativa; 0,005% da margem). 20 mais extremos: 1.151 além da cauda, 13.327 se tudo o que o modelo não explica fosse manipulação (0,30% da margem) | Silva Jardim: DENTRO DA CAUDA ESPERADA; 3 municípios sinalizados, TESTADO-INCONCLUSIVO |
@@ -892,3 +894,115 @@ Cobertura (logs parciais, ver A32): 2022 T1: 1.182 escolas (27 UFs); 2022 T2: 1.
 **Leitura.** Há uma sincronia pequena em **os dois anos** (razão de 1,05 a 1,11 em 2022; de 1,05 a 1,10 em 2026), com z alto porque são milhões de eventos. Ela é do mesmo tamanho nos dois anos (em 2026 é igual ou menor), e o nulo N2 dá razões de 1,04 a 1,08 nos dois anos: seções da mesma escola compartilham fila, horário de pico e mesários, o que explica uma sincronia pequena. **Não há sincronia de 2026 acima da de 2022**, que era a previsão "com esquema".
 
 **Situação.** TESTADO-INCONCLUSIVO. Três das quatro previsões "sem esquema" se cumprem (sem excesso sobre os placebos, ainda que o coeficiente de 2026 seja mais negativo que o de 2022; sem sincronia acima de 2022; extremas pequenas em votos). A quarta, "extremas explicadas pela idade", **não** se cumpre, e isso fica aberto. O teste não vê o que cada liberação manual foi. **O que fecharia:** BU impresso, lista de habilitação e ata das 20 escolas (LAI 07), e os logs de todas as seções. Código: `scripts/44_a33_escolas.py`; tabelas: `results/fase3/A33_*.csv`.
+
+<a id="a34"></a>
+
+## A34. Duração do voto por eleitor (da habilitação à confirmação)
+
+**Pré-registro:** [Adendo 16, 16a e 16b](preregistro.md); o 16a (previsão errada, métrica D6) foi escrito depois de ver Roraima e antes de comparar com 2022; o 16b (diagnóstico de composição) depois de ver o resultado completo dos testes registrados e antes de estratificar. **Pergunta.** O ato de votar leva, em cada seção, um tempo compatível com um eleitor presente? Todos os testes temporais anteriores medem intervalos entre eventos; este mede a **duração do ato**, do evento "Eleitor foi habilitado" ao primeiro "Voto confirmado para [Presidente]" seguinte, no log da urna (nenhum identificador de eleitor é lido). Mesma amostra de A32 (estrato aleatório mais Roraima), seções-dia com log consistente e 100 habilitações ou mais: 2022 T1: 12.022; 2022 T2: 12.375; 2026 T1: 13.644; 2026 T2: 13.788. **Logs parciais; logs de todas as seções: NÃO EXECUTADO.**
+
+**Distribuição (segundos; D3 = fração de votos abaixo de 20 s).**
+
+| ano | turno | seções-dia | votos pareados | mediana por seção, p5 | mediana por seção, p50 | mediana por seção, p95 | D3 mediano | % habilitações sem voto |
+|---|---|---|---|---|---|---|---|---|
+| 2022 | 1 | 12.022 | 3.514.638 | 40 | 47 | 61 | 0,00 | 0,09 |
+| 2022 | 2 | 12.375 | 3.629.624 | 8 | 13 | 18 | 0,85 | 0,02 |
+| 2026 | 1 | 13.644 | 3.661.743 | 45 | 52 | 66 | 0,00 | 0,06 |
+| 2026 | 2 | 13.788 | 3.799.063 | 7 | 9 | 12 | 0,95 | 0,01 |
+
+**A previsão do Adendo 16 não se cumpriu** (eu previra mediana de 40 s a 2 min, por engano; Adendo 16a): no 2º turno a mediana por seção é de 9 s em 2026 e de 13 s em 2022; no 1º turno, de 52 s e 47 s, porque o eleitor vota vários cargos na mesma sessão.
+
+**Resultado dos testes registrados, sem alteração.** Diferença pareada de 2026 menos 2022 nas mesmas seções (erro padrão agrupado por município):
+
+| metrica | comparacao | seções pareadas | diferença média | erro padrão | z |
+|---|---|---|---|---|---|
+| D1 | 2026/2o turno contra 2022/2o turno | 12.240 | -3,127 | 0,997 | -3,1 |
+| D1 | 2026/1o turno contra 2022/1o turno (referencia) | 11.762 | 4,225 | 0,399 | 10,6 |
+| D3 | 2026/2o turno contra 2022/2o turno | 12.240 | 0,105 | 0,033 | 3,2 |
+| D3 | 2026/1o turno contra 2022/1o turno (referencia) | 11.762 | -0,001 | 0,000 | -2,0 |
+| D6 | 2026/2o turno contra 2022/2o turno | 12.240 | 0,003 | 0,001 | 2,8 |
+| D6 | 2026/1o turno contra 2022/1o turno (referencia) | 11.762 | 0,000 | 0,000 | 1,7 |
+| W1 | 2026/2o turno contra 2022/2o turno | 12.240 | 3,459 | 0,838 | 4,1 |
+| W1 | 2026/1o turno contra 2022/1o turno (referencia) | 11.762 | 0,020 | 0,692 | 0,0 |
+
+**Regra do percentil 99 (D3 e D6):** 2,06% das seções de 2026/2º turno têm D3 acima do percentil 99 de 2022/2º turno e 2,43% têm D6 acima, contra 1% esperado (erro padrão binomial de 0,08 ponto): **EXCESSO DETECTADO (forma), com a ressalva a seguir.** O placebo de forma (o mesmo teste no lado errado, do voto até a próxima habilitação) **não** acusa excesso (0,08%), então o desenho não está quebrado. A faixa dos placebos (2022 T1, 2022 T2, 2026 T1) **não** contém a distribuição de 2026/2º turno em nenhum quantil de D1 e D3 (`A34_faixa_placebos.csv`), pela mesma razão.
+
+**Ressalva: composição da cédula (diagnóstico pós-hoc, Adendo 16b).** A duração depende de quantos cargos se vota na sessão. A mediana de D1 por UF no 2º turno é de 15 a 17 s em 12 UFs em 2022 (as que tiveram segundo turno de governador: AL, AM, BA, ES, MS, PB, PE, RO, RS, SC, SE, SP) e de 15 a 16 s em 6 UFs em 2026 (AC, AM, DF, ES, RN, TO), e de 9 a 10 s nas demais. A comparação nacional mistura as duas composições, e o percentil 99 nacional de 2022 é uma mistura. Nas **UFs com a mesma classe nos dois anos** (13 UFs, 6.667 seções de 2026), a diferença pareada de D1 é de **-0,2 s** (z = -0,9), a fração acima do percentil 99 de cada classe é de **1,24% em D3** (limite de decisão de 1,24%: 2,1 erros padrão, no limite) e de **0,93% em D6** (sem excesso).
+
+| classe | metrica | UFs | seções 2026/2º turno | fração acima do p99 | erro padrão | excesso (> 2 EP) |
+|---|---|---|---|---|---|---|
+| um cargo | D3 | 11 | 6.535 | 1,25% | 0,12 p.p. | True |
+| um cargo | D6 | 11 | 6.535 | 0,95% | 0,12 p.p. | False |
+| dois cargos | D3 | 2 | 132 | 0,76% | 0,87 p.p. | False |
+| dois cargos | D6 | 2 | 132 | 0,00% | 0,87 p.p. | False |
+| todas as UFs de mesma classe | D3 | 13 | 6.667 | 1,24% | 0,12 p.p. | True |
+| todas as UFs de mesma classe | D6 | 13 | 6.667 | 0,93% | 0,12 p.p. | False |
+
+O diagnóstico **explica quase tudo** (de 2,06% para 1,24% em D3 e de 2,43% para 0,93% em D6), mas **D3 fica no limite** (cerca de 16 seções acima do esperado em 6.667), e o limiar vem de um percentil estimado em só 12 mil seções de 2022. **Não afirmo que o resto seja ruído nem que seja efeito.** A classe vem da própria duração (mediana por UF), não de uma lista externa de UFs com segundo turno estadual; a coincidência com 2022 é conferência de plausibilidade. Tabela por UF: `results/fase4/A34_diag_classe_por_UF.csv`.
+
+**Associação com comparecimento e voto** (2º turno; efeito fixo de local; controle do 1º turno; placebo 2022; amostra principal = estrato aleatório mais Roraima; família A34 com Holm próprio):
+
+| teste | coef. 2026 | ep 2026 | coef. 2022 (placebo) | ep 2022 | p (excesso) | p (Holm) | teto, votos de margem | % da margem | veredito |
+|---|---|---|---|---|---|---|---|---|---|
+| M1 participacao de Lula ~ D3: 2026/T2 contra 2022/T2 (EF de local, controle do T1) | -0,0100 | 0,0266 | -0,0337 | 0,0284 | 0,271 | 0,814 | 21.701.093 | 490 | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| M2 comparecimento ~ D3: 2026/T2 contra 2022/T2 (EF de local, controle do T1) | -0,1056 | 0,0372 | -0,0502 | 0,0225 | 0,899 | 0,899 | 2.531.991 | 57 | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| M4 D1 ~ taxa de liberacao manual do BU (excesso = D1 mais curto): 2026/T2 contra 2022/T2 (EF de local, controle do T1) | 1,1166 | 1,3610 | 0,6430 | 1,7588 | 0,416 | 0,831 | n/d | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+
+Nenhum coeficiente de 2026 supera o placebo de 2022 (p de excesso de 0,27, 0,90 e 0,42). **Os tetos desta tabela são inúteis** (de 57% a 490% da margem): vêm da falta de poder (erro padrão grande sobre uma amostra de 1.467 seções) e **não são plotados no G3** (regra de exibição). M3 (descritivo): a duração mediana caiu 3 s de 2022 para 2026 nas mesmas seções, o que a composição explica.
+
+**Teto (teto de pior caso, não estimativa).** Pelo Adendo 16, nas seções de 2026/2º turno com D3 acima do percentil 99 de 2022: (a) **79.433** votos válidos em 284 seções da amostra (fator 1), (b) 2.287 de ganho de Lula sobre a vizinhança (fator 2). **No diagnóstico (mesma classe):** (a) 23.093 em 83 seções, (b) 563. Se o excesso de 0,24 ponto percentual sobre 1% valesse para as 497.897 seções do país e todo o voto dessas seções fosse lido como de um lado: **339.311 votos de margem (7,7% da margem), inflado por construção, não plotado no G3** (voto rápido não é voto trocado; é um limite superior mecânico).
+
+**Situação.** TESTADO-INCONCLUSIVO. Pelas regras registradas, a forma acusa excesso, e o diagnóstico de composição (pós-hoc, rotulado) o reduz a um resíduo no limite em D3 e a nada em D6 e em D1. A duração do voto não sustenta a leitura de "votação expressa" em massa (a mediana de 9 s é o tempo de digitar dois candidatos e confirmar) e não distingue um eleitor presente de um voto digitado sem eleitor. **O que fecharia:** os logs de todas as seções (poder), uma lista oficial de UFs com segundo turno estadual por ano para fixar a classe sem usar o desfecho, e o log com todos os cargos (para medir a sessão inteira). Código: `scripts/45_a34_extrai_duracoes.py`, `scripts/47_a34_duracao_do_voto.py`, `scripts/48_a34_diagnostico_composicao.py`; tabelas: `results/fase4/A34_*.csv`.
+
+<a id="a35"></a>
+
+## A35. Extremos no universo geral: zero brancos e nulos em seção grande e comparecimento de 100%
+
+**Pré-registro:** [Adendo 17](preregistro.md), escrito antes de contar qualquer seção do universo geral. **Pergunta.** Dentro das 106 seções com zero voto para o oponente (A12b) havia seções grandes sem brancos e nulos. Isso se repete no universo de todas as seções apuradas (497.897 em 2026), ou é o que o acaso dá? O esperado usa o **mesmo estimador de A12b** (taxa de brancos e nulos das outras seções do mesmo local; sem o local, o município), agora para todas as seções; o erro padrão vem de 1.000 reamostragens de municípios (semente 20261029).
+
+**E1. Zero brancos e nulos com comparecimento de 100 ou mais** (limiares de sensibilidade: 200 e 400):
+
+| ano | turno | seções no universo | zero BN observado | esperado | observado/esperado | erro padrão |
+|---|---|---|---|---|---|---|
+| 2014 | 2 | 417.305 | 517 | 827 | 0,62 | 0,029 |
+| 2018 | 2 | 443.822 | 160 | 246 | 0,65 | 0,050 |
+| 2022 | 2 | 465.724 | 1.161 | 1.669 | 0,70 | 0,021 |
+| 2026 | 1 | 493.034 | 907 | 1.218 | 0,74 | 0,022 |
+| 2026 | 2 | 492.958 | 2.989 | 4.315 | 0,69 | 0,012 |
+
+**Leitura.** Em todos os anos o observado fica **abaixo** do esperado (razão de 0,62 em 2014, 0,65 em 2018, 0,70 em 2022 e 0,69 em 2026, 2º turno): a razão de 2026 é a de 2022. O estimador parece superestimar o esperado em todos os anos (provavelmente porque a taxa de brancos e nulos varia dentro do local; não testei), o que não afeta a comparação entre anos. A contagem bruta de 2026 (2.989 seções com 100 votantes ou mais) é maior que a de 2022 (1.161) porque os brancos e nulos caíram: 3,24% dos votantes em 2026 e 4,59% em 2022, no 2º turno. **Regra do Adendo 17** (razão acima de cada placebo por mais de 2 erros padrão): **não** se cumpre (z contra 2022 de -0,12, contra o 1º turno de 2026 de -2,05); **dentro do esperado**, com p de excesso do pior placebo de 0,98. Com 200 votantes ou mais a razão de 2026 (0,55) supera a de 2014 e a de 2018 por mais de 8 erros padrão, mas **não** a de 2022 nem a do 1º turno de 2026 (veredito: dentro do esperado; regra de interseção-união).
+
+**E2. Comparecimento igual ao número de aptos (descritivo, sem p: a abstenção não é independente, e a aproximação binomial subestima o esperado):**
+
+| ano | turno | comparecimento = aptos | esperado | observado/esperado | dessas, com 100 aptos ou mais |
+|---|---|---|---|---|---|
+| 2014 | 2 | 16 | 4,9 | 3,3 | 6 |
+| 2018 | 2 | 10 | 1,9 | 5,3 | 2 |
+| 2022 | 2 | 4 | 1,5 | 2,6 | 2 |
+| 2026 | 1 | 15 | 1,8 | 8,6 | 3 |
+| 2026 | 2 | 12 | 1,6 | 7,4 | 3 |
+
+São 12 seções em 2026/2º turno (3 com 100 aptos ou mais; as maiores têm 103 e 163 aptos), contra 16, 10 e 4 nos 2º turnos de 2014, 2018 e 2022. A razão sobe de 2022 para 2026 (de 2,6 para 7,4), mas com contagens pequenas, e a de 2026 já era de 8,6 no 1º turno. Lista em `results/fase4/A35_E2_secoes_2026T2.csv` (escolas pequenas, centros comunitários, uma escola indígena e um centro socioeducativo). **Sem p, sem veredito.**
+
+**E3. 100% dos votos nominais em um candidato, com 30 votantes ou mais (contagem):**
+
+| ano | turno | lado | seções | votos nelas |
+|---|---|---|---|---|
+| 2014 | 2 | Lula | 176 | 14.934 |
+| 2014 | 2 | oponente | 3 | 159 |
+| 2018 | 2 | Lula | 305 | 36.194 |
+| 2018 | 2 | oponente | 3 | 275 |
+| 2022 | 2 | Lula | 132 | 16.247 |
+| 2022 | 2 | oponente | 2 | 118 |
+| 2026 | 1 | Lula | 32 | 3.552 |
+| 2026 | 1 | oponente | 2 | 130 |
+| 2026 | 2 | Lula | 103 | 14.816 |
+| 2026 | 2 | oponente | 4 | 296 |
+
+O lado de Lula tem seções unânimes em todos os anos (103 em 2026/2º turno, 132 em 2022, 305 em 2018). O lado do oponente tem de 2 a 4. **A contagem de 2026 é menor que a de 2018, 2014 e 2022.** Contagem pura, sem teste, como pré-registrado.
+
+**Teto (teto de pior caso, não estimativa).** E1, fator 1 (todos os votos do candidato majoritário nas 2.989 seções sinalizadas): **403.773** votos de margem (9,1% da margem), contra 149.535 em 2022. **Esse número é inflado por construção** (há menos seções sinalizadas do que o acaso dá e quase nenhuma muda o resultado se for lida como voto de um lado) e por isso **não é plotado no G3**. E1, fator 2 (troca esperada pela vizinhança): **41.614** (0,94% da margem), contra 18.685 em 2022; esse é o valor plotado. E3: 15.112 no fator 1 e 5.363 no fator 2 (2022: 16.365 e 5.330). E2: 0.
+
+**Caracterização das seções E1 de 2026/2º turno** (`results/fase4/A35_E1_sinalizadas_2026T2.csv`, com UF, município, tipo de local, aptos e a mesma seção em 2018 e 2022): escola outro: 2.807; rural comunidade: 93; indigena: 82; quilombola: 7. A grande maioria é de escolas comuns.
+
+**Situação.** TESTADO-INCONCLUSIVO no teto, **dentro do esperado** na regra pré-registrada. **O que fecharia:** boletins impressos das seções sinalizadas (lista pronta), que mostrariam se os brancos e nulos foram zero também no papel. **O que o teste não faz:** não mede o que cada seção foi; o esperado herda o viés de A12b em anos com terceiros relevantes. Código: `scripts/46_a35_extremos_universo.py`; tabelas: `results/fase4/A35_*.csv`.

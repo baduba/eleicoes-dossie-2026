@@ -11,7 +11,21 @@
 3. Anote **UF, município, zona, seção e turno** (estão no boletim) e a **origem** da foto: mesário, eleitor, imprensa ou fiscal (e de qual partido, se quiser dizer). A origem é registrada junto com a foto.
 4. Nenhum dado pessoal de eleitor. O boletim não os contém; não envie fotos de outros documentos.
 
-## Como enviar (passo a passo)
+## Como enviar: dois canais
+
+Os dois canais levam à mesma conferência (BWeb, divergência publicada uma a uma). **Canal 1** exige conta no GitHub; o **canal 2** não.
+
+[**Enviar sem conta no GitHub**](https://form.jotform.com/263017066351047)  ·  [**Enviar pelo GitHub**](https://github.com/baduba/eleicoes-dossie-2026/issues/new?template=envio-bu.yml)
+
+### Canal 2: sem conta no GitHub (formulário)
+
+1. Abra o [formulário](https://form.jotform.com/263017066351047).
+2. Preencha UF, município, zona, seção, turno e origem (mesário, eleitor, imprensa ou fiscal), anexe a foto do boletim inteiro ou o QR Code nítido e, se puder, transcreva os números.
+3. Envie. Não é preciso conta no GitHub.
+
+**O que acontece com a foto no canal 2.** As respostas são exportadas e importadas periodicamente (não é em tempo real) por `scripts/importa_formulario.py`, que remove o **EXIF e todo metadado** (local, data, aparelho): a imagem publicada é recomposta só com os pixels e **o arquivo original nunca é publicado**. O texto livre do campo Observações, o endereço IP e qualquer dado que o serviço do formulário guarde não são publicados. A foto passa pelo mesmo pipeline do canal 1 (leitura do QR Code quando legível, conferência com o BWeb, tabela de resultados), com a origem registrada como "formulario" e o ID da submissão. Envios de teste (campo Observações com a palavra TESTE) são excluídos dos resultados.
+
+### Canal 1: com conta no GitHub (passo a passo)
 
 1. Abra o formulário: [https://github.com/baduba/eleicoes-dossie-2026/issues/new?template=envio-bu.yml](https://github.com/baduba/eleicoes-dossie-2026/issues/new?template=envio-bu.yml).
 2. O título já vem com o prefixo "BU: "; complete com UF, zona, seção e turno (ex.: "BU: SP-123-456-2").

@@ -123,6 +123,7 @@ TEXTOS.update({
     "Voto x fração 80+ por seção": "Vote x 80+ fraction by section", "Votantes 95+ acima da razão de 2022": "Voters 95+ above 2022 ratio", "Transferência T1 a T2: 3 municípios fora da cauda": "Round 1 to 2 transfer: 3 outlier municipalities",
     "Zero Flávio, brancos e nulos (106 seções)": "Zero Flávio, blank and null (106 sections)", "Liberação manual além do ruído do modelo de 2022": "Manual release beyond 2022 model noise",
     "Escolas com liberação manual extrema (além do ruído)": "Schools with extreme manual release",
+    "Zero brancos e nulos em seção grande (todo o país)": "Zero blank and null in large section (nationwide)",
     "Escala linear (proporção real)": "Linear scale (true proportion)", "Escala logarítmica (itens pequenos visíveis)": "Logarithmic scale (small items visible)", "Margem 4.430.191": "Margin 4.430.191", "Votos de margem": "Margin votes",
     "1 mil": "1K", "10 mil": "10K", "100 mil": "100K", "1 mi": "1M", "2 mi": "2M", "3 mi": "3M", "4 mi": "4M",
     "Tamanho dos itens em aberto, em votos de margem, contra a margem de 4.430.191": "Size of the open items, in margin votes, against the margin of 4.430.191",

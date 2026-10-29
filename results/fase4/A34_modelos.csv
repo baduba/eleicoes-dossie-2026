@@ -1,0 +1,7 @@
+amostra,modelo,coef_2026,ep_2026,coef_2022_placebo,ep_2022,n_2026,locais_2026
+principal: R + Roraima completa,M1 participacao de Lula ~ D3,-0.010023715381875112,0.026589456734738597,-0.033704231745919515,0.028425556097743575,1467,296
+principal: R + Roraima completa,M2 comparecimento ~ D3,-0.10562241742588926,0.037216953133242296,-0.05015419526924926,0.022465142809230735,1467,296
+principal: R + Roraima completa,M4 D1 ~ taxa de liberacao manual do BU (excesso = D1 mais curto),-1.1166438294580616,1.3610038824319208,-0.6430112261513916,1.7587987059838663,1445,295
+"sensibilidade: todos os estratos (rotulada, selecao no desfecho)",M1 participacao de Lula ~ D3,-0.01023891928190563,0.005834065480829306,-0.009916336956556167,0.003734138693128934,11318,1802
+"sensibilidade: todos os estratos (rotulada, selecao no desfecho)",M2 comparecimento ~ D3,-0.025610750288903174,0.0068764872824059855,-0.0128374233207546,0.0034970243887978672,11318,1802
+"sensibilidade: todos os estratos (rotulada, selecao no desfecho)",M4 D1 ~ taxa de liberacao manual do BU (excesso = D1 mais curto),-0.6363907047912669,0.5180183019072914,0.1825169864368733,0.4217922456196221,11177,1792

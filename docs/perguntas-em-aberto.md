@@ -37,6 +37,13 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: Cruzamento do cadastro com o registro civil de óbitos, por entidade fiscalizadora; perfil do eleitorado por seção, não só por zona.  
 > [Página técnica](fase3.html#a20) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20%20A-A20)
 
+<a id="a-a34"></a>
+> **A duração do voto, da habilitação à confirmação, é compatível com um eleitor presente em cada seção? A regra do percentil 99 acusa excesso em 2026, mas a composição da cédula explica quase tudo.**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 339.311 votos de margem (7,66% da margem)** (teto extrapolado do excesso de 0,24 ponto percentual sobre 1% (cerca de 16 seções em 6.667 de UFs com a mesma composição de cédula) para as 497.897 seções, com todo o voto lido como de um lado: **inflado por construção, não plotado no G3**; no fator 1 da amostra são 23.093 votos de margem; pela regra registrada, 2,06% das seções de 2026/2º turno têm D3 acima do percentil 99 de 2022 contra 1% esperado (excesso de forma), que cai para 1,24% nas UFs de mesma composição (diagnóstico pós-hoc); a previsão do pré-registro para a mediana (40 s a 2 min) estava errada (a mediana é de 9 s); mediana e modelos de associação sem excesso)  
+> O que fecharia: Logs de todas as seções (poder), uma lista oficial das UFs com segundo turno estadual em cada ano (para fixar a composição da cédula sem usar o desfecho) e o log com todos os cargos.  
+> [Página técnica](fase3.html#a34) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A34%20A-A34)
+
 <a id="a-a20b"></a>
 > **Nas seções com mais eleitores de 80 anos ou mais, o comparecimento do 2º turno sobe mais do que em 2022 e 2018?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
@@ -50,6 +57,13 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > Teto: **teto de pior caso, não estimativa: 234.746 votos de margem (5,30% da margem)** (a fração de 14,0% é compatível com o crescimento nacional do oponente em 2026 (esperado de 13,2% a 15,4% com 2018 e 2022 deslocados); 70,6% desses municípios tiveram queda de comparecimento; o teto é todo o déficit de Flávio em relação ao crescimento da UF atribuído a troca de voto, e o excedente sobre o que o deslocamento nacional reproduz é 0; **o teste não distingue troca de voto de abstenção seletiva**)  
 > O que fecharia: Boletins impressos das seções dos 20 municípios com maior perda de Flávio (lista em `results/fase3/A31b_20_secoes.csv`) e as listas de habilitação.  
 > [Página técnica](fase3.html#a31b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A31b%20A-A31b)
+
+<a id="a-a33-placebo"></a>
+> **Por que o coeficiente de 2026 da liberação manual da escola sobre o ganho de Lula (-0,017) é mais negativo que o do placebo de 2022 (-0,002)?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 221.830 votos de margem (5,01% da margem)** (**causa não identificada**; o sentido é o oposto ao do esquema pré-registrado (mais liberação manual, menos ganho de Lula e menos comparecimento), o placebo de 2018 tem o mesmo sinal negativo, e nenhum teste de excesso passa em Holm; o teto vem da incerteza do coeficiente multiplicada pela exposição, não de um efeito medido, e por isso **não é plotado no G3** (regra de exibição, CHANGELOG))  
+> O que fecharia: A abstenção por faixa etária e por seção do 2º turno (produto do TSE ainda não publicado) e a composição das escolas (rural, idade) para separar efeito de composição de efeito da liberação manual.  
+> [Página técnica](fase3.html#a33) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33-placebo%20A-A33-placebo)
 
 <a id="a-a10"></a>
 > **Urnas do modelo mais novo (UE2022) votam diferente das demais dentro do mesmo local?**  
@@ -86,6 +100,13 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: Origem das transferências de eleitores para essas seções e o histórico dos locais (cadastro nominal, pela Justiça Eleitoral).  
 > [Página técnica](fase3.html#a27) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-H5%20A-H5)
 
+<a id="a-a35"></a>
+> **Há mais seções grandes sem brancos e nulos, ou com comparecimento de 100% dos aptos, do que o acaso dá?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 41.614 votos de margem (0,94% da margem)** (teto = troca esperada pela vizinhança (fator 2); no fator 1 (todos os votos do majoritário nessas seções) seriam 403.773 votos de margem, inflado por construção; o observado fica **abaixo** do esperado em todos os anos (razão 0,69 em 2026 e 0,7 em 2022), dentro do esperado pela regra pré-registrada; 12 seções com comparecimento igual aos aptos (descritivo, sem p))  
+> O que fecharia: Boletins impressos das seções sinalizadas (lista em `results/fase4/A35_E1_sinalizadas_2026T2.csv`, 2.989 seções com 100 votantes ou mais e zero brancos e nulos; e as 12 com comparecimento igual aos aptos em `results/fase4/A35_E2_secoes_2026T2.csv`).  
+> [Página técnica](fase3.html#a35) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A35%20A-A35)
+
 <a id="a-a12b"></a>
 > **Por que 29 das 106 seções com zero voto para Flávio também têm zero brancos e nulos, mais do que as vizinhas indicam (e também em 2022 e 2018)?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: a favor de Lula (teto) ou de Flávio (lado simétrico)  
@@ -99,6 +120,13 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > Teto: **teto de pior caso, não estimativa: 8.125 votos de margem (0,18% da margem)** (teto = o excesso de liberação manual além do ruído do modelo, lido como voto a favor de um só lado (fator 1); sem esse corte, o teto é 29.654 votos de margem; na escola, mais liberação manual se associa a **menos** ganho de Lula e a menos comparecimento em 2026 (placebos sem excesso); a sincronia nos logs é igual à de 2022; 92% das escolas extremas têm 3 seções ou menos)  
 > O que fecharia: Ata, folha de votação e boletim impresso das 20 escolas mais extremas (`results/fase3/A33_20_escolas_secoes.csv`, 40 seções; pedido `lai/07_ata_e_folha_de_votacao.md`) e os logs de todas as seções.  
 > [Página técnica](fase3.html#a33) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33%20A-A33)
+
+<a id="a-a33-idade"></a>
+> **Por que as escolas extremas em liberação manual não são explicadas pela idade do eleitorado, como o pré-registro do A33 previa?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 8.125 votos de margem (0,18% da margem)** (**a previsão do pré-registro (extremas explicadas pela idade) não se cumpriu**: nas 20 primeiras, a idade média é de 32 a 59 anos, o previsto é de 6% a 15% e o observado de 30% a 82%; teto = excesso além do ruído do modelo, lido como voto a favor de um só lado (fator 1); sem esse corte, 29.654 votos de margem; 92% têm 3 seções ou menos; na média, Lula ganhou menos nelas (+1,5 ponto) que no país (+3,0); já descrito no cartão A-A33)  
+> O que fecharia: Ata, folha de votação e boletim impresso das 20 escolas mais extremas (`results/fase3/A33_20_escolas_secoes.csv`, 40 seções) e os logs de todas as seções; a causa operacional (leitor biométrico com defeito, por exemplo) só se confirma ou descarta com o log e a ata da seção.  
+> [Página técnica](fase3.html#a33) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A33-idade%20A-A33-idade)
 
 <a id="a-a20b-95"></a>
 > **Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?**  

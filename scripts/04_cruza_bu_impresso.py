@@ -15,8 +15,8 @@ OBRIG = ["ano", "turno", "uf", "cd_municipio", "zona", "secao", "aptos", "compar
 KEY = ["SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO"]
 
 
-def main(pq, entrada, saida):
-    e = pd.read_csv(entrada, sep=";")
+def compara(pq, e):
+    """Compara os boletins de `e` (DataFrame com as colunas OBRIG) com o BWeb; uma linha por campo comparado."""
     falt = [c for c in OBRIG if c not in e.columns]
     if falt:
         raise SystemExit(f"ERRO: colunas obrigatorias ausentes na entrada: {falt}")
@@ -42,6 +42,12 @@ def main(pq, entrada, saida):
             for campo, imp, bw in comp:
                 linhas.append(dict(ano=ano, turno=turno, uf=r.uf, zona=r.zona, secao=r.secao, campo=campo, impresso=imp, bweb=bw, diverge=str(imp) != str(bw), obs=""))
     out = pd.DataFrame(linhas)
+    return out
+
+
+def main(pq, entrada, saida):
+    e = pd.read_csv(entrada, sep=";")
+    out = compara(pq, e)
     if saida:
         out.to_csv(saida, index=False)
     dv = out[out.diverge]

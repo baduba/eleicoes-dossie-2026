@@ -15,6 +15,8 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 
 Não é evidência de fraude: é o mapa de onde a verificação pública termina.
 
+**[Envie a foto do seu boletim](boletins-impressos.html)**: a página oferece dois canais, com ou sem conta no GitHub.
+
 ## O que sabemos e o que ainda não sabemos
 
 ### Resultado verificado
@@ -27,7 +29,7 @@ Não é evidência de fraude: é o mapa de onde a verificação pública termina
 
 ## Perguntas em aberto (resumo)
 
-Há **28 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidências de manipulação; são lacunas.**
+Há **32 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidências de manipulação; são lacunas.**
 
 Lista completa, com situação, teto e o que fecharia cada uma: [Perguntas em aberto](perguntas-em-aberto.html).
 
@@ -69,7 +71,7 @@ Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md), [Fase 3
 
 ## Como contribuir
 
-- **Fotos de boletins impressos:** [página de coleta](boletins-impressos.html). Conferidos até 29/10/2026: 0.
+- **Fotos de boletins impressos:** [página de coleta](boletins-impressos.html) (com conta no GitHub, ou [sem conta, pelo formulário](https://form.jotform.com/263017066351047)). Conferidos até 29/10/2026: 0.
 - **Listas de seções com fiscal** (partidos e coligações): formato em [A23](fase3.html#a23).
 - **Respostas de pedidos LAI:** textos prontos em [`lai/`](https://github.com/baduba/eleicoes-dossie-2026/tree/main/lai); envie a resposta por issue.
 - **Código ou método alternativo:** abra uma issue ou um PR com um script reproduzível.
