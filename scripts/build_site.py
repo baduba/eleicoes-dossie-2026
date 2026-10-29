@@ -5,12 +5,12 @@ import argparse, html, os, re, shutil, subprocess, sys
 import markdown
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VERSAO = "v0.9.1"
+VERSAO = "v0.9.2"
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
 AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
 NAV = [("index", "Início"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
        ("resultados-fase2", "Resultados: Fase 2 (A1 a A10)"), ("regua-historica", "Régua histórica"), ("alegacoes", "Inventário de alegações"), ("relatorio-original", "O relatório original"),
-       ("pontos-cegos", "Pontos cegos"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
+       ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A28)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
        ("changelog", "Changelog e correções"), ("referencias", "Referências")]
 CSS = """
 :root{--bg:#fff;--fg:#1c1c1e;--mut:#5a5f66;--bd:#d9dce1;--ac:#1d4e89;--cd:#f5f6f8}
@@ -23,6 +23,7 @@ a{color:var(--ac)}table{border-collapse:collapse;width:100%;font-size:.85rem;dis
 code,pre{background:var(--cd);border-radius:4px;font-size:.88em}code{padding:.1em .3em}pre{padding:.7rem;overflow-x:auto}img{max-width:100%;height:auto}
 footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.82rem;padding:1rem 16px;text-align:center}
 .aviso{border-left:4px solid var(--ac);background:var(--cd);padding:.6rem .9rem;margin:1rem 0}
+blockquote{border-left:4px solid var(--ac);background:var(--cd);margin:1rem 0;padding:.5rem .9rem}blockquote p{margin:.35rem 0}
 """
 
 
@@ -33,8 +34,17 @@ def commit():
         return os.environ.get("GITHUB_SHA", "dev")[:7] or "dev"
 
 
+def slug(valor, sep="-"):
+    """ids curtos e estaveis para ancoras: 'A10. Modelo...' -> a10; '3b. Titulo' -> 3b; demais: slug padrao."""
+    m = re.match(r"^\s*([AH]\d+[a-z]?)\b", valor) or re.match(r"^\s*(\d+[a-z]?)\.\s", valor)
+    if m:
+        return m.group(1).lower()
+    from markdown.extensions.toc import slugify
+    return slugify(valor, sep)
+
+
 def md(texto):
-    h = markdown.markdown(texto, extensions=["tables", "fenced_code", "toc", "attr_list"], output_format="html5")
+    h = markdown.markdown(texto, extensions=["tables", "fenced_code", "toc", "attr_list"], extension_configs={"toc": {"slugify": slug}}, output_format="html5")
     return re.sub(r'href="([A-Za-z0-9_\-]+)\.md(#[^"]*)?"', lambda m: f'href="{m.group(1)}.html{m.group(2) or ""}"', h)
 
 
@@ -70,7 +80,7 @@ def main():
         corpo = md(t)
         paginas.append((nome, titulo, corpo))
         open(os.path.join(out, nome + ".html"), "w", encoding="utf-8").write(pagina(nome, titulo, corpo, c))
-    for pasta in ("figs",):
+    for pasta in ("figs", "img"):
         for orig in (os.path.join(RAIZ, "docs", pasta), os.path.join(RAIZ, "results", pasta)):
             if os.path.isdir(orig):
                 shutil.copytree(orig, os.path.join(out, pasta), dirs_exist_ok=True)
@@ -107,7 +117,9 @@ code{{font-size:8pt;word-break:break-all}}pre{{font-size:7.5pt;white-space:pre-w
             f'<p style="margin-top:20mm;font-size:9pt">Esta é uma auditoria independente. Não é laudo, perícia oficial nem documento homologado: nenhum órgão homologou.</p></div>')
     sumario = "<h1>Sumário</h1><ol>" + "".join(f"<li>{html.escape(t)}</li>" for _, t, _ in paginas) + "</ol>"
     corpo = "".join(f'<section>{cb}</section>' for _, _, cb in paginas)
-    HTML(string=f"<html lang='pt-BR'><head><meta charset='utf-8'><title>Auditoria independente reproduzível: 2º turno presidencial de 2026</title><style>{css}</style></head><body>{capa}{sumario}{corpo}</body></html>", base_url=os.path.join(RAIZ, "docs")).write_pdf(saida)
+    inicio = next((cb for n_, _, cb in paginas if n_ == "index"), "")
+    resto = "".join(f'<section>{cb}</section>' for n_, _, cb in paginas if n_ != "index")
+    HTML(string=f"<html lang='pt-BR'><head><meta charset='utf-8'><title>Auditoria independente reproduzível: 2º turno presidencial de 2026</title><style>{css}</style></head><body>{capa}<section>{inicio}</section>{sumario}{resto}</body></html>", base_url=os.path.join(RAIZ, "docs")).write_pdf(saida)
     print("pdf:", saida)
 
 
