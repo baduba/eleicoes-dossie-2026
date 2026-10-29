@@ -1,0 +1,5 @@
+amostra,k,coef,ep,p,n,erro
+principal: R + Roraima completa,3,0.009337192613477732,0.008885607046821417,0.29334028522159417,413.0,
+principal: R + Roraima completa,5,,,,,colineariedade em ['indh5'] (variacao intra-grupo insuficiente)
+todos os estratos (selecao no desfecho),3,-0.0013924708585809685,0.001124055124744702,0.21542241786320837,8266.0,
+todos os estratos (selecao no desfecho),5,-0.01221844714766793,0.0054055317465378835,0.023798923712392703,8266.0,

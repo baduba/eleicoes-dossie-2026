@@ -1,0 +1,117 @@
+name: "Envio de boletim de urna impresso (BU)"
+description: "Envie a foto do boletim de urna impresso de uma seção para a conferência independente contra o BWeb."
+title: "BU: "
+labels: ["boletim-impresso"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Obrigado por contribuir.** O boletim impresso é a única cópia do resultado da seção que não passa pelos arquivos do TSE; cada foto conferida fecha um pouco do elo cego entre o voto registrado e a publicação.
+
+        **A FOTO se anexa arrastando o arquivo para a caixa de texto abaixo** (o formulário não tem campo de anexo). Fotografe o boletim inteiro, de frente e legível, sem cortar o cabeçalho (UF, município, zona, seção) nem as linhas de votos — ou fotografe o QR Code, nítido e sem reflexo. Não envie dados pessoais de eleitor.
+
+        Antes de enviar, leia a [página de coleta](https://baduba.github.io/eleicoes-dossie-2026/boletins-impressos.html). Cada lote é conferido automaticamente contra o BWeb e qualquer divergência, de um voto que seja, é publicada individualmente.
+  - type: input
+    id: titulo-secao
+    attributes:
+      label: "Identificação no título"
+      description: "Complete o título da issue no formato BU: UF-zona-seção-turno (ex.: BU: SP-123-456-2)."
+      placeholder: "Edite o título acima, depois do prefixo BU:"
+    validations:
+      required: false
+  - type: dropdown
+    id: uf
+    attributes:
+      label: "UF"
+      description: "Unidade da Federação da seção (está no cabeçalho do boletim)."
+      options:
+        - AC
+        - AL
+        - AM
+        - AP
+        - BA
+        - CE
+        - DF
+        - ES
+        - GO
+        - MA
+        - MG
+        - MS
+        - MT
+        - PA
+        - PB
+        - PE
+        - PI
+        - PR
+        - RJ
+        - RN
+        - RO
+        - RR
+        - RS
+        - SC
+        - SE
+        - SP
+        - TO
+        - ZZ (exterior)
+    validations:
+      required: true
+  - type: input
+    id: municipio
+    attributes:
+      label: "Município"
+      description: "Município da seção (está no cabeçalho do boletim)."
+      placeholder: "ex.: São Paulo"
+    validations:
+      required: true
+  - type: input
+    id: zona
+    attributes:
+      label: "Zona eleitoral"
+      placeholder: "ex.: 123"
+    validations:
+      required: true
+  - type: input
+    id: secao
+    attributes:
+      label: "Seção"
+      placeholder: "ex.: 456"
+    validations:
+      required: true
+  - type: dropdown
+    id: turno
+    attributes:
+      label: "Turno"
+      options:
+        - "1º turno"
+        - "2º turno"
+    validations:
+      required: true
+  - type: dropdown
+    id: origem
+    attributes:
+      label: "Origem da foto"
+      description: "Registrada junto com a foto; se quiser, diga o partido no campo de texto."
+      options:
+        - Mesário(a)
+        - Fiscal de partido ou coligação
+        - Eleitor(a)
+        - Imprensa
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: foto
+    attributes:
+      label: "Foto do boletim"
+      description: "Arraste a foto para esta caixa. Confira na pré-visualização que ela abre legível."
+      placeholder: "Arraste a foto aqui."
+    validations:
+      required: true
+  - type: textarea
+    id: transcricao
+    attributes:
+      label: "Transcrição (opcional)"
+      description: "Se preferir, transcreva os números no formato abaixo (uma linha por boletim)."
+      placeholder: "ano;turno;uf;cd_municipio;zona;secao;aptos;comparecimento;lula;oponente;brancos;nulos"
+    validations:
+      required: false

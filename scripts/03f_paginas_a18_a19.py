@@ -101,24 +101,39 @@ open(os.path.join(DOCS, "a18-alteracao-no-meio.md"), "w", encoding="utf-8").writ
 
 # ------------------------------------------------------------------------------------------------ boletins impressos
 L = []
+A = L.append
+cur = pd.read_csv(os.path.join(RAIZ, "results", "graficos", "curvas_deteccao.csv")) if os.path.exists(os.path.join(RAIZ, "results", "graficos", "curvas_deteccao.csv")) else None
+
+def prob(col, fracao):
+    r = cur.iloc[(cur.fracao - fracao).abs().idxmin()]
+    return n(100 * r[col]) + "%"
+
 A("# Boletins de urna impressos: como enviar fotos\n")
-A("**Por que.** O boletim de urna impresso é a única cópia dos resultados de uma seção que **não passa** pelos arquivos que o TSE publica. Comparar o que está impresso na seção com o BWeb exclui, para as seções conferidas, uma alteração coerente feita depois do fechamento da urna. Nenhuma foto foi recebida até agora; o teste direto permanece **NÃO EXECUTADO** ([A18](a18-alteracao-no-meio.md)).\n")
-A("**Quem pode enviar.** Mesários, eleitores, imprensa e fiscais de qualquer partido ou coligação. Pela lei, o presidente da mesa receptora é obrigado a entregar cópia do boletim aos partidos e coligações que a requeiram até uma hora após a expedição (Lei 9.504/1997, art. 68, § 1º, [texto no Planalto](https://www.planalto.gov.br/ccivil_03/leis/l9504compilado.htm)). Não é preciso identificar-se publicamente.\n")
-A("## O que enviar\n")
-A("1. Uma foto **legível da frente** do boletim ou do **QR Code**, sem cortar as linhas de votos.\n2. **UF, município, zona, seção e turno** (escritos no boletim).\n3. A **origem** da foto: mesário, eleitor, imprensa ou fiscal (e de qual partido, se quiser dizer). Ela é registrada junto com a foto.\n4. Nenhum dado pessoal de eleitor. O boletim não os contém; não envie fotos de outros documentos.\n")
-A(f"## Como enviar\nAbra uma *issue* em [{REPO}/issues]({REPO}/issues) com o título \"BU: UF-zona-seção-turno\", anexe a foto e preencha os itens acima. Se preferir, transcreva os números no formato abaixo.\n")
+A("**Por que.** O boletim de urna impresso é a única cópia dos resultados de uma seção que **não passa** pelos arquivos que o TSE publica. Todo o resto (RDV, BU digital, BWeb, totalização) nasce do mesmo software da urna: se esse software registrasse diferente do digitado, todos esses arquivos concordariam entre si — e com o erro. A foto do boletim afixado na seção é a **única verificação independente** desse elo cego. Comparar o que está impresso com o BWeb exclui, para as seções conferidas, uma alteração coerente feita depois do fechamento da urna. Nenhuma foto foi recebida até agora; o teste direto permanece **NÃO EXECUTADO** ([A18](a18-alteracao-no-meio.md)).\n")
+A("**Quem pode enviar.** Mesários, eleitores, imprensa e fiscais de qualquer partido ou coligação. Pela lei, o presidente da mesa receptora é obrigado a entregar cópia do boletim aos partidos e coligações que a requeiram até uma hora após a expedição (Lei 9.504/1997, art. 68, § 1º, [texto no Planalto](https://www.planalto.gov.br/ccivil_03/leis/l9504compilado.htm)); o boletim também fica afixado na seção e pode ser fotografado por qualquer pessoa. Não é preciso identificar-se publicamente.\n")
+A("## O que fotografar\n")
+A("1. O **boletim inteiro, de frente e legível**, sem cortar o **cabeçalho** (onde estão UF, município, zona e seção) nem as linhas de votos do fim. Se não couber tudo, vale uma foto do cabeçalho e outra das linhas de votos.\n2. Ou, em vez da foto inteira, o **QR Code** do boletim, nítido e sem reflexo.\n3. Anote **UF, município, zona, seção e turno** (estão no boletim) e a **origem** da foto: mesário, eleitor, imprensa ou fiscal (e de qual partido, se quiser dizer). A origem é registrada junto com a foto.\n4. Nenhum dado pessoal de eleitor. O boletim não os contém; não envie fotos de outros documentos.\n")
+A("## Como enviar (passo a passo)\n")
+A(f"1. Abra o formulário: [{REPO}/issues/new?template=envio-bu.yml]({REPO}/issues/new?template=envio-bu.yml).\n2. O título já vem com o prefixo \"BU: \"; complete com UF, zona, seção e turno (ex.: \"BU: SP-123-456-2\").\n3. Preencha UF, município, zona, seção, turno e origem nos campos do formulário.\n4. **Arraste a foto para a caixa de texto do corpo da issue** — o formulário não tem campo de anexo; a foto entra como anexo do comentário. Confira na pré-visualização que ela abre legível.\n5. Se preferir, transcreva os números no formato abaixo (uma linha por boletim), no campo próprio do formulário.\n6. Envie. Não é preciso conta verificada nem identificação além da conta do GitHub.\n")
 A("```\nano;turno;uf;cd_municipio;zona;secao;aptos;comparecimento;lula;oponente;brancos;nulos\n```\n")
 A("## O que acontece com cada lote\n")
-A("1. Cada lote recebido é conferido com o BWeb por `scripts/04_cruza_bu_impresso.py`, que reporta **qualquer** divergência, de um voto que seja.\n2. **Cada divergência é publicada individualmente**, com a foto, a seção e a origem, e com o que o BWeb mostra.\n3. O **total conferido sem divergência** é publicado a cada lote, junto com o poder estatístico abaixo.\n4. Fotos ilegíveis ou sem os dados de identificação da seção são listadas como descartadas, com o motivo.\n")
+A("1. Cada lote recebido é conferido automaticamente com o BWeb por `scripts/04_cruza_bu_impresso.py`, que reporta **qualquer** divergência, de um voto que seja.\n2. **Cada divergência é publicada individualmente**, com a foto, a seção e a origem, e com o que o BWeb mostra.\n3. O **total conferido sem divergência** é publicado a cada lote, junto com o poder estatístico abaixo.\n4. Fotos ilegíveis ou sem os dados de identificação da seção são listadas como descartadas, com o motivo.\n")
 A("## Situação\n")
 A("| lotes recebidos | BUs conferidos | divergências | origem das fotos |\n|---|---|---|---|\n| 0 | 0 | 0 | n/a |\n")
-A("## O que a amostra consegue detectar\n")
-A("Para amostras aleatórias de seções (as fotos voluntárias não são aleatórias; ver ressalva em [A18](a18-alteracao-no-meio.md)):\n")
+A("## Meta de coleta: o que cada total de boletins enxerga\n")
+if cur is not None:
+    A("Chance de flagrar **ao menos uma** seção alterada, em função do total de boletins conferidos e da fração de seções alteradas no país (amostra aleatória; cálculo hipergeométrico de [G2](index.md#g2)):\n")
+    A("| fração de seções alteradas | 100 boletins | 300 boletins | 1.000 boletins |\n|---|---|---|---|")
+    for f, rot in ((0.001, "0,1% (500 seções)"), (0.01, "1% (4.993 seções)"), (0.02, "2% (9.985 seções)"), (0.05, "5% (24.963 seções)")):
+        A(f"| {rot} | {prob('bu_100', f)} | {prob('bu_300', f)} | {prob('bu_1000', f)} |")
+    A("")
+A("Para amostras aleatórias de seções (as fotos voluntárias não são aleatórias; ver ressalva em [A18](a18-alteracao-no-meio.md)), quantos boletins seriam necessários para detectar, com 95% e 99% de probabilidade, ao menos uma seção alterada:\n")
 A(tab(pbu, {"secoes_alteradas": n, "n_para_95": n, "n_para_99": n}))
 open(os.path.join(DOCS, "boletins-impressos.md"), "w", encoding="utf-8").write("\n".join(L))
 
 # ------------------------------------------------------------------------------------------------ A19
 L = []
+A = L.append
 A("# A19. Ponto cego central: voto digitado x voto registrado\n")
 A("> Os dados públicos verificam a cadeia do registro da urna até o total. A correspondência entre o voto digitado e o voto registrado é verificada apenas por amostragem no teste de integridade. O modelo atual não possui registro conferido pelo eleitor.\n")
 A("## 1. O que os dados públicos não verificam\n")

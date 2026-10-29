@@ -2,9 +2,9 @@
 
 Repositório com scripts, previsões pré-registradas, resultados e documentação de uma auditoria estatística dos dados oficiais do TSE sobre o 2º turno de 25/10/2026 (Lula x Flávio Bolsonaro). **Não é laudo, perícia oficial nem documento homologado.**
 
-Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9.2 (versão preliminar).
+Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9.3 (versão preliminar).
 
-**Versão preliminar (v0.9.2).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
+**Versão preliminar (v0.9.3).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
 
 ## O que sabemos e o que ainda não sabemos
 

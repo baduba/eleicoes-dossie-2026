@@ -1,0 +1,23 @@
+variante,desfecho,ano,FE,coef,ep,n,zonas
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2026,zona,-0.016790020308388783,0.0029929635854741826,90986,2640
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2022,zona,-0.0019313381359797135,0.0019740253645295787,88519,2636
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2018,zona,-0.02090167079374944,0.004696286776372118,88354,2644
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2026,municipio,-0.007130293130848597,0.0030764230245358347,90798,5383
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2022,municipio,-0.0026961455510332998,0.002122335349532122,88297,5348
+taxa manual da escola,variacao da participacao de Lula (T2 menos T1),2018,municipio,-0.01621600747636699,0.006838989510268057,88130,5346
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2026,zona,-0.0235442863233015,0.0042104618509669865,90986,2640
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2022,zona,0.0028823493611657616,0.0027790611746695624,88519,2636
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2018,zona,0.0113112802420993,0.003836025015928632,88354,2644
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2026,municipio,-0.010969878238821961,0.004310246752400096,90798,5383
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2022,municipio,0.004576603782802323,0.0029942900106388003,88297,5348
+taxa manual da escola,variacao do comparecimento (T2 menos T1),2018,municipio,0.005319080294186406,0.0033230753559096073,88130,5346
+taxa manual da escola,variacao do voto do oponente por apto,2026,zona,-0.0026188273128840193,0.003150721108083622,90986,2640
+taxa manual da escola,variacao do voto do oponente por apto,2022,zona,-0.0007083022204809527,0.0019514626883383043,88519,2636
+taxa manual da escola,variacao do voto do oponente por apto,2018,zona,0.02202496472441798,0.003406339794876682,88354,2644
+taxa manual da escola,variacao do voto do PT por apto,2026,zona,-0.037027536145100536,0.004178482319655684,90986,2640
+taxa manual da escola,variacao do voto do PT por apto,2022,zona,-0.004836523974047349,0.002637485282005149,88519,2636
+taxa manual da escola,variacao do voto do PT por apto,2018,zona,0.005304451573638086,0.006675910023240859,88354,2644
+excesso sobre a mesma escola no ano anterior,variacao da participacao de Lula (T2 menos T1),2026,zona,-0.0007074900834960051,0.0018810634670568666,84275,2634
+excesso sobre a mesma escola no ano anterior,variacao da participacao de Lula (T2 menos T1),2022,zona,-0.0005729823532752906,0.0017513507740311194,83911,2631
+excesso sobre a mesma escola no ano anterior,variacao do comparecimento (T2 menos T1),2026,zona,0.0021741419062362177,0.002550752899664249,84275,2634
+excesso sobre a mesma escola no ano anterior,variacao do comparecimento (T2 menos T1),2022,zona,-0.0012578784457648608,0.0024662946022602416,83911,2631

@@ -35,8 +35,15 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import primeira_pagina as pp
 NT = ("Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md), [Fase 3](fase3.md) e a lista de **NÃO EXECUTADO**: cruzamento com boletins impressos (0 conferidos; sem insumo), assinatura criptográfica da urna "
       "(certificado lido, assinatura 0% verificada), curva de divulgação do site Resultados, perfil de comparecimento de 2026/2º turno, 2014 na curva de apuração, as \"472 urnas\" do vídeo, e os testes A21 (parcial), A22, A23, A24 e A25 (parcial) da Fase 3.")
-P1 = pp.resultado(RAIZ) + "\n" + pp.perguntas(RAIZ) + "\n" + pp.contribuir(RAIZ)
+P1 = pp.hero(RAIZ) + "\n" + pp.resultado(RAIZ) + "\n" + pp.resumo_perguntas(RAIZ)
+CONTRIB = pp.contribuir(RAIZ)
 P1R = pp.resultado(RAIZ) + "\n" + pp.perguntas(RAIZ, True) + "\n" + pp.contribuir(RAIZ, True)
+
+# pagina propria das perguntas em aberto (a secao saiu da pagina inicial; bloco 'Resultado verificado' vem antes, como la)
+PG = pp.perguntas(RAIZ).split("\n")
+PG[0] = PG[0][1:]
+PG.insert(1, "\n> **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem e nenhum teste encontrou efeito capaz de alterar o resultado. Números na [página inicial](index.md).\n")
+open(os.path.join(RAIZ, "docs", "perguntas-em-aberto.md"), "w", encoding="utf-8").write("\n".join(PG) + "\n")
 LAC = pp.lacunas(RAIZ, False, NT)
 LACR = pp.lacunas(RAIZ, True, NT.replace("](residuos.md)", "](docs/residuos.md)").replace("](pontos-cegos.md)", "](docs/pontos-cegos.md)").replace("](fase3.md)", "](docs/fase3.md)"))
 
@@ -45,11 +52,13 @@ IDX = f"""# Auditoria independente reproduzível: 2º turno presidencial de 2026
 
 Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem documento homologado: nenhum órgão homologou. Foi construída para que qualquer perito, de qualquer lado, repita cada número e conteste o que discordar.
 
-> **Versão preliminar (v0.9.2).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
+> **Versão preliminar (v0.9.3).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
 
 {P1}
 
 {LAC}
+
+{CONTRIB}
 
 ## O que foi feito
 Análise estatística dos dados oficiais do TSE por seção (BWeb de 2014, 2018, 2022 e 2026, com hash conferido), mais os arquivos de urna (BU, RDV, assinatura e log) de uma amostra de {n(a4_26.secoes)} seções do 2º turno de 2026 e as mesmas seções em 2022 como placebo. Previsões foram registradas antes de cada bloco de análises ([Pré-registro](preregistro.md)); todo teste tem placebo e é simétrico; resultados nulos têm o mesmo destaque que os positivos.
@@ -92,7 +101,7 @@ python scripts/08_arquivos_urna.py local|remoto ...   # ver docstring; uma saida
 python scripts/02_executa.py parquet results/fase2 --anos 2014 2018 2022 2026 --zips dados_tse --parquet2 parquet2 --cesp cesp --urna urna_out
 python scripts/10_figuras.py parquet results/fase2 docs/figs
 python scripts/03b_monta_fase2.py results/fase2 results/fase1 .   # e 03c, 03d, 03e, 03f (A18, A19, boletins); 13_cert_urna.py e 14_poder_estatistico.py geram as tabelas de assinatura e de poder
-python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.2.pdf
+python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.3.pdf
 ```
 O código de saída 2 de `02_executa.py` indica testes NÃO EXECUTADOS (lista em `nao_executados.csv`).
 
@@ -109,9 +118,9 @@ RD = f"""# Auditoria independente reproduzível: 2º turno presidencial de 2026
 
 Repositório com scripts, previsões pré-registradas, resultados e documentação de uma auditoria estatística dos dados oficiais do TSE sobre o 2º turno de 25/10/2026 (Lula x Flávio Bolsonaro). **Não é laudo, perícia oficial nem documento homologado.**
 
-Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9.2 (versão preliminar).
+Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9.3 (versão preliminar).
 
-**Versão preliminar (v0.9.2).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
+**Versão preliminar (v0.9.3).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
 
 {P1R}
 

@@ -486,3 +486,7 @@ O esperado do Adendo 11a (permutar os rótulos de tipo mantendo horários e cont
 **5. Escolas mais extremas e papel.** As 20 escolas mais extremas (as 20 primeiras do item 3) entram no pedido LAI 07 (todas as suas seções, nos dois turnos) e numa lista de BUs impressos a coletar (`results/fase3/A33_20_escolas_secoes.csv`, colunas vazias para o impresso).
 
 **Previsão sem esquema:** associação no nível da escola igual à dos placebos, sem sincronia acima do acaso, extremas explicadas pela idade. **Com esquema:** excesso de ganho de Lula e de comparecimento nas escolas com excesso de liberação manual **só em 2026**, e sincronia acima do acaso.
+
+### Adendo 15a: exposição do teto de A33, escrita em 29/10/2026 DEPOIS de ver a primeira execução (com um erro meu) e ANTES de rodar a versão corrigida
+
+**Erro meu.** Na primeira execução converti os coeficientes de A33 em votos de margem usando como exposição **todos** os votos válidos (e todos os aptos) de 2026/T2. Como o regressor é a **taxa** de liberação manual (de 0 a 1, média perto de 0,07), isso superestima o teto em cerca de 14 vezes: gerou tetos de 74% a 116% da margem que não significam nada. O projeto já tinha a convenção certa em H1 (`h1_exposicao_votos_manuais_equiv`): exposição = soma de (taxa manual da seção x votos válidos) para participação, e soma de (taxa manual da seção x aptos) para comparecimento. Passa a valer essa convenção em A33 e fica registrado que a primeira execução estava errada. As linhas da primeira execução não são publicadas.
