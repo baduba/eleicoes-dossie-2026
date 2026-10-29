@@ -26,7 +26,7 @@ Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde 
 - **Votos depois das 17h:** cerca de 23 mil (contagem de votos, não votos de margem).
 - **Limite:** esses testes comparam arquivos que o próprio TSE publica; não excluem uma alteração coerente feita antes da publicação nem verificam se o voto registrado é o digitado (ver as perguntas abaixo).
 
-Os testes cobrem o que o TSE publica, e aí o resultado é zero divergências. Se uma alteração acontecesse nos elos que não são publicados (o voto digitado, o boletim impresso, a transmissão), nenhum teste deste dossiê a veria. É por isso que as perguntas abaixo continuam abertas.
+<p class="destaque">Se uma alteração acontecesse nos elos que não são publicados (o voto digitado, o boletim impresso, a transmissão), <strong>nenhum teste deste dossiê a veria</strong>. É por isso que as perguntas abaixo continuam abertas.</p>
 
 ## Perguntas em aberto (resumo)
 

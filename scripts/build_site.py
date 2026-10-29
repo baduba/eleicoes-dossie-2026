@@ -36,6 +36,7 @@ a{color:var(--ac)}table{border-collapse:collapse;width:100%;font-size:.85rem;dis
 code,pre{background:var(--cd);border-radius:4px;font-size:.88em}code{padding:.1em .3em}pre{padding:.7rem;overflow-x:auto}img{max-width:100%;height:auto}
 footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.82rem;padding:1rem 16px;text-align:center}
 .aviso{border-left:4px solid var(--ac);background:var(--cd);padding:.6rem .9rem;margin:1rem 0}
+.destaque{font-size:1.15rem;font-weight:700}
 blockquote{border-left:4px solid var(--ac);background:var(--cd);margin:1rem 0;padding:.5rem .9rem}blockquote p{margin:.35rem 0}
 .langsel{display:flex;gap:0;margin-top:.5rem;font-size:.95rem;font-weight:600;border:1.5px solid var(--ac);border-radius:999px;overflow:hidden;width:max-content}
 .langsel a,.langsel span{padding:.25rem 1rem;text-decoration:none;color:var(--ac)}

@@ -40,7 +40,7 @@ def resultado(raiz):
          f"- **Excesso medido somado:** cerca de {n(round(pl, -3) / 1000)} mil pró-Lula e {n(round(pf, -3) / 1000)} mil pró-Flávio (votos de margem), em sentidos opostos, contra a margem de {n(MARGEM)} votos.",
          f"- **Votos depois das 17h:** cerca de {n(round(a5.estimativa_total, -3) / 1000)} mil (contagem de votos, não votos de margem).",
          "- **Limite:** esses testes comparam arquivos que o próprio TSE publica; não excluem uma alteração coerente feita antes da publicação nem verificam se o voto registrado é o digitado (ver as perguntas abaixo).\n",
-         "Os testes cobrem o que o TSE publica, e aí o resultado é zero divergências. Se uma alteração acontecesse nos elos que não são publicados (o voto digitado, o boletim impresso, a transmissão), nenhum teste deste dossiê a veria. É por isso que as perguntas abaixo continuam abertas.\n"]
+         '<p class="destaque">Se uma alteração acontecesse nos elos que não são publicados (o voto digitado, o boletim impresso, a transmissão), <strong>nenhum teste deste dossiê a veria</strong>. É por isso que as perguntas abaixo continuam abertas.</p>\n']
     return "\n".join(L)
 
 

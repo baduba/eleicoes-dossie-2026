@@ -24,7 +24,7 @@ This is not evidence of anything, on either side: it is a map of where an altera
 - **Votes after 5 p.m.:** about 23 thousand (vote count, not margin votes).
 - **Limit:** these tests compare files that the TSE itself publishes; they do not rule out a coherent alteration made before publication, nor do they verify that the recorded vote is the typed vote (see the questions below).
 
-The tests cover what the TSE publishes, and there the result is zero discrepancies. If an alteration happened in the links that are not published (the typed vote, the printed receipt, the transmission), no test in this dossier would see it. That is why the questions below remain open.
+<p class="destaque">If an alteration happened in the links that are not published (the typed vote, the printed receipt, the transmission), <strong>no test in this dossier would see it</strong>. That is why the questions below remain open.</p>
 
 ## Open questions (summary)
 
