@@ -1,0 +1,5 @@
+medida,secoes_pareadas,media_2026,media_2022,diferenca_media,ep,pct_secoes_com_valor_positivo_2026,pct_secoes_com_valor_positivo_2022
+"intervalos < 5 s entre habilitacoes, por 100 votos",12456,0.0,0.0,0.0,0.0,0.0,0.0
+"intervalos < 10 s entre habilitacoes, por 100 votos",12456,0.0,0.0,0.0,0.0,0.0,0.0
+minutos do ultimo voto depois do horario nominal de fechamento,12456,5.624605277242561,-8.021720456005138,13.6463257332477,0.30935871027382167,28.018625561978162,13.04592164418754
+"votos depois do horario nominal, por 100 votos",12456,0.21529956793712354,0.09128976006970595,0.12400980786741758,0.030412650571901075,28.018625561978162,13.04592164418754
