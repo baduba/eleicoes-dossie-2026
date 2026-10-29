@@ -66,7 +66,7 @@ def md(texto, lang="pt"):
     h = re.sub(r'href="([A-Za-z0-9_\-]+)\.md(#[^"]*)?"', lambda m: f'href="{m.group(1)}.html{m.group(2) or ""}"', h)
     if lang == "en":
         # paginas EN ficam em site/en/: imagens e figuras sobem um nivel
-        h = re.sub(r'(src|href)="(img|figs)/', r'\1="../\2/', h)
+        h = re.sub(r'(src|srcset|href)="(img|figs)/', r'\1="../\2/', h)
     return h
 
 

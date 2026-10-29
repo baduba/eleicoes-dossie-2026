@@ -6,9 +6,9 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 ## How much of the vote chain public verification covers
 
-<picture><source media="(max-width: 640px)" srcset="img/g0_verificacao_m.png"><img src="img/g0_verificacao.png" alt="Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). Below, a second bar indicates that 100% of votes pass through at least one non-verifiable link."></picture>
+<picture><source media="(max-width: 640px)" srcset="img/en/g0_verificacao_m.png"><img src="img/en/g0_verificacao.png" alt="Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). Below, a second bar indicates that 100% of votes pass through at least one non-verifiable link."></picture>
 
-- **33% of the vote chain fully verified with public data** (4 of 12 links; [full map, G1](#g1-mapa-da-cadeia-do-voto)).
+- **33% of the vote chain fully verified with public data** (4 of 12 links; [full map, G1](#g1-map-of-the-vote-chain)).
 - **25% not verifiable** (3 of 12: typed vote → recorded vote, checked printed poll-receipt, transmission).
 - **100% of votes pass through at least one non-verifiable link.**
 - **0 tests found an effect capable of altering the outcome**; the largest worst-case ceiling, not an estimate, is 40.35% of the margin ([A20b](fase3.html#a20b)).
@@ -38,25 +38,25 @@ This section shows, with numbers, where public verification ends and how large a
 
 ### G1. Map of the vote chain
 
-<picture><source media="(max-width: 640px)" srcset="img/g1_cadeia_m.svg"><img src="img/g1_cadeia.svg" alt="Map of the twelve-step vote chain, from voter registration to results publication. Each step has a status: verified by the tests, partially verified, or not verifiable with public data. The link between typed vote and recorded vote is highlighted as not verifiable, checked only by sampling in the integrity test."></picture>
+<picture><source media="(max-width: 640px)" srcset="img/en/g1_cadeia_m.svg"><img src="img/en/g1_cadeia.svg" alt="Map of the twelve-step vote chain, from voter registration to results publication. Each step has a status: verified by the tests, partially verified, or not verifiable with public data. The link between typed vote and recorded vote is highlighted as not verifiable, checked only by sampling in the integrity test."></picture>
 
 **In plain words:** the vote passes through twelve steps; the tests cover the steps after recording; the earlier steps and those occurring outside the public files remain partially verified or unverified. **Technical:** per-step status derived from A4, H9, A5, A18, A19, A20, A26; the typed vote → recorded vote link is verified only by sampling (integrity test). How to close this gap: [printed poll-receipts](boletins-impressos.html) and [official signature key](a18-alteracao-no-meio.html#2).
 
 ### G2. Detection curves
 
-<picture><source media="(max-width: 640px)" srcset="img/g2_deteccao_m.png"><img src="img/g2_deteccao.png" alt="Curves of the chance of detecting at least one altered voting machine or section as a function of the altered fraction, from 0.1% to 20% on a logarithmic scale. The integrity test covering all machines detects small fractions; using only machines with biometrics, a much larger fraction is needed. Printed poll-receipts with 100, 300 and 1,000 checked appear as additional curves. Vertical lines mark the fractions of sections needed to change the margin with 200 and 50 switches per section."></picture>
+<picture><source media="(max-width: 640px)" srcset="img/en/g2_deteccao_m.png"><img src="img/en/g2_deteccao.png" alt="Curves of the chance of detecting at least one altered voting machine or section as a function of the altered fraction, from 0.1% to 20% on a logarithmic scale. The integrity test covering all machines detects small fractions; using only machines with biometrics, a much larger fraction is needed. Printed poll-receipts with 100, 300 and 1,000 checked appear as additional curves. Vertical lines mark the fractions of sections needed to change the margin with 200 and 50 switches per section."></picture>
 
 **In plain words:** the larger the altered share, the easier it is to see; printed poll-receipts and the integrity test detect small alterations that statistical tests do not. **Technical:** hypergeometric probability of seeing at least one altered voting machine; assumptions: random sample; in (b), software that behaves normally in the non-biometric test. It does not describe how an attack would be carried out. How to close this gap: [submit photos of poll-receipts](boletins-impressos.html), [LAI (access-to-information law) request 03](fase3.html#a28).
 
 ### G3. Size of the impact of the open items
 
-<picture><source media="(max-width: 640px)" srcset="img/g3_impacto_m.png"><img src="img/g3_impacto.png" alt="Horizontal bars, in margin votes, for each open item that has a number: solid bar is measured excess, hatched bar is worst-case ceiling, not an estimate. A fixed vertical line marks the margin of 4,430,191 votes. Two panels: linear scale, where all bars are small next to the margin, and logarithmic scale, where small items become visible. Items without a number appear only in the legend as not measurable."></picture>
+<picture><source media="(max-width: 640px)" srcset="img/en/g3_impacto_m.png"><img src="img/en/g3_impacto.png" alt="Horizontal bars, in margin votes, for each open item that has a number: solid bar is measured excess, hatched bar is worst-case ceiling, not an estimate. A fixed vertical line marks the margin of 4,430,191 votes. Two panels: linear scale, where all bars are small next to the margin, and logarithmic scale, where small items become visible. Items without a number appear only in the legend as not measurable."></picture>
 
 **In plain words:** each open item, drawn next to the margin; the largest worst-case ceiling is smaller than the margin, and several items have no number because data are missing. **Technical:** solid bar = measured excess (positive central estimate); hatched bar = worst-case ceiling (loosest placebo), in margin votes; there is no summation. How to close this gap: [LAI requests](fase3.html#a28) and [party observer list](fase3.html#a23).
 
 ### G4. How many sections would need to be altered
 
-<picture><source media="(max-width: 640px)" srcset="img/g4_secoes_m.png"><img src="img/g4_secoes.png" alt="Curve of the number of sections needed to change the margin as a function of votes switched per section, from 1 to 300, on a logarithmic scale on both axes. With 5 switches per section it would take 443,020 sections; with 50, 44,302; with 200, 11,076. The range to the right of 13 switches per section marks where an altered section would already appear as an outlier locally; to the left, it only shows up in aggregate, in printed poll-receipts or in the integrity test."></picture>
+<picture><source media="(max-width: 640px)" srcset="img/en/g4_secoes_m.png"><img src="img/en/g4_secoes.png" alt="Curve of the number of sections needed to change the margin as a function of votes switched per section, from 1 to 300, on a logarithmic scale on both axes. With 5 switches per section it would take 443,020 sections; with 50, 44,302; with 200, 11,076. The range to the right of 13 switches per section marks where an altered section would already appear as an outlier locally; to the left, it only shows up in aggregate, in printed poll-receipts or in the integrity test."></picture>
 
 **In plain words:** the fewer votes switched per section, the more sections would be needed, and the harder it is to see a single section. **Technical:** sections = ⌈2,215,096 / switches⌉; the 13-switches-per-section threshold = 3 standard deviations of the local residual (1.67 p.p.) with 256 valid votes. How to close this gap: [printed poll-receipts](boletins-impressos.html) and [comparison with other offices, A22](fase3.html#a22).
 

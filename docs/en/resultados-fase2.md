@@ -53,7 +53,7 @@ All numbers below come from the CSVs in `results/fase2/`; scripts in `scripts/`.
 | 2022 | 2 | 472.027 | 0,5090 | 1,17 | 0,74 | 7,65 | 988 | 0,914 | 83,01 |
 | 2018 | 2 | 454.447 | 0,4487 | 1,33 | 1,12 | 10,21 | 957 | 0,913 | 88,47 |
 
-![Real count curve against nulls A and B](figs/a1_curva_apuracao.png)
+![Real count curve against nulls A and B](figs/en/a1_curva_apuracao.png)
 
 **Pre-registered result.** The maximum deviation of 2026/T2 against null B is 2.65 p.p., larger than that of the placebos (1.76, 1.17, 1.33), and the curve leaves the envelope for 861 consecutive points. By the fixed criterion (kept, **with the design caveat above**), the row comes out as excess detected (shape test), with no effect on the final total.
 
@@ -103,7 +103,7 @@ All numbers below come from the CSVs in `results/fase2/`; scripts in `scripts/`.
 | PT | <0,1 | 17.29 | 8.14 | 21.64 | 0.89 |
 | PT | >=0,8 | 0.11 | 0.01 | 0.31 | 0.0 |
 
-![Mirror of losses by band](figs/a2_espelho_perdas.png)
+![Mirror of losses by band](figs/en/a2_espelho_perdas.png)
 
 **Swing shape** (residual of the T2 margin on the T1 margin, with municipality fixed effect):
 
@@ -253,7 +253,7 @@ The pre-registered 99.9% threshold is **not met** (see `pct`), and all divergenc
 | 2022 | R | 1.395 | 96 | 119 | 0,085 | 5 | 351.855 |
 | 2022 | RR_completo | 1.268 | 145 | 169 | 0,133 | 4 | 286.269 |
 
-![Votes after the nominal time by stratum](figs/a5_votos_apos_nominal.png)
+![Votes after the nominal time by stratum](figs/en/a5_votos_apos_nominal.png)
 
 **Last vote per section, after the nominal closing time:**
 
@@ -670,7 +670,7 @@ The real linear stretches are within the simulated range (real linear windows ag
 
 In 2026/T2, at 7:34pm, **7.77%** of the BUs had been received and **7.74%** had a first tally (the screenshot with 7.28% is of the same magnitude). The 70% mark was only reached after 8pm (around 8:45pm). The delay between receipt and first tally is short and stable (median under 1 minute; p95 under 1 minute in 2026/T2), that is, **there is no backlog of received and untallied BUs**. In 2022/T2, 84% of the BUs had already been received by 7pm, and in 2026/T1, 61%.
 
-![Received and tallied](figs/a14_recebido_totalizado.png)
+![Received and tallied](figs/en/a14_recebido_totalizado.png)
 
 **Official explanation of the pause:** the STF decision was published at 5:03pm, the TSE memo to the TREs went out at 5:49pm, and publication was interrupted with 0.25% of sections tallied and resumed after 7pm (press; see [Legal basis](base-legal.md)). The data are compatible: 0.38% of sections tallied before 7pm.
 

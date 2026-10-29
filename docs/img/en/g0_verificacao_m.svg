@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="287.173828pt" height="216.255875pt" viewBox="0 0 287.173828 216.255875" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>Verification coverage of the vote chain</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Verification coverage of the vote chain</dc:title>
+    <dc:description>Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). A second bar indicates that 100% of votes pass through at least one non-verifiable link.</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 216.255875 
+L 287.173828 216.255875 
+L 287.173828 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.370664 80.245122 
+L 101.848164 80.245122 
+L 101.848164 31.548374 
+L 18.370664 31.548374 
+z
+" clip-path="url(#p3658f669fa)" style="fill: #0072b2; stroke: #ffffff; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 101.848164 80.245122 
+L 206.195039 80.245122 
+L 206.195039 31.548374 
+L 101.848164 31.548374 
+z
+" clip-path="url(#p3658f669fa)" style="fill: #9a6700; stroke: #ffffff; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 206.195039 80.245122 
+L 268.803164 80.245122 
+L 268.803164 31.548374 
+L 206.195039 31.548374 
+z
+" clip-path="url(#p3658f669fa)" style="fill: #d55e00; stroke: #ffffff; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 18.370664 170.569736 
+L 268.803164 170.569736 
+L 268.803164 121.872988 
+L 18.370664 121.872988 
+z
+" clip-path="url(#p3658f669fa)" style="fill: #d55e00; opacity: 0.16; stroke: #d55e00; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(56.978398 54.002529)">4</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(49.338242 64.347608)">33%</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(150.890586 53.938545)">5</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(143.25043 64.347608)">42%</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(234.368086 53.997608)">3</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(226.72793 64.347608)">25%</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1c1c1e" x="18.370664" y="15.054314" transform="rotate(-0 18.370664 15.054314)">vote chain: 12 links</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7.5px; font-family: 'DejaVu Sans'; fill: #5a5f66" transform="translate(7.2 92.615829)">blue: verified · ochre: partial · red: not verifiable; 33% fully verified, 25%</text>
+    <text style="font-size: 7.5px; font-family: 'DejaVu Sans'; fill: #5a5f66" transform="translate(118.753711 101.61788)">not verifiable</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #1c1c1e" transform="translate(65.801602 143.269643)">100% of votes pass through at</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; fill: #1c1c1e" transform="translate(72.496055 154.976674)">least one non-verifiable link</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1c1c1e" x="18.370664" y="187.849227" transform="rotate(-0 18.370664 187.849227)">all votes</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3658f669fa">
+   <rect x="18.370664" y="7.2" width="250.4325" height="201.855875"/>
+  </clipPath>
+ </defs>
+</svg>
