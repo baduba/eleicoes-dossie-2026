@@ -528,3 +528,11 @@ O esperado do Adendo 11a (permutar os rótulos de tipo mantendo horários e cont
 **Placebos.** 2014/2º turno, 2018/2º turno, 2022/2º turno e 2026/1º turno com o mesmo estimador; placebo de simetria: as mesmas contagens para o lado do oponente.
 
 **Limites.** O esperado de E1 herda o viés de A12b em anos com terceiros relevantes (corrigido pelo placebo do mesmo ano, não pelo de 2026); local de seção única usa o município (menos preciso); E2 é fraco por desenho.
+
+### Adendo 16a: previsão errada e métrica acrescentada em A34, escritas em 29/10/2026 DEPOIS de ver a distribuição das durações de Roraima em 2026 e ANTES de comparar com 2022 ou rodar qualquer modelo
+
+**O que vi.** Só o extrator rodado nos logs de Roraima 2026 (1.519 seções): duração mediana de **9 s** no 2º turno (percentis 5, 25, 75, 95 e 99: 5, 7, 12, 20 e 34 s), 95% das durações abaixo de 20 s; no lado errado (voto confirmado até a próxima habilitação), mediana de 73 s. Nada de 2022 e nenhum resultado por seção ou por modelo.
+
+**Erro meu na previsão do Adendo 16.** Escrevi que a mediana de D1 ficaria entre 40 s e 2 min, tirando a conta dos intervalos entre habilitações (que incluem a fila). A duração do ato, no 2º turno com dois candidatos, é de poucos segundos. **A previsão não se cumpre e fica registrada como não cumprida;** ela era irrelevante para o veredito, que sempre foi relativo a 2022 e aos placebos.
+
+**Consequência para D3.** O limiar absoluto de 20 s deixa de separar nada (95% das durações já ficam abaixo). A regra de decisão **não muda**: D3 de 2026 contra o **percentil 99 de D3 de 2022** (relativo, como registrado). Acrescento, rotulada como pós-hoc e sem substituir D3, a métrica **D6** = fração de durações de 3 s ou menos (digitar o número do candidato e confirmar leva mais que isso; o percentil 1 em Roraima é de 4 s), com a mesma regra de excesso (fração de seções com D6 acima do percentil 99 de 2022/2º turno).
