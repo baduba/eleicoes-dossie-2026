@@ -82,6 +82,12 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.  
 > [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-95%20A-A20b-95)
 
+> **Por que três municípios pequenos (Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN) saem da cauda esperada da transferência do 1º para o 2º turno?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 1.151 votos de margem (0,03% da margem)** (Silva Jardim (a alegação) fica dentro da cauda; nos 3 municípios o pool é pequeno e o oponente perdeu votos quase na mesma quantidade em que o PT ganhou, com queda do comparecimento; se tudo o que o modelo não explica nos 20 mais extremos fosse manipulação, seriam 13.327 votos de margem)  
+> O que fecharia: Boletins impressos e listas de habilitação por seção desses municípios, e a variação do comparecimento por seção entre os turnos.  
+> [Página técnica](fase3.html#a31) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A31%20A-A31)
+
 > **Por que uma seção de 2022 tem um voto a menos no log do que no boletim?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
 > Teto: excesso medido: 1 votos de margem; **teto de pior caso, não estimativa: 1 votos de margem (menos de 0,01% da margem)** (uma seção de 2022: 348 comparecimentos no boletim, 347 votos no log)  

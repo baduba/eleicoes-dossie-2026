@@ -1,4 +1,4 @@
-# Fase 3: hipóteses adversariais (A20 a A28)
+# Fase 3: hipóteses adversariais (A20 a A31)
 
 > **Unidade: votos de margem** (variação da diferença Lula menos Flávio; trocar um voto muda a margem em 2; definição em [Metodologia](metodologia.md)). Margem oficial: 4.430.191. Todo teto é **teto de pior caso, não estimativa**. Os testes de forma não têm teto em votos.
 
@@ -17,6 +17,7 @@ Previsões, critérios e o que cada teste cobre foram registrados no [Adendo 8](
 | [A27](#a27) Seções fabricadas | seções sem eleitores reais | 427 seções novas com comparecimento ≥ 95%: perfil abaixo | 44.735 votos de margem (teto de pior caso, não estimativa; 1,0% da margem): todos os votos de Lula nas 427 seções, suposto inválidos | TESTADO-INCONCLUSIVO |
 | [A28](#a28) Pedidos LAI | dados que só o poder público tem | 6 pedidos prontos em `lai/`, com órgão e canal de cada um; **nenhum protocolado** | n/a | NÃO EXECUTADO |
 
+| [A31](#a31) Municípios extremos na transferência T1 → T2 (Silva Jardim) | transferência de votos entre turnos fora do que os municípios fazem | Silva Jardim: Flávio +1 e comparecimento -104 reproduzem; Lula é +984, não +964. Dentro da cauda esperada (z = 1,13, Holm 1,00); 14,0% dos municípios de 2026 têm oponente com +1 voto ou menos. Três municípios pequenos saem da cauda do modelo principal | Silva Jardim: 207 votos de margem (teto de pior caso, não estimativa; 0,005% da margem). 20 mais extremos: 1.151 além da cauda, 13.327 se tudo o que o modelo não explica fosse manipulação (0,30% da margem) | Silva Jardim: DENTRO DA CAUDA ESPERADA; 3 municípios sinalizados, TESTADO-INCONCLUSIVO |
 <a id="a20"></a>
 
 ## A20. Cadastro: eleitorado apto x população do Censo 2022
@@ -354,3 +355,97 @@ Seis pedidos prontos, em `lai/`, com texto neutro, sem dados pessoais e sem acus
 
 **Estado da verificação dos canais.** O TSE e os TREs bloqueiam acesso automatizado (403). O canal do TSE (Formulário Eletrônico da Ouvidoria, Resolução TSE 23.435/2015, alterada pela 23.583/2018) foi conferido em resultado de busca, não abrindo o formulário; para os TREs há página de SIC vista em resultado de busca para 6 UFs (SP, BA, AM, GO, RJ, AP) e as outras 21 estão como **a confirmar no protocolo**. A identificação de quem pede é exigida (Resolução CNJ 215/2015, art. 11, § 2º, segundo o TRE-SP); o projeto não tem autor nominal, então quem protocola assina o pedido. Confirme o canal, os campos e o prazo no sistema na hora de protocolar.
 
+
+<a id="a31"></a>
+
+## A31. Municípios extremos na transferência do 1º para o 2º turno (alegação Silva Jardim/RJ)
+
+**Alegação.** Em Silva Jardim/RJ, no 2º turno de 2026 contra o 1º, "Flávio +1, Lula +964, -104 eleitores" seria impossível sem manipulação. **Pergunta.** Isso reproduz nos dados? E, comparado com todos os municípios em quatro eleições, é fora do comum? **Pré-registro:** [Adendo 10, 10a e 10b](preregistro.md); o 10b (análise suplementar) foi escrito depois de ver o resultado do modelo principal e está marcado como pós-hoc.
+
+**1. A alegação reproduz em parte.** Dados do BWeb de Silva Jardim (61 seções). O ganho do oponente (**+1**) e a variação do comparecimento (**-104**: é o comparecimento do 2º turno menos o do 1º; os aptos mudam +3, não -104) reproduzem. O ganho de Lula nos dados é **+984**, não +964: diferença de 20 votos que não consegui explicar (pode ser erro de digitação na alegação ou outra fonte). Os votos de terceiros do 1º turno (897) e os brancos e nulos (630 no 1º turno, 438 no 2º) fecham a conta: o **pool** (ganho de Lula mais ganho do oponente) é 985, igual a terceiros mais brancos e nulos do 1º turno, mais a variação do comparecimento, menos os brancos e nulos do 2º.
+
+| grandeza | T1 | T2 | T2 menos T1 |
+|---|---|---|---|
+| aptos | 18.674 | 18.677 | 3 |
+| comparecimento | 14.909 | 14.805 | -104 |
+| Lula (13) | 4.450 | 5.434 | 984 |
+| Flavio Bolsonaro (22) | 8.932 | 8.933 | 1 |
+| terceiros (soma) | 897 | 0 | -897 |
+| brancos e nulos | 630 | 438 | -192 |
+
+_Terceiros do 1º turno no município (votos):_ Renan Santos (14) 209; Hertz Dias (16) 5; Edmilson Costa (21) 2; Clariana Barão (27) 8; Zema (30) 20; Wilson Grassi (35) 3; Caiado (55) 290; Cury (70) 353; Samara Martins (80) 7.
+
+
+**2. Distribuição da fração do pool que vai ao PT** (f = ganho do PT / (ganho do PT + ganho do oponente), municípios com pool de pelo menos 20 votos; f sai de [0, 1] quando um dos dois perde votos entre os turnos, o que é comum).
+
+| ano | municípios | f nacional | mediana | decil 1 | decil 9 | % fora de [0, 1] | Silva Jardim: f | percentil | municípios com f mais distante da mediana |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026 | 5.357 | 0,737 | 0,734 | 0,540 | 1,066 | 13,7% | 0,999 | 86 | 948 |
+| 2022 | 5.255 | 0,302 | 0,243 | -0,070 | 0,545 | 12,9% | 0,370 | 73 | 2.788 |
+| 2018 | 5.491 | 0,645 | 0,596 | 0,397 | 0,872 | 2,7% | 0,716 | 69 | 3.030 |
+| 2014 | 5.505 | 0,411 | 0,369 | 0,011 | 0,630 | 10,7% | 0,456 | 66 | 3.755 |
+
+Em 2026 há 5.571 municípios, um a mais que nos outros anos (5.570): o código TSE 73709, de MT, só aparece em 2026 (não existe nos dados de 2022; não conferi o nome). Ficam fora da distribuição os municípios com pool abaixo de 20 votos (214 em 2026) e, pelo Adendo 10a, os municípios com seção apurada em só um dos turnos (2018: 6; 2014: 1; 2022 e 2026: nenhum; lista em `results/fase3/A31_excluidos.csv`).
+
+**O que a tabela mostra.** Silva Jardim está no percentil 86 em 2026 e 948 municípios têm f mais distante da mediana que o dele. Mais importante: **o padrão "o oponente quase não ganha entre os turnos" é comum em 2026 e raro nos outros anos.** Dos 5.357 municípios elegíveis, 748 (14,0%) tiveram oponente com +1 voto ou menos, e 149 deles com PT ganhando 900 votos ou mais; em 2022 foram 8 (0,15%), em 2018 90 (1,6%) e em 2014 64 (1,2%) (S2, descritiva, pós-hoc). A fração nacional do pool que foi ao PT foi 0,737 em 2026, 0,302 em 2022, 0,645 em 2018 e 0,411 em 2014. A eleição de 2026 tem a forma de 2018 (PT captura a maior parte do pool), com a diferença de que em 2026 o oponente perdeu votos absolutos em mais municípios. Isto descreve a eleição, não explica por quê; a contabilidade nacional (queda de 1,82 milhão de brancos e nulos e de 2,96 milhões de abstenção, que somam mais que a captura de terceiros) está em [Fase 2, A3 e A11](resultados-fase2.md).
+
+**3. Modelo nulo.** Por ano, regressão de f nos regressores do **1º turno** (fração do comparecimento para PT, oponente, brancos e nulos, abstenção e a composição dos terceiros: em 2026 o bloco que apoiou Flávio e Renan Santos; em 2022 e 2018 o maior e o segundo maior terceiro, sem inferir apoios; em 2014 só o total) com efeito fixo de UF, ponderada pela variância (binomial do pool mais uma heterogeneidade real entre municípios, calibrada pela escala robusta do resíduo). A cauda vem de uma distribuição t de Student com graus de liberdade estimados nos **outros três anos**; correção de Holm. **A variação do comparecimento entre os turnos não entra no perfil**, porque é desfecho do 2º turno.
+
+| ano | municípios | heterogeneidade (tau²) | graus de liberdade (t) | valor crítico de z (módulo) para 5.570 comparações | municípios com Holm < 0,05 |
+|---|---|---|---|---|---|
+| 2026 | 5.357 | 0,0086 | 2,76 | 83 | 3 |
+| 2022 | 5.255 | 0,0199 | 2,73 | 86 | 0 |
+| 2018 | 5.491 | 0,0085 | 2,43 | 135 | 0 |
+| 2014 | 5.505 | 0,0366 | 2,52 | 116 | 0 |
+
+**Limite do teste, dito com todas as letras.** As caudas estimadas são muito pesadas (cerca de 2,4 a 2,8 graus de liberdade), porque f é instável quando o pool é pequeno e os fluxos brutos são grandes e de sinais opostos. O valor crítico fica em |z| de 83 a 135: **o modelo principal quase não tem poder para rejeitar municípios pequenos.** Por isso a conclusão sobre Silva Jardim não se apoia no corte de Holm, e sim em z: o dele é 1,13, comum sob qualquer referência.
+
+**Silva Jardim, resultado pré-registrado: DENTRO DA CAUDA ESPERADA.** f = 0,999; o modelo, com o perfil do 1º turno do município, prevê 0,894; o resíduo é 0,105 (z = 1,13); p bilateral 0,35; Holm 1,00 (também com 5.570 comparações: 1,00). **Ganho espalhado entre as seções:** as 3 seções com maior ganho de Lula têm 8,8% do ganho total (as 3 de maior pool têm 8,9% do pool); a regra de concentração do Adendo 10 classifica como **espalhado**. **Teto de pior caso, não estimativa:** 207 votos de margem (0,005% da margem), se tudo o que o modelo não explica em Silva Jardim fosse manipulação (fator 2); além da cauda esperada: 0. A previsão sem manipulação do Adendo 10 (dentro da cauda, ganho espalhado, explicado pelo perfil do 1º turno) **se cumpre**.
+
+_Leitura de f_hat: no 1º turno, Flávio teve 60% do comparecimento de Silva Jardim e o bloco que o apoiou no 2º turno (Zema, Caiado, Cury, Clariana) teve 4,5%. O modelo não prevê um f baixo para esse perfil: estima 0,89, porque em 2026 f é alto na maioria dos municípios (mediana 0,73). É uma leitura da distribuição, não uma explicação do comportamento dos eleitores._
+
+**4. Modelo de moedas independentes: demonstração de que é inadequado.** Cada eleitor do pool vai ao PT com probabilidade p0, independentemente. Em três variantes de p0 (0,5; razão PT/(PT+oponente) do município no 1º turno; razão nacional):
+
+| ano | pool nacional | PT observado | PT esperado (p0 = 0,5) | z das moedas | rejeita o resultado nacional? | municípios rejeitados (Holm 5%, p0 = 0,5) |
+|---|---|---|---|---|---|---|
+| 2026 | 14.095.433 | 10.339.213 | 7.047.716 | 1.753 | sim | 85% |
+| 2022 | 10.246.841 | 3.144.361 | 5.123.420 | -1.236 | sim | 82% |
+| 2018 | 23.759.956 | 15.334.145 | 11.879.978 | 1.417 | sim | 70% |
+| 2014 | 27.340.477 | 11.251.847 | 13.670.238 | -925 | sim | 78% |
+
+**Resultado.** O modelo de moedas rejeita o resultado nacional de **todas** as eleições, 2022 inclusa, em todas as variantes (|z| de 925 a 3.237), e rejeita de 70% a 93% dos municípios em todos os anos e variantes (pool positivo; municípios em que um dos candidatos perdeu votos, 14% em 2026, nem cabem no modelo). Um critério que declara "impossível" o resultado de uma eleição que ninguém contesta como impossível não distingue o normal do anormal. Isto mostra que o critério é inadequado; **não** valida nem invalida o resultado de nenhuma eleição. Pelo modelo de moedas, a chance de o oponente ter +1 voto ou menos em Silva Jardim seria entre 10^-294 e 10^-468, conforme a variante. Esse é o tipo de probabilidade que o modelo calcula para a maioria dos municípios (de 70% a 93% são rejeitados), de modo que ela não separa Silva Jardim dos demais.
+
+**5. Os 20 municípios mais extremos de 2026** (maior |z| do modelo principal, em qualquer direção).
+
+| # | município | UF | pool | dL | dF | f | f_hat | z | Holm | veredito do modelo | ganho | terceiro dominante no 1º turno |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | ITACOATIARA | AM | 55 | 1.114 | -1.059 | 20,25 | 2,46 | 188 | 0,005 | FORA DA CAUDA, SEM PRECEDENTE | espalhado | Cury |
+| 2 | SANTO ANTÔNIO DE LISBOA | PI | 48 | -350 | 398 | -7,29 | 1,00 | -87 | 0,041 | FORA DA CAUDA DO MODELO, COM PRECEDENTE | não se aplica (soma de dL ou do pool <= 0) | Renan Santos |
+| 3 | RAFAEL GODEIRO | RN | 34 | 314 | -280 | 9,24 | 1,16 | 84 | 0,045 | FORA DA CAUDA DO MODELO, COM PRECEDENTE | espalhado | Renan Santos |
+| 4 | ITAMARATI | AM | 27 | 210 | -183 | 7,78 | 2,47 | 55 | 0,148 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 5 | RUY BARBOSA | RN | 30 | 183 | -153 | 6,10 | 1,11 | 52 | 0,173 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 6 | ORIXIMINÁ | PA | 270 | 1.575 | -1.305 | 5,83 | 1,19 | 50 | 0,193 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 7 | BELO MONTE | AL | 136 | -304 | 440 | -2,24 | 1,15 | -36 | 0,471 | DENTRO DA CAUDA ESPERADA | não se aplica (soma de dL ou do pool <= 0) | Cury |
+| 8 | ACORIZAL | MT | 23 | 119 | -96 | 5,17 | 0,82 | 36 | 0,490 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 9 | PEDRO AVELINO | RN | 46 | 202 | -156 | 4,39 | 1,20 | 34 | 0,576 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 10 | LAGOA DA CONFUSÃO | TO | 57 | 257 | -200 | 4,51 | 1,45 | 32 | 0,638 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 11 | AFONSO BEZERRA | RN | 83 | 344 | -261 | 4,14 | 1,17 | 32 | 0,682 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 12 | MANGARATIBA | RJ | 367 | 1.397 | -1.030 | 3,81 | 0,93 | 31 | 0,739 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 13 | NINA RODRIGUES | MA | 74 | 294 | -220 | 3,97 | 1,34 | 28 | 0,952 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 14 | PORTEL | PA | 176 | 637 | -461 | 3,62 | 1,24 | 26 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 15 | AXIXÁ DO TOCANTINS | TO | 50 | 195 | -145 | 3,90 | 1,51 | 25 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 16 | CACHOEIRA DO PIRIÁ | PA | 62 | 223 | -161 | 3,60 | 1,24 | 25 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 17 | TENENTE ANANIAS | RN | 70 | 243 | -173 | 3,47 | 1,19 | 24 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 18 | SANTA ROSA DO TOCANTINS | TO | 30 | 115 | -85 | 3,83 | 1,52 | 24 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 19 | NOVA IORQUE | MA | 27 | 97 | -70 | 3,59 | 1,36 | 23 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 20 | AXIXÁ | MA | 54 | 185 | -131 | 3,43 | 1,31 | 22 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+
+**Leitura.** (i) **Três dos 20 saem da cauda do modelo principal** (Holm < 0,05): Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN. Itacoatiara/AM é o único sem precedente nos outros anos; os outros dois têm 1 município comparável nos outros três anos. (ii) **Todos os 20 têm pool pequeno (até 367 votos) e fluxos brutos de 5,5 a 39,5 vezes o pool**: um ganho grande de um candidato e uma perda quase igual do outro, e f vira uma razão de números pequenos. Em Itacoatiara, por exemplo, Lula +1.114, Flávio -1.059 e comparecimento -2.783, com pool de 55; f = 20,3 é artefato da divisão. Na estatística suplementar por apto (item 7), Itacoatiara fica comum. (iii) **Ganho espalhado entre seções** em 18 dos 20; nos outros 0 a soma de dL ou do pool é negativa e a regra não se aplica. Nenhum município tem ganho concentrado em poucas seções. (iv) **Terceiro dominante do 1º turno:** Cury em 15, Caiado em 3, Renan Santos em 2. Apoio declarado no 2º turno: Cury e Caiado apoiaram Flávio; Renan Santos liberou os eleitores ([fontes e conferência nome a nome em A11](resultados-fase2.md)). **O que estes 20 têm em comum:** o comparecimento caiu entre os turnos em todos (de -59 a -2.783 votos) e, em 18 deles, o PT ganhou e o oponente perdeu um número parecido de votos; o pool pequeno é a diferença entre dois fluxos grandes. O que explica isso (abstenção seletiva, troca de voto ou outra coisa) **não está nos dados agregados**; é o que boletins impressos e listas de habilitação por seção poderiam esclarecer. (v) **Comparação com 2022:** 6 dos 20 também estavam entre os 5% mais extremos de 2022 (|z| acima do percentil 95), 4 deles no sentido oposto ao de 2026; 10 não eram elegíveis em 2022 (pool menor que 20). Municípios com fluxo bruto grande e pool pequeno aparecem como extremos em eleições diferentes; isto é volatilidade desses municípios, não característica de 2026.
+
+**Teto de pior caso, não estimativa (fator 2), 20 mais extremos:** 1.151 votos de margem além da cauda esperada (0,026% da margem); 13.327 votos de margem (0,30% da margem) se **tudo** o que o modelo não explica nesses 20 municípios fosse manipulação, sem descontar a variação normal. Nenhum cenário com esses municípios aproxima a margem de 4.430.191 votos.
+
+**6. Conferência com boletins impressos.** `results/fase3/A31_silva_jardim_secoes.csv` lista as 61 seções de Silva Jardim com aptos, comparecimento, Lula, Flávio, cada terceiro, brancos e nulos no 1º e no 2º turno, mais colunas vazias para o valor impresso, no formato aceito por `scripts/04_cruza_bu_impresso.py`. Para conferir com BUs impressos, peça aos diretórios partidários locais e aos fiscais pela [página de coleta](boletins-impressos.md). **NÃO EXECUTADO:** o projeto não tem nenhum BU impresso de Silva Jardim.
+
+**7. Análise suplementar (pós-hoc, exploratória, Adendo 10b; não substitui a linha principal).** Como f é instável com pool pequeno, repetida com estatísticas bem condicionadas: o ganho de cada candidato por apto do 1º turno, com os mesmos regressores e efeito fixo de UF, resíduo padronizado dentro de decis de tamanho. Silva Jardim em 2026: z do PT = 0,01 e z do oponente = -2,13; Holm 1,00 e 1,00: **comum**, nos quatro anos (z do oponente de -2,17 a -0,29). Cauda mais leve (cerca de 6 a 8 graus de liberdade; valor crítico de |z| de 10 a 13). Em 2026, 1 município sai da cauda por essa medida: Marechal Thaumaturgo/AC (z do oponente -10,4: o oponente perdeu 1.352 votos); teto de pior caso além da cauda: 136 votos de margem (0,003% da margem). Itacoatiara/AM, o primeiro do modelo principal, tem z de -1,97 e -1,60 nesta medida: comum.
+
+**Situação.** Silva Jardim: TESTADO, DENTRO DA CAUDA ESPERADA (nos dois métodos). Três municípios pequenos saem da cauda do modelo principal por artefato da razão com pool pequeno (fluxos brutos de 15 a 40 vezes o pool); na medida suplementar um outro município (Marechal Thaumaturgo/AC) sai da cauda, com teto abaixo de 0,01% da margem: **TESTADO-INCONCLUSIVO** para esses, porque a explicação (municípios com forte queda de comparecimento entre os turnos) não pode ser conferida sem os boletins impressos e as listas de habilitação. **O que fecharia:** BUs impressos de Silva Jardim, Itacoatiara, Santo Antônio de Lisboa e Rafael Godeiro; a variação de comparecimento por seção entre os turnos nesses municípios. **O que o teste não faz:** não identifica em quem cada eleitor votou, não prova nem descarta manipulação em nenhum município; vale para a forma da distribuição entre municípios. Tabelas em `results/fase3/A31_*.csv`; código em `scripts/35_a31_transferencia_municipal.py`.

@@ -2,6 +2,12 @@
 
 Erros meus corrigidos no caminho e mudanças feitas depois de ver resultados. Datas em 2026.
 
+## Em preparação (sem versão publicada): A31, municípios extremos na transferência T1 → T2
+- **A31 (Adendo 10, 10a, 10b; escritos antes de rodar, 10b depois de ver o resultado principal).** Alegação de Silva Jardim/RJ ("Flávio +1, Lula +964, -104 eleitores"): nos dados do BWeb reproduzem Flávio +1 e comparecimento -104 (aptos +3); Lula é **+984**, não +964 (diferença de 20 votos não explicada). Silva Jardim: z = 1,13, DENTRO DA CAUDA ESPERADA, ganho espalhado entre as 61 seções, teto de pior caso 207 votos de margem (0,005% da margem). O padrão "oponente com +1 voto ou menos" ocorre em 14,0% dos municípios de 2026, contra 0,15% (2022), 1,6% (2018) e 1,2% (2014). Modelo de moedas independentes rejeita o resultado nacional de todos os anos (2022 inclusa): inadequado como referência. 20 mais extremos: 3 saem da cauda do modelo principal (Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN), todos com pool pequeno e fluxos brutos opostos; teto 1.151 votos de margem além da cauda, 13.327 (0,30%) sem descontar a variação normal. Conferência com BU impresso: NÃO EXECUTADA (nenhum BU de Silva Jardim no projeto); lista das 61 seções pronta em `results/fase3/A31_silva_jardim_secoes.csv`.
+- **Desvio declarado (Adendo 10a):** a verificação da identidade parou em 2018 (2 seções de Salvador/BA anuladas no 1º turno e apuradas no 2º). Regra nova, fixada antes de qualquer estatística: município-ano com seção de status de apuração diferente entre os turnos fica fora (2018: 6; 2014: 1; lista em `A31_excluidos.csv`).
+- **Limite do modelo principal declarado (Adendo 10b, pós-hoc):** as caudas estimadas são muito pesadas (2,4 a 2,8 graus de liberdade; valor crítico de |z| de 83 a 135), então o teste quase não rejeita municípios pequenos. A análise suplementar por apto (exploratória) mantém Silva Jardim comum e sinaliza só Marechal Thaumaturgo/AC (teto 136 votos de margem).
+- Cartão novo "A-A31" em Questões em aberto e barra no G3; 5 testes novos (`tests/test_a31.py`). Nada publicado ou enviado ao GitHub.
+
 ## v0.9.2 (pré-release, 2026-10-29): Fase 3, primeira página e gráficos
 - **v0.9.1 preparada e incorporada na v0.9.2 sem publicação separada.** A errata da v0.9 (soma agregada) e a unificação de unidades da v0.9.1 estão nesta versão; a descrição da release v0.9 aponta para a v0.9.2.
 - **Fase 3.1 (Adendo 9, 9a a 9d, escritos antes de rodar, com os desvios declarados).**

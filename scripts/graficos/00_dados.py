@@ -72,6 +72,12 @@ item("A-A20b-3b", "a", "Onde há mais eleitores de 90 anos ou mais, há mais lib
 item("A-A20b-95", "a", "Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?", INC, "sem direção identificável", np.nan, float(a95.teto_votos_de_margem_pior_caso), "fase3.html#a20b",
      "Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.",
      f"z = {a95.z:.2f}, Holm 0,054: passa no corte de 2 erros padrão e não passa no Holm; cerca de {a95.votantes_a_mais_que_pela_razao_de_2022:,.0f} votantes a mais, de {a95.votantes_95mais_2026_T1:,.0f}".replace(",", "."))
+a31t = pd.read_csv(os.path.join(F3, "A31_tetos.csv")).set_index("grupo")
+a31s1 = pd.read_csv(os.path.join(F3, "A31_suplementar_S1_tetos.csv")).iloc[0]
+item("A-A31", "a", "Por que três municípios pequenos (Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN) saem da cauda esperada da transferência do 1º para o 2º turno?", INC, "sem direção identificável", np.nan, float(a31t.loc["20 mais extremos de 2026", "teto_alem_da_cauda_votos_margem"]), "fase3.html#a31",
+     "Boletins impressos e listas de habilitação por seção desses municípios, e a variação do comparecimento por seção entre os turnos.",
+     "Silva Jardim (a alegação) fica dentro da cauda; nos 3 municípios o pool é pequeno e o oponente perdeu votos quase na mesma quantidade em que o PT ganhou, com queda do comparecimento; se tudo o que o modelo não explica nos 20 mais extremos fosse manipulação, seriam "
+     + f"{a31t.loc['20 mais extremos de 2026', 'teto_incondicional_votos_margem']:,.0f}".replace(",", ".") + " votos de margem")
 item("A-A20b-T2", "b", "O comparecimento dos eleitores de 80 anos ou mais no 2º turno de 2026 repete o do 1º turno?", NT, "n/a", np.nan, np.nan, "fase3.html#a20b",
      "Fecha quando o TSE publicar o perfil de comparecimento do 2º turno de 2026 (conferência semanal: `scripts/verifica_perfil_t2.sh`, rodada toda segunda-feira por uma ação do GitHub).",
      "o arquivo público de 2026 traz só o 1º turno; o do 2º turno de 2018 e 2022 foi publicado")
