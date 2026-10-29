@@ -44,14 +44,32 @@ def resultado(raiz):
     return "\n".join(L)
 
 
+def hero(raiz, readme=False):
+    """Medidor de verificacao da primeira pagina: cobertura da cadeia (numeros do mapa G1) e resultado agregado.
+    Metrica honesta: cobertura de verificacao, nao 'chance de fraude'."""
+    img = f"![Barra dos 12 elos da cadeia do voto: 4 verificados, 5 parciais, 3 não verificáveis; 100% dos votos atravessam ao menos um elo não verificável](docs/img/g0_verificacao.png)\n" if readme else \
+        imagem("g0_verificacao", "png",
+               "Barra empilhada dos 12 elos da cadeia do voto: 4 verificados (33%), 5 parcialmente verificados (42%) e 3 não verificáveis com dados públicos (25%). "
+               "Abaixo, uma segunda barra indica que 100% dos votos atravessam pelo menos um elo não verificável.", False)
+    L = ["## O quanto da cadeia do voto a verificação pública cobre\n",
+         img,
+         "- **33% da cadeia do voto totalmente verificada com dados públicos** (4 de 12 elos; [mapa completo, G1](#g1-mapa-da-cadeia-do-voto)).",
+         "- **25% não verificáveis** (3 de 12: voto digitado → registrado, boletim impresso conferido, transmissão).",
+         "- **100% dos votos atravessam pelo menos um elo não verificável.**",
+         "- **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b]" + f"({link('fase3.html#a20b', readme)})).\n",
+         "Não é evidência de fraude: é o mapa de onde a verificação pública termina.\n"]
+    return "\n".join(L)
+
+
 def cartao(r, readme):
+    anc = "" if readme else f'<a id="{str(r.id).lower()}"></a>\n'
     if pd.notna(r.teto_pior_caso):
         med = f"excesso medido: {n(r.excesso_medido)} votos de margem; " if pd.notna(r.excesso_medido) and r.excesso_medido > 0 else ""
         teto = f"{med}**teto de pior caso, não estimativa: {n(r.teto_pior_caso)} votos de margem ({n(r.pct_margem_teto, 2) if r.pct_margem_teto >= 0.01 else 'menos de 0,01'}% da margem)**" + (f" ({r.nota})" if isinstance(r.nota, str) and r.nota else "")
     else:
         base = "sem número ainda (teste não executado)" if r.situacao == "NÃO TESTADO" else ("sem número (teste de forma, não convertível em votos)" if r.situacao == "TESTADO-INCONCLUSIVO" else "não mensurável com dados públicos")
         teto = base + (f" ({r.nota})" if isinstance(r.nota, str) and r.nota else "")
-    return (f"> **{r.pergunta}**  \n> Situação: **{r.situacao}** · Direção: {r.direcao}  \n> Teto: {teto}  \n> O que fecharia: {r.fechar}  \n"
+    return (anc + f"> **{r.pergunta}**  \n> Situação: **{r.situacao}** · Direção: {r.direcao}  \n> Teto: {teto}  \n> O que fecharia: {r.fechar}  \n"
             f"> [Página técnica]({link(r.pagina, readme)}) · [Abrir issue]({r.issue.replace(' ', '%20')}%20{r.id})\n")
 
 
@@ -64,6 +82,20 @@ def perguntas(raiz, readme=False):
         L.append(f"### {t}\n")
         for r in D[D.bloco == b].itertuples():
             L.append(cartao(r, readme))
+    return "\n".join(L)
+
+
+def resumo_perguntas(raiz, readme=False):
+    """Resumo de 3-4 linhas da pagina 'Perguntas em aberto', com link para a pagina propria."""
+    D, _ = carrega(raiz)
+    n_t = len(D)
+    mai = D[D.pct_margem_teto.notna() & (D.pct_margem_teto != "") & ~D.nota.str.contains("inflado", na=False)].copy()
+    topo = mai.sort_values("pct_margem_teto", ascending=False).iloc[0]
+    L = ["## Perguntas em aberto (resumo)\n",
+         f"Há **{n_t} perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. "
+         f"O maior teto de pior caso, não estimativa, é {n(topo.pct_margem_teto, 2)}% da margem ({topo.id.replace('A-', '').replace('-part', '')}). "
+         "**Não são evidências de manipulação; são lacunas.**\n",
+         f"Lista completa, com situação, teto e o que fecharia cada uma: [Perguntas em aberto]({link('perguntas-em-aberto.html', readme)}).\n"]
     return "\n".join(L)
 
 

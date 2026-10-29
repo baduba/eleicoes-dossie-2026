@@ -1,0 +1,4 @@
+variante,p0,log10_prob_dF_menor_ou_igual_observado
+"p0 = 0,5",0.5,-293.5206688140801
+p0 = razao PT/(PT+OPO) do municipio no T1,0.33253624271409354,-467.6923548014133
+p0 = razao PT/(PT+OPO) nacional no T1,0.4897957886797773,-302.3235907209843

@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Portal da auditoria"
+    url: "https://baduba.github.io/eleicoes-dossie-2026/"
+    about: "Metodologia, resultados e o que já foi verificado antes de abrir uma issue."
+  - name: "Como contestar um número"
+    url: "https://baduba.github.io/eleicoes-dossie-2026/index.html"
+    about: "Para contestar qualquer número, abra uma issue com o script reproduzível e o valor esperado."
+  - name: "Página de coleta de boletins impressos"
+    url: "https://baduba.github.io/eleicoes-dossie-2026/boletins-impressos.html"
+    about: "O que fotografar, quem pode enviar e o que acontece com cada lote."

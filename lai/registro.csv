@@ -5,3 +5,4 @@ arquivo,destinatario,assunto,data_protocolo,protocolo,prazo_legal_20_dias,prazo_
 04_logs_de_totalizacao.md,TSE,Registros de recepção e totalização de 04/10 e 25/10/2026,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
 05_fiscais_credenciados.md,TRE de cada UF; TSE,Credenciamento de fiscais por seção (dados agregados),,,,,NAO PROTOCOLADO,,,,,ver canais.csv
 06_assinatura_e_chaves.md,TSE,Verificação independente da assinatura digital dos arquivos de urna,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+07_ata_e_folha_de_votacao.md,TRE de cada UF,Ata da mesa receptora e folha de votação de 50 seções (A32),,,,,NAO PROTOCOLADO,,,,,ver canais.csv

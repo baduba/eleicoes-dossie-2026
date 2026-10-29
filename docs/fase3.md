@@ -1,4 +1,4 @@
-# Fase 3: hipóteses adversariais (A20 a A28)
+# Fase 3: hipóteses adversariais (A20 a A32)
 
 > **Unidade: votos de margem** (variação da diferença Lula menos Flávio; trocar um voto muda a margem em 2; definição em [Metodologia](metodologia.md)). Margem oficial: 4.430.191. Todo teto é **teto de pior caso, não estimativa**. Os testes de forma não têm teto em votos.
 
@@ -15,8 +15,10 @@ Previsões, critérios e o que cada teste cobre foram registrados no [Adendo 8](
 | [A25](#a25) Urnas substituídas | troca de urna como ponto de intervenção | seção com troca x vizinhas: ver A6 (sem efeito); antes x depois da troca: NÃO EXECUTADO | n/a (A6: teto abaixo de 1% da margem) | parcial |
 | [A26](#a26) Integridade da publicação | arquivo publicado alterado depois | 233 arquivos: tamanho igual em 233; hash oficial igual em 224 de 224; nenhum modificado depois do primeiro download | n/a | SEM ALTERAÇÃO DETECTADA |
 | [A27](#a27) Seções fabricadas | seções sem eleitores reais | 427 seções novas com comparecimento ≥ 95%: perfil abaixo | 44.735 votos de margem (teto de pior caso, não estimativa; 1,0% da margem): todos os votos de Lula nas 427 seções, suposto inválidos | TESTADO-INCONCLUSIVO |
-| [A28](#a28) Pedidos LAI | dados que só o poder público tem | 6 pedidos prontos em `lai/`, com órgão e canal de cada um; **nenhum protocolado** | n/a | NÃO EXECUTADO |
+| [A32](#a32) Liberação manual como canal de abuso local | habilitações manuais em rajadas, no fim do dia ou em excesso para a idade | nenhuma rajada pela definição registrada (que não consegue vê-las); manuais não se concentram no fim do dia; seções com mais de 30% de manual: 3.995 em 2022 e 348 em 2026; sem associação com comparecimento ou voto | registrado 1.852.233 (inflado por deslocamento negativo, Adendo 11c); além do ruído do modelo de 2022: 55.862 votos de margem (teto de pior caso, não estimativa; 1,26% da margem) | TESTADO-INCONCLUSIVO (logs parciais) |
+| [A28](#a28) Pedidos LAI | dados que só o poder público tem | 7 pedidos prontos em `lai/` (o 07, da ata e da folha de votação, é do A32), com órgão e canal de cada um, e um modelo de requerimento para partidos; **nenhum protocolado** | n/a | NÃO EXECUTADO |
 
+| [A31](#a31) Municípios extremos na transferência T1 → T2 (Silva Jardim) | transferência de votos entre turnos fora do que os municípios fazem | Silva Jardim: Flávio +1 e comparecimento -104 reproduzem; Lula é +984, não +964. Dentro da cauda esperada (z = 1,13, Holm 1,00); 14,0% dos municípios de 2026 têm oponente com +1 voto ou menos. Três municípios pequenos saem da cauda do modelo principal | Silva Jardim: 207 votos de margem (teto de pior caso, não estimativa; 0,005% da margem). 20 mais extremos: 1.151 além da cauda, 13.327 se tudo o que o modelo não explica fosse manipulação (0,30% da margem) | Silva Jardim: DENTRO DA CAUDA ESPERADA; 3 municípios sinalizados, TESTADO-INCONCLUSIVO |
 <a id="a20"></a>
 
 ## A20. Cadastro: eleitorado apto x população do Censo 2022
@@ -341,7 +343,7 @@ Tipo de local, pelo nome e endereço (% das seções de cada grupo):
 
 ## A28. Pedidos de acesso à informação (LAI)
 
-Seis pedidos prontos, em `lai/`, com texto neutro, sem dados pessoais e sem acusação, cada um com **órgão e canal** definidos. **Nenhum foi protocolado**; o registro de protocolos, prazos (20 dias, prorrogáveis por 10), respostas e negativas fica em `lai/registro.csv`. Quem recebe cada pedido e por quê está em `lai/canais.csv`; os 27 TREs estão em `lai/canais_tres.csv`.
+Sete pedidos prontos, em `lai/` (o 07 é do A32; o 08 é um modelo de requerimento para partidos, não um pedido LAI), com texto neutro, sem dados pessoais e sem acusação, cada um com **órgão e canal** definidos. **Nenhum foi protocolado**; o registro de protocolos, prazos (20 dias, prorrogáveis por 10), respostas e negativas fica em `lai/registro.csv`. Quem recebe cada pedido e por quê está em `lai/canais.csv`; os 27 TREs estão em `lai/canais_tres.csv`.
 
 | pedido | assunto | órgão | canal |
 |---|---|---|---|
@@ -351,6 +353,426 @@ Seis pedidos prontos, em `lai/`, com texto neutro, sem dados pessoais e sem acus
 | `04_logs_de_totalizacao.md` | Registros de recepção e totalização de 04/10 e 25/10/2026 | TSE | Formulário Eletrônico da Ouvidoria do TSE (SIC) |
 | `05_fiscais_credenciados.md` | Credenciamento de fiscais por seção (dados agregados) | TRE de cada UF; TSE | Formulário Eletrônico da Ouvidoria do TSE e e-SIC de cada TRE |
 | `06_assinatura_e_chaves.md` | Verificação independente da assinatura digital dos arquivos de urna | TSE | Formulário Eletrônico da Ouvidoria do TSE (SIC) |
+| `07_ata_e_folha_de_votacao.md` | Ata da mesa receptora e folha de votação de 50 seções (A32) | TRE de cada UF | e-SIC de cada TRE |
 
 **Estado da verificação dos canais.** O TSE e os TREs bloqueiam acesso automatizado (403). O canal do TSE (Formulário Eletrônico da Ouvidoria, Resolução TSE 23.435/2015, alterada pela 23.583/2018) foi conferido em resultado de busca, não abrindo o formulário; para os TREs há página de SIC vista em resultado de busca para 6 UFs (SP, BA, AM, GO, RJ, AP) e as outras 21 estão como **a confirmar no protocolo**. A identificação de quem pede é exigida (Resolução CNJ 215/2015, art. 11, § 2º, segundo o TRE-SP); o projeto não tem autor nominal, então quem protocola assina o pedido. Confirme o canal, os campos e o prazo no sistema na hora de protocolar.
 
+
+<a id="a31"></a>
+
+## A31. Municípios extremos na transferência do 1º para o 2º turno (alegação Silva Jardim/RJ)
+
+**Alegação.** Em Silva Jardim/RJ, no 2º turno de 2026 contra o 1º, "Flávio +1, Lula +964, -104 eleitores" seria impossível sem manipulação. **Pergunta.** Isso reproduz nos dados? E, comparado com todos os municípios em quatro eleições, é fora do comum? **Pré-registro:** [Adendo 10, 10a e 10b](preregistro.md); o 10b (análise suplementar) foi escrito depois de ver o resultado do modelo principal e está marcado como pós-hoc.
+
+**1. A alegação reproduz em parte.** Dados do BWeb de Silva Jardim (61 seções). O ganho do oponente (**+1**) e a variação do comparecimento (**-104**: é o comparecimento do 2º turno menos o do 1º; os aptos mudam +3, não -104) reproduzem. O ganho de Lula nos dados é **+984**, não +964: diferença de 20 votos que não consegui explicar (pode ser erro de digitação na alegação ou outra fonte). Os votos de terceiros do 1º turno (897) e os brancos e nulos (630 no 1º turno, 438 no 2º) fecham a conta: o **pool** (ganho de Lula mais ganho do oponente) é 985, igual a terceiros mais brancos e nulos do 1º turno, mais a variação do comparecimento, menos os brancos e nulos do 2º.
+
+| grandeza | T1 | T2 | T2 menos T1 |
+|---|---|---|---|
+| aptos | 18.674 | 18.677 | 3 |
+| comparecimento | 14.909 | 14.805 | -104 |
+| Lula (13) | 4.450 | 5.434 | 984 |
+| Flavio Bolsonaro (22) | 8.932 | 8.933 | 1 |
+| terceiros (soma) | 897 | 0 | -897 |
+| brancos e nulos | 630 | 438 | -192 |
+
+_Terceiros do 1º turno no município (votos):_ Renan Santos (14) 209; Hertz Dias (16) 5; Edmilson Costa (21) 2; Clariana Barão (27) 8; Zema (30) 20; Wilson Grassi (35) 3; Caiado (55) 290; Cury (70) 353; Samara Martins (80) 7.
+
+
+**2. Distribuição da fração do pool que vai ao PT** (f = ganho do PT / (ganho do PT + ganho do oponente), municípios com pool de pelo menos 20 votos; f sai de [0, 1] quando um dos dois perde votos entre os turnos, o que é comum).
+
+| ano | municípios | f nacional | mediana | decil 1 | decil 9 | % fora de [0, 1] | Silva Jardim: f | percentil | municípios com f mais distante da mediana |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026 | 5.357 | 0,737 | 0,734 | 0,540 | 1,066 | 13,7% | 0,999 | 86 | 948 |
+| 2022 | 5.255 | 0,302 | 0,243 | -0,070 | 0,545 | 12,9% | 0,370 | 73 | 2.788 |
+| 2018 | 5.491 | 0,645 | 0,596 | 0,397 | 0,872 | 2,7% | 0,716 | 69 | 3.030 |
+| 2014 | 5.505 | 0,411 | 0,369 | 0,011 | 0,630 | 10,7% | 0,456 | 66 | 3.755 |
+
+Em 2026 há 5.571 municípios, um a mais que nos outros anos (5.570): o código TSE 73709, de MT, só aparece em 2026 (não existe nos dados de 2022; não conferi o nome). Ficam fora da distribuição os municípios com pool abaixo de 20 votos (214 em 2026) e, pelo Adendo 10a, os municípios com seção apurada em só um dos turnos (2018: 6; 2014: 1; 2022 e 2026: nenhum; lista em `results/fase3/A31_excluidos.csv`).
+
+**O que a tabela mostra.** Silva Jardim está no percentil 86 em 2026 e 948 municípios têm f mais distante da mediana que o dele. Mais importante: **o padrão "o oponente quase não ganha entre os turnos" é comum em 2026 e raro nos outros anos.** Dos 5.357 municípios elegíveis, 748 (14,0%) tiveram oponente com +1 voto ou menos, e 149 deles com PT ganhando 900 votos ou mais; em 2022 foram 8 (0,15%), em 2018 90 (1,6%) e em 2014 64 (1,2%) (S2, descritiva, pós-hoc). A fração nacional do pool que foi ao PT foi 0,737 em 2026, 0,302 em 2022, 0,645 em 2018 e 0,411 em 2014. A eleição de 2026 tem a forma de 2018 (PT captura a maior parte do pool), com a diferença de que em 2026 o oponente perdeu votos absolutos em mais municípios. Isto descreve a eleição, não explica por quê; a contabilidade nacional (queda de 1,82 milhão de brancos e nulos e de 2,96 milhões de abstenção, que somam mais que a captura de terceiros) está em [Fase 2, A3 e A11](resultados-fase2.md).
+
+**3. Modelo nulo.** Por ano, regressão de f nos regressores do **1º turno** (fração do comparecimento para PT, oponente, brancos e nulos, abstenção e a composição dos terceiros: em 2026 o bloco que apoiou Flávio e Renan Santos; em 2022 e 2018 o maior e o segundo maior terceiro, sem inferir apoios; em 2014 só o total) com efeito fixo de UF, ponderada pela variância (binomial do pool mais uma heterogeneidade real entre municípios, calibrada pela escala robusta do resíduo). A cauda vem de uma distribuição t de Student com graus de liberdade estimados nos **outros três anos**; correção de Holm. **A variação do comparecimento entre os turnos não entra no perfil**, porque é desfecho do 2º turno.
+
+| ano | municípios | heterogeneidade (tau²) | graus de liberdade (t) | valor crítico de z (módulo) para 5.570 comparações | municípios com Holm < 0,05 |
+|---|---|---|---|---|---|
+| 2026 | 5.357 | 0,0086 | 2,76 | 83 | 3 |
+| 2022 | 5.255 | 0,0199 | 2,73 | 86 | 0 |
+| 2018 | 5.491 | 0,0085 | 2,43 | 135 | 0 |
+| 2014 | 5.505 | 0,0366 | 2,52 | 116 | 0 |
+
+**Limite do teste, dito com todas as letras.** As caudas estimadas são muito pesadas (cerca de 2,4 a 2,8 graus de liberdade), porque f é instável quando o pool é pequeno e os fluxos brutos são grandes e de sinais opostos. O valor crítico fica em |z| de 83 a 135: **o modelo principal quase não tem poder para rejeitar municípios pequenos.** Por isso a conclusão sobre Silva Jardim não se apoia no corte de Holm, e sim em z: o dele é 1,13, comum sob qualquer referência.
+
+**Silva Jardim, resultado pré-registrado: DENTRO DA CAUDA ESPERADA.** f = 0,999; o modelo, com o perfil do 1º turno do município, prevê 0,894; o resíduo é 0,105 (z = 1,13); p bilateral 0,35; Holm 1,00 (também com 5.570 comparações: 1,00). **Ganho espalhado entre as seções:** as 3 seções com maior ganho de Lula têm 8,8% do ganho total (as 3 de maior pool têm 8,9% do pool); a regra de concentração do Adendo 10 classifica como **espalhado**. **Teto de pior caso, não estimativa:** 207 votos de margem (0,005% da margem), se tudo o que o modelo não explica em Silva Jardim fosse manipulação (fator 2); além da cauda esperada: 0. A previsão sem manipulação do Adendo 10 (dentro da cauda, ganho espalhado, explicado pelo perfil do 1º turno) **se cumpre**.
+
+_Leitura de f_hat: no 1º turno, Flávio teve 60% do comparecimento de Silva Jardim e o bloco que o apoiou no 2º turno (Zema, Caiado, Cury, Clariana) teve 4,5%. O modelo não prevê um f baixo para esse perfil: estima 0,89, porque em 2026 f é alto na maioria dos municípios (mediana 0,73). É uma leitura da distribuição, não uma explicação do comportamento dos eleitores._
+
+**4. Modelo de moedas independentes: demonstração de que é inadequado.** Cada eleitor do pool vai ao PT com probabilidade p0, independentemente. Em três variantes de p0 (0,5; razão PT/(PT+oponente) do município no 1º turno; razão nacional):
+
+| ano | pool nacional | PT observado | PT esperado (p0 = 0,5) | z das moedas | rejeita o resultado nacional? | municípios rejeitados (Holm 5%, p0 = 0,5) |
+|---|---|---|---|---|---|---|
+| 2026 | 14.095.433 | 10.339.213 | 7.047.716 | 1.753 | sim | 85% |
+| 2022 | 10.246.841 | 3.144.361 | 5.123.420 | -1.236 | sim | 82% |
+| 2018 | 23.759.956 | 15.334.145 | 11.879.978 | 1.417 | sim | 70% |
+| 2014 | 27.340.477 | 11.251.847 | 13.670.238 | -925 | sim | 78% |
+
+**Resultado.** O modelo de moedas rejeita o resultado nacional de **todas** as eleições, 2022 inclusa, em todas as variantes (|z| de 925 a 3.237), e rejeita de 70% a 93% dos municípios em todos os anos e variantes (pool positivo; municípios em que um dos candidatos perdeu votos, 14% em 2026, nem cabem no modelo). Um critério que declara "impossível" o resultado de uma eleição que ninguém contesta como impossível não distingue o normal do anormal. Isto mostra que o critério é inadequado; **não** valida nem invalida o resultado de nenhuma eleição. Pelo modelo de moedas, a chance de o oponente ter +1 voto ou menos em Silva Jardim seria entre 10^-294 e 10^-468, conforme a variante. Esse é o tipo de probabilidade que o modelo calcula para a maioria dos municípios (de 70% a 93% são rejeitados), de modo que ela não separa Silva Jardim dos demais.
+
+**5. Os 20 municípios mais extremos de 2026** (maior |z| do modelo principal, em qualquer direção).
+
+| # | município | UF | pool | dL | dF | f | f_hat | z | Holm | veredito do modelo | ganho | terceiro dominante no 1º turno |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | ITACOATIARA | AM | 55 | 1.114 | -1.059 | 20,25 | 2,46 | 188 | 0,005 | FORA DA CAUDA, SEM PRECEDENTE | espalhado | Cury |
+| 2 | SANTO ANTÔNIO DE LISBOA | PI | 48 | -350 | 398 | -7,29 | 1,00 | -87 | 0,041 | FORA DA CAUDA DO MODELO, COM PRECEDENTE | não se aplica (soma de dL ou do pool <= 0) | Renan Santos |
+| 3 | RAFAEL GODEIRO | RN | 34 | 314 | -280 | 9,24 | 1,16 | 84 | 0,045 | FORA DA CAUDA DO MODELO, COM PRECEDENTE | espalhado | Renan Santos |
+| 4 | ITAMARATI | AM | 27 | 210 | -183 | 7,78 | 2,47 | 55 | 0,148 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 5 | RUY BARBOSA | RN | 30 | 183 | -153 | 6,10 | 1,11 | 52 | 0,173 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 6 | ORIXIMINÁ | PA | 270 | 1.575 | -1.305 | 5,83 | 1,19 | 50 | 0,193 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 7 | BELO MONTE | AL | 136 | -304 | 440 | -2,24 | 1,15 | -36 | 0,471 | DENTRO DA CAUDA ESPERADA | não se aplica (soma de dL ou do pool <= 0) | Cury |
+| 8 | ACORIZAL | MT | 23 | 119 | -96 | 5,17 | 0,82 | 36 | 0,490 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 9 | PEDRO AVELINO | RN | 46 | 202 | -156 | 4,39 | 1,20 | 34 | 0,576 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 10 | LAGOA DA CONFUSÃO | TO | 57 | 257 | -200 | 4,51 | 1,45 | 32 | 0,638 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 11 | AFONSO BEZERRA | RN | 83 | 344 | -261 | 4,14 | 1,17 | 32 | 0,682 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 12 | MANGARATIBA | RJ | 367 | 1.397 | -1.030 | 3,81 | 0,93 | 31 | 0,739 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 13 | NINA RODRIGUES | MA | 74 | 294 | -220 | 3,97 | 1,34 | 28 | 0,952 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 14 | PORTEL | PA | 176 | 637 | -461 | 3,62 | 1,24 | 26 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 15 | AXIXÁ DO TOCANTINS | TO | 50 | 195 | -145 | 3,90 | 1,51 | 25 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 16 | CACHOEIRA DO PIRIÁ | PA | 62 | 223 | -161 | 3,60 | 1,24 | 25 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 17 | TENENTE ANANIAS | RN | 70 | 243 | -173 | 3,47 | 1,19 | 24 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+| 18 | SANTA ROSA DO TOCANTINS | TO | 30 | 115 | -85 | 3,83 | 1,52 | 24 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 19 | NOVA IORQUE | MA | 27 | 97 | -70 | 3,59 | 1,36 | 23 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Caiado |
+| 20 | AXIXÁ | MA | 54 | 185 | -131 | 3,43 | 1,31 | 22 | 1,000 | DENTRO DA CAUDA ESPERADA | espalhado | Cury |
+
+**Leitura.** (i) **Três dos 20 saem da cauda do modelo principal** (Holm < 0,05): Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN. Itacoatiara/AM é o único sem precedente nos outros anos; os outros dois têm 1 município comparável nos outros três anos. (ii) **Todos os 20 têm pool pequeno (até 367 votos) e fluxos brutos de 5,5 a 39,5 vezes o pool**: um ganho grande de um candidato e uma perda quase igual do outro, e f vira uma razão de números pequenos. Em Itacoatiara, por exemplo, Lula +1.114, Flávio -1.059 e comparecimento -2.783, com pool de 55; f = 20,3 é artefato da divisão. Na estatística suplementar por apto (item 7), Itacoatiara fica comum. (iii) **Ganho espalhado entre seções** em 18 dos 20; nos outros 0 a soma de dL ou do pool é negativa e a regra não se aplica. Nenhum município tem ganho concentrado em poucas seções. (iv) **Terceiro dominante do 1º turno:** Cury em 15, Caiado em 3, Renan Santos em 2. Apoio declarado no 2º turno: Cury e Caiado apoiaram Flávio; Renan Santos liberou os eleitores ([fontes e conferência nome a nome em A11](resultados-fase2.md)). **O que estes 20 têm em comum:** o comparecimento caiu entre os turnos em todos (de -59 a -2.783 votos) e, em 18 deles, o PT ganhou e o oponente perdeu um número parecido de votos; o pool pequeno é a diferença entre dois fluxos grandes. O que explica isso (abstenção seletiva, troca de voto ou outra coisa) **não está nos dados agregados**; é o que boletins impressos e listas de habilitação por seção poderiam esclarecer. (v) **Comparação com 2022:** 6 dos 20 também estavam entre os 5% mais extremos de 2022 (|z| acima do percentil 95), 4 deles no sentido oposto ao de 2026; 10 não eram elegíveis em 2022 (pool menor que 20). Municípios com fluxo bruto grande e pool pequeno aparecem como extremos em eleições diferentes; isto é volatilidade desses municípios, não característica de 2026.
+
+**Teto de pior caso, não estimativa (fator 2), 20 mais extremos:** 1.151 votos de margem além da cauda esperada (0,026% da margem); 13.327 votos de margem (0,30% da margem) se **tudo** o que o modelo não explica nesses 20 municípios fosse manipulação, sem descontar a variação normal. Nenhum cenário com esses municípios aproxima a margem de 4.430.191 votos.
+
+**6. Conferência com boletins impressos.** `results/fase3/A31_silva_jardim_secoes.csv` lista as 61 seções de Silva Jardim com aptos, comparecimento, Lula, Flávio, cada terceiro, brancos e nulos no 1º e no 2º turno, mais colunas vazias para o valor impresso, no formato aceito por `scripts/04_cruza_bu_impresso.py`. Para conferir com BUs impressos, peça aos diretórios partidários locais e aos fiscais pela [página de coleta](boletins-impressos.md). **NÃO EXECUTADO:** o projeto não tem nenhum BU impresso de Silva Jardim.
+
+**7. Análise suplementar (pós-hoc, exploratória, Adendo 10b; não substitui a linha principal).** Como f é instável com pool pequeno, repetida com estatísticas bem condicionadas: o ganho de cada candidato por apto do 1º turno, com os mesmos regressores e efeito fixo de UF, resíduo padronizado dentro de decis de tamanho. Silva Jardim em 2026: z do PT = 0,01 e z do oponente = -2,13; Holm 1,00 e 1,00: **comum**, nos quatro anos (z do oponente de -2,17 a -0,29). Cauda mais leve (cerca de 6 a 8 graus de liberdade; valor crítico de |z| de 10 a 13). Em 2026, 1 município sai da cauda por essa medida: Marechal Thaumaturgo/AC (z do oponente -10,4: o oponente perdeu 1.352 votos); teto de pior caso além da cauda: 136 votos de margem (0,003% da margem). Itacoatiara/AM, o primeiro do modelo principal, tem z de -1,97 e -1,60 nesta medida: comum.
+
+**Situação.** Silva Jardim: TESTADO, DENTRO DA CAUDA ESPERADA (nos dois métodos). Três municípios pequenos saem da cauda do modelo principal por artefato da razão com pool pequeno (fluxos brutos de 15 a 40 vezes o pool); na medida suplementar um outro município (Marechal Thaumaturgo/AC) sai da cauda, com teto abaixo de 0,01% da margem: **TESTADO-INCONCLUSIVO** para esses, porque a explicação (municípios com forte queda de comparecimento entre os turnos) não pode ser conferida sem os boletins impressos e as listas de habilitação. **O que fecharia:** BUs impressos de Silva Jardim, Itacoatiara, Santo Antônio de Lisboa e Rafael Godeiro; a variação de comparecimento por seção entre os turnos nesses municípios. **O que o teste não faz:** não identifica em quem cada eleitor votou, não prova nem descarta manipulação em nenhum município; vale para a forma da distribuição entre municípios. Tabelas em `results/fase3/A31_*.csv`; código em `scripts/35_a31_transferencia_municipal.py`.
+
+<a id="a12b"></a>
+
+## A12b. A alegação "106 urnas com 100% para Lula e 0% de brancos, nulos e Flávio"
+
+**Pré-registro:** [Adendo 12](preregistro.md), escrito antes de calcular as probabilidades. **Alegação.** A imagem afirma que 106 urnas deram 100% a Lula e 0% de brancos, nulos e Flávio.
+
+**1. Contagem.** Das **106** seções com zero voto para Flávio em 2026/T2 (a contagem de A12; nenhuma tem comparecimento zero), **29** (27%) têm também zero brancos e zero nulos. As outras 77 têm brancos ou nulos. No conjunto das 106: 24 brancos e 338 nulos, 2,4% do comparecimento de 15.222 votantes. **"0% de brancos e nulos" não vale para o conjunto das 106**, só para 29. São seções pequenas (comparecimento mediano 128; aptos medianos 161); as 29 com tripla zero são ainda menores (mediana 56 votantes, contra 139).
+
+**2. Onde estão.** Por tipo de local (classificação de A27 pelo nome do local) e por UF:
+
+| tipo de local | seções | com zero brancos e nulos | comparecimento mediano |
+|---|---|---|---|
+| escola_outro | 55 | 11 | 103,0 |
+| indigena | 41 | 15 | 145,0 |
+| prisional | 2 | 1 | 21,5 |
+| quilombola | 1 | 1 | 54,0 |
+| rural_comunidade | 7 | 1 | 68,0 |
+
+| UF | seções | com zero brancos e nulos | votos de Lula |
+|---|---|---|---|
+| AC | 3 | 0 | 386 |
+| AM | 30 | 1 | 6.477 |
+| BA | 4 | 1 | 215 |
+| CE | 2 | 1 | 86 |
+| ES | 1 | 1 | 41 |
+| MA | 20 | 4 | 2.068 |
+| MG | 2 | 0 | 116 |
+| MS | 1 | 1 | 56 |
+| MT | 5 | 3 | 813 |
+| PA | 16 | 10 | 1.733 |
+| PB | 1 | 1 | 10 |
+| PE | 1 | 0 | 227 |
+| PI | 1 | 1 | 16 |
+| PR | 1 | 0 | 314 |
+| RO | 1 | 0 | 104 |
+| RR | 8 | 4 | 1.207 |
+| RS | 2 | 1 | 104 |
+| TO | 7 | 0 | 887 |
+
+As 106 estão em 18 UFs, com concentração em AM (30), MA (20) e PA (16); 41 são em locais indígenas. Para cada uma: UF, município, tipo de local, aptos, comparecimento, votos de Lula, brancos, nulos, resultado no 1º turno de 2026 e na mesma seção em 2022: `results/fase3/A12b_106_secoes.csv`.
+
+**3. Esperado.** Para cada seção, a probabilidade de zero brancos e zero nulos é (1 - r)^n, com n o comparecimento da própria seção e r a taxa de brancos e nulos das **outras seções do mesmo local** (do município, se o local tem só uma seção ou poucos votantes). O número esperado é a soma; o p exato vem da distribuição Poisson-binomial. Série, com as seções de zero oponente de cada eleição (definição "todas as apuradas" de A12):
+
+| ano | turno | seções com zero oponente | tripla zero observada | esperada (taxa do local) | p (observado ou mais) | esperada (taxa do município) | observado / esperado |
+|---|---|---|---|---|---|---|---|
+| 2014 | 1 | 709 | 23 | 19,9 | 0,219 | 19,7 | 1,15 |
+| 2014 | 2 | 194 | 28 | 22,6 | 0,084 | 22,8 | 1,24 |
+| 2018 | 1 | 674 | 61 | 27,2 | < 0,001 | 16,9 | 2,24 |
+| 2018 | 2 | 328 | 42 | 19,2 | < 0,001 | 16,0 | 2,19 |
+| 2022 | 1 | 161 | 39 | 23,2 | < 0,001 | 16,9 | 1,68 |
+| 2022 | 2 | 143 | 29 | 20,8 | 0,018 | 18,9 | 1,39 |
+| 2026 | 1 | 81 | 28 | 17,0 | < 0,001 | 10,1 | 1,65 |
+| 2026 | 2 | 106 | 29 | 20,4 | 0,009 | 17,0 | 1,42 |
+
+**Leitura.** A previsão do Adendo 12 (observado próximo do esperado) **não se cumpre ao pé da letra**: em 2026/T2 há 29 seções com tripla zero contra 20,4 esperadas (p = 0,009; com a taxa do município, p < 0,001). **Mas o excesso sobre o esperado existe em todas as eleições e tem razão parecida em 2022 (T2 1,39) e maior em 2018 (T2 2,19) do que em 2026 (1,42)**, inclusive nos 1º turnos. Uma explicação possível, **não testada aqui**: seções com zero voto para o oponente são locais pequenos e unânimes, onde brancos e nulos podem ser menos frequentes do que nas vizinhas; se for isso, é limitação do esperado, não característica de 2026. O que a série mostra é só que o excesso não é específico de 2026.
+
+**4. Unânimes e a diferença entre as afirmações.**
+
+| ano | turno | conjunto (seções com 30 votos válidos ou mais) | seções | com zero brancos e nulos | % com zero brancos e nulos | mediana de brancos e nulos (% do comparecimento) |
+|---|---|---|---|---|---|---|
+| 2026 | 2 | 100% dos válidos para o PT | 103 | 26 | 25,2 | 1,52 |
+| 2026 | 2 | 100% dos válidos para o oponente | 4 | 1 | 25,0 | 1,87 |
+| 2022 | 2 | 100% dos válidos para o PT | 130 | 23 | 17,7 | 1,88 |
+| 2022 | 2 | 100% dos válidos para o oponente | 2 | 0 | 0,0 | 3,08 |
+
+O relatório original dizia "100% dos votos válidos" (seções unânimes com 30 votos válidos ou mais, [página do relatório](relatorio-original.md)): 103 seções do PT em 2026/T2. **"100% dos válidos" admite brancos e nulos acima de zero; "0% de brancos e nulos" é uma afirmação mais forte.** E 106 (zero voto para Flávio, qualquer tamanho) não é o mesmo conjunto que 103 (unânimes com 30 válidos ou mais). Entre as 103, 26 têm zero brancos e nulos.
+
+**5. Teto, em votos de margem (teto de pior caso, não estimativa).** Votos de Lula nas 106 seções: **14.860**. (i) Se todos fossem inválidos (como em A27, fator 1): **14.860 votos de margem (0,34% da margem)**. (ii) Se esses votos fossem trocados, pelo que as seções vizinhas dariam ao oponente (2.700 votos esperados; fator 2): **5.401 votos de margem (0,12% da margem)**. Nenhum cenário com essas seções se aproxima da margem de 4.430.191 votos.
+
+**Situação.** TESTADO: a alegação "0% de brancos e nulos" não reproduz para o conjunto (só para parte); o excesso de tripla zero sobre o esperado é geral e não específico de 2026. **O que o teste não faz:** não mostra por que seções pequenas e unânimes têm menos brancos e nulos (sigilo do voto, perfil dos locais, ou outra coisa); só mostra que isso ocorre em todas as eleições. Código: `scripts/36_a12b_zero_brancos_nulos.py`; tabelas: `results/fase3/A12b_*.csv`.
+
+<a id="a32"></a>
+
+## A32. Liberação manual como canal de abuso local
+
+**Pré-registro:** [Adendo 11, 11a, 11b, 11c e 11d](preregistro.md). O 11a e o 11b foram escritos antes de contar qualquer rajada; o **11c e o 11d foram escritos depois de ver resultados** (o do item 3 e o das rajadas registradas) e estão marcados como pós-hoc onde aparecem.
+
+**Cobertura (declarada).** Logs de urna lidos: **53.242 seções-dia** (12.554 seções com log de 2022 e 14.067 de 2026, cada log com os dois dias), a amostra de seções de A4/A5/A21 mais **todas** as seções de Roraima; o log do 2º turno contém os eventos do 1º. **NÃO EXECUTADO:** os logs de todas as seções dos dois anos (cerca de 1 milhão de arquivos, em zips públicos de dezenas de GB por UF); ano de nascimento: **NÃO EXECUTÁVEL** (o log não registra data de nascimento e o projeto não extrai identificadores de eleitores ou mesários). Seção-dia só entra nas medidas se o log fecha com o comparecimento do BU (a até 5%) e tem 100 habilitações ou mais (51.829 de 53.242). Validação do extrator: a fração manual do log tem correlação de 0,994 com a taxa manual do BWeb em Roraima.
+
+### 1. A21 completo: sequência das habilitações, rajadas e última hora
+
+**Quanto tempo leva cada tipo de habilitação** (intervalo, em segundos, que **precede** cada habilitação; agregado nacional da amostra, sem identificar seção):
+
+| ano | turno | tipo de habilitação | n | p1 | p5 | p25 | mediana | p75 | p95 |
+|---|---|---|---|---|---|---|---|---|---|
+| 2022 | 1º turno | manual | 222.269 | 93 | 104 | 128 | 153 | 192 | 326 |
+| 2022 | 1º turno | biométrica | 2.612.759 | 51 | 59 | 74 | 91 | 119 | 223 |
+| 2022 | 2º turno | manual | 220.651 | 67 | 77 | 97 | 121 | 169 | 390 |
+| 2022 | 2º turno | biométrica | 2.695.045 | 31 | 36 | 48 | 65 | 108 | 328 |
+| 2026 | 1º turno | manual | 226.947 | 97 | 108 | 131 | 156 | 197 | 329 |
+| 2026 | 1º turno | biométrica | 3.220.613 | 54 | 62 | 78 | 95 | 125 | 247 |
+| 2026 | 2º turno | manual | 242.710 | 66 | 76 | 97 | 123 | 179 | 410 |
+| 2026 | 2º turno | biométrica | 3.325.892 | 29 | 34 | 46 | 63 | 116 | 358 |
+
+**Rajadas pela definição registrada (Adendo 11).** k ou mais liberações manuais consecutivas, com todos os intervalos abaixo do percentil 5 dos intervalos da própria seção-dia (k = 3 e 5).
+
+| ano | turno | seções-dia | % manual | rajadas k=3 | % seções com rajada k=3 | % esperado k=3 (permutação) | rajadas k=5 | % esperado k=5 (permutação) |
+|---|---|---|---|---|---|---|---|---|
+| 2022 | 1 | 12.022 | 6,3 | 0 | 0,0 | 0,11 | 0 | 0,00 |
+| 2022 | 2 | 12.375 | 6,1 | 0 | 0,0 | 0,09 | 0 | 0,00 |
+| 2026 | 1 | 13.644 | 6,2 | 0 | 0,0 | 0,05 | 0 | 0,00 |
+| 2026 | 2 | 13.788 | 6,4 | 0 | 0,0 | 0,06 | 0 | 0,00 |
+
+**Resultado: nenhuma rajada, em nenhum ano, dia ou k.** **Mas isso não é um achado de ausência de abuso: o desenho registrado não consegue ver rajadas por construção** (Adendo 11d). Uma liberação manual leva uma mediana de 121 a 156 s (o menor intervalo que precede uma manual, no percentil 1, é de 66 s), contra 63 a 95 s da biométrica; o percentil 5 dos intervalos de todas as habilitações da seção fica abaixo do tempo mínimo de uma manual. A permutação, que ignora esse limite físico, esperaria de 7 a 13 seções-dia com rajada k = 3 por ano e dia contra 0 observadas; essa diferença mede o limite físico, não o acaso nem o abuso. Por isso os modelos de associação das rajadas com comparecimento e voto **não são estimáveis** (sem variação): **NÃO EXECUTÁVEL**, linha oficial. A previsão "sem abuso" (mesma frequência entre anos, sem associação) não pode ser contrariada nem confirmada por essa medida.
+
+**Fração das liberações manuais na última hora** (60 minutos antes do fechamento nominal), contra a fração de **todas** as habilitações na última hora:
+
+| ano | turno | manuais na última hora | todas as habilitações na última hora | diferença (manual menos todas) | erro padrão |
+|---|---|---|---|---|---|
+| 2022 | 1 | 10,3% | 12,8% | -2,5 p.p. | 0,1 p.p. |
+| 2022 | 2 | 4,8% | 5,7% | -0,9 p.p. | 0,1 p.p. |
+| 2026 | 1 | 9,7% | 11,7% | -2,0 p.p. | 0,1 p.p. |
+| 2026 | 2 | 4,4% | 5,2% | -0,9 p.p. | 0,1 p.p. |
+
+As liberações manuais **não se concentram no fim do dia**: a fração delas na última hora é menor que a das habilitações em geral, nos dois anos e nos dois turnos. Isto contraria a previsão "com abuso" (concentração no fim do dia).
+
+**Medida suplementar pós-hoc (Adendo 11d): agrupamento de liberações manuais**, k ou mais manuais consecutivas na ordem de chegada, sem condição de tempo, contra o esperado exato por permutação dos rótulos (a probabilidade de pelo menos um agrupamento usa a aproximação de Poisson, declarada).
+
+| ano | turno | % seções com agrupamento k=3 | % esperado k=3 | observado/esperado k=3 | % seções com agrupamento k=5 | % esperado k=5 | observado/esperado k=5 |
+|---|---|---|---|---|---|---|---|
+| 2022 | 1 | 15,13 | 12,22 | 1,20 | 1,42 | 0,79 | 1,66 |
+| 2022 | 2 | 13,33 | 11,45 | 1,14 | 1,00 | 0,72 | 1,27 |
+| 2026 | 1 | 10,00 | 8,23 | 1,19 | 0,25 | 0,14 | 1,35 |
+| 2026 | 2 | 10,72 | 9,11 | 1,14 | 0,25 | 0,16 | 1,23 |
+
+**Frequência de 2026 contra 2022, nas mesmas seções** (efeito fixo de seção, erro padrão agrupado por município; diferença em pontos de proporção de seções com agrupamento):
+
+| turno | k | seções nos dois anos | 2026 menos 2022 (p.p.) | erro padrão | z | p |
+|---|---|---|---|---|---|---|
+| 1º turno | 3 | 11.762 | -5,19 | 3,71 | -1,40 | 0,163 |
+| 1º turno | 5 | 11.762 | -1,16 | 0,38 | -3,01 | 0,003 |
+| 2º turno | 3 | 12.240 | -2,60 | 3,61 | -0,72 | 0,472 |
+| 2º turno | 5 | 12.240 | -0,76 | 0,29 | -2,65 | 0,008 |
+
+Os agrupamentos são **menos** frequentes em 2026 do que em 2022 (diferença de z de -3,0 e -2,65 para k = 5, ainda significativa com Holm sobre as quatro linhas; não significativa para k = 3), e a razão observado/esperado é parecida nos dois anos (de 1,1 a 1,7): as manuais chegam um pouco mais juntas do que na ordem aleatória, nos dois anos. A previsão "com abuso" (mais em 2026 do que em 2022) **não se cumpre**.
+
+**Associação do agrupamento com comparecimento e voto** (2º turno, efeito fixo de local, controle do 1º turno; placebo: 2022). **Principal (k = 5, amostra aleatória R mais Roraima): NÃO EXECUTÁVEL**, porque quase não há agrupamento de 5 nessa amostra (variação insuficiente). Sensibilidade, k = 3:
+
+| amostra | desfecho | coeficiente 2026 | erro padrão 2026 | coeficiente 2022 (placebo) | erro padrão 2022 | seções |
+|---|---|---|---|---|---|---|
+| principal: R + Roraima completa | comparecimento | 0,0031 | 0,0040 | -0,0006 | 0,0036 | 1.467 |
+| principal: R + Roraima completa | participação de Lula | 0,0002 | 0,0031 | -0,0010 | 0,0041 | 1.467 |
+| sensibilidade: todos os estratos (seleção no desfecho) | comparecimento | 0,0025 | 0,0006 | 0,0027 | 0,0006 | 11.318 |
+| sensibilidade: todos os estratos (seleção no desfecho) | participação de Lula | -0,0003 | 0,0006 | 0,0006 | 0,0007 | 11.318 |
+
+Nenhum coeficiente se distingue de zero nem do placebo de 2022 (um coeficiente de 0,003 é 0,3 ponto percentual). Sem família principal, **não há teto em votos de margem nem veredito de Holm para o item 1**. **M3, descritiva** (variação 2022 → 2026 do comparecimento do 2º turno contra o agrupamento de 2026, efeito fixo de local):
+
+| amostra | k | coeficiente | erro padrão | p | seções |
+|---|---|---|---|---|---|
+| principal: R + Roraima completa | 3 | 0,0004 | 0,0054 | 0,946 | 1.144 |
+| todos os estratos (seleção no desfecho) | 3 | -0,0012 | 0,0010 | 0,234 | 10.217 |
+| todos os estratos (seleção no desfecho) | 5 | -0,0116 | 0,0057 | 0,041 | 10.217 |
+
+A única linha com p < 0,05 (k = 5, todos os estratos, seleção no desfecho, poucos agrupamentos) tem coeficiente **negativo** (-1,2 p.p. de comparecimento), o oposto do que a hipótese de abuso preveria, e sem correção para comparações múltiplas.
+
+### 2. Seções com liberação manual extrema (BWeb, todas as seções)
+
+| ano | turno | corte | seções válidas | extremas | % das seções | votantes nelas | comparecimento mediano | idade média do eleitorado (mediana), extremas | idem, todas as seções | UFs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2022 | 1 | > 30% | 470.914 | 6.056 | 1,286 | 1.268.638 | 217 | 47,5 | 44,4 | 26 |
+| 2022 | 1 | > 50% | 470.914 | 595 | 0,126 | 134.653 | 239 | 45,1 | 44,4 | 24 |
+| 2022 | 2 | > 30% | 470.896 | 3.995 | 0,848 | 844.612 | 216 | 47,6 | 44,4 | 25 |
+| 2022 | 2 | > 50% | 470.896 | 317 | 0,067 | 71.512 | 241 | 46,1 | 44,4 | 24 |
+| 2026 | 1 | > 30% | 497.769 | 391 | 0,079 | 79.917 | 223 | 48,3 | 46,0 | 21 |
+| 2026 | 1 | > 50% | 497.769 | 138 | 0,028 | 32.196 | 238 | 45,5 | 46,0 | 17 |
+| 2026 | 2 | > 30% | 497.750 | 348 | 0,070 | 73.003 | 223 | 49,2 | 46,0 | 20 |
+| 2026 | 2 | > 50% | 497.750 | 97 | 0,019 | 23.050 | 234 | 46,3 | 46,0 | 16 |
+
+**Contagem e leitura.** Liberação manual acima de 30% dos votantes: **3.995 seções no 2º turno de 2022 e 348 no de 2026**; acima de 50%, 317 contra 97. **O fenômeno é muito menor em 2026 do que em 2022**, e o eleitorado dessas seções é cerca de 3 anos mais velho que o das demais (idade média, mediana: 47,6 contra 44,4 em 2022; 49,2 contra 46,0 em 2026). Por UF (corte de 30%, 2º turno), as maiores contagens:
+
+| UF | 2022 T1 | 2022 T2 | 2026 T1 | 2026 T2 |
+|---|---|---|---|---|
+| BA | 1348 | 922 | 75 | 80 |
+| RS | 959 | 499 | 58 | 61 |
+| CE | 427 | 344 | 37 | 25 |
+| PI | 498 | 302 | 18 | 23 |
+| SP | 270 | 148 | 32 | 23 |
+| MG | 356 | 264 | 22 | 20 |
+| PA | 98 | 40 | 18 | 17 |
+| PR | 188 | 115 | 35 | 16 |
+
+Por tipo de local (corte de 30%, 2º turno; classificação de A27 pelo nome): escola_outro 3778 em 2022 e 331 em 2026; indigena 5 em 2022 e 0 em 2026; rural_comunidade 212 em 2022 e 17 em 2026. Nenhuma seção em locais indígenas, prisionais, quilombolas, hospitalares ou militares tem liberação manual extrema em 2026.
+
+**Comparecimento e voto contra as demais seções do mesmo local (2º turno, extremas > 30%).** Comparecimento: 0,01 p.p. (erro padrão por local 0,24) em 2026 contra -0,48 p.p. (0,09) em 2022. Participação de Lula (válidos): 0,38 p.p. (0,28) em 2026 contra 0,34 p.p. (0,08) em 2022; com o controle do 1º turno (variação T1 → T2), Lula 0,11 p.p. (0,13) em 2026 e 0,18 p.p. (0,04) em 2022. Diferenças de décimos de ponto percentual, **sem diferença entre os anos no voto**. A variação do comparecimento T1 → T2 dessas seções contra os vizinhos é +0,89 p.p. em 2026 (erro padrão 0,17) e +0,49 p.p. em 2022 (0,05): um excesso pequeno (menos de 1 ponto sobre um comparecimento de cerca de 80%) e sem contrapartida na participação de Lula.
+
+### 3. Teto em votos de margem do excesso de liberação manual sobre o esperado pela idade
+
+Modelo da taxa manual do 2º turno **ajustado em 2022** (mínimos quadrados ponderados por votantes; regressores: composição etária do eleitorado da seção, biometria cadastrada e efeito fixo de UF), aplicado a 2026. **O modelo de 2022 prevê mais liberação manual em 2026 do que a observada**: 11.615.994 votantes previstos contra 8.629.826 observados (8,63 milhões, o mesmo "8,6 milhões" que o relatório original cita); a taxa manual **caiu**, não subiu. Excesso por seção = max(0, observado - previsto) x votantes.
+
+| ano | seções | manuais observadas | manuais previstas | (a) soma dos excessos positivos | (b) além de 1,645 desvio de 2022 | (c) após remover o deslocamento nacional | (c) e além de 1,645 desvio |
+|---|---|---|---|---|---|---|---|
+| 2022 (dentro da amostra, referencia) | 470.651 | 10.009.455 | 10.009.455 | 2.679.836 | 564.492 | 3.363.368 | 750.129 |
+| 2026 | 497.474 | 8.629.826 | 11.615.994 | 709.152 | 55.862 | 1.852.233 | 123.866 |
+
+**Teto registrado (o maior dos quatro números do Adendo 11, fator 1, teto de pior caso, não estimativa): 1.852.233 votos de margem (41,8% da margem).** **Leitura posterior ao resultado (Adendo 11c): esse número é inflado por construção.** A variante (c) remove o deslocamento nacional (mediana do resíduo: -2,7 p.p.), e como o deslocamento é para **baixo** em 2026, remover o deslocamento **soma** 2,7 p.p. a cada seção. As leituras que fazem sentido aqui: (a) 709.152 votos de margem (16,0% da margem), que inclui o ruído do modelo (a mesma soma dentro da amostra de 2022, em que o modelo foi ajustado, é 2.679.836, **3,8 vezes maior**); (b) o que passa de 1,645 desvio do resíduo de 2022: **55.862 votos de margem (1,26% da margem)**, em 5.818 seções, contra 564.492 em 2022. Nenhuma das leituras é estimativa: supõem todos os excessos a favor de um só lado.
+
+As **50 seções com maior excesso** em 2026/2º turno (liberação manual observada de 64% a 99%, prevista de 6% a 15%; 26 na Bahia, 5 em SP, 5 em RJ e 5 em PR; locais de votação em escolas, uma em comunidade rural) somam 10.612 votantes de excesso (0,24% da margem). Lista, com o critério de cada uma: `lai/07_secoes.csv`. Não há explicação nos dados para esses valores; **tampouco há associação com o voto** (seções com mais de 50% de manual: Lula 0,05 p.p., erro padrão 0,21, contra os vizinhos do mesmo local, com controle do 1º turno).
+
+### 4. Integridade dos logs
+
+Na amostra lida, o hash do log **consta da lista assinada pela urna** (A4) em **12.554 de 12.554 seções de 2022 e 14.067 de 14.067 de 2026** (100%). Isto diz que o log é o que a urna listou; **a verificação da assinatura da lista (pendente, A18)** é o que fecha a hipótese de alteração do log depois da urna. Enquanto pendente, vale "o log é o que a urna listou", não "o log é autêntico".
+
+### 5. Documentos em papel
+
+Textos prontos, **nenhum protocolado**: pedido LAI aos TREs ([`lai/07_ata_e_folha_de_votacao.md`](https://github.com/baduba/eleicoes-dossie-2026/blob/main/lai/07_ata_e_folha_de_votacao.md)) para as 50 seções acima (cópia da ata da mesa receptora e da folha de votação **com dados pessoais tarjados**, ou, se não for possível, as contagens de assinaturas, de anotações de habilitação manual e de votantes da ata), e modelo de requerimento de partido ao cartório eleitoral (`lai/08_modelo_requerimento_partidos.md`, para revisão por advogado eleitoral; o prazo de guarda dos documentos de seção está **a confirmar**). **Teste fixado, NÃO EXECUTADO até haver documentos:** assinaturas da folha x votantes da ata x comparecimento do BU x habilitações do log, por seção, com `scripts/37_confere_ata.py`, que lista qualquer divergência (incluídas as banais, como erro de contagem).
+
+**Situação.** TESTADO-INCONCLUSIVO (item 1 sem medida capaz de ver rajadas; item 3 com teto registrado de 1.852.233 votos de margem, inflado, e 55.862 além do ruído). **Resumo do que os dados mostram:** a liberação manual **caiu** de 2022 para 2026, as seções extremas são **muito menos** numerosas em 2026, as manuais **não** se concentram no fim do dia, **não** há mais agrupamentos em 2026 e **não** há associação com comparecimento ou voto. **O que fecharia:** logs de todas as seções (para a distribuição nacional), a verificação da assinatura dos logs, e a ata e a folha de votação das seções listadas. **O que o teste não faz:** não identifica eleitores nem mesários; a liberação manual tem usos legítimos (digital não reconhecida, eleitor sem biometria cadastrada, idoso); o excesso sobre o modelo de idade não é fraude, é só o que o modelo de 2022 não prevê. Código: `scripts/38` a `scripts/41` e `scripts/37_confere_ata.py`; tabelas: `results/fase3/A32_*.csv`.
+
+<a id="a31b"></a>
+
+## A31b. Os municípios em que o oponente ganhou +1 voto ou menos entre os turnos
+
+**Pré-registro:** [Adendo 13](preregistro.md), escrito antes de rodar a simulação e o perfil. **Pergunta.** Em A31 vimos que 748 de 5.357 municípios de 2026 (14,0%) tiveram o ganho do oponente entre os turnos menor ou igual a +1 voto, contra 0,15% em 2022, 1,6% em 2018 e 1,2% em 2014. Isso é o que se esperaria do crescimento nacional do oponente em 2026 (6,8%, contra 14%, 17% e 46% nos anos de comparação)?
+
+**1. Fração esperada sob o deslocamento nacional.** Para cada ano de comparação, o crescimento de cada município do oponente (ganho / voto do 1º turno) é deslocado, por UF, para a taxa de crescimento da mesma UF em 2026 e aplicado à base de 2026. Fração de municípios com ganho menor ou igual a +1:
+
+| ano de comparação | municípios pareados | fração no próprio ano, sem deslocar | esperada (pareada) | esperada (reamostragem, média) | reamostragem 2,5% | reamostragem 97,5% |
+|---|---|---|---|---|---|---|
+| 2022 | 5.356 | 0,2% | 14,7% | 15,4% | 14,6% | 16,1% |
+| 2018 | 5.350 | 1,6% | 13,2% | 13,9% | 13,1% | 14,6% |
+| 2014 | 5.356 | 1,2% | 55,0% | 54,9% | 53,4% | 56,1% |
+
+**Observado em 2026: 14,0%.** O deslocamento por UF com 2022 dá 14,7% (reamostragem 14,6% a 16,1%) e com 2018, 13,2% (13,1% a 14,6%). **Veredito pré-registrado: COMPATÍVEL COM O DESLOCAMENTO NACIONAL.** A fração de 14,0% é a que 2018 e 2022 produziriam se o oponente tivesse crescido em cada UF o que cresceu em 2026; o 55% obtido com 2014 mostra apenas que o crescimento de 46% daquele ano é distante demais para servir de comparação (a extrapolação é grande). **Limitação:** o deslocamento iguala o crescimento médio de cada UF; não garante que a forma da distribuição de 2018 e 2022 seja a de 2026. Isto mostra que **o número de 748 não é, por si, anomalia**; não diz por que o oponente cresceu pouco em 2026.
+
+**2. Perfil dos 748** (descritivo, confundido por região e porte):
+
+| região | municípios com dF <= 1 | demais | % do grupo | % dos demais | razão | % dos municípios da região com dF <= 1 |
+|---|---|---|---|---|---|---|
+| Centro-Oeste | 21 | 443 | 2,8 | 9,6 | 0,3 | 4,5 |
+| Nordeste | 547 | 1191 | 73,1 | 25,8 | 2,8 | 31,5 |
+| Norte | 157 | 141 | 21,0 | 3,1 | 6,9 | 52,7 |
+| Sudeste | 19 | 1647 | 2,5 | 35,7 | 0,1 | 1,1 |
+| Sul | 4 | 1187 | 0,5 | 25,8 | 0,0 | 0,3 |
+
+| porte (aptos) | municípios com dF <= 1 | demais | % dos municípios do porte com dF <= 1 |
+|---|---|---|---|
+| 20 a 100 mil | 152 | 959 | 13,7 |
+| 5 a 20 mil | 418 | 2249 | 15,7 |
+| ate 5 mil | 175 | 1183 | 12,9 |
+| mais de 100 mil | 3 | 218 | 1,4 |
+
+UFs com 15 ou mais desses municípios (% dos municípios da UF): AM 23 (79%); TO 69 (77%); MA 146 (76%); AL 70 (71%); RN 77 (47%); PA 58 (47%); PI 95 (47%); PB 65 (29%); CE 48 (26%); SE 17 (23%); MT 17 (12%); PE 17 (9%). **94% dos 748 estão no Nordeste e no Norte; praticamente nenhum no Sul, Sudeste e Centro-Oeste.**
+
+Medidas contínuas (mediana dos 748 contra a dos demais): fatia do oponente no 1º turno **26,2% contra 49,0%**; fatia do PT **65,1% contra 39,1%**; terceiros 3,8% contra 5,9%; variação do comparecimento T1 → T2 **-1,2% contra 2,7%**; liberação manual no 2º turno 6,9% contra 7,7%; aptos 9.172 contra 9.415. Por modelo de urna (fração média das seções do município): UE2022 47% contra 36%, UE2020 42% contra 41%, UE2015 9% contra 20%; diferenças moderadas, sem padrão claro e confundidas pela região. **Leitura (descrição, não explicação):** são municípios do Nordeste e do Norte, onde o PT era forte no 1º turno, o oponente tinha fatia pequena e o comparecimento caiu entre os turnos; este teste não mostra por que o oponente cresceu pouco ali.
+
+**3. Decomposição por variação de comparecimento.**
+
+| grupo | municípios | % | perda líquida do oponente (votos) | soma da variação do comparecimento |
+|---|---|---|---|---|
+| comparecimento caiu (dC < 0) | 528 | 70,6 | 57.376 | -157.683 |
+| comparecimento subiu ou igual (dC >= 0) | 220 | 29,4 | 12.683 | 37.322 |
+| limite inferior de troca de voto por balanço liquido > 0 | 290 | 38,8 | 15.635 |  |
+
+Dos 748, **528 (70,6%) tiveram queda de comparecimento** (compatível com abstenção seletiva) e **220 (29,4%) tiveram comparecimento igual ou maior** (o oponente parado exigiria novos votantes irem ao PT ou troca de voto). Em soma, o oponente perdeu 70.048 votos líquidos (de 3.001.176 do 1º turno), Lula ganhou 498.842 e o comparecimento caiu 120.361. O **limite inferior de troca de voto por balanço líquido** (a perda do oponente que não cabe em queda líquida de comparecimento nem em aumento de brancos e nulos) é positivo em 290 municípios e soma **15.635 votos**. **O balanço líquido não distingue troca de voto de abstenção seletiva:** um eleitor do oponente que se abstém e um novo eleitor do PT cancelam no líquido.
+
+**4. Os 20 municípios com maior perda absoluta do oponente** (comparecimento de 1.000 ou mais no 1º turno):
+
+| UF | município | comparecimento T1 | oponente T1 | oponente T2 menos T1 | PT T2 menos T1 | comparecimento T2 menos T1 |
+|---|---|---|---|---|---|---|
+| AP | MACAPÁ | 270.534 | 124.378 | -3.785 | 11.300 | -19.220 |
+| AC | SENA MADUREIRA | 24.661 | 16.640 | -2.292 | -293 | -3.773 |
+| AC | TARAUACÁ | 22.603 | 12.435 | -2.135 | -370 | -3.491 |
+| AC | CRUZEIRO DO SUL | 51.482 | 34.218 | -2.069 | 694 | -4.200 |
+| RR | RORAINÓPOLIS | 19.054 | 13.503 | -1.389 | 241 | -2.254 |
+| RJ | CAMPOS DOS GOYTACAZES | 290.458 | 160.859 | -1.389 | 24.822 | -3.898 |
+| AM | MANACAPURU | 64.079 | 27.295 | -1.354 | 902 | -3.088 |
+| AC | MARECHAL THAUMATURGO | 9.352 | 5.369 | -1.352 | -659 | -2.301 |
+| AP | SANTANA | 73.177 | 35.791 | -1.350 | 2.786 | -5.320 |
+| PA | ORIXIMINÁ | 39.198 | 17.678 | -1.305 | 1.575 | -2.096 |
+| AC | FEIJÓ | 18.156 | 9.069 | -1.257 | -58 | -1.966 |
+| RR | CARACARAÍ | 12.452 | 8.598 | -1.226 | -106 | -2.032 |
+| RR | CANTÁ | 14.635 | 10.037 | -1.209 | 248 | -1.742 |
+| AM | COARI | 38.141 | 14.023 | -1.190 | 961 | -1.379 |
+| PA | BREVES | 61.897 | 20.877 | -1.136 | 808 | -4.505 |
+| AM | ITACOATIARA | 58.385 | 20.163 | -1.059 | 1.114 | -2.783 |
+| RJ | MANGARATIBA | 34.080 | 20.418 | -1.030 | 1.397 | -1.882 |
+| AC | RODRIGUES ALVES | 10.218 | 7.154 | -997 | -162 | -1.477 |
+| RR | ALTO ALEGRE | 11.347 | 7.951 | -989 | 91 | -1.517 |
+| AP | MAZAGÃO | 18.989 | 6.402 | -983 | -1.135 | -3.393 |
+
+Todas as seções desses 20 municípios, com T1 e T2 e colunas vazias para o BU impresso: `results/fase3/A31b_20_secoes.csv` (formato de `scripts/04_cruza_bu_impresso.py`); peça aos diretórios partidários locais e aos fiscais pela [página de coleta](boletins-impressos.md). **NÃO EXECUTADO:** o projeto não tem nenhum BU impresso desses municípios. Itacoatiara/AM, Marechal Thaumaturgo/AC, Oriximiná/PA e Mangaratiba/RJ já apareceram em A31.
+
+**5. Teto, em votos de margem (teto de pior caso, não estimativa, fator 2).** (A) Se todo o déficit dos 748 em relação ao crescimento do oponente na UF fosse troca de voto de Flávio para Lula: **234.746 votos de margem (5,30% da margem)**. (B) O excesso de (A) sobre o que o deslocamento nacional reproduziria: **0**, porque o déficit simulado com 2022 (289.343) e com 2018 (669.527) é maior que o observado. Pela regra de exibição do Adendo 14, o G3 não plota (A) (é só o limite do déficit total, sem descontar o que o crescimento nacional explica) nem (B), que é zero.
+
+**Situação.** TESTADO-INCONCLUSIVO. A fração é compatível com o deslocamento nacional; o perfil é regional e de eleitorado PT forte; a maior parte tem queda de comparecimento. **O teste não distingue troca de voto de abstenção seletiva.** **O que fecharia:** BUs impressos e listas de habilitação dos 20 municípios, ou a abstenção por faixa e seção dos mesmos. Código: `scripts/42_a31b_dflavio_menor_igual_1.py`; tabelas: `results/fase3/A31b_*.csv`.
+
+<a id="a32b"></a>
+
+## A32b. Rajadas de liberação manual com limiar absoluto
+
+**Pré-registro:** [Adendo 14](preregistro.md), escrito antes de rodar. **Motivo.** O Adendo 11d mostrou que a definição registrada de rajada (intervalos abaixo do percentil 5 da seção) não consegue ver rajadas, porque uma liberação manual leva mais tempo que isso. **Definição nova, fixada antes:** em cada seção-dia com 10 liberações manuais ou mais, o limiar é **1,5 vezes a mediana do intervalo que precede as liberações manuais da própria seção-dia**; **rajada de k** = k ou mais manuais consecutivas, **sem habilitação biométrica entre elas**, com todos os intervalos entre habilitações consecutivas dentro do limiar. k = 3 (principal) e k = 5 (sensibilidade). Esperado: o mesmo cálculo exato por permutação dos rótulos (a aproximação de Poisson para a probabilidade de pelo menos uma rajada é a do Adendo 11b).
+
+**Cobertura.** Seções-dia com log consistente e 10 manuais ou mais: 2022 T1: 9.200 de 12.022 (limiar mediano 225 s); 2022 T2: 9.011 de 12.375 (limiar mediano 178 s); 2026 T1: 10.814 de 13.644 (limiar mediano 234 s); 2026 T2: 11.071 de 13.788 (limiar mediano 186 s).
+
+| ano | turno | seções-dia | % com rajada k=3 | % esperado k=3 | observado/esperado k=3 | % com rajada k=5 | % esperado k=5 | observado/esperado k=5 |
+|---|---|---|---|---|---|---|---|---|
+| 2022 | 1 | 12.022 | 15,80 | 14,76 | 1,00 | 1,16 | 0,84 | 1,29 |
+| 2022 | 2 | 12.375 | 15,21 | 12,93 | 1,15 | 0,92 | 0,68 | 1,19 |
+| 2026 | 1 | 13.644 | 9,33 | 9,34 | 0,97 | 0,18 | 0,14 | 1,12 |
+| 2026 | 2 | 13.788 | 10,46 | 8,81 | 1,16 | 0,16 | 0,13 | 1,18 |
+
+(percentuais sobre todas as seções-dia com log consistente; as sem 10 manuais não têm limiar e contam como sem rajada.)
+
+**Frequência de 2026 contra 2022, nas mesmas seções** (efeito fixo de seção, erro padrão agrupado por município):
+
+| turno | k | seções nos dois anos | 2026 menos 2022 (p.p.) | erro padrão | z | p |
+|---|---|---|---|---|---|---|
+| 1º turno | 3 | 7.868 | -6,67 | 4,02 | -1,66 | 0,097 |
+| 1º turno | 5 | 7.868 | -1,00 | 0,35 | -2,88 | 0,004 |
+| 2º turno | 3 | 7.965 | -4,12 | 4,14 | -0,99 | 0,320 |
+| 2º turno | 5 | 7.965 | -0,80 | 0,28 | -2,84 | 0,005 |
+
+**Leitura.** A razão observado/esperado é de 1,0 a 1,2 em 2022 e em 2026 para k = 3 (de 1,1 a 1,4 na amostra principal): as manuais chegam com a frequência de agrupamento que a ordem aleatória dá, nos dois anos. **As rajadas são menos frequentes em 2026 do que em 2022** (menos 4 a 7 pontos de proporção no k = 3, sem significância; menos 0,8 a 1,0 no k = 5, z de -2,8). A previsão "com abuso" (mais rajadas em 2026, acima do esperado) **não se cumpre**.
+
+**Associação com comparecimento e voto** (2º turno; efeito fixo de local; controle do 1º turno; placebo 2022; amostra principal = estrato aleatório mais Roraima inteira; família A32b com Holm próprio):
+
+| teste | coef. 2026 | ep 2026 | coef. 2022 (placebo) | ep 2022 | p (excesso) | p (Holm) | teto, votos de margem | % da margem | veredito |
+|---|---|---|---|---|---|---|---|---|---|
+| rajada de liberação manual (k = 3) e comparecimento: 2026/T2 contra 2022/T2 (EF de local, controle do T1) | 0,0000 | 0,0043 | -0,0088 | 0,0064 | 0,127 | 0,127 | 3.391.360 | 76,6 | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| rajada de liberação manual (k = 3) e participação de Lula: 2026/T2 contra 2022/T2 (EF de local, controle do T1) | -0,0024 | 0,0034 | -0,0120 | 0,0037 | 0,027 | 0,055 | 4.405.076 | 99,4 | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+
+**Os coeficientes de 2026 são zero** (comparecimento 0,0000, erro padrão 0,0043; participação de Lula -0,0024, 0,0034) e **sem excesso detectável sobre 2022** (Holm de 0,05 a 0,13); o placebo de 2022 é negativo. **Mas o teto é inútil:** a amostra principal com 10 manuais ou mais tem só 523 seções, o erro padrão é grande e o teto extrapolado (3.391.360 a 4.405.076 votos de margem, 77% a 99% da margem) vem da falta de poder, não de um efeito; por isso **não é plotado no G3** (regra de exibição, CHANGELOG) e fica só aqui. Na variante com a mediana nacional como limiar (sensibilidade), a família dá o mesmo veredito (INCONCLUSIVA, tetos de 88% a 90% da margem). Na amostra com todos os estratos (seleção no desfecho, rotulada), os coeficientes de k = 3 são 0,0024 (comparecimento) e -0,0003 (Lula), com erro padrão de 0,0007, e o placebo de 2022 é parecido: **sem associação**.
+
+**Situação.** TESTADO-INCONCLUSIVO por falta de poder na associação; no que o teste mede (frequência e agrupamento), **não há excesso em 2026**: há menos rajadas do que em 2022. **O que fecharia:** logs de todas as seções (para ter poder) e a verificação da assinatura dos logs. **O que o teste não faz:** a definição absoluta mede agrupamento no tempo, não o que cada liberação foi. Código: `scripts/43_a32b_rajadas_limiar_absoluto.py`; tabelas: `results/fase3/A32_rajadas_*_abs*.csv`.

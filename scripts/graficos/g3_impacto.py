@@ -10,8 +10,8 @@ from common import *
 RAIZ = sys.argv[1] if len(sys.argv) > 1 else "."
 d = pd.read_csv(os.path.join(RAIZ, "results", "graficos", "itens_em_aberto.csv"), keep_default_na=False, na_values=[""])
 curto = {"A-H1-S0": "Liberação manual, 1º turno (sem controle do 1º turno)", "A-A20": "Cadastro: eleitores muito idosos (80+)", "A-A10": "Urna modelo UE2022", "A-H1-FL": "Flávio x liberação manual", "A-H6": "Seções novas",
-         "A-H5": "639 seções com comparecimento ≥ 95%", "A-A5-2022": "Seção de 2022 com log divergente", "A-A22": "Presidente x governador (AM e DF)", "A-A20b": "Comparecimento x fração 80+ por seção", "A-A20b-part": "Voto x fração 80+ por seção", "A-A20b-95": "Votantes 95+ acima da razão de 2022"}
-n = d[d.teto_pior_caso.notna() & (d.bloco == "a")].sort_values("teto_pior_caso", ascending=False).reset_index(drop=True)
+         "A-H5": "639 seções com comparecimento ≥ 95%", "A-A5-2022": "Seção de 2022 com log divergente", "A-A22": "Presidente x governador (AM e DF)", "A-A20b": "Comparecimento x fração 80+ por seção", "A-A20b-part": "Voto x fração 80+ por seção", "A-A20b-95": "Votantes 95+ acima da razão de 2022", "A-A31": "Transferência T1 a T2: 3 municípios fora da cauda", "A-A12b": "Zero Flávio, brancos e nulos (106 seções)", "A-A32": "Liberação manual além do ruído do modelo de 2022"}
+n = d[d.teto_grafico.notna() & (d.bloco == "a")].sort_values("teto_grafico", ascending=False).reset_index(drop=True)
 sem = d[(d.teto_pior_caso.isna())]
 cor = lambda s: AZUL if "Lula" in s else (VERM if "Flávio" in s else CINZA)
 M = MOVEL
@@ -20,14 +20,14 @@ import textwrap
 for ax, esc in zip(axs, ("linear", "log")):
     for i, r in n.iterrows():
         c = cor(r.direcao)
-        ax.barh(i, r.teto_pior_caso, color=c, alpha=.28, hatch="///", edgecolor=c, lw=1, height=.62)
+        ax.barh(i, r.teto_grafico, color=c, alpha=.28, hatch="///", edgecolor=c, lw=1, height=.62)
         if r.excesso_medido > 0:
             ax.barh(i, r.excesso_medido, color=c, height=.62)
-        txt = f"teto, não estimativa: {milhar(r.teto_pior_caso)}" + (f" | medido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")
+        txt = f"teto, não estimativa: {milhar(r.teto_grafico)}" + (f" | medido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")
         if esc == "linear":
-            ax.text(r.teto_pior_caso + 60000, i, ("teto, não estimativa:\n" + milhar(r.teto_pior_caso) + (f"\nmedido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")) if M else txt, va="center", fontsize=6.4 if M else 7.8, color=TXT)
+            ax.text(r.teto_grafico + 60000, i, ("teto, não estimativa:\n" + milhar(r.teto_grafico) + (f"\nmedido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")) if M else txt, va="center", fontsize=6.4 if M else 7.8, color=TXT)
         else:
-            ax.text(1.4, i, ("teto, não estimativa:\n" + milhar(r.teto_pior_caso) + (f" | medido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")) if M else txt, va="center", ha="left", fontsize=6.4 if M else 7.8, color=TXT, bbox=dict(fc=FUNDO, ec="none", alpha=.85, pad=1.5))
+            ax.text(1.4, i, ("teto, não estimativa:\n" + milhar(r.teto_grafico) + (f" | medido: {milhar(r.excesso_medido)}" if r.excesso_medido > 0 else "")) if M else txt, va="center", ha="left", fontsize=6.4 if M else 7.8, color=TXT, bbox=dict(fc=FUNDO, ec="none", alpha=.85, pad=1.5))
     ax.axvline(MARGEM, color=TXT, lw=2); ax.set_ylim(len(n) - .4, -.6)
     ax.set_yticks(range(len(n))); ax.set_yticklabels([("\n".join(textwrap.wrap(curto[i], 24)) if M else curto[i]) for i in n.id], fontsize=6.6 if M else 8.8)
     if esc == "linear":
@@ -44,7 +44,7 @@ leg = [Patch(fc=AZUL, label="excesso medido, a favor de Lula"), Patch(fc=VERM, l
        Patch(fc="white", ec=CINZA, hatch="///", label="hachurado: teto de pior caso, não estimativa")]
 fig.legend(handles=leg, loc="lower center", ncol=1 if M else 4, frameon=False, fontsize=6.8 if M else 8.6, bbox_to_anchor=(.5, -.08 if M else -.04))
 nota = ("Não mensuráveis com os dados públicos (sem barra): curva de apuração do 1º turno; testes não executados (A21, A23 a A25, A28); voto digitado x voto registrado; alteração coerente antes da publicação.\n"
-        "O que falta para medir cada um está na lista de perguntas em aberto. Cada barra é um item; não há soma. A escala linear começa em zero.")
+        "O que falta para medir cada um está na lista de perguntas em aberto. Cada barra é um item; não há soma. A escala linear começa em zero.\nTetos inflados por construção ou sem poder (por exemplo, o registrado de A32 e os de A31b e A32b) não são plotados; aparecem só como texto, com a razão (CHANGELOG, regra de exibição).")
 if M:
     nota = "\n".join(textwrap.fill(par, 70) for par in nota.split("\n"))
 fig.text(0.01, -0.2 if M else -0.13, nota, fontsize=6.4 if M else 8.4, color=SUAVE, ha="left")

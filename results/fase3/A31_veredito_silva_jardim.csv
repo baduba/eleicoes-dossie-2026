@@ -1,0 +1,2 @@
+municipio,ano,f,f_hat,z,df_t,p_bilateral,p_holm,p_holm_5570,outros_anos_com_z_ao_menos_igual,veredito,teto_incondicional_votos_margem,teto_incondicional_pct_margem,teto_alem_da_cauda_votos_margem,teto_alem_da_cauda_pct_margem,nota
+Silva Jardim/RJ,2026,0.9989847715736041,0.893672668932019,1.1304550146687609,2.7636935864364776,0.34677142183085613,1.0,1.0,4643,DENTRO DA CAUDA ESPERADA,207.46484220392261,0.0046829773751046536,0.0,0.0,"forma da distribuicao entre municipios; teto de pior caso, nao estimativa"

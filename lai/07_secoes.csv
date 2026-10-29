@@ -1,0 +1,51 @@
+UF,municipio,cd_municipio_tse,zona,secao,local_de_votacao,turnos_pedidos,criterio,liberacao_manual_observada_pct,liberacao_manual_prevista_pct,excesso_votantes
+BA,LAURO DE FREITAS,36854,180,547,COLÉGIO APOIO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 1 de 50),91.3,9.6,290
+BA,LAURO DE FREITAS,36854,180,386,ESCOLA MUNICIPAL VIDA NOVA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 2 de 50),92.6,10.0,281
+BA,SIMÕES FILHO,39136,33,222,ESCOLA MUNICIPAL ELANE DE SANTANA SANTOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 3 de 50),90.3,9.0,276
+PE,CARUARU,23817,105,324,ESCOLA MUNICIPAL PROFESSOR JOSÉ LAURENTINO SANTOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 4 de 50),91.5,9.4,272
+BA,TERRA NOVA,39330,128,190,COLÉGIO ESTADUAL TERRA NOVA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 5 de 50),92.8,8.2,271
+BA,LAURO DE FREITAS,36854,180,202,UNIME - UNIÃO METROPOLITANA DE EDUCAÇÃO E CULTURA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 6 de 50),86.8,10.2,267
+BA,LAURO DE FREITAS,36854,180,331,ESCOLA MUNICIPAL ESFINGE,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 7 de 50),92.7,9.2,262
+BA,LAURO DE FREITAS,36854,180,280,ESCOLA MUNICIPAL GREGÓRIO PINTO DE ALMEIDA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 8 de 50),89.8,9.2,261
+BA,LAURO DE FREITAS,36854,180,232,ESCOLA MUNICIPAL PEDRO PARANHOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 9 de 50),85.0,9.4,256
+BA,LAURO DE FREITAS,36854,180,236,UNIME - UNIÃO METROPOLITANA DE EDUCAÇÃO E CULTURA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 10 de 50),90.5,9.5,256
+SP,SÃO PAULO,71072,408,361,EMEF PROF. AÍRTON ARANTES RIBEIRO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 11 de 50),97.8,6.2,255
+BA,CANDEIAS,34290,127,335,COLEGIO MUNICIPAL PROFESSOR DASIO JOSE DE SOUZA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 12 de 50),89.5,8.6,254
+BA,CANDEIAS,34290,127,326,ESCOLA MUNICIPALIZADA ADRIANO GORDILHO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 13 de 50),89.0,9.1,253
+RS,COTIPORÃ,89770,88,113,ESCOLA ESTADUAL JACINTO SILVA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 14 de 50),95.9,10.9,250
+BA,SIMÕES FILHO,39136,33,241,ESCOLA BERLINDO MAMEDE,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 15 de 50),88.1,9.1,245
+BA,TANQUE NOVO,39918,168,178,PRÉDIO ESCOLAR JOSÉ ONÓRIO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 16 de 50),92.6,10.2,245
+RJ,RIO DE JANEIRO,60011,8,74,COLÉGIO ROSA DE SARON,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 17 de 50),89.7,9.7,240
+PE,JATAÚBA,24597,54,185,ESCOLA MUNICIPAL JOSE HIGINO SOUSA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 18 de 50),82.1,6.1,238
+BA,LAURO DE FREITAS,36854,180,175,ESCOLA MUNICIPAL PEDRO PARANHOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 19 de 50),76.7,9.1,229
+BA,CANDEIAS,34290,127,336,CENTRO ESTADUAL DE EDUCAÇÃO PROFISSIONAL DE CANDEIAS ,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 20 de 50),86.5,7.6,222
+BA,SIMÕES FILHO,39136,33,228,ESCOLA MUNICIPAL PROFESSOR ADROALDO RIBEIRO COSTA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 21 de 50),82.6,9.3,215
+PR,TOMAZINA,79294,19,55,SECRETARIA MUNICIPAL DE EDUCAÇÃO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 22 de 50),99.1,8.4,206
+RJ,RIO DE JANEIRO,60011,10,302,CEFA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 23 de 50),77.2,11.4,206
+RJ,RIO DE JANEIRO,60011,188,82,ESCOLA MUNICIPAL BERNARDO DE VASCONCELLOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 24 de 50),84.8,10.6,199
+BA,DIAS D'ÁVILA,30872,186,134,ESCOLA MUNICIPAL CLAUDIONOR SIMÕES DO CARMO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 25 de 50),96.9,10.6,194
+BA,SÃO FRANCISCO DO CONDE,38830,162,14,GINÁSIO LUIS VIANA NETO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 26 de 50),94.4,11.8,193
+BA,DIAS D'ÁVILA,30872,186,21,ESCOLA PROFESSORA ALTAIR DA COSTA LIMA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 27 de 50),93.1,10.4,192
+BA,SÃO SEBASTIÃO DO PASSÉ,38890,128,59,ESCOLA JOSEANE SANTOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 28 de 50),84.1,9.9,191
+BA,LAURO DE FREITAS,36854,180,149,ESCOLA MUNICIPAL DA VILA PRAIANA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 29 de 50),68.7,9.2,190
+AL,OLHO D'ÁGUA DAS FLORES,28134,11,119,GRUPO ESCOLAR ELISA ABREU,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 30 de 50),95.3,14.7,189
+SP,PEDREGULHO,68411,155,67,EMEI LEIDE EMÍLIA COMODARO DE OLIVEIRA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 31 de 50),79.2,6.6,188
+MG,PORTO FIRME,50458,217,46,ESCOLA ESTADUAL SOLON ILDEFONSO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 32 de 50),84.0,12.9,186
+PR,UBIRATÃ,79332,98,100,COLÉGIO ESTADUAL QUINTINO BOCAIUVA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 33 de 50),97.1,9.6,181
+SP,SÃO PAULO,71072,6,427,COLÉGIO PAULO DE TARSO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 34 de 50),64.3,7.5,181
+BA,SÃO SEBASTIÃO DO PASSÉ,38890,128,17,COLÉGIO ESTADUAL DE TEMPO INTEGRAL MONSENHOR LUIZ FERREIRA DE BRITO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 35 de 50),85.5,11.2,179
+BA,CANDEIAS,34290,127,14,COLÉGIO DA POLÍCIA MILITAR FRANCISCO PEDRO DE OLIVEIRA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 36 de 50),82.9,10.5,178
+SP,SÃO BERNARDO DO CAMPO,70750,174,447,COLÉGIO DONA LEONOR MENDES DE BARROS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 37 de 50),94.0,12.5,178
+RS,OSÓRIO,87734,77,93,E E F METODISTA NEHYTA RAMOS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 38 de 50),88.3,11.5,177
+GO,TRINDADE,96253,49,216,ESCOLA MUNICIPAL PROFESSORA SELMA FERREIRA - ST VIDA NOVA UE-MUN,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 39 de 50),90.0,9.5,177
+SC,ITAPEMA,81639,91,5,E.E.B. OLEGÁRIO BERNARDES,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 40 de 50),84.0,11.8,175
+PR,CENTENÁRIO DO SUL,74993,159,9,COLÉGIO ESTADUAL PADRE JOSÉ PIRES,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 41 de 50),93.8,10.3,175
+RJ,RIO DE JANEIRO,60011,214,325,COLEGIO PEDRO II - UNIDADE ENGENHO NOVO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 42 de 50),68.6,11.8,174
+PR,SANTA MARIANA,78530,109,2,COLEGIO ESTADUAL JOAQUIM MARIA MACHADO DE ASSIS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 43 de 50),81.1,9.6,174
+MA,PAÇO DO LUMIAR,8494,93,328,FACULDADE IESF - PRÉDIO SEDE,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 44 de 50),96.4,7.3,174
+BA,SIMÕES FILHO,39136,33,139,ESCOLA LUIZ VIANA FILHO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 45 de 50),89.0,9.7,173
+PR,TOMAZINA,79294,19,52,CENTRO MUNICIPAL DE EDUCAÇÃO INFANTIL,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 46 de 50),91.5,9.9,172
+RJ,NILÓPOLIS,58637,221,178,SANTA MÔNICA REDE DE ENSINO - UNIDADE NILOPOLIS,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 47 de 50),87.0,8.6,170
+BA,DIAS D'ÁVILA,30872,186,91,ESCOLA MUNICIPAL CLAUDIONOR SIMÕES DO CARMO,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 48 de 50),85.7,10.2,169
+SP,SANTOS,70718,118,325,MÁRIO DE ALMEIDA ALCÂNTARA - UME PROFESSOR,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 49 de 50),89.5,8.7,169
+BA,SÃO FRANCISCO DO CONDE,38830,162,96,LUZIENE AMÁLIA SANTOS ROCHA,1 e 2 (2026),maior excesso de liberacao manual em 2026/T2 sobre o previsto pelo modelo de 2022 (posicao 50 de 50),72.5,9.8,164

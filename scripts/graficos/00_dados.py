@@ -32,12 +32,14 @@ a20bp = pd.read_csv(os.path.join(F3, "A20b_testes.csv")); a20bp = a20bp[a20bp.H 
 a22 = pd.read_csv(os.path.join(F3, "A22_testes_9b.csv"))
 a95 = pd.read_csv(os.path.join(F3, "A20b_95mais_teto.csv")).iloc[0]
 h1f, h1s0, a10, h6 = linha("H1", "S1 Flavio/Bolsonaro votos/apto"), linha("H1", "S0 sem lag, Lula% ~ taxa manual"), linha("A10", "UE2022"), linha("H6", "secoes novas")
+mil = lambda x: f"{x:,.0f}".replace(",", ".")
 pos = lambda x: float(max(x, 0)) if pd.notna(x) else np.nan
 I = []
 
 
-def item(i, bloco, pergunta, situacao, direcao, medido, teto, pagina, fechar, nota=""):
-    I.append(dict(id=i, bloco=bloco, pergunta=pergunta, situacao=situacao, direcao=direcao, excesso_medido=medido, teto_pior_caso=teto, pct_margem_teto=(100 * teto / MARGEM if pd.notna(teto) else np.nan),
+def item(i, bloco, pergunta, situacao, direcao, medido, teto, pagina, fechar, nota="", grafico="auto"):
+    """grafico: valor plotado no G3 (regra de exibicao, Adendo 14: nao plotar teto inflado por construcao; NaN = sem barra, o teto aparece so no texto)."""
+    I.append(dict(id=i, bloco=bloco, pergunta=pergunta, situacao=situacao, direcao=direcao, excesso_medido=medido, teto_pior_caso=teto, teto_grafico=(teto if isinstance(grafico, str) else grafico), pct_margem_teto=(100 * teto / MARGEM if pd.notna(teto) else np.nan),
                   pagina=pagina, fechar=fechar, issue=ISSUE + i, nota=nota))
 
 
@@ -60,18 +62,36 @@ item("A-A5-2022", "a", "Por que uma seção de 2022 tem um voto a menos no log d
      "O registro da urna daquela seção (RJ, zona 7, seção 479) e a ata de votação.", "uma seção de 2022: 348 comparecimentos no boletim, 347 votos no log")
 item("A-A22", "a", "O voto para presidente combina com o voto para governador na mesma seção, como em 2022 e 2018?", INC, "a favor de Flávio ou de Lula (lados simétricos)", np.nan, float(a22.votos_max_pior_caso.max()), "fase3.html#a22",
      "Os votos por candidato em todos os cargos por seção nas 27 UFs, com uma regra de alinhamento definida por quem conhece as alianças locais; ou deputados federais por partido nas UFs sem 2º turno de governador.",
-     f"variante exploratória (Adendo 9b), só AM e DF, pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de {a22.votos_max_pior_caso.min():,.0f}".replace(",", ".") + "; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada)")
+     f"variante exploratória (Adendo 9b), só AM e DF, pouco poder; vale só para os votos dessas duas UFs; o lado a favor de Lula tem teto de {mil(a22.votos_max_pior_caso.min())}"+ "; a linha oficial de A22 é NÃO EXECUTÁVEL (nenhuma UF elegível pela regra registrada)")
 item("A-A20b", "a", "Nas seções com mais eleitores de 80 anos ou mais, o comparecimento do 2º turno sobe mais do que em 2022 e 2018?", INC, "sem direção identificável", np.nan, float(a20b.votos_max_pior_caso), "fase3.html#a20b",
      "Listas assinadas de habilitação das seções com mais idosos e o cruzamento do cadastro com o registro civil de óbitos, por entidade fiscalizadora.",
      "linha suplementar do Adendo 9d (só placebos com o mesmo controle); a linha original, com um comparador de outra especificação, dá 4,07 milhões; o coeficiente de participação de Lula nessas seções é negativo")
 item("A-A20b-part", "a", "Nas seções com mais eleitores de 80 anos ou mais, a participação de Lula e de Flávio difere da dos anos anteriores?", INC, "a favor de Lula (teto) ou de Flávio (lado simétrico)", np.nan, float(a20bp.iloc[0].votos_max_pior_caso), "fase3.html#a20b",
      "Mais anos de comparação com o perfil do eleitorado por seção e as listas de habilitação das seções com mais idosos.",
-     f"o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de {a20bp.iloc[1].votos_max_pior_caso:,.0f}".replace(",", "."))
+     f"o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de {mil(a20bp.iloc[1].votos_max_pior_caso)}")
 item("A-A20b-3b", "a", "Onde há mais eleitores de 90 anos ou mais, há mais liberação manual, e isso cresce a cada eleição. Por quê?", INC, "sem direção identificável", np.nan, np.nan, "fase3.html#a20b",
      "A idade de quem foi liberado manualmente (lista de habilitação por seção) e a biometria cadastrada por eleitor, de forma agregada.", "teste de forma; o coeficiente sobe de 0,35 (2018) a 0,80 (2026, 2º turno)")
 item("A-A20b-95", "a", "Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?", INC, "sem direção identificável", np.nan, float(a95.teto_votos_de_margem_pior_caso), "fase3.html#a20b",
      "Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.",
-     f"z = {a95.z:.2f}, Holm 0,054: passa no corte de 2 erros padrão e não passa no Holm; cerca de {a95.votantes_a_mais_que_pela_razao_de_2022:,.0f} votantes a mais, de {a95.votantes_95mais_2026_T1:,.0f}".replace(",", "."))
+     f"z = {str(round(a95.z, 2)).replace('.', ',')}, Holm 0,054: passa no corte de 2 erros padrão e não passa no Holm; cerca de {mil(a95.votantes_a_mais_que_pela_razao_de_2022)} votantes a mais, de {mil(a95.votantes_95mais_2026_T1)}")
+a31t = pd.read_csv(os.path.join(F3, "A31_tetos.csv")).set_index("grupo")
+a31s1 = pd.read_csv(os.path.join(F3, "A31_suplementar_S1_tetos.csv")).iloc[0]
+item("A-A31", "a", "Por que três municípios pequenos (Itacoatiara/AM, Santo Antônio de Lisboa/PI, Rafael Godeiro/RN) saem da cauda esperada da transferência do 1º para o 2º turno?", INC, "sem direção identificável", np.nan, float(a31t.loc["20 mais extremos de 2026", "teto_alem_da_cauda_votos_margem"]), "fase3.html#a31",
+     "Boletins impressos e listas de habilitação por seção desses municípios, e a variação do comparecimento por seção entre os turnos.",
+     "Silva Jardim (a alegação) fica dentro da cauda; nos 3 municípios o pool é pequeno e o oponente perdeu votos quase na mesma quantidade em que o PT ganhou, com queda do comparecimento; se tudo o que o modelo não explica nos 20 mais extremos fosse manipulação, seriam "
+     + f"{a31t.loc['20 mais extremos de 2026', 'teto_incondicional_votos_margem']:,.0f}".replace(",", ".") + " votos de margem")
+a12b = pd.read_csv(os.path.join(F3, "A12b_resumo_106.csv")).iloc[0]
+a32t = pd.read_csv(os.path.join(F3, "A32_teto_excesso_manual.csv")).set_index("ano").loc["2026"]
+a31br = pd.read_csv(os.path.join(F3, "A31b_resumo.csv")).iloc[0]
+item("A-A31b", "a", "Por que 748 dos 5.357 municípios (14,0%) tiveram o ganho de Flávio entre os turnos de +1 voto ou menos, quase todos no Nordeste e no Norte?", INC, "sem direção identificável", np.nan, float(a31br.teto_A_votos_margem), "fase3.html#a31b",
+     "Boletins impressos das seções dos 20 municípios com maior perda de Flávio (lista em `results/fase3/A31b_20_secoes.csv`) e as listas de habilitação.",
+     f"a fração de 14,0% é compatível com o crescimento nacional do oponente em 2026 (esperado de 13,2% a 15,4% com 2018 e 2022 deslocados); 70,6% desses municípios tiveram queda de comparecimento; o teto é todo o déficit de Flávio em relação ao crescimento da UF atribuído a troca de voto, e o excedente sobre o que o deslocamento nacional reproduz é {mil(a31br.teto_B_votos_margem)}; **o teste não distingue troca de voto de abstenção seletiva**", grafico=np.nan)
+item("A-A12b", "a", "Por que 29 das 106 seções com zero voto para Flávio também têm zero brancos e nulos, mais do que as vizinhas indicam (e também em 2022 e 2018)?", INC, "a favor de Lula (teto) ou de Flávio (lado simétrico)", np.nan, float(a12b.teto_a_todos_os_votos_de_lula_invalidos_votos_de_margem), "fase3.html#a12b",
+     "Boletins impressos e listas de habilitação dessas 106 seções (lista em `results/fase3/A12b_106_secoes.csv`) e as dos conjuntos equivalentes de 2022 e 2018.",
+     "a alegação \"0% de brancos e nulos\" vale para 29 de 106; o excesso sobre o esperado existe em todas as eleições (razão de 1,4 em 2026, 1,4 em 2022 e 2,2 em 2018); teto: todos os votos de Lula nas 106 seções, se fossem inválidos")
+item("A-A32", "a", "Por que 348 seções têm mais de 30% de liberação manual no 2º turno, 97 delas com mais de 50%, sobretudo na Bahia e no Rio Grande do Sul?", INC, "sem direção identificável", np.nan, float(a32t.c_alem_de_1_645_sigma), "fase3.html#a32",
+     "Ata da mesa receptora e folha de votação das 50 seções de maior excesso (`lai/07_secoes.csv`; pedido `lai/07_ata_e_folha_de_votacao.md`), os logs de todas as seções e a verificação da assinatura dos logs.",
+     f"teto = o que passa do ruído do modelo de 2022; o teto registrado de {mil(a32t.maior_dos_quatro_votos_de_margem_fator_1)} votos de margem aparece só aqui, como texto, porque é inflado por construção (Adendo 11c, deslocamento nacional negativo); a liberação manual caiu de 2022 para 2026 (3.995 seções acima de 30% em 2022); sem rajadas e sem associação com comparecimento ou voto")
 item("A-A20b-T2", "b", "O comparecimento dos eleitores de 80 anos ou mais no 2º turno de 2026 repete o do 1º turno?", NT, "n/a", np.nan, np.nan, "fase3.html#a20b",
      "Fecha quando o TSE publicar o perfil de comparecimento do 2º turno de 2026 (conferência semanal: `scripts/verifica_perfil_t2.sh`, rodada toda segunda-feira por uma ação do GitHub).",
      "o arquivo público de 2026 traz só o 1º turno; o do 2º turno de 2018 e 2022 foi publicado")
@@ -84,7 +104,7 @@ item("A-A23", "b", "Onde houve fiscal de partido o voto foi diferente de onde n�
 item("A-A21", "b", "O ritmo dos votos ao longo do dia (rajadas, concentração na última hora) é igual ao de 2022?", NT, "n/a", np.nan, np.nan, "fase3.html#a21",
      "Reler os registros das urnas com a distribuição completa dos intervalos; o ano de nascimento não consta nos logs públicos.", "só as medidas já extraídas foram testadas")
 item("A-A28", "b", "O que o TSE e os TREs respondem aos pedidos de acesso à informação?", NT, "n/a", np.nan, np.nan, "fase3.html#a28",
-     "Protocolar os seis pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.")
+     "Protocolar os sete pedidos prontos em `lai/` (órgão e canal de cada um em `lai/canais.csv`) e registrar protocolo, prazo e resposta, inclusive a negativa.")
 item("A-A18", "c", "Alguém poderia alterar os resultados depois da urna fechar e antes de os arquivos serem publicados, de modo coerente?", NTP, "n/a", np.nan, np.nan, "a18-alteracao-no-meio.html",
      "Verificar a assinatura de cada boletim com a chave oficial e conferir boletins impressos nas seções.")
 item("A-A19a", "c", "O voto que o eleitor digita é o mesmo que a urna registra?", NTP, "n/a", np.nan, np.nan, "a19-voto-digitado.html",

@@ -5,12 +5,12 @@ import argparse, html, os, re, shutil, subprocess, sys
 import markdown
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VERSAO = "v0.9.2"
+VERSAO = "v0.9.3"
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
 AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
-NAV = [("index", "Início"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
+NAV = [("index", "Início"), ("perguntas-em-aberto", "Perguntas"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
        ("resultados-fase2", "Resultados: Fase 2 (A1 a A10)"), ("regua-historica", "Régua histórica"), ("alegacoes", "Inventário de alegações"), ("relatorio-original", "O relatório original"),
-       ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A28)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
+       ("pontos-cegos", "Pontos cegos"), ("fase3", "Fase 3: hipóteses adversariais (A20 a A33)"), ("a18-alteracao-no-meio", "A18: alteração no meio"), ("a19-voto-digitado", "A19: voto digitado x registrado"), ("boletins-impressos", "Boletins impressos"), ("base-legal", "Base legal e histórico"), ("dados-reproducao", "Dados e reprodução"), ("residuos", "Questões em aberto"),
        ("changelog", "Changelog e correções"), ("referencias", "Referências")]
 CSS = """
 :root{--bg:#fff;--fg:#1c1c1e;--mut:#5a5f66;--bd:#d9dce1;--ac:#1d4e89;--cd:#f5f6f8}

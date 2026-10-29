@@ -1,0 +1,4 @@
+grupo,municipios,pct,perda_liquida_do_oponente_votos,dC_soma
+comparecimento caiu (dC < 0),528,70.58823529411765,57376,-157683.0
+comparecimento subiu ou igual (dC >= 0),220,29.411764705882355,12683,37322.0
+limite inferior de troca de voto por balanco liquido > 0,290,38.770053475935825,15635,

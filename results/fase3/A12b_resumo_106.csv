@@ -1,0 +1,2 @@
+secoes,com_zero_brancos_e_nulos,com_comparecimento_zero,votos_lula,votos_oponente,brancos,nulos,comparecimento,aptos,mediana_comparecimento,mediana_aptos,bn_pct_do_comparecimento,teto_a_todos_os_votos_de_lula_invalidos_votos_de_margem,teto_a_pct_margem,oponente_esperado_vizinhanca,teto_b_troca_votos_de_margem,teto_b_pct_margem,nota
+106,29,0,14860,0,24,338,15222,18508,128.0,161.0,2.3781369071081326,14860.0,0.33542571866540294,2700.4165297183067,5400.833059436613,0.12190971132929966,"teto de pior caso, nao estimativa"
