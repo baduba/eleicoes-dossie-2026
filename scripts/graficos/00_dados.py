@@ -30,6 +30,7 @@ ido80 = float(idosos[idosos.no_grupo_80mais].comparecimento_acima_das_taxas_de_2
 a20b = pd.read_csv(os.path.join(F3, "A20b_4_suplementar_adendo9d.csv")).iloc[0]
 a20bp = pd.read_csv(os.path.join(F3, "A20b_testes.csv")); a20bp = a20bp[a20bp.H == "A20b-4"]
 a22 = pd.read_csv(os.path.join(F3, "A22_testes_9b.csv"))
+a95 = pd.read_csv(os.path.join(F3, "A20b_95mais_teto.csv")).iloc[0]
 h1f, h1s0, a10, h6 = linha("H1", "S1 Flavio/Bolsonaro votos/apto"), linha("H1", "S0 sem lag, Lula% ~ taxa manual"), linha("A10", "UE2022"), linha("H6", "secoes novas")
 pos = lambda x: float(max(x, 0)) if pd.notna(x) else np.nan
 I = []
@@ -68,6 +69,12 @@ item("A-A20b-part", "a", "Nas seções com mais eleitores de 80 anos ou mais, a 
      f"o coeficiente de 2026 fica dentro do intervalo dos placebos e a estimativa central é negativa para Lula; o teto vem da dispersão entre os anos de comparação; o lado a favor de Flávio tem teto de {a20bp.iloc[1].votos_max_pior_caso:,.0f}".replace(",", "."))
 item("A-A20b-3b", "a", "Onde há mais eleitores de 90 anos ou mais, há mais liberação manual, e isso cresce a cada eleição. Por quê?", INC, "sem direção identificável", np.nan, np.nan, "fase3.html#a20b",
      "A idade de quem foi liberado manualmente (lista de habilitação por seção) e a biometria cadastrada por eleitor, de forma agregada.", "teste de forma; o coeficiente sobe de 0,35 (2018) a 0,80 (2026, 2º turno)")
+item("A-A20b-95", "a", "Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?", INC, "sem direção identificável", np.nan, float(a95.teto_votos_de_margem_pior_caso), "fase3.html#a20b",
+     "Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.",
+     f"z = {a95.z:.2f}, Holm 0,054: passa no corte de 2 erros padrão e não passa no Holm; cerca de {a95.votantes_a_mais_que_pela_razao_de_2022:,.0f} votantes a mais, de {a95.votantes_95mais_2026_T1:,.0f}".replace(",", "."))
+item("A-A20b-T2", "b", "O comparecimento dos eleitores de 80 anos ou mais no 2º turno de 2026 repete o do 1º turno?", NT, "n/a", np.nan, np.nan, "fase3.html#a20b",
+     "Fecha quando o TSE publicar o perfil de comparecimento do 2º turno de 2026 (conferência semanal: `scripts/verifica_perfil_t2.sh`, rodada toda segunda-feira por uma ação do GitHub).",
+     "o arquivo público de 2026 traz só o 1º turno; o do 2º turno de 2018 e 2022 foi publicado")
 item("A-A24", "b", "As urnas que foram para o teste de integridade e foram substituídas nas seções votaram diferente das vizinhas?", NT, "n/a", np.nan, np.nan, "fase3.html#a24",
      "A lista de zona e seção publicada por cada TRE, em `data/a24_secoes_teste_integridade.csv` (os sites dos TREs bloqueiam acesso automatizado), ou o pedido LAI 03.", "script pronto; nenhuma lista lida")
 item("A-A25", "b", "As seções em que a urna foi trocada votaram diferente antes e depois da troca?", NT, "n/a", np.nan, np.nan, "fase3.html#a25",

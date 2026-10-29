@@ -10,7 +10,7 @@ from common import *
 RAIZ = sys.argv[1] if len(sys.argv) > 1 else "."
 d = pd.read_csv(os.path.join(RAIZ, "results", "graficos", "itens_em_aberto.csv"), keep_default_na=False, na_values=[""])
 curto = {"A-H1-S0": "Liberação manual, 1º turno (sem controle do 1º turno)", "A-A20": "Cadastro: eleitores muito idosos (80+)", "A-A10": "Urna modelo UE2022", "A-H1-FL": "Flávio x liberação manual", "A-H6": "Seções novas",
-         "A-H5": "639 seções com comparecimento ≥ 95%", "A-A5-2022": "Seção de 2022 com log divergente", "A-A22": "Presidente x governador (AM e DF)", "A-A20b": "Comparecimento x fração 80+ por seção", "A-A20b-part": "Voto x fração 80+ por seção"}
+         "A-H5": "639 seções com comparecimento ≥ 95%", "A-A5-2022": "Seção de 2022 com log divergente", "A-A22": "Presidente x governador (AM e DF)", "A-A20b": "Comparecimento x fração 80+ por seção", "A-A20b-part": "Voto x fração 80+ por seção", "A-A20b-95": "Votantes 95+ acima da razão de 2022"}
 n = d[d.teto_pior_caso.notna() & (d.bloco == "a")].sort_values("teto_pior_caso", ascending=False).reset_index(drop=True)
 sem = d[(d.teto_pior_caso.isna())]
 cor = lambda s: AZUL if "Lula" in s else (VERM if "Flávio" in s else CINZA)

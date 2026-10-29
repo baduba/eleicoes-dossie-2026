@@ -69,7 +69,7 @@ def roda(lista, pq, f3, saida):
     por_uf = [] if L.empty else L.groupby("SG_UF").size().rename("secoes").reset_index().to_dict("records")
     if n < MINIMO:
         r = pd.DataFrame([dict(teste="A24", estado="NAO EXECUTADO", secoes_lidas_turno2=n, motivo=f"menos de {MINIMO} secoes lidas das publicacoes dos TREs; os sites dos TREs respondem 403 a acesso automatizado e as buscas devolvem so resumos sem a tabela",
-                               como_fornecer="preencher data/a24_secoes_teste_integridade.csv (uma linha por secao, com a URL da publicacao do TRE e a data de acesso) e rodar scripts/33_a24_teste_integridade.py")])
+                               ufs_cobertas=",".join(sorted({x["SG_UF"] for x in por_uf})), cobertura=f"{len(por_uf)} de 27 UFs (parcial)", como_fornecer="preencher data/a24_secoes_teste_integridade.csv (uma linha por secao, com a URL da publicacao do TRE e a data de acesso) e rodar scripts/33_a24_teste_integridade.py")])
         r.to_csv(os.path.join(saida, "A24_resumo.csv"), index=False)
         print(r.T.to_string()); return r
     D = carrega(pq, (2022, 2026))
@@ -99,7 +99,7 @@ def roda(lista, pq, f3, saida):
                 nota=f"{G} locais, {N} secoes; teto = extrapolacao do coeficiente para todo o pais, sem amostragem aleatoria, so como limite superior; menor efeito detectavel ~ {2.8 * se[0]:.4f}")
     pd.DataFrame(bal).to_csv(os.path.join(saida, "A24_balanco_1o_turno_2026.csv"), index=False)
     fr = reg.frame(); fr.to_csv(os.path.join(saida, "A24_testes.csv"), index=False)
-    pd.DataFrame([dict(teste="A24", estado="EXECUTADO", secoes_lidas_turno2=n, ufs=",".join(x["SG_UF"] for x in por_uf))]).to_csv(os.path.join(saida, "A24_resumo.csv"), index=False)
+    pd.DataFrame([dict(teste="A24", estado="EXECUTADO", secoes_lidas_turno2=n, ufs_cobertas=",".join(sorted({x["SG_UF"] for x in por_uf})), cobertura=f"{len(por_uf)} de 27 UFs (parcial)" if len(por_uf) < 27 else "27 de 27 UFs", secoes_por_uf=";".join(f"{x['SG_UF']}:{x['secoes']}" for x in por_uf))]).to_csv(os.path.join(saida, "A24_resumo.csv"), index=False)
     print(fr[["teste", "est_2026T2", "placebos", "p_excesso", "p_holm", "votos_max_pior_caso", "pct_pior_caso", "veredito"]].to_string())
     return fr
 

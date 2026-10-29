@@ -76,6 +76,12 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > O que fecharia: Origem das transferências de eleitores para essas seções e o histórico dos locais (cadastro nominal, pela Justiça Eleitoral).  
 > [Página técnica](fase3.html#a27) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-H5%20A-H5)
 
+> **Por que os eleitores de 95 anos ou mais que votaram em 2026 são mais do que a razão de 2022 prevê?**  
+> Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
+> Teto: **teto de pior caso, não estimativa: 7.059 votos de margem (0,16% da margem)** (z = 2.42. Holm 0.054: passa no corte de 2 erros padrão e não passa no Holm; cerca de 4.205 votantes a mais. de 16.659)  
+> O que fecharia: Cruzamento do cadastro de 95+ com o registro civil de óbitos e as listas assinadas de habilitação dessa faixa.  
+> [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-95%20A-A20b-95)
+
 > **Por que uma seção de 2022 tem um voto a menos no log do que no boletim?**  
 > Situação: **TESTADO-INCONCLUSIVO** · Direção: sem direção identificável  
 > Teto: excesso medido: 1 votos de margem; **teto de pior caso, não estimativa: 1 votos de margem (menos de 0,01% da margem)** (uma seção de 2022: 348 comparecimentos no boletim, 347 votos no log)  
@@ -95,6 +101,12 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 > [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-3b%20A-A20b-3b)
 
 ### b) Hipóteses ainda não testadas (Fase 3, A20 a A28)
+
+> **O comparecimento dos eleitores de 80 anos ou mais no 2º turno de 2026 repete o do 1º turno?**  
+> Situação: **NÃO TESTADO** · Direção: n/a  
+> Teto: sem número ainda (teste não executado) (o arquivo público de 2026 traz só o 1º turno; o do 2º turno de 2018 e 2022 foi publicado)  
+> O que fecharia: Fecha quando o TSE publicar o perfil de comparecimento do 2º turno de 2026 (conferência semanal: `scripts/verifica_perfil_t2.sh`, rodada toda segunda-feira por uma ação do GitHub).  
+> [Página técnica](fase3.html#a20b) · [Abrir issue](https://github.com/baduba/eleicoes-dossie-2026/issues/new?title=A-A20b-T2%20A-A20b-T2)
 
 > **As urnas que foram para o teste de integridade e foram substituídas nas seções votaram diferente das vizinhas?**  
 > Situação: **NÃO TESTADO** · Direção: n/a  
