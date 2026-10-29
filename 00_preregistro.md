@@ -361,3 +361,9 @@ Os resultados do primeiro run (`A20b_testes.csv`) **permanecem como saíram**; o
 **Previsão sem manipulação (conjunta).** Silva Jardim dentro da cauda esperada após a correção; ganho espalhado entre as seções; explicado pelo perfil do 1º turno (f_hat próximo de f). Se isso falhar, o resultado sai como saiu.
 
 **O que este teste não faz.** Não identifica em quem cada eleitor votou; não prova nem descarta manipulação em nenhum município; o veredito vale para a forma da distribuição entre municípios. Cada teto é teto de pior caso, não estimativa.
+
+### Adendo 10a: município-ano com seção apurada em um turno e não no outro, escrito em 29/10/2026 depois da primeira execução parar na verificação da identidade e ANTES de qualquer estatística do teste
+
+**O que vi.** A verificação P = E - BN(T2) do Adendo 10 parou em 2018, em 1 município (BA, código TSE 38490). Causa, vista nos dados brutos e sem calcular f: no T1 de 2018 duas seções desse município têm tipo "Anulada e apurada em separado", com comparecimento registrado (363 e 383) e votos zerados; no T2 as mesmas seções foram apuradas. Entram no pool do município 746 votos que não existem no T1, o que quebra a identidade e inflaria dL e P naquele município. Isto vale para qualquer seção com status de apuração diferente entre os turnos, mesmo quando a identidade passa por acaso (por exemplo, comparecimento zero nas duas pontas).
+
+**Regra acrescentada (vale para os quatro anos, fixada agora).** Um município-ano fica **fora** do teste se alguma seção (pareada pela chave UF, município, zona, seção) tem tipo de urna diferente entre T1 e T2, ou existe só em um dos turnos. Seções "Não instalada" nos dois turnos, com tudo zero, não distorcem e permanecem. Os municípios excluídos por essa regra são listados em `results/fase3/A31_excluidos.csv`, com o motivo. A identidade continua obrigatória para todos os demais: se falhar, o script para. O número de excluídos entra no texto da página.
