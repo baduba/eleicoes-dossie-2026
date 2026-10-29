@@ -27,7 +27,7 @@ Não é evidência de fraude: é o mapa de onde a verificação pública termina
 
 ## Perguntas em aberto (resumo)
 
-Há **26 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidências de manipulação; são lacunas.**
+Há **28 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidências de manipulação; são lacunas.**
 
 Lista completa, com situação, teto e o que fecharia cada uma: [Perguntas em aberto](perguntas-em-aberto.html).
 

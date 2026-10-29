@@ -162,6 +162,25 @@ def extremas(E, pq, saida, pi):
     return ext, res
 
 
+def secoes_top20(ext, pq, saida):
+    """Item 5: todas as secoes das 20 escolas mais extremas, T1 e T2, com colunas vazias para o BU impresso (formato de 04_cruza_bu_impresso.py)."""
+    top = ext.head(20)[["rank", "uf_local", "NM_MUNICIPIO", "NM_LOCAL_VOTACAO", "excesso_idade"]]
+    cols = KEY + ["uf_local", "NR_LOCAL_VOTACAO", "QT_APTOS", "QT_COMPARECIMENTO", "lula", "dir", "branco", "nulo", "biom_nh"]
+    t = {k: pd.read_parquet(os.path.join(pq, f"bu_2026_t{k}.parquet"), columns=cols) for k in (1, 2)}
+    t1 = t[1][t[1].uf_local.isin(top.uf_local)].set_index(KEY)
+    t2 = t[2][t[2].uf_local.isin(top.uf_local)].set_index(KEY)
+    r = {"QT_APTOS": "aptos", "QT_COMPARECIMENTO": "comparecimento", "lula": "lula", "dir": "flavio", "branco": "brancos", "nulo": "nulos", "biom_nh": "liberacoes_manuais"}
+    S = t2[["uf_local", "NR_LOCAL_VOTACAO"] + list(r)].rename(columns={c: f"{v}_T2" for c, v in r.items()}).join(t1[list(r)].rename(columns={c: f"{v}_T1" for c, v in r.items()}), how="left").reset_index()
+    S = S.merge(top, on="uf_local", how="left").sort_values(["rank", "NR_SECAO"])
+    for k in ("aptos", "comparecimento", "lula", "flavio", "brancos", "nulos"):
+        for c in ("T1", "T2"):
+            S[f"impresso_{k}_{c}"] = ""
+    S = S.rename(columns={"rank": "posicao_A33", "NM_MUNICIPIO": "municipio", "NM_LOCAL_VOTACAO": "local_de_votacao"})
+    ordem = ["posicao_A33", "SG_UF", "CD_MUNICIPIO", "municipio", "NR_ZONA", "NR_LOCAL_VOTACAO", "local_de_votacao", "NR_SECAO"] + [f"{v}_{c}" for c in ("T1", "T2") for v in r.values()] + [c for c in S.columns if c.startswith("impresso_")]
+    S[ordem].to_csv(os.path.join(saida, "A33_20_escolas_secoes.csv"), index=False)
+    return S
+
+
 def sincronia(dl, pq, damostra, saida):
     L = pd.concat([pd.read_parquet(f) for f in sorted(glob.glob(os.path.join(dl, "*.parquet")))], ignore_index=True)
     L = L[L.dia.isin([1, 2]) & L.ts.notna()].rename(columns={"uf": "SG_UF", "cd_municipio": "CD_MUNICIPIO", "zona": "NR_ZONA", "secao": "NR_SECAO"})
@@ -249,6 +268,7 @@ def main(pq, pi, damostra, dl, dmapa, saida):
     fam, mod = rodar_modelos(E, expo_v, expo_a)
     fam.to_csv(os.path.join(saida, "A33_testes.csv"), index=False); mod.to_csv(os.path.join(saida, "A33_modelos.csv"), index=False)
     ext, res = extremas(E, pq, saida, pi)
+    S20 = secoes_top20(ext, pq, saida)
     if os.environ.get("A33_PULA_SINCRONIA") == "1":
         S, C = pd.read_csv(os.path.join(saida, "A33_sincronia.csv")), pd.read_csv(os.path.join(saida, "A33_sincronia_cobertura.csv"))
     else:
@@ -256,7 +276,7 @@ def main(pq, pi, damostra, dl, dmapa, saida):
     pd.set_option("display.width", 260); pd.set_option("display.max_columns", 40)
     print({a: len(E[a]) for a in E}, "com idade 2018:", int(E[2018].idade_media.notna().sum()))
     print(D.round(2).to_string()); print(mod.round(5).to_string()); print(fam[["teste", "est_2026T2", "ep", "comparador_exigente", "b_comp", "p_excesso", "p_holm", "votos_max_pior_caso", "pct_pior_caso", "veredito"]].round(4).to_string() if len(fam) else "sem familia")
-    print(pd.DataFrame([res]).T.to_string()); print(ext[["rank", "SG_UF", "NM_MUNICIPIO", "NM_LOCAL_VOTACAO", "secoes", "votantes_t2", "manual", "manual_previsto_modelo_2022", "manual_2022", "excesso_idade", "idade_media"]].head(25).round(3).to_string())
+    print(pd.DataFrame([res]).T.to_string()); print(ext[["rank", "SG_UF", "NM_MUNICIPIO", "NM_LOCAL_VOTACAO", "secoes_t2", "comp_t2", "manual", "manual_2022", "excesso_idade", "excesso_vs_2022", "idade_media"]].head(25).round(3).to_string())
     print(C.to_string()); print(S.round(3).to_string())
 
 
