@@ -1,0 +1,12 @@
+SG_UF,tre,pagina_localizada,turno_citado,lista_de_secoes_lida,motivo
+SP,TRE-SP,https://www.tre-sp.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-urnas-sao-selecionadas-para-os-testes-de-integridade-e-de-autenticidade-dos-sistemas-eleitorais,1,NAO,site responde 403 a acesso automatizado; resumo de busca sem tabela
+SP,TRE-SP,https://www.tre-sp.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-fiscalizadores-definem-urnas-para-os-testes-de-integridade-e-de-autenticidade-do-2o-turno,2,NAO,site responde 403 a acesso automatizado; resumo de busca sem tabela
+SE,TRE-SE,https://www.tre-se.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade,1 e 2,NAO,site responde 403 a acesso automatizado; resumo de busca cita 20 secoes mas nao a tabela
+SC,TRE-SC,https://www.tre-sc.jus.br/comunicacao/noticias/2026/Outubro/acompanhe-o-sorteio-das-urnas-que-serao-auditadas-no-segundo-turno,2,NAO,site responde 403 a acesso automatizado
+PB,TRE-PB,https://www.tre-pb.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-sorteio-define-secoes-que-passarao-por-auditoria-para-o-2deg-turno,2,NAO,site responde 403 a acesso automatizado
+MA,TRE-MA,https://www.tre-ma.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-definidas-as-urnas-que-passarao-por-auditoria,2,NAO,site responde 403 a acesso automatizado
+MG,TRE-MG,https://www.tre-mg.jus.br/comunicacao/noticias/2026/Outubro/definidas-as-urnas-eletronicas-que-serao-auditadas-no-2o-turno,2,NAO,site responde 403 a acesso automatizado
+MT,TRE-MT,https://www.tre-mt.jus.br/comunicacao/noticias/2026/Outubro/secoes-eleitorais-de-mato-grosso-que-terao-urnas-auditadas-sao-sorteadas,1,NAO,site responde 403 a acesso automatizado
+ES,TRE-ES,https://www.tre-es.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-urnas-sao-sorteadas-para-testes-de-integridade-e-de-autenticidade-neste-domingo-4,1,NAO,nao consultado diretamente (mesma familia de sites que respondem 403)
+DF,TRE-DF,https://www.tre-df.jus.br/comunicacao/noticias/2026/Outubro/tre-df-realizara-sorteio-das-urnas-que-passarao-por-auditoria-no-segundo-turno,2,NAO,nao consultado diretamente (mesma familia de sites que respondem 403)
+AC AL AM AP BA CE GO MS PA PE PI PR RJ RN RO RR RS TO,demais TREs,fonte nao localizada nesta rodada,,NAO,nao pesquisado UF a UF; a busca geral so devolveu as paginas acima

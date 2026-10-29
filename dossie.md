@@ -1,5 +1,7 @@
 # Dossiê: auditoria dos dados do 2º turno presidencial de 2026 (Lula x Flávio Bolsonaro)
 
+> **Unidades.** "Votos de margem" é a variação da diferença Lula menos Flávio: a troca de um voto muda a margem em 2. Todo teto, estimativa central e agregado em votos neste documento está em votos de margem e deve ser lido contra a margem oficial de 4.430.191. "Votos (contagem)" é número simples de votos, e vem rotulado assim. Definição completa em Metodologia.
+
 Gerado em 2026-10-28 a partir dos arquivos públicos do TSE. Todos os números deste texto vêm dos CSVs em `results/fase1/` (script `03_monta_dossie.py`). Previsões e critérios foram fixados antes dos dados em `00_preregistro.md`.
 
 ## 1. Resumo executivo
@@ -11,9 +13,9 @@ Gerado em 2026-10-28 a partir dos arquivos públicos do TSE. Todos os números d
 5. H3 e H4: a contagem do relatório foi reproduzida (339.593 seções entre 17h01 e 17h15 pelo relógio cru da urna). 6.342 seções registraram encerramento a partir das 19h no relógio da urna, contra 20 em 2022/T2. Nelas, o voto em Lula não difere das demais seções do mesmo local; tetos de 0,03% a 0,19% da margem.
 6. O número de votos dados depois das 17h não é mensurável com estes dados (o BWeb não traz log de votação).
 7. H5 a H8 e régua histórica: o comparecimento, os outliers locais e os dígitos de 2026 ficam dentro da faixa observada em 2014, 2018 e 2022. Nenhum dos padrões A, B ou C se ajusta pelo critério fixado (C: 5 de 12 métricas; ver 3.13).
-8. Dois testes mostram excesso depois de Holm: votos de Flávio por apto x taxa manual (teto 122.543 votos, 2,77% da margem, sentido favorável a Flávio) e variação de voto em Lula entre anos x variação da taxa manual (teto 38.394 votos, 0,87%).
+8. Dois testes mostram excesso depois de Holm: votos de Flávio por apto x taxa manual (teto de pior caso, não estimativa: 122.543 votos de margem, 2,77% da margem, sentido favorável a Flávio) e variação de voto em Lula entre anos x variação da taxa manual (teto de pior caso, não estimativa: 38.394 votos de margem, 0,87%).
 9. Residuais sem causa identificada: 639 seções com comparecimento >= 95% (2,5 vezes o esperado pela composição; 1,9 vezes já no T1; teto 0,43%) e seções novas (+0,54 p.p. de Lula no T2 dado o T1; +1,34 p.p. em 2018; teto de pior caso 2,08%).
-10. Impacto agregado: a soma dos tetos dos testes com excesso detectado é 38.394 votos no sentido pró-Lula (0,87% da margem) e 122.543 no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança 4.430.191 votos. Não executado: cruzamento com boletins impressos (sem insumo).
+10. Impacto agregado: a soma dos tetos de pior caso (não estimativas) dos testes com excesso detectado é 38.394 votos de margem no sentido pró-Lula (0,87% da margem) e 122.543 votos de margem no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança 4.430.191 votos. Não executado: cruzamento com boletins impressos (sem insumo).
 
 ## 2. Dados e versões
 
@@ -43,7 +45,7 @@ Hash SHA-256 de todos os insumos: `dados/sha256_entradas.txt`. URLs: `dados/urls
 - Horários `DT_ABERTURA`, `DT_ENCERRAMENTO`, `DT_EMISSAO_BU` são relógio local da urna (Acre abre às 06h00 e fecha às 15h00). O atraso de fechamento usa o horário nominal do município (moda da abertura + 9 h). `DT_BU_RECEBIDO` é horário do servidor do TSE.
 - Seções "Não instalada", "Não apurada" e "Anulada e apurada em separado" trazem `#NULO#` ou -1 nos campos de votável e biometria. São tratadas só nesse caso exato, ficam fora das análises (somente urna "Apurada", exterior excluído, salvo indicação).
 - Em 2022, as urnas UE2009 e UE2010 do Espírito Santo registram taxa manual exatamente 0,0 (3.339 seções), enquanto as mesmas urnas em outros estados têm cerca de 15%. É artefato de medição e explica o único estado em que a taxa subiu de 2022 para 2026.
-- Versões: Python 3.12, pandas 3.1, scipy 1.18, pyarrow, matplotlib 3.11. Hashes dos scripts (SHA-256, 16 primeiros caracteres): `01_prepara_bweb.py` dff9e63cf4b464f0; `01b_locais.py` 8becc04f2c1181bb; `01c_modelo_urna.py` 42745848343abc57; `02_executa.py` 34047bf625a3ec46; `03_monta_dossie.py` 2550c216238595fd; `04_cruza_bu_impresso.py` c2fa12f3f5121b29; `h1_h4.py` 6a505af697305755; `h5_h8.py` 19e7a158411206f7; `h9_h10.py` 21ae5413bb5c4750; `lib_auditoria.py` aba85ca5b1ac6bee.
+- Versões: Python 3.12, pandas 3.1, scipy 1.18, pyarrow, matplotlib 3.11. Hashes dos scripts (SHA-256, 16 primeiros caracteres): `01_prepara_bweb.py` dff9e63cf4b464f0; `01b_locais.py` 8becc04f2c1181bb; `01c_modelo_urna.py` 42745848343abc57; `02_executa.py` 88170a7d1413ff7a; `03_monta_dossie.py` 79d7b25ca185e76f; `03b_monta_fase2.py` b9759ac59c6f41fc; `03c_relatorio_original.py` cd6fc61424af0a14; `03d_alegacoes_residuos.py` 6e77253c9e9c16a1; `03e_paginas_finais.py` 0b98d4cce9b44457; `03f_paginas_a18_a19.py` ae003807fc79e499; `04_cruza_bu_impresso.py` c2fa12f3f5121b29; `05_extras_bweb.py` e8848c083265d890; `06_ordem_totalizacao.py` 9ff1bd0374c8d640; `07_perfil_agrega.py` f006fede9732dc6f; `08_arquivos_urna.py` 409c69a428c2bd6a; `09_amostra_urna.py` 7a71f4b221af0926; `10_figuras.py` 229dd164a20f7b12; `11_alegacoes_relatorio.py` 2abce2f1302b1b37; `12_candidatos_t1.py` d80be156b3d58791; `13_cert_urna.py` 44e708e9d71f5928; `14_poder_estatistico.py` 15aa579512568d93; `15_aplica_autoria.py` dea5193cb7cc8c98; `16_a1_t1_janela.py` 85ab8db2b4765da1; `build_site.py` 8e100dd52380393f; `f2_a11_a15.py` 565f08129358405e; `f2_a18.py` 1d94b201f4201ae8; `f2_a1_a3.py` adc5d4bb98d067bf; `f2_a4_a5.py` 5ce1fb27909924ec; `f2_a6_a10.py` 8525031d689c582b; `f2_posregistro.py` e552f42bc8df9775; `h1_h4.py` 6a505af697305755; `h5_h8.py` 19e7a158411206f7; `h9_h10.py` 97a07ba144207967; `lib_auditoria.py` abda03c1384bdabd; `urna_parse.py` 37fee987face98d5.
 
 ## 3. Resultados por hipótese
 
@@ -53,7 +55,7 @@ Regra de veredito (Adendo 2 do pré-registro): **excesso detectado e relevante**
 
 ### 3.1 Síntese
 
-| H | Previsão se houver desvio | Previsão se não houver | Resultado | Placebo | Efeito máx. (votos) | % da margem | p Holm | Veredito |
+| H | Previsão se houver desvio | Previsão se não houver | Resultado | Placebo | Efeito máx. (votos de margem) | % da margem | p Holm | Veredito |
 |---|---|---|---|---|---|---|---|---|
 | H1 manual x voto Lula (T2, com T1) | coef. > 0 e > placebos, dose-resposta crescente | mesma magnitude nos placebos | 0,0020 (ep 0,0010) | 2022/T2: 0,0162 | 0 | 0,00% | 1,000 | refutada |
 | H1 sem controle do T1 | idem | idem | 2026/T2: 0,0696; 2026/T1: 0,0741 | 2026/T1: 0,0741 (2022: -0,0054 e 0,0137) | 19.670 (vs T1/2026); 1.337.198 (vs 2022/T1) | 0,44%; 30,18% | 1,000 | inconclusiva pelo critério, mas a associação é igual no T1 (ver 3.2) |
@@ -336,14 +338,14 @@ A totalização por município/zona de 2026 tem 41 (T1) e 42 (T2) zonas sem seç
 
 ### 3.10 H10: impacto agregado
 
-| sentido | n_testes_com_votos | n_sobreviventes | soma_votos_sobreviventes_exigente | soma_votos_sobreviventes_pior_caso | maximo_individual_pior_caso | soma_de_todos_exigente | pct_margem_sobreviventes_pior_caso | pct_margem_soma_todos_exigente |
+| sentido | n_testes_com_votos | n_sobreviventes | soma_votos_sobreviventes_exigente (votos de margem) | soma_votos_sobreviventes_pior_caso (teto de pior caso, votos de margem) | maximo_individual_pior_caso (teto de pior caso, votos de margem) | soma_de_todos_exigente (votos de margem) | pct_margem_sobreviventes_pior_caso | pct_margem_soma_todos_exigente |
 |---|---|---|---|---|---|---|---|---|
 | PT | 19 | 1 | 38.394 | 38.394 | 1.337.198 | 213.777 | 0,87 | 4,83 |
 | OPO | 1 | 1 | 122.543 | 122.543 | 122.543 | 122.543 | 2,77 | 2,77 |
 
 Sobreviventes (Holm < 0,05):
 
-| H | teste | sentido | p_holm | votos_max_margem | votos_max_pior_caso | pct_pior_caso | veredito |
+| H | teste | sentido | p_holm | votos_max_margem (votos de margem) | votos_max_pior_caso (teto de pior caso, votos de margem) | pct_pior_caso | veredito |
 |---|---|---|---|---|---|---|---|
 | H1 | S1 Flavio/Bolsonaro votos/apto | OPO | 0,000 | 122.543 | 122.543 | 2,77% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) |
 | H2 | delta voto Lula (2022->2026) ~ delta taxa manual, T2 | PT | 0,000 | 38.394 | 38.394 | 0,87% | excesso detectavel, magnitude irrelevante (<1% da margem) |
@@ -435,8 +437,8 @@ A classificação em A/B/C depende do critério numérico fixado, que é arbitr�
 
 ## 4. Anomalias residuais que sobreviveram aos controles
 
-1. **Votos de Flávio por apto x taxa manual (H1).** Coeficiente 0,0090 contra -0,0005 em 2022; teto 122.543 votos, 2,77% da margem, **no sentido favorável a Flávio**. Testado e não explicado por: composição do T1 (o coeficiente aumenta), nível de comparecimento do T1. Não testado: perfil de idade e escolaridade por seção (conjunto não disponível por seção).
-2. **Variação de voto em Lula entre anos x variação da taxa manual (H2).** T2: -0,0004; T1 (placebo): -0,0110; diferença estatisticamente detectável, teto 38.394 votos (0,87%). O T1 de 2026 tem candidatos diferentes do T1 de 2022, então o placebo é imperfeito.
+1. **Votos de Flávio por apto x taxa manual (H1).** Coeficiente 0,0090 contra -0,0005 em 2022; teto de pior caso, não estimativa, 122.543 votos de margem, 2,77% da margem, **no sentido favorável a Flávio**. Testado e não explicado por: composição do T1 (o coeficiente aumenta), nível de comparecimento do T1. Não testado: perfil de idade e escolaridade por seção (conjunto não disponível por seção).
+2. **Variação de voto em Lula entre anos x variação da taxa manual (H2).** T2: -0,0004; T1 (placebo): -0,0110; diferença estatisticamente detectável, teto de pior caso, não estimativa, 38.394 votos de margem (0,87%). O T1 de 2026 tem candidatos diferentes do T1 de 2022, então o placebo é imperfeito.
 3. **Associação manual x Lula de 2026 (H1, sem controle do T1).** 0,074 no T1 e 0,070 no T2, contra -0,005 e 0,014 em 2022. Presente antes do 2º turno e inalterada por tamanho, comparecimento e modelo da urna. Causa não identificada. Não é específica do 2º turno, então não decorre de nada exclusivo daquele dia (a prorrogação, por exemplo). Uma causa comum aos dois turnos, seja de característica das seções ou da urna, seja de outra natureza, não é distinguível por estes dados.
 4. **Seções com comparecimento >= 95% (H5).** 639 em 2026/T2; 2,5 vezes o esperado pela composição de tipo de local e tamanho; presente no T1 (1,9 vezes). Testado: tipo de local (indígena, prisional, hospital, quilombola, militar, rural), tamanho, seção nova, UF, taxa manual, atraso de fechamento, "só no T2" (35 seções, 5.737 votos válidos), numerador contra denominador. Nenhum fator isolado elimina o excesso. Não testado: cancelamento de títulos e revisão do eleitorado entre 2022 e 2026 (não há dado). Teto de efeito: 0,43% da margem.
 5. **Seções novas (H6).** +0,54 p.p. de Lula no T2 dado o T1 (2018: +1,34; 2022: 0,00); robusto a interação, tamanho e comparecimento. Teto de pior caso 2,08%.
@@ -485,7 +487,7 @@ Reprocessar 2022 e 2026 com a versão final do preparador reproduz os parquets o
 
 ## Apêndice A: registro completo dos 23 testes
 
-| H | teste | sentido | est_2026T2 | comparador_exigente | b_comp | p_bruto_2lados | p_excesso | p_holm | p_bh | votos_max_margem | pct_margem | votos_max_pior_caso | pct_pior_caso | veredito |
+| H | teste | sentido | est_2026T2 | comparador_exigente | b_comp | p_bruto_2lados | p_excesso | p_holm | p_bh | votos_max_margem (votos de margem) | pct_margem | votos_max_pior_caso (teto de pior caso, votos de margem) | pct_pior_caso | veredito |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | H1 | S1 T2 com lag T1, Lula% ~ taxa manual | PT | 0,00195 | 2022/T2 | 0,01620 | 0,0000 | 1,0000 | 1,000 | 1,000 | 0 | 0,000 | 0 | 0,000 | REFUTADA (sem excesso, teto <1% da margem) |
 | H1 | S0 sem lag, Lula% ~ taxa manual | PT | 0,06956 | 2026/T1 | 0,07413 | 0,1904 | 0,9048 | 1,000 | 1,000 | 19.670 | 0,444 | 1.337.198 | 30,184 | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |

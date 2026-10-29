@@ -1,0 +1,9 @@
+medida,ano,erro,coef_lula_sh_por_unidade,ep,n
+gap5_por_100,2026,"colineariedade em ['gap5_por_100', 'lula_sh_t1', 'turnout'] (variacao intra-grupo insuficiente)",,,
+gap5_por_100,2022,"colineariedade em ['gap5_por_100', 'lula_sh_t1', 'turnout'] (variacao intra-grupo insuficiente)",,,
+gap10_por_100,2026,"colineariedade em ['gap10_por_100', 'lula_sh_t1', 'turnout'] (variacao intra-grupo insuficiente)",,,
+gap10_por_100,2022,"colineariedade em ['gap10_por_100', 'lula_sh_t1', 'turnout'] (variacao intra-grupo insuficiente)",,,
+ultimo_voto_apos_nominal_min,2026,,9.573191441498052e-06,5.471821129223598e-06,11399.0
+ultimo_voto_apos_nominal_min,2022,,-5.934285939075488e-05,2.6528276327726523e-05,10407.0
+votos_apos_nominal_por_100,2026,,-2.1115046934380475e-05,5.8590539758584826e-05,11399.0
+votos_apos_nominal_por_100,2022,,8.909709189490793e-05,9.543234275810256e-05,10407.0

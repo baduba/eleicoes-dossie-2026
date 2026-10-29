@@ -1,0 +1,2 @@
+sd_residuo_local_pp,mediana_votos_validos,limiar_z,trocas_por_secao_visiveis_como_outlier,nota
+1.67,256,3,13,"com 475.784 secoes, cerca de 0,27% (1.284) passariam |z|>3 por acaso; abaixo do limiar, a alteracao nao aparece secao a secao"

@@ -75,7 +75,7 @@ Todos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/
 
 **Perda de votos absolutos** em seções com comparecimento estável ou crescente (≥ 98% do T1):
 
-| ano | cand | secoes_estaveis_ou_crescentes | secoes_com_perda | pct_secoes | votos_perdidos | pct_dos_votos_T1_do_cand_nessas_secoes | pct_secoes_perda_acima_de_20pct_do_T1 |
+| ano | cand | secoes_estaveis_ou_crescentes | secoes_com_perda | pct_secoes | votos_perdidos (votos, contagem) | pct_dos_votos_T1_do_cand_nessas_secoes | pct_secoes_perda_acima_de_20pct_do_T1 |
 |---|---|---|---|---|---|---|---|
 | 2014 | OPO | 219.370 | 2.428 | 1,11 | 9.604 | 0,049 | 0,043 |
 | 2014 | PT | 219.370 | 7.368 | 3,36 | 36.618 | 0,174 | 0,054 |
@@ -149,7 +149,7 @@ Em 2026, Lula ganhou 10.376.694 votos e o oponente 3.721.538 (líquido positivo)
 
 **Perda líquida mínima por seção** (quantos votos do T1 de cada candidato 'sumiram' dentro de seções onde ele perdeu votos absolutos; é limite inferior de eleitores que não repetiram o voto, por mudança, abstenção ou outra causa, não de conversão):
 
-| ano | cand | secoes | secoes_com_perda_liquida | pct_secoes | votos_perdidos_liquidos_somados | ganho_liquido_nacional |
+| ano | cand | secoes | secoes_com_perda_liquida | pct_secoes | votos_perdidos_liquidos_somados (votos, contagem) | ganho_liquido_nacional (votos, contagem) |
 |---|---|---|---|---|---|---|
 | 2014 | OPO | 428.854 | 8.366 | 1,95 | 38.639 | 16.143.944 |
 | 2014 | PT | 428.854 | 33.361 | 7,78 | 254.395 | 11.233.450 |
@@ -680,7 +680,7 @@ Em 2026/T2, às 19h34, **7,77%** dos BUs tinham sido recebidos e **7,74%** tinha
 
 O texto do relatório não foi fornecido; replica-se a alegação como foi resumida (modelos antigos favoreciam Lula). Contra UE2020, dentro do mesmo local, em 2022:
 
-| ano | modelo | especificacao | coef_pp | ep_pp | secoes | votos_margem | votos_ic95_inf | votos_ic95_sup | pct_margem |
+| ano | modelo | especificacao | coef_pp | ep_pp | secoes | votos_margem (votos de margem) | votos_ic95_inf (votos de margem) | votos_ic95_sup (votos de margem) | pct_margem |
 |---|---|---|---|---|---|---|---|---|---|
 | 2022 | UE2009 | T2 sem controle do T1 (corte transversal) | 0,208 | 0,295 | 46.159 | 46.479 | -82.288 | 175.246 | 1,05 |
 | 2022 | UE2010 | T2 sem controle do T1 (corte transversal) | 0,208 | 0,294 | 92.781 | 92.445 | -163.287 | 348.178 | 2,09 |
@@ -700,7 +700,7 @@ O texto do relatório não foi fornecido; replica-se a alegação como foi resum
 
 Sem controle do 1º turno (a especificação que a alegação pressupõe), o efeito de UE2009 e UE2010 é positivo para Lula, mas pequeno e **não distinguível de zero** (intervalo de 95% inclui zero); o mesmo ocorre no próprio 1º turno (corte transversal), o que indica composição das seções que usam cada modelo. **Com o voto do 1º turno como controle, o efeito é negativo e não significativo** (−0,09 p.p.). Em 2026:
 
-| ano | modelo | especificacao | coef_pp | ep_pp | secoes | votos_margem | votos_ic95_inf | votos_ic95_sup | pct_margem |
+| ano | modelo | especificacao | coef_pp | ep_pp | secoes | votos_margem (votos de margem) | votos_ic95_inf (votos de margem) | votos_ic95_sup (votos de margem) | pct_margem |
 |---|---|---|---|---|---|---|---|---|---|
 | 2026 | UE2013 | T2 sem controle do T1 (corte transversal) | 0,906 | 0,312 | 11.421 | 51.143 | 16.579 | 85.708 | 1,15 |
 | 2026 | UE2015 | T2 sem controle do T1 (corte transversal) | 0,679 | 0,305 | 87.179 | 298.507 | 35.526 | 561.488 | 6,74 |
@@ -718,14 +718,14 @@ Em 2026 nenhum modelo difere da UE2020 dentro do mesmo local.
 
 Aqui entram **apenas** os testes sem ressalva de desenho. Soma dos tetos de pior caso dos testes com excesso detectado (Holm < 0,05) em cada sentido:
 
-| agregado | pró-Lula (votos) | % da margem | pró-Flávio (votos) | % da margem |
+| agregado | pró-Lula (votos de margem) | % da margem | pró-Flávio (votos de margem) | % da margem |
 |---|---|---|---|---|
 | excluindo as linhas com ressalva de desenho (A1, A2, A3, A12) | 38.394 | 0,87% | 122.543 | 2,77% |
 | com as versões corrigidas no lugar das originais (0 das 4 versões corrigidas mostram excesso) | 38.394 | 0,87% | 122.543 | 2,77% |
 
 Sobreviventes (Holm < 0,05) sem ressalva de desenho:
 
-| H | teste | sentido | p_holm | votos_max_margem | votos_max_pior_caso | pct_pior_caso | veredito |
+| H | teste | sentido | p_holm | votos_max_margem (votos de margem) | votos_max_pior_caso (teto de pior caso, votos de margem) | pct_pior_caso | veredito |
 |---|---|---|---|---|---|---|---|
 | H1 | S1 Flavio/Bolsonaro votos/apto | OPO | 0,000 | 122.543 | 122.543 | 2,77% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) |
 | H2 | delta voto Lula (2022->2026) ~ delta taxa manual, T2 | PT | 0,000 | 38.394 | 38.394 | 0,87% | excesso detectavel, magnitude irrelevante (<1% da margem) |

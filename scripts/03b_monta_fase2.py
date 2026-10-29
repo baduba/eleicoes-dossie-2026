@@ -32,12 +32,19 @@ def pc(x, d=2):
     return n(x, d) + "%"
 
 
+ROT = {"votos_central": "votos_central (votos de margem)", "votos_ic95_inf": "votos_ic95_inf (votos de margem)", "votos_ic95_sup": "votos_ic95_sup (votos de margem)",
+       "votos_max_margem": "votos_max_margem (votos de margem)", "votos_max_pior_caso": "votos_max_pior_caso (teto de pior caso, votos de margem)", "votos_margem": "votos_margem (votos de margem)",
+       "soma_votos_sobreviventes_exigente": "soma_votos_sobreviventes_exigente (votos de margem)", "soma_votos_sobreviventes_pior_caso": "soma_votos_sobreviventes_pior_caso (teto de pior caso, votos de margem)",
+       "maximo_individual_pior_caso": "maximo_individual_pior_caso (teto de pior caso, votos de margem)", "soma_de_todos_exigente": "soma_de_todos_exigente (votos de margem)",
+       "votos_perdidos": "votos_perdidos (votos, contagem)", "votos_perdidos_liquidos_somados": "votos_perdidos_liquidos_somados (votos, contagem)", "ganho_liquido_nacional": "ganho_liquido_nacional (votos, contagem)"}
+
+
 def tab(df, fmts=None):
     if df is None or len(df) == 0:
         return "_(tabela vazia ou não executada)_"
     fmts = fmts or {}
     cols = list(df.columns)
-    L = ["| " + " | ".join(cols) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
+    L = ["| " + " | ".join(ROT.get(c, c) for c in cols) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
     for _, r in df.astype(object).iterrows():
         L.append("| " + " | ".join(((fmts[c](r[c]) if c in fmts else str(r[c])).replace("|", "/")) for c in cols) + " |")
     return "\n".join(L)
@@ -355,7 +362,7 @@ sob_ok = h10s[~h10s.H.isin(FLAW)]
 pos_exc = pos[pos.veredito.str.startswith(("EXCESSO", "excesso"))] if pos is not None else pos
 n_pos_exc = 0 if pos_exc is None else len(pos_exc)
 A("Aqui entram **apenas** os testes sem ressalva de desenho. Soma dos tetos de pior caso dos testes com excesso detectado (Holm < 0,05) em cada sentido:\n")
-A("| agregado | pró-Lula (votos) | % da margem | pró-Flávio (votos) | % da margem |\n|---|---|---|---|---|")
+A("| agregado | pró-Lula (votos de margem) | % da margem | pró-Flávio (votos de margem) | % da margem |\n|---|---|---|---|---|")
 A(f"| excluindo as linhas com ressalva de desenho (A1, A2, A3, A12) | {n(agg_ex.loc['PT','soma_votos_sobreviventes_pior_caso'])} | {pc(agg_ex.loc['PT','pct_margem_sobreviventes_pior_caso'])} | {n(agg_ex.loc['OPO','soma_votos_sobreviventes_pior_caso'])} | {pc(agg_ex.loc['OPO','pct_margem_sobreviventes_pior_caso'])} |")
 A(f"| com as versões corrigidas no lugar das originais ({n_pos_exc} das 4 versões corrigidas mostram excesso) | {n(agg_ex.loc['PT','soma_votos_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='PT'].votos_max_pior_caso.fillna(0).sum()))} | {pc(agg_ex.loc['PT','pct_margem_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='PT'].pct_pior_caso.fillna(0).sum()))} | {n(agg_ex.loc['OPO','soma_votos_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='OPO'].votos_max_pior_caso.fillna(0).sum()))} | {pc(agg_ex.loc['OPO','pct_margem_sobreviventes_pior_caso'] + (0 if pos_exc is None else pos_exc[pos_exc.sentido=='OPO'].pct_pior_caso.fillna(0).sum()))} |")
 A("\nSobreviventes (Holm < 0,05) sem ressalva de desenho:\n")

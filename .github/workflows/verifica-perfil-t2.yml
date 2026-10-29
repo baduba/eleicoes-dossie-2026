@@ -1,0 +1,25 @@
+name: Verifica perfil do 2º turno
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # toda segunda-feira, 09h de Brasília
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Conferir publicação
+        id: v
+        run: |
+          set +e
+          bash scripts/verifica_perfil_t2.sh | tee saida.txt
+          echo "codigo=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+      - name: Abrir issue se mudou
+        if: steps.v.outputs.codigo == '10'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "TSE publicou o perfil de comparecimento de 2026? conferir o 2º turno" --body "$(cat saida.txt)"

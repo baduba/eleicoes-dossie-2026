@@ -1,0 +1,53 @@
+"""A29/A30: regras da primeira pagina (palavras proibidas, ressalva do teto na mesma linha, resultado antes das perguntas) e tabelas de poder."""
+import math
+import os
+import re
+import sys
+import pytest
+
+RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(RAIZ, "scripts"))
+pp = pytest.importorskip("primeira_pagina")
+if not os.path.exists(os.path.join(RAIZ, "results", "graficos", "itens_em_aberto.csv")):
+    pytest.skip("rode scripts/graficos/00_dados.py", allow_module_level=True)
+
+PROIBIDAS = ["probabilidade de fraude", "provável", "provavel", "suspeit", "fraude"]
+
+
+def pagina(readme):
+    return pp.resultado(RAIZ) + pp.perguntas(RAIZ, readme) + pp.contribuir(RAIZ, readme)
+
+
+@pytest.mark.parametrize("readme", [False, True])
+def test_palavras_proibidas_e_travessao(readme):
+    t = pagina(readme).lower()
+    for p in PROIBIDAS:
+        assert p not in t, p
+    assert "—" not in t and "–" not in t
+
+
+def test_todo_cartao_com_teto_traz_a_ressalva_na_mesma_linha():
+    for linha in pagina(False).splitlines():
+        if linha.startswith("> Teto:") and "votos de margem" in linha:
+            assert "teto de pior caso, não estimativa" in linha, linha
+
+
+def test_resultado_vem_antes_das_perguntas():
+    t = pagina(False)
+    assert t.index("Resultado verificado") < t.index("Perguntas em aberto")
+    assert "Nenhum teste executado encontrou efeito capaz de alterar o resultado." in t
+    assert "Não são evidências de manipulação. São lacunas." in t
+
+
+def test_blocos_e_ordem_por_teto():
+    import pandas as pd
+    D, _ = pp.carrega(RAIZ)
+    assert set(D.bloco) == {"a", "b", "c"}
+    a = D[D.bloco == "a"].teto_pior_caso.dropna().tolist()
+    assert a == sorted(a, reverse=True)
+
+
+def test_inversao_de_margem_em_seções():
+    # cada troca muda a margem em 2: 5, 50 e 200 trocas por seção
+    f = lambda k: math.ceil(math.ceil((4_430_191 + 1) / 2) / k)
+    assert (f(5), f(50), f(200)) == (443_020, 44_302, 11_076)

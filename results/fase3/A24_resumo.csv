@@ -1,0 +1,2 @@
+teste,estado,secoes_lidas_turno2,motivo,ufs_cobertas,cobertura,como_fornecer
+A24,NAO EXECUTADO,0,menos de 10 secoes lidas das publicacoes dos TREs; os sites dos TREs respondem 403 a acesso automatizado e as buscas devolvem so resumos sem a tabela,,0 de 27 UFs (parcial),"preencher data/a24_secoes_teste_integridade.csv (uma linha por secao, com a URL da publicacao do TRE e a data de acesso) e rodar scripts/33_a24_teste_integridade.py"

@@ -1,0 +1,2 @@
+ano,colunas_so_na_captura,colunas_so_no_atual,secoes_na_captura,secoes_no_atual,secoes_so_na_captura,secoes_so_no_atual,secoes_comuns,colunas_com_diferenca,data_geracao_captura
+2022,,DT_RECEBIMENTO_BU_HOR_TSE;DT_PRIM_TOT_PARCIAL_HOR_TSE;DS_ORIGEM_VOTO;ST_SECAO_INSTALADA;ST_SECAO_ANULADA;CD_MODELO_URNA;DS_MODELO_URNA,944150,944150,0,0,944150,NM_TIPO_ELEICAO;DS_ELEICAO;DS_CARGO;NR_LOCAL_VOTACAO;NM_LOCAL_VOTACAO;DS_LOCAL_VOTACAO_ENDERECO,01/11/2022

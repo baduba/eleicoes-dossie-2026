@@ -2,7 +2,7 @@
 """Substitui o marcador {{AUTORIA}} (README.md, LICENSE, docs/*.md) pelo bloco de autoria escolhido. Rodar so depois que o autor confirmar.
 Uso: python -I 15_aplica_autoria.py a "Nome Completo" "contato pessoal"   (opcao a: autor nominal)
      python -I 15_aplica_autoria.py b                                       (opcao b: projeto sem autor nominal, contato por issues)
-Para o PDF: AUTORIA_TEXTO="<mesmo texto>" python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.pdf"""
+Para o PDF: AUTORIA_TEXTO="<mesmo texto>" python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.2.pdf"""
 import glob
 import os
 import sys
