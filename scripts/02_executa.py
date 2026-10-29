@@ -14,7 +14,8 @@ MODULOS = {"H1": ("h1_h4", "h1"), "H2": ("h1_h4", "h2"), "H3": ("h1_h4", "h3"), 
            "ABC": ("h5_h8", "abc"), "H9": ("h9_h10", "h9"),
            "A1": ("f2_a1_a3", "a1"), "A2": ("f2_a1_a3", "a2"), "A3": ("f2_a1_a3", "a3"),
            "A4": ("f2_a4_a5", "a4"), "A5": ("f2_a4_a5", "a5"), "A6": ("f2_a6_a10", "a6"), "A7": ("f2_a6_a10", "a7"), "A8": ("f2_a6_a10", "a8"), "A9": ("f2_a6_a10", "a9"), "A10": ("f2_a6_a10", "a10"), "A11": ("f2_a11_a15", "a11"), "A12": ("f2_a11_a15", "a12"), "A13": ("f2_a11_a15", "a13"), "A14": ("f2_a11_a15", "a14"), "A15": ("f2_a11_a15", "a15"),
-           "H10": ("h9_h10", "h10"), "BU": ("h9_h10", "bu_impresso")}
+           "C1": ("f2_posregistro", "c1"), "C2": ("f2_posregistro", "c2"), "C3": ("f2_posregistro", "c3"), "C12": ("f2_posregistro", "c12"),
+           "A18": ("f2_a18", "a18"), "H10": ("h9_h10", "h10"), "BU": ("h9_h10", "bu_impresso")}
 
 
 def salva(out, saida, prefixo):
@@ -37,10 +38,10 @@ def main():
     a = ap.parse_args()
     os.makedirs(a.saida, exist_ok=True)
     D = carrega(a.parquet, tuple(a.anos))
-    reg = Registro(); falhas = []
+    reg = Registro(); reg_pos = Registro(); reg_a18 = Registro(); falhas = []
     for h in a.h:
         mod, fn = MODULOS[h]
-        out = {"zips": a.zips, "anos": a.anos, "_saida": a.saida, "_parquet": a.parquet, "_parquet2": a.parquet2 or a.parquet, "_cesp": a.cesp, "_urna": a.urna}
+        out = {"zips": a.zips, "anos": a.anos, "_saida": a.saida, "_parquet": a.parquet, "_parquet2": a.parquet2 or a.parquet, "_cesp": a.cesp, "_urna": a.urna, "_reg_pos": reg_pos, "_reg_a18": reg_a18}
         t0 = time.time()
         try:
             getattr(importlib.import_module(mod), fn)(D, reg, out)
@@ -58,6 +59,12 @@ def main():
     df = reg.frame()
     if len(df):
         df.to_csv(os.path.join(a.saida, "registro_testes.csv"), index=False)
+    dfp = reg_pos.frame()
+    if len(dfp):
+        dfp.to_csv(os.path.join(a.saida, "posregistro_testes.csv"), index=False)
+    dfa = reg_a18.frame()
+    if len(dfa):
+        dfa.to_csv(os.path.join(a.saida, "a18_testes.csv"), index=False)
     pd.DataFrame(falhas, columns=["teste", "motivo"]).to_csv(os.path.join(a.saida, "nao_executados.csv"), index=False)
     print(f"\n{len(df)} testes no registro; {len(falhas)} nao executados")
     sys.exit(2 if falhas else 0)

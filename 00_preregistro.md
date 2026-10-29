@@ -168,7 +168,7 @@ Critério de veredito: o do Adendo 2, item 4. Placebos: 2018 e 2022 (e 2014 onde
 - Teto em votos: soma dos votos válidos dessas seções, contra a margem.
 
 ## A13. Alegação do vídeo "Prof. Marcelo Trindade" sobre a curva de apuração
-- O vídeo e os dados das "472 urnas" não foram fornecidos a esta sessão; a alegação é tratada como foi resumida pelo Julio. Sem os dados e o código dos autores: **NÃO REPRODUZÍVEL** para a parte específica.
+- O vídeo e os dados das "472 urnas" não foram fornecidos a esta sessão; a alegação é tratada como foi resumida ao autor desta auditoria. Sem os dados e o código dos autores: **NÃO REPRODUZÍVEL** para a parte específica.
 - Fonte da série: ordem de totalização por seção (primeira totalização parcial do TSE); snapshots do site Resultados não são públicos (a verificar).
 - Contagem de inversões de liderança na ordem real, em 1.000 ordens aleatórias e em 1.000 ordens geográficas realistas (embaralhar dentro da UF mantendo a sequência de UFs). Trechos lineares por regressão em janela (R2 alto) na curva real e nas simuladas, atribuídos às UFs que chegaram no intervalo. "Método do vídeo": interpretação declarada aqui, antes de rodar: somar só os incrementos positivos da curva de margem (emendar os trechos de subida) e comparar com o mesmo procedimento em séries simuladas limpas.
 - Total final independente da ordem e igual à soma dos BUs.
@@ -195,3 +195,50 @@ Critério de veredito: o do Adendo 2, item 4. Placebos: 2018 e 2022 (e 2014 onde
 
 ## A17. Questões em aberto
 - Entram todo resultado INCONCLUSIVO, "excesso detectável" ou "EXCESSO DETECTADO", e todo resíduo sem causa identificada. Para cada: descrição, direção, estimativa central em votos, intervalo de 95% (aproximação normal sobre o erro padrão do contraste; não é bootstrap), teto de pior caso, % da margem, explicações mundanas testadas e não testadas, e o que resolveria. Soma agregada com intervalo (aproximação por independência, declarada). Proibido atribuir "probabilidade de fraude" ou rótulos como "provável"; probabilidades só sobre quantidades medidas.
+
+---
+
+# Adendo 6: PÓS-REGISTRO (Fase 2.1), falhas de desenho de A1, A2, A3 e A12 e testes corrigidos
+
+Escrito em 2026-10-29, **depois** de ver os resultados originais e **antes** de rodar as versões corrigidas. Numeração: o briefing da Fase 2.1 pediu um "Adendo 4 pós-registro"; como o Adendo 4 já era o pré-registro da Fase 2, este é o Adendo 6. **Nada dos resultados originais é alterado ou apagado**: as quatro linhas continuam no registro com o veredito que o critério pré-registrado produziu. As versões corrigidas são publicadas ao lado, com seu próprio veredito, e são rotuladas "pós-registro".
+
+## A1. Curva de apuração
+- **Falha de desenho.** O nulo "permutação dentro da UF, mantida a sequência de UFs" supõe que a ordem de chegada das seções dentro de cada UF seja aleatória. Não é: municípios e zonas chegam em blocos. Por isso o critério "sair do envelope por 20 pontos consecutivos" é satisfeito por **qualquer** eleição, e a comparação do desvio máximo com o dos placebos é dominada pelos primeiros 1 a 5% das seções, onde a amostra é pequena e a pausa da divulgação de 2026 alterou a composição do começo da fila.
+- **Demonstração (a rodar):** (i) o teste original acusa saída do envelope em 4 de 4 eleições (2018, 2022, 2026 T1 e T2); (ii) em séries **simuladas sem manipulação** (mesma sequência de UFs, municípios em ordem aleatória e contíguos dentro da UF, seções embaralhadas dentro do município), a fração acusada pelo critério original é medida.
+- **Teste corrigido.** Nulo D: mantém a sequência de UFs de chegada, embaralha a ordem dos **municípios** dentro de cada UF (blocos contíguos) e as seções dentro do município. Estatística: desvio máximo da curva real contra a mediana de D a partir de 10% das seções (corte fixado agora). Comparação com os placebos pelo mesmo teste de interseção-união.
+
+## A2. Transições T1 para T2
+- **Falha de desenho.** O placebo "por papel" (oponente) assume que o oponente se comporta igual em todos os anos. A frequência de perda de votos absolutos depende de quem liderou o 1º turno e de quantos votos de terceiros há para repartir (2014 e 2018: ~26 milhões; 2022 e 2026: 9 a 10 milhões).
+- **Demonstração (a rodar):** o teste original aplicado ao **PT de 2022** (que liderou o 1º turno) também acusa excesso contra os demais anos.
+- **Teste corrigido.** Compara o **líder do 1º turno** de cada ano, com padronização direta pela razão (votos de terceiros) / (votos do líder) na seção, com os pesos de 2026. Placebos: o líder de 2014, 2018 e 2022.
+
+## A3. Origem dos votos novos de Lula
+- **Falha de desenho.** Coeficientes ecológicos "oponente no T1 para PT no T2" são negativos em todos os anos e refletem geografia; a comparação "2026 contra o maior coeficiente dos placebos" acusa excesso no ano de maior coeficiente em **qualquer** conjunto de quatro anos (artefato de ordenação), e o teto em votos derivado não tem sentido causal.
+- **Demonstração (a rodar):** o teste original aplicado a cada um dos quatro anos contra os demais (acusa exatamente um: o de maior coeficiente).
+- **Teste corrigido.** Taxa de transição oponente para PT estimada com restrição 0 a 1 (mínimos quadrados limitados, ponderados por aptos), intervalo por bootstrap por município (200 réplicas); mesma estimação nos placebos; teto = limite superior do IC95 da taxa x votos do oponente no T1 x 2.
+
+## A12. Seções com zero voto
+- **Falha de desenho.** A razão observado/esperado com p estimado pelo 1º turno é enviesada nos anos com terceiros relevantes (2018, 2014: razões de 0,27 a 0,72), e comparar a razão de 2026 com essas razões "acusa excesso" mesmo sem diferença.
+- **Demonstração (a rodar):** em 200 simulações **sem manipulação** de 2026 (votos do oponente binomiais com p igual ao do local no próprio 2º turno), a razão pelo estimador do 1º turno e a fração de simulações acusadas pelo teste original.
+- **Teste corrigido.** p estimado pelas seções vizinhas do mesmo local no próprio 2º turno (leave-one-out), mesma estimativa nos placebos, comparação por razão e por z direto de 2026.
+
+Veredito das versões corrigidas: regra do Adendo 2, item 4, com Holm sobre as quatro linhas corrigidas.
+
+## Adendo 7: A18 (alteração no meio) e A19 (voto digitado x voto registrado), escrito antes de rodar A18
+
+Registrado em 29/10/2026, antes de qualquer execução do A18. As fontes dos atrasos estão em [A18](a18-alteracao-no-meio.md).
+
+### A18a. Janela de congestionamento no 1º turno de 2026
+- **Janela fixada (pelo relógio, a partir da declaração pública):** BUs com `DT_RECEBIMENTO_BU_HOR_TSE` entre 19:00:00 e 19:59:59 do dia da eleição (a imprensa reporta o total nacional parado em 64% por volta das 19h e retomado por volta das 20h).
+- **Teste:** coeficiente da janela na participação de Lula (e, simetricamente, do oponente) entre os votos válidos da seção, com **efeito fixo de local de votação**, controlando comparecimento, log dos aptos e minutos de atraso do fechamento. Placebos: a mesma janela de relógio em 2022/T1 e 2018/T1.
+- **Previsão sem alteração:** o coeficiente de 2026/T1 fica dentro dos placebos; diferença dentro do local atribuível apenas à composição (a janela seleciona seções por ritmo de transmissão). Excesso apenas se superar **cada** placebo (interseção-união), com Holm sobre a família completa.
+- **Robustez (descritiva, fora da família):** mesma estimativa com a janela definida pela defasagem recepção→totalização acima do percentil 90 do dia; contagem de seções com nominais + brancos + nulos diferente do comparecimento, dentro e fora da janela (previsão: zero nos dois grupos).
+
+### A18b. Ordem de recebimento após as 19h no 2º turno de 2026
+- **Variável:** t = horas desde 19:00 do recebimento do BU (somente seções recebidas depois das 19:00).
+- **Teste:** coeficiente de t na participação de Lula (e do oponente) no 2º turno, com efeito fixo de local, controlando a participação do 1º turno, comparecimento e atraso do fechamento. Placebos: o mesmo t em 2022/T2, 2018/T2 e 2026/T1. Convenção de exposição: efeito de 1 hora de diferença de recebimento sobre os votos válidos das seções recebidas depois das 19:00 (declarada como convenção).
+- **Descritivo:** parcela da variância do horário de recebimento explicada por UF e por município em 2026/T2 contra os placebos.
+- **Previsão sem alteração:** nenhuma diferença além da composição, isto é, coeficiente de 2026/T2 dentro dos placebos.
+
+### A19. Voto digitado x voto registrado
+Sem teste estatístico sobre dados de urna. As tabelas de poder (probabilidade de detectar alteração em 0,1%, 0,5%, 1%, 2%, 5%, 9% das urnas) são cálculo fechado e não entram no registro de testes. Os números do teste de integridade por UF só são publicados quando há fonte; o que não for localizado fica como NÃO EXECUTADO.
