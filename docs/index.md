@@ -15,7 +15,7 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 
 Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.
 
-**[Envie a foto do seu boletim](boletins-impressos.html)**: a página oferece dois canais, com ou sem conta no GitHub.
+**[Envie a foto do seu boletim](boletins-impressos.html)**: pelo formulário de envio no GitHub.
 
 ## O que sabemos e o que ainda não sabemos
 
@@ -72,7 +72,7 @@ Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md), [Fase 3
 
 ## Como contribuir
 
-- **Fotos de boletins impressos:** [página de coleta](boletins-impressos.html) (com conta no GitHub, ou [sem conta, pelo formulário](https://form.jotform.com/263017066351047)). Conferidos até 29/10/2026: 0.
+- **Fotos de boletins impressos:** [página de coleta](boletins-impressos.html). Conferidos até 29/10/2026: 0.
 - **Listas de seções com fiscal** (partidos e coligações): formato em [A23](fase3.html#a23).
 - **Respostas de pedidos LAI:** textos prontos em [`lai/`](https://github.com/baduba/eleicoes-dossie-2026/tree/main/lai); envie a resposta por issue.
 - **Código ou método alternativo:** abra uma issue ou um PR com um script reproduzível.

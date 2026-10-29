@@ -223,7 +223,7 @@ Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de qu
 
 ## Como contribuir
 
-- **Fotos de boletins impressos:** [página de coleta](https://baduba.github.io/eleicoes-dossie-2026/boletins-impressos.html) (com conta no GitHub, ou [sem conta, pelo formulário](https://form.jotform.com/263017066351047)). Conferidos até 29/10/2026: 0.
+- **Fotos de boletins impressos:** [página de coleta](https://baduba.github.io/eleicoes-dossie-2026/boletins-impressos.html). Conferidos até 29/10/2026: 0.
 - **Listas de seções com fiscal** (partidos e coligações): formato em [A23](https://baduba.github.io/eleicoes-dossie-2026/fase3.html#a23).
 - **Respostas de pedidos LAI:** textos prontos em [`lai/`](https://github.com/baduba/eleicoes-dossie-2026/tree/main/lai); envie a resposta por issue.
 - **Código ou método alternativo:** abra uma issue ou um PR com um script reproduzível.

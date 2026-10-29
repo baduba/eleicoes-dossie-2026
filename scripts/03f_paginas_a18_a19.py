@@ -8,7 +8,6 @@ import pandas as pd
 R, RAIZ = sys.argv[1], sys.argv[2]
 DOCS = os.path.join(RAIZ, "docs")
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
-FORM_BU = "https://form.jotform.com/263017066351047"
 rd = lambda f: pd.read_csv(os.path.join(R, f))
 
 
@@ -114,13 +113,7 @@ A("**Por que.** O boletim de urna impresso é a única cópia dos resultados de 
 A("**Quem pode enviar.** Mesários, eleitores, imprensa e fiscais de qualquer partido ou coligação. Pela lei, o presidente da mesa receptora é obrigado a entregar cópia do boletim aos partidos e coligações que a requeiram até uma hora após a expedição (Lei 9.504/1997, art. 68, § 1º, [texto no Planalto](https://www.planalto.gov.br/ccivil_03/leis/l9504compilado.htm)); o boletim também fica afixado na seção e pode ser fotografado por qualquer pessoa. Não é preciso identificar-se publicamente.\n")
 A("## O que fotografar\n")
 A("1. O **boletim inteiro, de frente e legível**, sem cortar o **cabeçalho** (onde estão UF, município, zona e seção) nem as linhas de votos do fim. Se não couber tudo, vale uma foto do cabeçalho e outra das linhas de votos.\n2. Ou, em vez da foto inteira, o **QR Code** do boletim, nítido e sem reflexo.\n3. Anote **UF, município, zona, seção e turno** (estão no boletim) e a **origem** da foto: mesário, eleitor, imprensa ou fiscal (e de qual partido, se quiser dizer). A origem é registrada junto com a foto.\n4. Nenhum dado pessoal de eleitor. O boletim não os contém; não envie fotos de outros documentos.\n")
-A("## Como enviar: dois canais\n")
-A("Os dois canais levam à mesma conferência (BWeb, divergência publicada uma a uma). **Canal 1** exige conta no GitHub; o **canal 2** não.\n")
-A(f"[**Enviar sem conta no GitHub**]({FORM_BU})  ·  [**Enviar pelo GitHub**]({REPO}/issues/new?template=envio-bu.yml)\n")
-A("### Canal 2: sem conta no GitHub (formulário)\n")
-A(f"1. Abra o [formulário]({FORM_BU}).\n2. Preencha UF, município, zona, seção, turno e origem (mesário, eleitor, imprensa ou fiscal), anexe a foto do boletim inteiro ou o QR Code nítido e, se puder, transcreva os números.\n3. Envie. Não é preciso conta no GitHub.\n")
-A("**O que acontece com a foto no canal 2.** As respostas são exportadas e importadas periodicamente (não é em tempo real) por `scripts/importa_formulario.py`, que remove o **EXIF e todo metadado** (local, data, aparelho): a imagem publicada é recomposta só com os pixels e **o arquivo original nunca é publicado**. O texto livre do campo Observações, o endereço IP e qualquer dado que o serviço do formulário guarde não são publicados. A foto passa pelo mesmo pipeline do canal 1 (leitura do QR Code quando legível, conferência com o BWeb, tabela de resultados), com a origem registrada como \"formulario\" e o ID da submissão. Envios de teste (campo Observações com a palavra TESTE) são excluídos dos resultados.\n")
-A("### Canal 1: com conta no GitHub (passo a passo)\n")
+A("## Como enviar (passo a passo)\n")
 A(f"1. Abra o formulário: [{REPO}/issues/new?template=envio-bu.yml]({REPO}/issues/new?template=envio-bu.yml).\n2. O título já vem com o prefixo \"BU: \"; complete com UF, zona, seção e turno (ex.: \"BU: SP-123-456-2\").\n3. Preencha UF, município, zona, seção, turno e origem nos campos do formulário.\n4. **Arraste a foto para a caixa de texto do corpo da issue** — o formulário não tem campo de anexo; a foto entra como anexo do comentário. Confira na pré-visualização que ela abre legível.\n5. Se preferir, transcreva os números no formato abaixo (uma linha por boletim), no campo próprio do formulário.\n6. Envie. Não é preciso conta verificada nem identificação além da conta do GitHub.\n")
 A("```\nano;turno;uf;cd_municipio;zona;secao;aptos;comparecimento;lula;oponente;brancos;nulos\n```\n")
 A("## O que acontece com cada lote\n")

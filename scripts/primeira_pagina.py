@@ -58,7 +58,7 @@ def hero(raiz, readme=False):
          "- **100% dos votos atravessam pelo menos um elo não verificável.**",
          "- **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b]" + f"({link('fase3.html#a20b', readme)})).\n",
          "Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.\n",
-         f"**[Envie a foto do seu boletim]({link('boletins-impressos.html', readme)})**: a página oferece dois canais, com ou sem conta no GitHub.\n"]
+         f"**[Envie a foto do seu boletim]({link('boletins-impressos.html', readme)})**: pelo formulário de envio no GitHub.\n"]
     return "\n".join(L)
 
 
@@ -103,7 +103,7 @@ def resumo_perguntas(raiz, readme=False):
 def contribuir(raiz, readme=False):
     _, bu = carrega(raiz)
     L = ["## Como contribuir\n",
-         f"- **Fotos de boletins impressos:** [página de coleta]({link('boletins-impressos.html', readme)}) (com conta no GitHub, ou [sem conta, pelo formulário](https://form.jotform.com/263017066351047)). Conferidos até {pd.to_datetime(bu.data).strftime('%d/%m/%Y')}: {int(bu.n_conferidos)}.",
+         f"- **Fotos de boletins impressos:** [página de coleta]({link('boletins-impressos.html', readme)}). Conferidos até {pd.to_datetime(bu.data).strftime('%d/%m/%Y')}: {int(bu.n_conferidos)}.",
          "- **Listas de seções com fiscal** (partidos e coligações): formato em [A23]" + f"({link('fase3.html#a23', readme)}).",
          "- **Respostas de pedidos LAI:** textos prontos em [`lai/`](https://github.com/baduba/eleicoes-dossie-2026/tree/main/lai); envie a resposta por issue.",
          "- **Código ou método alternativo:** abra uma issue ou um PR com um script reproduzível.",
