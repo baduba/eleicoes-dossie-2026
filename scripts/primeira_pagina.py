@@ -57,7 +57,7 @@ def hero(raiz, readme=False):
          "- **25% não verificáveis** (3 de 12: voto digitado → registrado, boletim impresso conferido, transmissão).",
          "- **100% dos votos atravessam pelo menos um elo não verificável.**",
          "- **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b]" + f"({link('fase3.html#a20b', readme)})).\n",
-         "Não é evidência de fraude: é o mapa de onde a verificação pública termina.\n",
+         "Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.\n",
          f"**[Envie a foto do seu boletim]({link('boletins-impressos.html', readme)})**: a página oferece dois canais, com ou sem conta no GitHub.\n"]
     return "\n".join(L)
 
@@ -77,7 +77,7 @@ def cartao(r, readme):
 def perguntas(raiz, readme=False):
     D, _ = carrega(raiz)
     L = ["## Perguntas em aberto: o que os testes não conseguiram explicar nem confirmar\n",
-         "**Não são evidências de manipulação. São lacunas. Se você tem dados ou método para fechar alguma, contribua.**\n",
+         "**Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham. Se você tem dados ou método para fechar alguma, contribua.**\n",
          "Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de quem, se houver), o teto em votos de margem com a ressalva na mesma linha e o que fecharia a questão. Dentro de cada bloco, a ordem é pelo tamanho do que a resposta poderia mudar (maior teto ou maior ponto cego primeiro). Os tetos são limites superiores sob o pior caso; a margem é de 4.430.191 votos de margem.\n"]
     for b, t in (("a", "a) Resíduos sem causa identificada (testes executados, inconclusivos)"), ("b", "b) Hipóteses ainda não testadas (Fase 3, A20 a A28)"), ("c", "c) Pontos cegos estruturais (A18, A19)")):
         L.append(f"### {t}\n")
@@ -95,7 +95,7 @@ def resumo_perguntas(raiz, readme=False):
     L = ["## Perguntas em aberto (resumo)\n",
          f"Há **{n_t} perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. "
          f"O maior teto de pior caso, não estimativa, é {n(topo.pct_margem_teto, 2)}% da margem ({topo.id.replace('A-', '').replace('-part', '')}). "
-         "**Não são evidências de manipulação; são lacunas.**\n",
+         "**Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham.**\n",
          f"Lista completa, com situação, teto e o que fecharia cada uma: [Perguntas em aberto]({link('perguntas-em-aberto.html', readme)}).\n"]
     return "\n".join(L)
 

@@ -1,6 +1,6 @@
 # Questões em aberto (resíduos)
 
-> **Itens que os testes não conseguiram explicar nem confirmar. Não constituem evidência de manipulação; estão aqui para transparência e para investigação futura.**
+> **Itens que os testes não conseguiram explicar nem confirmar. Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham, e estão aqui para transparência e para investigação futura.**
 
 Entram nesta página todo resultado classificado como inconclusivo, "excesso detectável" ou "excesso detectado" e todo resíduo sem causa identificada. As estimativas centrais e os intervalos de 95% usam aproximação normal sobre o erro padrão do contraste contra o placebo mais exigente (não são bootstrap nem bayesianos). O **teto de pior caso** usa o placebo mais frouxo. Nenhuma probabilidade é atribuída a hipóteses sobre o processo; só aparecem quantidades medidas (votos em excesso, diferença entre anos). Margem oficial: 4.430.191 votos.
 
@@ -184,7 +184,7 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 | (2) Tetos de pior caso dos itens desta página | 1.648.221 (teto de pior caso, não estimativa) | 37,2% (teto de pior caso, não estimativa) | 122.543 (teto de pior caso, não estimativa) | 2,8% (teto de pior caso, não estimativa) |
 | (3) Idem (2), sem o maior item isolado (teto dominado pela imprecisão, ver abaixo) | 311.023 (teto de pior caso, não estimativa) | 7,0% (teto de pior caso, não estimativa) | 122.543 (teto de pior caso, não estimativa) | 2,8% (teto de pior caso, não estimativa) |
 
-**Leitura.** A linha (1) é o que os dados mostram de excesso: cerca de 99.499 votos de margem pró-Lula e 101.285 pró-Flávio, ou seja, 2,2% e 2,3% da margem. As linhas (2) e (3) são **tetos de pior caso, não estimativas**: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. Em (2), o item de maior teto (1.337.198 votos de margem) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para 7,0% da margem. Nenhuma soma alcança 4.430.191.
+**Leitura.** A linha (1) é o que os dados mostram de excesso: cerca de 99.499 votos de margem pró-Lula e 101.285 pró-Flávio, ou seja, 2,2% e 2,3% da margem. As linhas (2) e (3) são **tetos de pior caso, não estimativas**: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. Em (2), o item de maior teto (1.337.198 votos de margem) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para 7,0% da margem. Nenhuma soma alcança 4.430.191. O limite vale para o que os testes medem; o que está fora da medição (os elos não publicados) segue aberto.
 
 O que isso **não** mede: uma alteração de votos coerente em todos os arquivos publicados, que estes testes não conseguem enxergar (ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md)). Também fica de fora o agregado de linhas com ressalva de desenho, que não tem interpretação causal (Apêndice B de [Resultados da Fase 2](resultados-fase2.md)). A soma ingênua de todas as linhas do registro está só no apêndice abaixo.
 

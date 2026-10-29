@@ -13,7 +13,7 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 - **100% dos votos atravessam pelo menos um elo não verificável.**
 - **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b](fase3.html#a20b)).
 
-Não é evidência de fraude: é o mapa de onde a verificação pública termina.
+Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.
 
 **[Envie a foto do seu boletim](boletins-impressos.html)**: a página oferece dois canais, com ou sem conta no GitHub.
 
@@ -30,7 +30,7 @@ Os testes cobrem o que o TSE publica, e aí o resultado é zero divergências. S
 
 ## Perguntas em aberto (resumo)
 
-Há **32 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidências de manipulação; são lacunas.**
+Há **32 perguntas em aberto**: resíduos sem causa identificada, hipóteses ainda não testadas e pontos cegos estruturais. O maior teto de pior caso, não estimativa, é 40,35% da margem (A20b). **Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham.**
 
 Lista completa, com situação, teto e o que fecharia cada uma: [Perguntas em aberto](perguntas-em-aberto.html).
 

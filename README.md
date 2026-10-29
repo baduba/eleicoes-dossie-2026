@@ -19,7 +19,7 @@ Os testes cobrem o que o TSE publica, e aí o resultado é zero divergências. S
 
 ## Perguntas em aberto: o que os testes não conseguiram explicar nem confirmar
 
-**Não são evidências de manipulação. São lacunas. Se você tem dados ou método para fechar alguma, contribua.**
+**Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham. Se você tem dados ou método para fechar alguma, contribua.**
 
 Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de quem, se houver), o teto em votos de margem com a ressalva na mesma linha e o que fecharia a questão. Dentro de cada bloco, a ordem é pelo tamanho do que a resposta poderia mudar (maior teto ou maior ponto cego primeiro). Os tetos são limites superiores sob o pior caso; a margem é de 4.430.191 votos de margem.
 
@@ -237,7 +237,7 @@ Permitir que qualquer perito, de qualquer lado, reproduza cada número e contest
 - **Testado:** consistência BWeb x `votacao_secao` x totalização; BU digital x BWeb; RDV x BU; vínculo de hash dos arquivos de urna; log x BU e votos depois das 17h (amostra); estatística de seção com placebos (2014, 2018, 2022, 1º turno de 2026); curva de apuração; transições entre turnos; zero voto; modelo de urna; coerência entre cargos; alegações do relatório original.
 
 ## Resumo dos vereditos
-Nenhum achado, isolado ou somado, alcança a margem de 4.430.191 votos. Itens sem causa identificada estão em [Questões em aberto](docs/residuos.md). Detalhes em [`dossie.md`](dossie.md) (Fase 1) e [`docs/resultados-fase2.md`](docs/resultados-fase2.md).
+Nenhum achado, isolado ou somado, alcança a margem de 4.430.191 votos. Esse zero vale para o que o TSE publica; o que não é publicado (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria, e por isso permanece aberto. Itens sem causa identificada estão em [Questões em aberto](docs/residuos.md). Detalhes em [`dossie.md`](dossie.md) (Fase 1) e [`docs/resultados-fase2.md`](docs/resultados-fase2.md).
 
 ## Onde uma falha poderia passar despercebida
 

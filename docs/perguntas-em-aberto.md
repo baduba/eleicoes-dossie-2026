@@ -3,7 +3,7 @@
 > **Antes das lacunas, o resultado verificado:** 0 divergências na cadeia RDV–BU–BWeb–totalização; o excesso medido somado é pequeno diante da margem. Os testes cobrem o que o TSE publica; uma alteração nos elos não publicados (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria. Números na [página inicial](index.md).
 
 
-**Não são evidências de manipulação. São lacunas. Se você tem dados ou método para fechar alguma, contribua.**
+**Não são evidência de nada, nem de um lado nem do outro: são lacunas que só dados novos fecham. Se você tem dados ou método para fechar alguma, contribua.**
 
 Cada cartão traz a pergunta, a situação, a direção do efeito (a favor de quem, se houver), o teto em votos de margem com a ressalva na mesma linha e o que fecharia a questão. Dentro de cada bloco, a ordem é pelo tamanho do que a resposta poderia mudar (maior teto ou maior ponto cego primeiro). Os tetos são limites superiores sob o pior caso; a margem é de 4.430.191 votos de margem.
 

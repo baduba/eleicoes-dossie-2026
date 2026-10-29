@@ -3,7 +3,7 @@
 > **Before the gaps, the verified result:** 0 discrepancies across the RDV–BU–BWeb–tabulation chain; the summed measured excess is small next to the margin. The tests cover what the TSE publishes; an alteration in the links that are not published (typed vote, printed receipt, transmission) is something no test in this dossier would see. Figures on the [home page](index.md).
 
 
-**These are not evidence of manipulation. They are gaps. If you have data or a method to close any of them, contribute.**
+**They are not evidence of anything, on either side: they are gaps that only new data can close. If you have data or a method to close any of them, contribute.**
 
 Each card presents the question, the status, the direction of the effect (in whose favor, if any), the worst-case ceiling in margin votes with the caveat on the same line, and what would close the question. Within each block, the order follows the size of what an answer could change (largest ceiling or largest blind spot first). Ceilings are upper bounds under the worst case; the margin is 4,430,191 margin votes.
 

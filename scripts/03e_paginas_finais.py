@@ -132,7 +132,7 @@ Permitir que qualquer perito, de qualquer lado, reproduza cada número e contest
 - **Testado:** consistência BWeb x `votacao_secao` x totalização; BU digital x BWeb; RDV x BU; vínculo de hash dos arquivos de urna; log x BU e votos depois das 17h (amostra); estatística de seção com placebos (2014, 2018, 2022, 1º turno de 2026); curva de apuração; transições entre turnos; zero voto; modelo de urna; coerência entre cargos; alegações do relatório original.
 
 ## Resumo dos vereditos
-Nenhum achado, isolado ou somado, alcança a margem de 4.430.191 votos. Itens sem causa identificada estão em [Questões em aberto](docs/residuos.md). Detalhes em [`dossie.md`](dossie.md) (Fase 1) e [`docs/resultados-fase2.md`](docs/resultados-fase2.md).
+Nenhum achado, isolado ou somado, alcança a margem de 4.430.191 votos. Esse zero vale para o que o TSE publica; o que não é publicado (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria, e por isso permanece aberto. Itens sem causa identificada estão em [Questões em aberto](docs/residuos.md). Detalhes em [`dossie.md`](dossie.md) (Fase 1) e [`docs/resultados-fase2.md`](docs/resultados-fase2.md).
 
 {LACR}
 

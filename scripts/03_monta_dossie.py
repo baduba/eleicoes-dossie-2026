@@ -76,7 +76,7 @@ cr26, cr22 = cru[(cru.ano == 2026) & (cru.turno == 2) & (cru.recorte == "com ext
 f = lambda a, t, faixa: fx[(fx.ano == a) & (fx.turno == t) & (fx.recorte == "Brasil sem exterior") & (fx.faixa == faixa)].iloc[0]
 tar26 = f(2026, 2, "115+ min (>= ~19h)"); ate15 = f(2026, 2, "ate 5 min apos 17h").secoes + f(2026, 2, "5 a 15 min (17h01-17h15)").secoes
 tot_secoes26 = fx[(fx.ano == 2026) & (fx.turno == 2) & (fx.recorte == "Brasil sem exterior")].secoes.sum()
-sd = h10.set_index("sentido")
+sd = h10[h10.criterio != "como registrado"].set_index("sentido")
 ab = abcr2.iloc[0]
 b26 = h1c[(h1c.spec.str.startswith("S1")) & (h1c.ano == 2026)].iloc[0]; b22 = h1c[(h1c.spec.str.startswith("S1")) & (h1c.ano == 2022)].iloc[0]
 a0 = lambda a, t: h1c[(h1c.spec.str.startswith("S0")) & (h1c.ano == a) & (h1c.turno == t)].iloc[0]
@@ -105,7 +105,7 @@ A("6. O número de votos dados depois das 17h não é mensurável com estes dado
 A(f"7. H5 a H8 e régua histórica: o comparecimento, os outliers locais e os dígitos de 2026 ficam dentro da faixa observada em 2014, 2018 e 2022. Nenhum dos padrões A, B ou C se ajusta pelo critério fixado (C: {n(ab.C)} de {n(ab.metricas)} métricas; ver 3.13).")
 A(f"8. Dois testes mostram excesso depois de Holm: votos de Flávio por apto x taxa manual (teto de pior caso, não estimativa: {n(sflav.votos_max_pior_caso)} votos de margem, {pc(sflav.pct_pior_caso)} da margem, sentido favorável a Flávio) e variação de voto em Lula entre anos x variação da taxa manual (teto de pior caso, não estimativa: {n(h2b.votos_max_pior_caso)} votos de margem, {pc(h2b.pct_pior_caso)}).")
 A(f"9. Residuais sem causa identificada: {n(c639.secoes)} seções com comparecimento >= 95% ({n(r26.razao,1)} vezes o esperado pela composição; {n(r26t1.razao,1)} vezes já no T1; teto {pc(h5r.pct_pior_caso)}) e seções novas (+{n(100*h6reg.est_2026T2,2)} p.p. de Lula no T2 dado o T1; +1,34 p.p. em 2018; teto de pior caso {pc(h6reg.pct_pior_caso)}).")
-A(f"10. Impacto agregado: a soma dos tetos de pior caso (não estimativas) dos testes com excesso detectado é {n(sd.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Lula ({pc(sd.loc['PT','pct_margem_sobreviventes_pior_caso'])} da margem) e {n(sd.loc['OPO','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança {n(MARGEM)} votos. Não executado: cruzamento com boletins impressos (sem insumo).\n")
+A(f"10. Impacto agregado: a soma dos tetos de pior caso (não estimativas) dos testes com excesso detectado é {n(sd.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Lula ({pc(sd.loc['PT','pct_margem_sobreviventes_pior_caso'])} da margem) e {n(sd.loc['OPO','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança {n(MARGEM)} votos. Esse zero vale para o que o TSE publica; o que não é publicado (voto digitado, boletim impresso, transmissão) nenhum teste deste dossiê veria, e por isso permanece aberto. Não executado: cruzamento com boletins impressos (sem insumo).\n")
 
 # ------------------------------------------------------------------------------------------------ 2
 A("## 2. Dados e versões\n")

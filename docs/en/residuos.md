@@ -1,6 +1,6 @@
 # Open questions (residuals)
 
-> **Items the tests could neither explain nor confirm. They are not evidence of manipulation; they are here for transparency and for future investigation.**
+> **Items the tests could neither explain nor confirm. They are not evidence of anything, on either side: they are gaps that only new data can close, and they are here for transparency and for future investigation.**
 
 This page collects every result classified as inconclusive, "detectable excess" or "excess detected", and every residual without an identified cause. The central estimates and 95% intervals use a normal approximation over the standard error of the contrast against the most demanding placebo (they are neither bootstrap nor Bayesian). The **worst-case ceiling** uses the loosest placebo. No probability is assigned to hypotheses about the process; only measured quantities appear (excess votes, year-over-year difference). Official margin: 4,430,191 votes.
 
@@ -184,7 +184,7 @@ This page collects every result classified as inconclusive, "detectable excess" 
 | (2) Worst-case ceilings of the items on this page | 1,648,221 (worst-case ceiling, not an estimate) | 37.2% (worst-case ceiling, not an estimate) | 122,543 (worst-case ceiling, not an estimate) | 2.8% (worst-case ceiling, not an estimate) |
 | (3) Same as (2), excluding the largest single item (ceiling dominated by imprecision, see below) | 311,023 (worst-case ceiling, not an estimate) | 7.0% (worst-case ceiling, not an estimate) | 122,543 (worst-case ceiling, not an estimate) | 2.8% (worst-case ceiling, not an estimate) |
 
-**Reading.** Line (1) is the excess the data show: about 99,499 pro-Lula margin votes and 101,285 pro-Flávio, i.e., 2.2% and 2.3% of the margin. Lines (2) and (3) are **worst-case ceilings, not estimates**: they always use the loosest placebo and sum as if everything were independent. In (2), the item with the largest ceiling (1,337,198 margin votes) is a specification without a first-round control whose ceiling comes from the **imprecision** of the test (the verdict is inconclusive, not excess); without it, the total falls to 7.0% of the margin. No sum reaches 4,430,191.
+**Reading.** Line (1) is the excess the data show: about 99,499 pro-Lula margin votes and 101,285 pro-Flávio, i.e., 2.2% and 2.3% of the margin. Lines (2) and (3) are **worst-case ceilings, not estimates**: they always use the loosest placebo and sum as if everything were independent. In (2), the item with the largest ceiling (1,337,198 margin votes) is a specification without a first-round control whose ceiling comes from the **imprecision** of the test (the verdict is inconclusive, not excess); without it, the total falls to 7.0% of the margin. No sum reaches 4,430,191. This limit holds for what the tests measure; what lies outside measurement (the unpublished links) remains open.
 
 What this does **not** measure: a coherent alteration of votes across all published files, which these tests cannot detect (see [A18](a18-alteracao-no-meio.md) and [A19](a19-voto-digitado.md)). Also excluded is the aggregate of lines with a design caveat, which has no causal interpretation (Appendix B of [Phase 2 Results](resultados-fase2.md)). The naive sum of all registry lines appears only in the appendix below.
 

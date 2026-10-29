@@ -36,7 +36,7 @@ def test_resultado_vem_antes_das_perguntas():
     t = pagina(False)
     assert t.index("Resultado verificado") < t.index("Perguntas em aberto")
     assert "nenhum teste deste dossiê a veria" in t
-    assert "Não são evidências de manipulação. São lacunas." in t
+    assert "Não são evidência de nada, nem de um lado nem do outro" in t
 
 
 def test_blocos_e_ordem_por_teto():

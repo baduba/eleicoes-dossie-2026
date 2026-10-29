@@ -13,7 +13,7 @@ This is an **independent audit**. It is not an official report, expert examinati
 - **100% of votes pass through at least one non-verifiable link.**
 - **0 tests found an effect capable of altering the outcome**; the largest worst-case ceiling, not an estimate, is 40.35% of the margin ([A20b](fase3.html#a20b)).
 
-This is not evidence of fraud: it is a map of where public verification ends.
+This is not evidence of anything, on either side: it is a map of where an alteration would pass invisible to public data.
 
 ## What we know and what we do not yet know
 
@@ -28,7 +28,7 @@ The tests cover what the TSE publishes, and there the result is zero discrepanci
 
 ## Open questions (summary)
 
-There are **26 open questions**: residues without an identified cause, hypotheses not yet tested, and structural blind spots. The largest worst-case ceiling, not an estimate, is 40.35% of the margin (A20b). **These are not evidence of manipulation; they are gaps.**
+There are **26 open questions**: residues without an identified cause, hypotheses not yet tested, and structural blind spots. The largest worst-case ceiling, not an estimate, is 40.35% of the margin (A20b). **They are not evidence of anything, on either side: they are gaps that only new data can close.**
 
 Full list, with status, ceiling, and what would close each one: [Open questions](perguntas-em-aberto.html).
 
