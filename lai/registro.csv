@@ -1,7 +1,7 @@
-arquivo,destinatario,assunto,data_protocolo,protocolo,prazo_legal_20_dias,prazo_prorrogado_30_dias,status,data_resposta,resposta_resumo,negativa_fundamento,recurso
-01_urnas_substituidas.md,TSE e TREs,Urnas substituídas em 2026,,,,,NAO PROTOCOLADO,,,,
-02_codigo_de_carga.md,TSE,Código de carga por urna,,,,,NAO PROTOCOLADO,,,,
-03_teste_de_integridade.md,TSE e TREs,Testes de integridade e de autenticidade de 2026,,,,,NAO PROTOCOLADO,,,,
-04_logs_de_totalizacao.md,TSE,Registros de recepção e totalização de 04/10 e 25/10/2026,,,,,NAO PROTOCOLADO,,,,
-05_fiscais_credenciados.md,TSE e TREs,Credenciamento de fiscais por seção (dados agregados),,,,,NAO PROTOCOLADO,,,,
-06_assinatura_e_chaves.md,TSE,Verificação independente da assinatura digital dos arquivos de urna,,,,,NAO PROTOCOLADO,,,,
+arquivo,destinatario,assunto,data_protocolo,protocolo,prazo_legal_20_dias,prazo_prorrogado_30_dias,status,data_resposta,resposta_resumo,negativa_fundamento,recurso,canal
+01_urnas_substituidas.md,TSE,Urnas substituídas em 2026,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+02_codigo_de_carga.md,TSE,Código de carga por urna,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+03_teste_de_integridade.md,TSE; TRE de cada UF,Testes de integridade e de autenticidade de 2026,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+04_logs_de_totalizacao.md,TSE,Registros de recepção e totalização de 04/10 e 25/10/2026,,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+05_fiscais_credenciados.md,TRE de cada UF; TSE,Credenciamento de fiscais por seção (dados agregados),,,,,NAO PROTOCOLADO,,,,,ver canais.csv
+06_assinatura_e_chaves.md,TSE,Verificação independente da assinatura digital dos arquivos de urna,,,,,NAO PROTOCOLADO,,,,,ver canais.csv

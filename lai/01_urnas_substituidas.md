@@ -1,6 +1,7 @@
 # Pedido de acesso à informação (Lei 12.527/2011)
 
-**Destinatário:** TSE e TREs
+**Destinatário:** TSE (Ouvidoria, Serviço de Informações ao Cidadão)
+**Canal:** formulário eletrônico do Serviço de Informações ao Cidadão (SIC) do órgão; TSE: https://www.tse.jus.br/transparencia-e-prestacao-de-contas/informacoes-exigidas-por-lei/acesso-a-informacao ; lista de canais e estado da verificação em `lai/canais.csv` e `lai/canais_tres.csv`
 **Assunto:** Urnas substituídas em 2026
 **Solicitante:** [identificação de quem protocola; o projeto não tem autor nominal, então o pedido é protocolado em nome de quem o enviar]
 **Data do protocolo:** [preencher]  **Número do protocolo:** [preencher]

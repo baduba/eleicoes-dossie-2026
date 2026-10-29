@@ -1,0 +1,28 @@
+SG_UF,dominio,url_vista_em_resultado_de_busca,estado_da_verificacao
+AC,https://www.tre-ac.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+AL,https://www.tre-al.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+AM,https://www.tre-am.jus.br,https://www.tre-am.jus.br/institucional/ouvidoria/arquivos-relatorios-de-gestao/relatorio-estatistico-dos-pedidos-de-acesso-a-informacao-de-2025,URL vista em resultado de busca (SIC na Ouvidoria; relatório estatístico de pedidos); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+AP,https://www.tre-ap.jus.br,https://www.tre-ap.jus.br/institucional/ouvidoria/arquivos/resolucao-ndeg-498-2017,URL vista em resultado de busca (resolução do SIC); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+BA,https://www.tre-ba.jus.br,https://www.tre-ba.jus.br/transparencia-e-prestacao-de-contas/servico-de-informacao-ao-cidadao-sic/arquivos/tre-ba-portaria-gp-no-338-2012,URL vista em resultado de busca (portaria do SIC; a página do formulário fica na mesma seção do site); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+CE,https://www.tre-ce.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+DF,https://www.tre-df.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+ES,https://www.tre-es.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+GO,https://www.tre-go.jus.br,https://www.tre-go.jus.br/institucional/ouvidoria/arquivos/relatorio-pedido-de-informacao-2023,URL vista em resultado de busca (SIC na Ouvidoria; relatório de pedidos de 2023); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+MA,https://www.tre-ma.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+MG,https://www.tre-mg.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+MS,https://www.tre-ms.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+MT,https://www.tre-mt.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+PA,https://www.tre-pa.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+PB,https://www.tre-pb.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+PE,https://www.tre-pe.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+PI,https://www.tre-pi.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+PR,https://www.tre-pr.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+RJ,https://www.tre-rj.jus.br,https://www.tre-rj.jus.br/institucional/ouvidoria/arquivos-ouvidoria/manual-pratico-sic-formato-pdf,URL vista em resultado de busca (manual prático do SIC); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+RN,https://www.tre-rn.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+RO,https://www.tre-ro.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+RR,https://www.tre-rr.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+RS,https://www.tre-rs.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+SC,https://www.tre-sc.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+SE,https://www.tre-se.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)
+SP,https://www.tre-sp.jus.br,https://www.tre-sp.jus.br/transparencia-e-prestacao-de-contas/acesso-a-informacao,URL vista em resultado de busca (e-SIC por formulário no site; identificação obrigatória); o formulário em si não foi aberto (site bloqueia acesso automatizado); confirmar no protocolo
+TO,https://www.tre-to.jus.br,,A CONFIRMAR NO PROTOCOLO (página do SIC não localizada nesta rodada)

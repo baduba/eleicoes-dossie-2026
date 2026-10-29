@@ -11,6 +11,9 @@ Textos prontos para protocolo ao TSE e aos TREs, um por assunto. Cada pedido ped
 | `05_fiscais_credenciados.md` | fiscais por seção, agregado | A23 |
 | `06_assinatura_e_chaves.md` | certificados, especificação e ferramenta de verificação | A4, A18 |
 
+## Quem recebe cada pedido e por qual canal (A28, Fase 3.1)
+Veja `canais.csv` (órgão, canal, base normativa, estado da verificação, por que este órgão) e `canais_tres.csv` (domínio e página do SIC dos 27 TREs). Resumo: 01, 02, 04 e 06 vão ao **TSE**; 03 vai ao **TSE e a cada TRE** (um protocolo por órgão, mesmo texto); 05 vai a **cada TRE** (e ao TSE só se houver consolidado). O canal do TSE é o Formulário Eletrônico da Ouvidoria (SIC); o dos TREs é o e-SIC de cada site. **Estado da verificação:** o TSE e os TREs bloqueiam acesso automatizado (403), então os canais foram conferidos em resultados de busca, não abrindo o formulário; confirme o canal, os campos e o prazo no momento do protocolo. A identificação de quem pede é exigida (Resolução CNJ 215/2015, art. 11, § 2º, citada pelo TRE-SP); o projeto não tem autor nominal, então quem protocola assina.
+
 ## Como usar
 1. Quem for protocolar preenche a identificação e envia pelo canal de acesso à informação do TSE ou do TRE competente.
 2. Registra em `registro.csv` a data, o protocolo e o prazo. **Negativa também é registrada**, com o fundamento legal informado, e o recurso, quando houver.
