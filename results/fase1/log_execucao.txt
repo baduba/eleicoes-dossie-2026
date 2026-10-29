@@ -1,0 +1,14 @@
+[H1] ok em 9s
+[H2] ok em 5s
+[H3] ok em 2s
+[H4] ok em 5s
+[H5] ok em 9s
+[H6] ok em 12s
+[H7] ok em 1s
+[H8] ok em 10s
+[ABC] ok em 0s
+[H9] ok em 39s
+[H10] ok em 0s
+[BU] NAO EXECUTADO: NaoExecutado: teste direto com boletins impressos: nenhuma foto/PDF de BU foi fornecido (nem em Downloads, nem no projeto). Envie imagens com o QR code visivel ou uma planilha zona;secao;turno;votos para o cruzamento com o BWeb. Divergencia de qualquer tamanho sera reportada.
+
+23 testes no registro; 1 nao executados
