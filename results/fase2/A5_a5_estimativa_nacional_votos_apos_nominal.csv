@@ -1,0 +1,2 @@
+secoes_L_medidas,secoes_L_populacao,secoes_L_nao_medidas,votos_apos_nominal_em_L_medido,estimativa_fora_de_L,ic95_fora_de_L_inf,ic95_fora_de_L_sup,estimativa_total,ic95_total_inf,ic95_total_sup,referencia_externa_nao_verificada,nota
+6714,6714,0,4710.0,18383.801937039345,12185.080548624836,24994.24948213002,23093.801937039345,16895.080548624836,29704.24948213002,34330,"votos com horario de computacao posterior ao horario nominal de fechamento (17h Brasilia equivalente); inclui votantes com senha na fila (Codigo Eleitoral, art. 153)"

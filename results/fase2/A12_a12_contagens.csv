@@ -1,0 +1,33 @@
+ano,turno,definicao,secoes,zero_oponente,zero_PT,votos_PT_nas_zero_oponente,votos_oponente_nas_zero_PT
+2026,1,todas as apuradas,499206,81,8,9549,507
+2026,1,comparecimento >= 1,499206,81,8,9549,507
+2026,1,comparecimento >= 30,499060,73,6,9433,475
+2026,1,"sem exterior, comparecimento >= 1",497897,79,8,9542,507
+2026,2,todas as apuradas,499205,106,4,14860,296
+2026,2,comparecimento >= 1,499205,106,4,14860,296
+2026,2,comparecimento >= 30,499042,103,4,14816,296
+2026,2,"sem exterior, comparecimento >= 1",497897,106,4,14860,296
+2022,1,todas as apuradas,472024,161,1,17531,58
+2022,1,comparecimento >= 1,472024,161,1,17531,58
+2022,1,comparecimento >= 30,471910,152,1,17375,58
+2022,1,"sem exterior, comparecimento >= 1",471010,160,1,17527,58
+2022,2,todas as apuradas,472027,143,4,16455,124
+2022,2,comparecimento >= 1,472027,143,4,16455,124
+2022,2,comparecimento >= 30,471893,133,2,16279,118
+2022,2,"sem exterior, comparecimento >= 1",471010,141,2,16418,118
+2018,1,todas as apuradas,454446,674,32,72102,1223
+2018,1,comparecimento >= 1,454446,674,32,72102,1223
+2018,1,comparecimento >= 30,454222,645,26,71683,1167
+2018,1,"sem exterior, comparecimento >= 1",453702,674,28,72102,1147
+2018,2,todas as apuradas,454447,328,4,36608,315
+2018,2,comparecimento >= 1,454447,328,4,36608,315
+2018,2,comparecimento >= 30,454203,305,4,36194,315
+2018,2,"sem exterior, comparecimento >= 1",453703,328,3,36608,275
+2014,1,todas as apuradas,428853,709,17,64924,197
+2014,1,comparecimento >= 1,428853,709,17,64924,197
+2014,1,comparecimento >= 30,428650,671,7,64680,181
+2014,1,"sem exterior, comparecimento >= 1",427937,709,16,64924,190
+2014,2,todas as apuradas,428854,194,13,15103,199
+2014,2,comparecimento >= 1,428852,192,11,15103,199
+2014,2,comparecimento >= 30,428622,176,3,14934,159
+2014,2,"sem exterior, comparecimento >= 1",427936,192,10,15103,192
