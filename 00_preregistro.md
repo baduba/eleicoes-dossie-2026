@@ -490,3 +490,41 @@ O esperado do Adendo 11a (permutar os rótulos de tipo mantendo horários e cont
 ### Adendo 15a: exposição do teto de A33, escrita em 29/10/2026 DEPOIS de ver a primeira execução (com um erro meu) e ANTES de rodar a versão corrigida
 
 **Erro meu.** Na primeira execução converti os coeficientes de A33 em votos de margem usando como exposição **todos** os votos válidos (e todos os aptos) de 2026/T2. Como o regressor é a **taxa** de liberação manual (de 0 a 1, média perto de 0,07), isso superestima o teto em cerca de 14 vezes: gerou tetos de 74% a 116% da margem que não significam nada. O projeto já tinha a convenção certa em H1 (`h1_exposicao_votos_manuais_equiv`): exposição = soma de (taxa manual da seção x votos válidos) para participação, e soma de (taxa manual da seção x aptos) para comparecimento. Passa a valer essa convenção em A33 e fica registrado que a primeira execução estava errada. As linhas da primeira execução não são publicadas.
+
+## Adendo 16: A34, duração do voto por eleitor (habilitação até a confirmação), escrito em 29/10/2026 ANTES de calcular qualquer duração
+
+**Declaração de ordem.** Antes deste adendo vi apenas: o formato do log (eventos "Eleitor foi habilitado" e "Voto confirmado para [Presidente]" com horário, na mesma urna), os intervalos agregados de A21, A32 e A32b e os resultados de A5. **Não vi nenhuma duração** de habilitação até confirmação, por seção ou agregada. O texto-base está em `docs/propostas/novos-pontos-cegos.md`; as escolhas abaixo foram fixadas aqui.
+
+**Pergunta.** O ato de votar leva, em cada seção, um tempo compatível com um eleitor presente? Votação "expressa" em massa (mediana de poucos segundos na seção inteira) seria incompatível com o ato físico de votar. Todos os testes temporais anteriores medem **intervalos entre eventos**; nenhum mede a **duração do ato**.
+
+**Unidade e amostra.** Seção-dia, a mesma amostra de A4, A5, A21 e A32 (estrato aleatório mais Roraima inteira), 2022 e 2026, 1º e 2º turnos (o log do 2º turno traz os dois dias). A seção-dia entra se o log é consistente com o comparecimento do BU (a mesma marca `consistente` de A32) e tem **100 habilitações ou mais**.
+
+**Definições.** Duração de um voto = tempo entre "Eleitor foi habilitado" e o **primeiro** "Voto confirmado para [Presidente]" posterior a ele no mesmo log, desde que não haja outra habilitação no meio. Habilitação sem voto posterior fica sem duração e é contada à parte. Métricas por seção-dia: **D1** mediana da duração; **D2** percentil 1; **D3** fração de durações menores que 20 s; **D4** desvio padrão (um voto "de máquina" teria dispersão quase nula); **D5** fração de habilitações sem voto.
+
+**Hipótese nula.** D1 a D5 de 2026/2º turno são iguais às de 2022/2º turno nas mesmas seções (efeito fixo de seção, erro padrão agrupado por município), e a fração de seções com D3 acima do percentil 99 de 2022/2º turno não passa de 1% por mais de 2 erros padrão binomiais.
+
+**Modelos de associação (simétricos para Lula e oponente).** (M1) participação de Lula no 2º turno em D3 mais a participação no 1º turno, efeito fixo de local, erro padrão agrupado por local; placebo: a mesma regressão em 2022. (M2) comparecimento do 2º turno em D3 mais o comparecimento do 1º turno, idem. (M3, descritivo, sem placebo) variação de D1 de 2022 para 2026. (M4) D1 da seção na taxa de liberação manual do BU mais D1 do 1º turno, efeito fixo de local, placebo 2022. Amostra principal: estrato aleatório mais Roraima (seleção independente do desfecho); sensibilidade com todos os estratos, **rotulada**.
+
+**Regra de decisão.** As do `Registro`: interseção-união contra cada placebo, p unilateral de excesso, Holm sobre a família A34. **Previsão sem manipulação:** D1 mediana entre cerca de 40 s e 2 min, D3 próximo de zero nos dois anos, coeficientes de M1 e M2 dentro dos placebos.
+
+**Teto (teto de pior caso, não estimativa).** Seções de 2026/2º turno com D3 acima do limiar do percentil 99 de 2022: (a) todos os votos válidos dessas seções atribuídos a um lado, fator 1; (b) saldo líquido, fator 2. Ao lado, a mesma conta em 2022 como referência de ruído. Quando o teto de uma associação vier só da falta de poder (erro padrão grande), vale a regra de exibição do Adendo 14: **não é plotado no G3**.
+
+**Placebos.** 2022/1º turno, 2022/2º turno e 2026/1º turno nas mesmas seções. Placebo de forma: o mesmo teste na duração do **lado errado** (do voto confirmado até a próxima habilitação, que inclui fila e deve ser longa e igual nos dois anos); se acusar excesso ali, o desenho está quebrado e o resultado de A34 é descartado.
+
+**Limites.** O pareamento só é determinístico porque há uma urna por seção; voto não concluído fica censurado (D5). Cobertura = a dos logs coletados (parcial; logs de todas as seções: NÃO EXECUTADO). Não identifica eleitores.
+
+## Adendo 17: A35, extremos no universo geral (zero brancos e nulos em seção grande; comparecimento de 100%), escrito em 29/10/2026 ANTES de contar qualquer seção do universo geral
+
+**Declaração de ordem.** Antes deste adendo vi: A12 e A12b (106 seções com zero voto para o oponente), H5 (comparecimento de 95% ou mais) e, em exploração, que dentro das 106 há 12 seções com zero brancos e nulos e comparecimento de 100 votantes ou mais (8 indígenas, a maior com 365 votantes) e 1 seção com comparecimento igual aos aptos. **Não vi as contagens análogas no universo geral** das 497.897 seções.
+
+**Definições (2026/2º turno, seções apuradas, sem exterior).** **E1:** seções com brancos mais nulos igual a zero e comparecimento de 100 ou mais (sensibilidade: 200 e 400). **E2:** seções com comparecimento igual a `QT_APTOS` (sensibilidade: comparecimento/aptos de 0,995 ou mais). **E3:** seções com 100% dos votos **nominais** em um candidato e comparecimento de 30 ou mais.
+
+**Esperado.** E1: Poisson-binomial com, para cada seção, p0 = (1 menos r) elevado a n, r = taxa de brancos mais nulos das demais seções do mesmo local (sem a própria seção; local de seção única usa o município) e n = comparecimento; **o mesmo estimador de A12b**, agora para todas as seções. E2: binomial com p = taxa de comparecimento do local e n = aptos, como aproximação declarada (abstenção não é independente: infla p0); por isso **E2 é descritivo**, só com razão observado/esperado, sem p. E3: contagem pura, sem teste.
+
+**Regra de decisão.** Razão observado/esperado de 2026/2º turno que supera **cada** placebo (2014, 2018 e 2022, 1º e 2º turnos) por mais de 2 erros padrão (bootstrap por município, 1.000 reamostragens, semente 20261029) = EXCESSO; dentro da faixa histórica = dentro do esperado. Holm sobre {E1, E2, E3}. As seções sinalizadas ganham caracterização obrigatória: UF, município, tipo de local (classificação de A27), aptos e o histórico da mesma seção em 2018 e 2022.
+
+**Teto (pior caso, não estimativa).** E1 e E3: votos do candidato majoritário nessas seções, fator 1; troca esperada pela vizinhança, fator 2. E2: (comparecimento menos a mediana do local), fator 1. Os três ao lado do mesmo cálculo para 2022/2º turno.
+
+**Placebos.** 2014/2º turno, 2018/2º turno, 2022/2º turno e 2026/1º turno com o mesmo estimador; placebo de simetria: as mesmas contagens para o lado do oponente.
+
+**Limites.** O esperado de E1 herda o viés de A12b em anos com terceiros relevantes (corrigido pelo placebo do mesmo ano, não pelo de 2026); local de seção única usa o município (menos preciso); E2 é fraco por desenho.
