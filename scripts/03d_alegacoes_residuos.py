@@ -135,16 +135,24 @@ if t1r is not None:
     L.append("- **Não testadas:** ordem dos municípios dentro de cada UF por porte e por perfil de voto.")
     L.append("- **O que resolveria:** o log de recepção do Sistot (não público) e a ordem real de transmissão por município.")
     L.append("- **Causa:** não identificada.\n")
-L.append("## Soma agregada (sem as linhas com ressalva de desenho)\n")
-rows = []
-for sent, nome in (("PT", "pró-Lula"), ("OPO", "pró-Flávio")):
-    v = agg[sent]
-    if v:
-        cen = sum(x[0] for x in v); dp = np.sqrt(sum(((x[2] - x[0]) / 1.96) ** 2 for x in v)); pw = sum(max(x[3], 0) for x in v if pd.notna(x[3]))
-        rows.append(dict(sentido=nome, itens_com_votos=len(v), soma_central=n(cen), ic95=f"{n(cen - 1.96 * dp)} a {n(cen + 1.96 * dp)}", soma_pior_caso=n(pw), pct_margem_central=n(100 * cen / MARGEM, 2) + "%", pct_margem_pior_caso=n(100 * pw / MARGEM, 2) + "%"))
-L.append(tab(rows, ["sentido", "itens_com_votos", "soma_central", "ic95", "soma_pior_caso", "pct_margem_central", "pct_margem_pior_caso"]))
-L.append("\nEsta soma **exclui as linhas A1, A2, A3 e A12** (ressalva de desenho). As versões corrigidas dessas linhas não mostram excesso e não somam votos. Considerando todas as linhas, o agregado é publicado só no apêndice \"Agregado sem interpretação causal\" de [Resultados da Fase 2](resultados-fase2.md), porque inclui um teto sem sentido causal.\n")
-L.append("\nO intervalo da soma supõe independência entre os itens (aproximação declarada; os itens usam as mesmas seções, então o intervalo é aproximado). Os sentidos pró-Lula e pró-Flávio não se compensam. Itens de forma, sem conversão em votos, não entram na soma. Nenhum item, isolado ou somado, alcança a margem de 4.430.191 votos.\n")
+L.append("## Soma agregada: quantos votos, todos os resíduos juntos?\n")
+L.append("> Todos os números abaixo são **em votos de margem** (a troca de um voto muda a margem em 2) e devem ser lidos contra a margem de 4.430.191. Para inverter o resultado, seria preciso que o conjunto dos efeitos **pró-Lula** somasse ao menos esse valor; efeitos pró-Flávio andam no sentido contrário e não entram nessa conta.\n")
+FLAWS = {"A1", "A2", "A3", "A12"}
+regv = reg[~reg.H.isin(FLAWS) & reg.votos_max_pior_caso.notna()]
+pt, op = regv[regv.sentido == "PT"], regv[regv.sentido == "OPO"]
+res_pt = agg["PT"]; res_op = agg["OPO"]
+pos_c = lambda v: sum(max(x[0], 0) for x in v)
+pior = lambda v: sum(max(x[3], 0) for x in v if pd.notna(x[3]))
+dom = max(res_pt, key=lambda x: x[3] if pd.notna(x[3]) else 0)
+rows = [
+    dict(soma="(1) Estimativas centrais positivas, itens desta página (excesso medido contra o placebo mais exigente; as negativas não compensam)", pro_Lula=n(pos_c(res_pt)), pct_margem_Lula=n(100 * pos_c(res_pt) / MARGEM, 2) + "%", pro_Flavio=n(pos_c(res_op)), pct_margem_Flavio=n(100 * pos_c(res_op) / MARGEM, 2) + "%"),
+    dict(soma="(2) Tetos de pior caso, itens desta página", pro_Lula=n(pior(res_pt)), pct_margem_Lula=n(100 * pior(res_pt) / MARGEM, 1) + "%", pro_Flavio=n(pior(res_op)), pct_margem_Flavio=n(100 * pior(res_op) / MARGEM, 1) + "%"),
+    dict(soma="(3) Idem (2), sem o maior item isolado (teto dominado pela imprecisão, ver abaixo)", pro_Lula=n(pior(res_pt) - dom[3]), pct_margem_Lula=n(100 * (pior(res_pt) - dom[3]) / MARGEM, 1) + "%", pro_Flavio=n(pior(res_op)), pct_margem_Flavio=n(100 * pior(res_op) / MARGEM, 1) + "%"),
+    dict(soma=f"(4) Tetos de pior caso de **todas** as {len(pt)} linhas pró-Lula do registro com conversão em votos (repete as mesmas seções e especificações; limite superior grosseiro)", pro_Lula=n(pt.votos_max_pior_caso.sum()), pct_margem_Lula=n(100 * pt.votos_max_pior_caso.sum() / MARGEM, 1) + "%", pro_Flavio=n(op.votos_max_pior_caso.sum()), pct_margem_Flavio=n(100 * op.votos_max_pior_caso.sum() / MARGEM, 1) + "%"),
+]
+L.append(tab(rows, ["soma", "pro_Lula", "pct_margem_Lula", "pro_Flavio", "pct_margem_Flavio"]))
+L.append(f"\n**Leitura.** (1) é o que os dados mostram de excesso: cerca de {n(pos_c(res_pt), 0)} votos de margem pró-Lula e {n(pos_c(res_op), 0)} pró-Flávio, ou seja, {n(100 * pos_c(res_pt) / MARGEM, 1)}% e {n(100 * pos_c(res_op) / MARGEM, 1)}% da margem. (2), (3) e (4) são **tetos**, não estimativas: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. (4) é a soma ingênua de tudo e **mesmo assim não alcança** a margem ({n(100 * pt.votos_max_pior_caso.sum() / MARGEM, 0)}% dela); ela conta várias vezes as mesmas seções (por exemplo, o mesmo teste de liberação manual em várias especificações e o de fechamento tardio em seis). Em (2), o item de maior teto ({n(dom[3])} votos) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para {n(100 * (pior(res_pt) - dom[3]) / MARGEM, 1)}% da margem.\n")
+L.append("O que isso **não** mede: uma alteração de votos coerente em todos os arquivos publicados, que estes testes não conseguem enxergar (ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md)). Também fica de fora o agregado de linhas com ressalva de desenho, que não tem interpretação causal (Apêndice B de [Resultados da Fase 2](resultados-fase2.md)).\n")
 L.append("## Itens sem linha no registro\n")
 L.append("- **Comparecimento de idosos (A9):** o comparecimento de eleitores acima de 80 anos (voto facultativo) cresce mais que os aptos da faixa entre 2022 e 2026 no 1º turno. Não convertível em votos; causa não identificada; resolveria o perfil de 2026/2º turno e o histórico de cancelamentos de títulos.")
 L.append("- **Chegada dos BUs de 25/10/2026:** 99,6% dos BUs chegaram ao TSE depois das 19h, enquanto 98,2% das seções tinham fechado até 15 minutos depois das 17h. Explicado pela pausa documentada pela imprensa; a fonte oficial não foi aberta.\n")

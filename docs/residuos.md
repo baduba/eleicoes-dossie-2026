@@ -174,17 +174,20 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 - **O que resolveria:** o log de recepção do Sistot (não público) e a ordem real de transmissão por município.
 - **Causa:** não identificada.
 
-## Soma agregada (sem as linhas com ressalva de desenho)
+## Soma agregada: quantos votos, todos os resíduos juntos?
 
-| sentido | itens_com_votos | soma_central | ic95 | soma_pior_caso | pct_margem_central | pct_margem_pior_caso |
-|---|---|---|---|---|---|---|
-| pró-Lula | 8 | -5.391.465 | -5.993.741 a -4.789.188 | 1.648.221 | -121,70% | 37,20% |
-| pró-Flávio | 1 | 101.285 | 75.956 a 126.614 | 122.543 | 2,29% | 2,77% |
+> Todos os números abaixo são **em votos de margem** (a troca de um voto muda a margem em 2) e devem ser lidos contra a margem de 4.430.191. Para inverter o resultado, seria preciso que o conjunto dos efeitos **pró-Lula** somasse ao menos esse valor; efeitos pró-Flávio andam no sentido contrário e não entram nessa conta.
 
-Esta soma **exclui as linhas A1, A2, A3 e A12** (ressalva de desenho). As versões corrigidas dessas linhas não mostram excesso e não somam votos. Considerando todas as linhas, o agregado é publicado só no apêndice "Agregado sem interpretação causal" de [Resultados da Fase 2](resultados-fase2.md), porque inclui um teto sem sentido causal.
+| soma | pro_Lula | pct_margem_Lula | pro_Flavio | pct_margem_Flavio |
+|---|---|---|---|---|
+| (1) Estimativas centrais positivas, itens desta página (excesso medido contra o placebo mais exigente; as negativas não compensam) | 99.499 | 2,25% | 101.285 | 2,29% |
+| (2) Tetos de pior caso, itens desta página | 1.648.221 | 37,2% | 122.543 | 2,8% |
+| (3) Idem (2), sem o maior item isolado (teto dominado pela imprecisão, ver abaixo) | 311.023 | 7,0% | 122.543 | 2,8% |
+| (4) Tetos de pior caso de **todas** as 27 linhas pró-Lula do registro com conversão em votos (repete as mesmas seções e especificações; limite superior grosseiro) | 3.092.826 | 69,8% | 122.543 | 2,8% |
 
+**Leitura.** (1) é o que os dados mostram de excesso: cerca de 99.499 votos de margem pró-Lula e 101.285 pró-Flávio, ou seja, 2,2% e 2,3% da margem. (2), (3) e (4) são **tetos**, não estimativas: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. (4) é a soma ingênua de tudo e **mesmo assim não alcança** a margem (70% dela); ela conta várias vezes as mesmas seções (por exemplo, o mesmo teste de liberação manual em várias especificações e o de fechamento tardio em seis). Em (2), o item de maior teto (1.337.198 votos) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para 7,0% da margem.
 
-O intervalo da soma supõe independência entre os itens (aproximação declarada; os itens usam as mesmas seções, então o intervalo é aproximado). Os sentidos pró-Lula e pró-Flávio não se compensam. Itens de forma, sem conversão em votos, não entram na soma. Nenhum item, isolado ou somado, alcança a margem de 4.430.191 votos.
+O que isso **não** mede: uma alteração de votos coerente em todos os arquivos publicados, que estes testes não conseguem enxergar (ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md)). Também fica de fora o agregado de linhas com ressalva de desenho, que não tem interpretação causal (Apêndice B de [Resultados da Fase 2](resultados-fase2.md)).
 
 ## Itens sem linha no registro
 

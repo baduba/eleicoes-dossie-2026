@@ -2,6 +2,9 @@
 
 Erros meus corrigidos no caminho e mudanças feitas depois de ver resultados. Datas em 2026.
 
+## Correção pós-publicação v0.9 (2026-10-29)
+- **Questões em aberto, soma agregada.** A tabela antiga somava as estimativas centrais com sinal, e uma linha ecológica (A11, coeficiente negativo) produzia "-5,39 milhões, -121,7% da margem", número sem sentido em votos. Substituída por quatro somas explícitas: excessos positivos medidos (~99 mil pró-Lula e ~101 mil pró-Flávio, 2,2% e 2,3% da margem), tetos de pior caso dos itens da página (1,65 milhão, 37%), os mesmos sem o item dominado pela imprecisão (311 mil, 7%) e o teto de todas as 27 linhas pró-Lula do registro (3,09 milhões, 70%, repetindo seções). Nenhuma soma alcança os 4.430.191 votos.
+
 ## Fase 2.1 (2026-10-29): correções antes da publicação (versão preliminar v0.9)
 - **Ressalva de desenho primeiro (A1, A2, A3, A12).** O resultado pré-registrado não foi alterado nem apagado (o registro de 38 testes é idêntico ao anterior, coluna a coluna). Foi escrito o [Adendo 6](preregistro.md) (pós-registro), que descreve a falha de cada desenho, a demonstração (o mesmo teste acusando excesso em séries ou anos sem manipulação) e o teste corrigido. O pedido chamava este texto de "Adendo 4"; como o Adendo 4 já existia (previsões da Fase 2), ele recebeu o número 6.
 - **Demonstrações.** A1: o critério original acusa 4 de 4 eleições reais e 20 de 20 séries simuladas sem manipulação. A2: o mesmo teste aplicado ao PT de 2022 também acusa excesso. A3: o teste original acusa exatamente um dos quatro anos, o de maior coeficiente. A12: em 200 simulações sem manipulação, o teste original acusa excesso em 44%.
