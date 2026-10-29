@@ -2,6 +2,11 @@
 
 Erros meus corrigidos no caminho e mudanças feitas depois de ver resultados. Datas em 2026.
 
+## v0.9.1 (pré-release, 2026-10-29): errata da soma agregada e unificação de unidades
+- **Errata da v0.9.** A tabela "Soma agregada" de Questões em aberto somava estimativas centrais com sinal e exibia -5,39 milhões (-121,7% da margem), valor sem interpretação em votos. Corrigido na v0.9.1. A release v0.9 e seu PDF foram mantidos como estavam, com a errata na descrição.
+- **Destaque.** Questões em aberto e o resumo destacam só a linha (1) (excesso medido: cerca de 99 mil pró-Lula e 101 mil pró-Flávio, votos de margem). As linhas (2) e (3) trazem "teto de pior caso, não estimativa" na mesma célula. A linha (4) só aparece no apêndice "Soma ingênua com dupla contagem, sem interpretação".
+- **Unidades.** Definidas na Metodologia: **votos de margem** (variação da diferença Lula menos Flávio; a troca de um voto muda a margem em 2) para todo teto, estimativa central e agregado, e **votos (contagem)** para contagens simples. Todo cabeçalho de tabela e número de destaque foi rotulado. Conferência: o agregado 38.394 / 122.543 e a tabela de Questões em aberto vêm das mesmas colunas do registro (`votos_max_pior_caso`, `votos_central`), portanto **já estavam na mesma unidade (votos de margem); nenhuma conversão foi necessária**. O que mudou foi só o rótulo. O A5 (23 mil votos depois das 17h) é contagem e passou a dizer isso.
+
 ## Correção pós-publicação v0.9 (2026-10-29)
 - **Questões em aberto, soma agregada.** A tabela antiga somava as estimativas centrais com sinal, e uma linha ecológica (A11, coeficiente negativo) produzia "-5,39 milhões, -121,7% da margem", número sem sentido em votos. Substituída por quatro somas explícitas: excessos positivos medidos (~99 mil pró-Lula e ~101 mil pró-Flávio, 2,2% e 2,3% da margem), tetos de pior caso dos itens da página (1,65 milhão, 37%), os mesmos sem o item dominado pela imprecisão (311 mil, 7%) e o teto de todas as 27 linhas pró-Lula do registro (3,09 milhões, 70%, repetindo seções). Nenhuma soma alcança os 4.430.191 votos.
 

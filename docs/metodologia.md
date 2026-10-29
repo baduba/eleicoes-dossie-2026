@@ -13,6 +13,11 @@
 - **Arquivos de urna** (BU, RDV, imagem, assinatura e log) do conjunto "arquivos transmitidos para totalização": amostra por seção (ver A4 e A5).
 - Lista completa com URL e hash em `data/`.
 
+## Unidades (leia antes dos números)
+- **Votos de margem** é a unidade de todo teto, estimativa central e agregado em votos desta auditoria. É a variação da diferença Lula menos Flávio: trocar um voto de um candidato para o outro muda a margem em 2; um voto a mais para um candidato, sem tirar do outro, muda em 1. A fórmula do teto já inclui o fator 2 (parâmetro `fator`) e a margem oficial, 4.430.191, está na mesma unidade. Para inverter o resultado, a margem teria de cair em pelo menos 4.430.191, o que equivale a 2.215.096 votos trocados.
+- **Votos (contagem)** é o número simples de votos (por exemplo, os 23 mil votos depois das 17h do A5 ou as 8,6 milhões de liberações manuais). Toda tabela e todo número de destaque traz o rótulo da unidade. Contagem e votos de margem **não** se somam nem se comparam sem conversão.
+- O agregado do H10 (38.394 pró-Lula e 122.543 pró-Flávio) e as somas de Questões em aberto estão na **mesma unidade** (votos de margem), porque ambos vêm das colunas `votos_max_pior_caso` e `votos_central` do registro de testes.
+
 ## Estatística
 - **Efeito fixo de local de votação** (escola): a comparação é entre seções do mesmo local, o que absorve geografia, população e perfil do local.
 - **Controle do 1º turno:** quando o desfecho é o 2º turno, o voto da própria seção no 1º turno entra como controle.

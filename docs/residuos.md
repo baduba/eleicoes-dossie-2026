@@ -176,20 +176,29 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 
 ## Soma agregada: quantos votos, todos os resíduos juntos?
 
-> Todos os números abaixo são **em votos de margem** (a troca de um voto muda a margem em 2) e devem ser lidos contra a margem de 4.430.191. Para inverter o resultado, seria preciso que o conjunto dos efeitos **pró-Lula** somasse ao menos esse valor; efeitos pró-Flávio andam no sentido contrário e não entram nessa conta.
+> **Unidade: votos de margem** (variação da diferença Lula menos Flávio; a troca de um voto muda a margem em 2; definição em [Metodologia](metodologia.md)). Todos os números abaixo devem ser lidos contra a margem de 4.430.191. Para inverter o resultado, o conjunto dos efeitos **pró-Lula** teria de somar ao menos esse valor; efeitos pró-Flávio andam no sentido contrário e não entram nessa conta.
 
-| soma | pro_Lula | pct_margem_Lula | pro_Flavio | pct_margem_Flavio |
+| soma | pró-Lula (votos de margem) | % da margem (pró-Lula) | pró-Flávio (votos de margem) | % da margem (pró-Flávio) |
 |---|---|---|---|---|
-| (1) Estimativas centrais positivas, itens desta página (excesso medido contra o placebo mais exigente; as negativas não compensam) | 99.499 | 2,25% | 101.285 | 2,29% |
-| (2) Tetos de pior caso, itens desta página | 1.648.221 | 37,2% | 122.543 | 2,8% |
-| (3) Idem (2), sem o maior item isolado (teto dominado pela imprecisão, ver abaixo) | 311.023 | 7,0% | 122.543 | 2,8% |
-| (4) Tetos de pior caso de **todas** as 27 linhas pró-Lula do registro com conversão em votos (repete as mesmas seções e especificações; limite superior grosseiro) | 3.092.826 | 69,8% | 122.543 | 2,8% |
+| **(1) Excesso medido: soma das estimativas centrais positivas dos itens desta página** (contra o placebo mais exigente; as negativas não compensam) | **99.499** | **2,25%** | **101.285** | **2,29%** |
+| (2) Tetos de pior caso dos itens desta página | 1.648.221 (teto de pior caso, não estimativa) | 37,2% (teto de pior caso, não estimativa) | 122.543 (teto de pior caso, não estimativa) | 2,8% (teto de pior caso, não estimativa) |
+| (3) Idem (2), sem o maior item isolado (teto dominado pela imprecisão, ver abaixo) | 311.023 (teto de pior caso, não estimativa) | 7,0% (teto de pior caso, não estimativa) | 122.543 (teto de pior caso, não estimativa) | 2,8% (teto de pior caso, não estimativa) |
 
-**Leitura.** (1) é o que os dados mostram de excesso: cerca de 99.499 votos de margem pró-Lula e 101.285 pró-Flávio, ou seja, 2,2% e 2,3% da margem. (2), (3) e (4) são **tetos**, não estimativas: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. (4) é a soma ingênua de tudo e **mesmo assim não alcança** a margem (70% dela); ela conta várias vezes as mesmas seções (por exemplo, o mesmo teste de liberação manual em várias especificações e o de fechamento tardio em seis). Em (2), o item de maior teto (1.337.198 votos) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para 7,0% da margem.
+**Leitura.** A linha (1) é o que os dados mostram de excesso: cerca de 99.499 votos de margem pró-Lula e 101.285 pró-Flávio, ou seja, 2,2% e 2,3% da margem. As linhas (2) e (3) são **tetos de pior caso, não estimativas**: usam sempre o placebo mais frouxo e somam como se tudo fosse independente. Em (2), o item de maior teto (1.337.198 votos de margem) é uma especificação sem controle do 1º turno cujo teto vem da **imprecisão** do teste (o veredito é inconclusivo, não de excesso); sem ele, o conjunto cai para 7,0% da margem. Nenhuma soma alcança 4.430.191.
 
-O que isso **não** mede: uma alteração de votos coerente em todos os arquivos publicados, que estes testes não conseguem enxergar (ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md)). Também fica de fora o agregado de linhas com ressalva de desenho, que não tem interpretação causal (Apêndice B de [Resultados da Fase 2](resultados-fase2.md)).
+O que isso **não** mede: uma alteração de votos coerente em todos os arquivos publicados, que estes testes não conseguem enxergar (ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md)). Também fica de fora o agregado de linhas com ressalva de desenho, que não tem interpretação causal (Apêndice B de [Resultados da Fase 2](resultados-fase2.md)). A soma ingênua de todas as linhas do registro está só no apêndice abaixo.
 
 ## Itens sem linha no registro
 
 - **Comparecimento de idosos (A9):** o comparecimento de eleitores acima de 80 anos (voto facultativo) cresce mais que os aptos da faixa entre 2022 e 2026 no 1º turno. Não convertível em votos; causa não identificada; resolveria o perfil de 2026/2º turno e o histórico de cancelamentos de títulos.
 - **Chegada dos BUs de 25/10/2026:** 99,6% dos BUs chegaram ao TSE depois das 19h, enquanto 98,2% das seções tinham fechado até 15 minutos depois das 17h. Explicado pela pausa documentada pela imprensa; a fonte oficial não foi aberta.
+
+## Apêndice: Soma ingênua com dupla contagem, sem interpretação
+
+> **Esta soma não mede votos alterados.** Ela soma os tetos de pior caso de **todas** as 27 linhas pró-Lula do registro (sem as quatro com ressalva de desenho) que têm conversão em votos, contando várias vezes as mesmas seções e as mesmas especificações (por exemplo, o teste de liberação manual em várias especificações e o de fechamento tardio em seis). Unidade: votos de margem. Teto de pior caso, não estimativa.
+
+| soma | pró-Lula (votos de margem) | % da margem | pró-Flávio (votos de margem) |
+|---|---|---|---|
+| Soma ingênua com dupla contagem, sem interpretação (teto de pior caso, não estimativa) | 3.092.826 | 69,8% | 122.543 |
+
+Mesmo com a dupla contagem, a soma não alcança 4.430.191 votos de margem.

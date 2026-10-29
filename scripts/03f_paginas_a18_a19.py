@@ -17,10 +17,17 @@ def n(x, d=0):
     return f"{x:,.{d}f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
+ROT = {"votos_central": "votos_central (votos de margem)", "votos_ic95_inf": "votos_ic95_inf (votos de margem)", "votos_ic95_sup": "votos_ic95_sup (votos de margem)",
+       "votos_max_margem": "votos_max_margem (votos de margem)", "votos_max_pior_caso": "votos_max_pior_caso (teto de pior caso, votos de margem)", "votos_margem": "votos_margem (votos de margem)",
+       "soma_votos_sobreviventes_exigente": "soma_votos_sobreviventes_exigente (votos de margem)", "soma_votos_sobreviventes_pior_caso": "soma_votos_sobreviventes_pior_caso (teto de pior caso, votos de margem)",
+       "maximo_individual_pior_caso": "maximo_individual_pior_caso (teto de pior caso, votos de margem)", "soma_de_todos_exigente": "soma_de_todos_exigente (votos de margem)",
+       "votos_perdidos": "votos_perdidos (votos, contagem)", "votos_perdidos_liquidos_somados": "votos_perdidos_liquidos_somados (votos, contagem)", "ganho_liquido_nacional": "ganho_liquido_nacional (votos, contagem)"}
+
+
 def tab(df, fmts=None):
     fmts = fmts or {}
     cols = list(df.columns)
-    L = ["| " + " | ".join(cols) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
+    L = ["| " + " | ".join(ROT.get(c, c) for c in cols) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
     for _, r in df.astype(object).iterrows():
         L.append("| " + " | ".join(((fmts[c](r[c]) if c in fmts else str(r[c])).replace("|", "/")) for c in cols) + " |")
     return "\n".join(L)

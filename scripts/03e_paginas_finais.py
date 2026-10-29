@@ -21,6 +21,7 @@ c = lambda a, t, col: int(h3[(h3.ano == a) & (h3.turno == t) & (h3.recorte == "c
 z26 = a12c[(a12c.ano == 2026) & (a12c.turno == 2) & (a12c.definicao == "todas as apuradas")].iloc[0]
 agg2 = h10[h10.criterio != "como registrado"].set_index("sentido")
 a4_26 = a4[a4.ano == 2026].iloc[0]
+rs = rd("residuos_soma.csv")
 
 # ------------------------------------------------------------------------------------------------ regua historica
 dos = open(os.path.join(RAIZ, "dossie.md"), encoding="utf-8").read()
@@ -33,7 +34,7 @@ IDX = f"""# Auditoria independente reproduzível: 2º turno presidencial de 2026
 
 Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem documento homologado: nenhum órgão homologou. Foi construída para que qualquer perito, de qualquer lado, repita cada número e conteste o que discordar.
 
-> **Versão preliminar (v0.9).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
+> **Versão preliminar (v0.9.1).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
 
 ## O que foi feito
 Análise estatística dos dados oficiais do TSE por seção (BWeb de 2014, 2018, 2022 e 2026, com hash conferido), mais os arquivos de urna (BU, RDV, assinatura e log) de uma amostra de {n(a4_26.secoes)} seções do 2º turno de 2026 e as mesmas seções em 2022 como placebo. Previsões foram registradas antes de cada bloco de análises ([Pré-registro](preregistro.md)); todo teste tem placebo e é simétrico; resultados nulos têm o mesmo destaque que os positivos.
@@ -43,11 +44,12 @@ Análise estatística dos dados oficiais do TSE por seção (BWeb de 2014, 2018,
 - **Cadeia da urna (A4):** em {n(a4_26.secoes)} seções de {n(a4_26.UFs)} UFs, o BU digital coincide com o BWeb, o RDV recontado coincide com o BU e os hashes de BU, RDV, imagem e log constam na lista assinada pela urna: {n(a4_26.bu_diferente_do_bweb + a4_26.rdv_diferente_do_bu + a4_26.hash_nao_vinculado)} divergências. **Isso verifica consistência entre arquivos que o TSE publica e não exclui uma alteração coerente feita antes da publicação** ([A18](a18-alteracao-no-meio.md)). A assinatura criptográfica em si **não foi verificada** (0% das seções; NÃO EXECUTADO PARCIAL: falta a chave oficial acessível).
 - **Alteração no meio e voto digitado x registrado (A18, A19):** os atrasos documentados (1 hora no 1º turno; recebimento retido até as 19h no 2º) foram testados pela janela de relógio contra placebos, sem excesso detectado, mas esses testes não excluem uma alteração coerente. A correspondência entre voto digitado e voto registrado só é verificada por amostragem no teste de integridade, e o modelo atual não possui registro conferido pelo eleitor ([A19](a19-voto-digitado.md)). Fotos de boletins impressos podem ser enviadas por qualquer pessoa ([como enviar](boletins-impressos.md)).
 - **Relatório original:** a tabela de fechamento ({n(c(2026,2,'de_17h01_a_17h15'))} seções entre 17h01 e 17h15), as 8,6 milhões de liberações manuais ({n(tot.loc[(2026,2),'biom_nh_total'])}) e os percentuais da Bahia reproduzem; as conclusões não se sustentam ([página](relatorio-original.md)).
-- **Votos depois das 17h (A5):** estimativa a partir dos logs de {n(a5n.estimativa_total.iloc[0])} votos em todo o país (IC95 {n(a5n.ic95_total_inf.iloc[0])} a {n(a5n.ic95_total_sup.iloc[0])}), {n(100*a5n.estimativa_total.iloc[0]/4430191,2)}% da margem; muitas das seções que fecharam tarde ficaram abertas sem registrar voto depois das 17h.
+- **Votos depois das 17h (A5):** estimativa a partir dos logs de {n(a5n.estimativa_total.iloc[0])} votos (contagem, não votos de margem) em todo o país (IC95 {n(a5n.ic95_total_inf.iloc[0])} a {n(a5n.ic95_total_sup.iloc[0])}), {n(100*a5n.estimativa_total.iloc[0]/4430191,2)}% da margem de 4.430.191 (comparação direta da contagem com a margem); muitas das seções que fecharam tarde ficaram abertas sem registrar voto depois das 17h.
 - **Liberação manual:** caiu 14% de 2022 para 2026; a associação com o voto em Lula existe nos dois turnos de 2026 e não é específica do 2º turno.
 - **Curva de apuração, conversão e zero voto (A1, A2, A3, A11, A12, A13, A14):** a curva real e seus trechos lineares ficam dentro da faixa das ordens geográficas simuladas; nenhuma conversão do oponente para o PT é necessária para explicar o resultado nacional; o "109 seções com zero voto" não reproduz (são {n(z26.zero_oponente)} no 2º turno; 143 em 2022, 328 em 2018); às 19h34 só 7,8% dos BUs tinham sido recebidos, não 70%.
 - **Linhas com ressalva de desenho (A1, A2, A3, A12):** pelos critérios pré-registrados, saíram com rótulo de excesso, mas **o mesmo teste acusa excesso em séries ou anos sem manipulação** (A1: {int(c1d.iloc[0].simulacoes_que_saem_do_envelope_B_por_20_pontos_ou_mais)} de {int(c1d.iloc[0].simulacoes_sem_manipulacao)} simulações limpas; A2: o PT de 2022; A3: coeficientes negativos em todos os anos; A12: {n(c12d.iloc[0].pct_acusadas,0)}% de simulações limpas). As versões corrigidas não mostram excesso. Resultado original e corrigido, lado a lado, em [Resultados da Fase 2](resultados-fase2.md) e [Questões em aberto](residuos.md).
-- **Impacto agregado** (só testes sem ressalva de desenho): {n(agg2.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos pró-Lula e {n(agg2.loc['OPO','soma_votos_sobreviventes_pior_caso'])} pró-Flávio, tetos de pior caso; com as versões corrigidas no lugar das originais, o resultado é o mesmo (nenhuma das quatro versões corrigidas mostra excesso). A margem é 4.430.191.
+- **Excesso medido, todos os resíduos somados** (votos de margem): **cerca de {n(rs.excesso_medido_pro_Lula_votos_de_margem.iloc[0])} pró-Lula e {n(rs.excesso_medido_pro_Flavio_votos_de_margem.iloc[0])} pró-Flávio**, {n(100*rs.excesso_medido_pro_Lula_votos_de_margem.iloc[0]/4430191,1)}% e {n(100*rs.excesso_medido_pro_Flavio_votos_de_margem.iloc[0]/4430191,1)}% da margem de 4.430.191, em sentidos opostos ([soma e leitura](residuos.md)).
+- **Impacto agregado** (só testes sem ressalva de desenho; unidade: votos de margem; teto de pior caso, não estimativa): {n(agg2.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos de margem pró-Lula e {n(agg2.loc['OPO','soma_votos_sobreviventes_pior_caso'])} pró-Flávio, tetos de pior caso; com as versões corrigidas no lugar das originais, o resultado é o mesmo (nenhuma das quatro versões corrigidas mostra excesso). A margem é 4.430.191.
 ## O que não foi testado
 Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md) e a lista de **NÃO EXECUTADO**: cruzamento com boletins impressos (sem insumo), assinatura criptográfica da urna, curva de divulgação do site Resultados, perfil de comparecimento de 2026/2º turno, 2014 na curva de apuração, as "472 urnas" do vídeo.
 
@@ -78,7 +80,7 @@ python scripts/08_arquivos_urna.py local|remoto ...   # ver docstring; uma saida
 python scripts/02_executa.py parquet results/fase2 --anos 2014 2018 2022 2026 --zips dados_tse --parquet2 parquet2 --cesp cesp --urna urna_out
 python scripts/10_figuras.py parquet results/fase2 docs/figs
 python scripts/03b_monta_fase2.py results/fase2 results/fase1 .   # e 03c, 03d, 03e, 03f (A18, A19, boletins); 13_cert_urna.py e 14_poder_estatistico.py geram as tabelas de assinatura e de poder
-python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.pdf
+python scripts/build_site.py --saida site --pdf relatorio/auditoria-independente-v0.9.1.pdf
 ```
 O código de saída 2 de `02_executa.py` indica testes NÃO EXECUTADOS (lista em `nao_executados.csv`).
 
@@ -95,9 +97,9 @@ RD = f"""# Auditoria independente reproduzível: 2º turno presidencial de 2026
 
 Repositório com scripts, previsões pré-registradas, resultados e documentação de uma auditoria estatística dos dados oficiais do TSE sobre o 2º turno de 25/10/2026 (Lula x Flávio Bolsonaro). **Não é laudo, perícia oficial nem documento homologado.**
 
-Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9 (versão preliminar).
+Portal: https://baduba.github.io/eleicoes-dossie-2026/ (após a publicação) · PDF: `relatorio/` e release v0.9.1 (versão preliminar).
 
-**Versão preliminar (v0.9).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
+**Versão preliminar (v0.9.1).** A v1.0 sai depois do relatório consolidado do TCU (até 24/11/2026), da verificação da assinatura e de um lote inicial de boletins impressos.
 
 ## Objetivo
 Permitir que qualquer perito, de qualquer lado, reproduza cada número e conteste o que discordar. Só entra o que sai de script versionado sobre dado oficial com hash conferido, ou afirmação com fonte citada. Todo código e dado estão no repositório para verificação independente. (Os arquivos de origem do TSE entram por URL e hash SHA-512 conferido, em `data/`, e não como cópia; scripts, previsões, resultados e tabelas completos estão no repositório.)

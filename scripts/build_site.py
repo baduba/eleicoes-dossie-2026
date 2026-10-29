@@ -5,7 +5,7 @@ import argparse, html, os, re, shutil, subprocess, sys
 import markdown
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VERSAO = "v0.9"
+VERSAO = "v0.9.1"
 REPO = "https://github.com/baduba/eleicoes-dossie-2026"
 AUTORIA = os.environ.get("AUTORIA_TEXTO", "{{AUTORIA}}")      # marcador ate o autor confirmar; ver scripts/15_aplica_autoria.py
 NAV = [("index", "Início"), ("metodologia", "Metodologia"), ("preregistro", "Pré-registro"), ("resultados-fase1", "Resultados: Fase 1 (H1 a H10)"),
@@ -92,7 +92,7 @@ def resumo_capa():
     h = pd.read_csv(os.path.join(RAIZ, "results", "fase2", "H10_h10_agregado.csv"))
     h = h[h.criterio != "como registrado"].set_index("sentido")
     f = lambda x: f"{x:,.0f}".replace(",", ".")
-    return (f"Impacto agregado (somente testes sem ressalva de desenho; tetos de pior caso): {f(h.loc['PT', 'soma_votos_sobreviventes_pior_caso'])} votos pró-Lula e {f(h.loc['OPO', 'soma_votos_sobreviventes_pior_caso'])} pró-Flávio, contra uma margem de 4.430.191. "
+    return (f"Impacto agregado (somente testes sem ressalva de desenho; unidade: votos de margem; tetos de pior caso, não estimativas): {f(h.loc['PT', 'soma_votos_sobreviventes_pior_caso'])} votos de margem pró-Lula e {f(h.loc['OPO', 'soma_votos_sobreviventes_pior_caso'])} pró-Flávio, contra uma margem de 4.430.191 votos de margem. "
             "As análises A1, A2, A3 e A12 têm ressalva de desenho: o mesmo teste acusa excesso em séries ou anos sem manipulação; resultado original e corrigido estão lado a lado nos Resultados da Fase 2.")
 
 

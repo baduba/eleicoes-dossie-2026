@@ -24,11 +24,18 @@ def pc(x, d=2):
     return n(x, d) + "%"
 
 
+ROT = {"votos_central": "votos_central (votos de margem)", "votos_ic95_inf": "votos_ic95_inf (votos de margem)", "votos_ic95_sup": "votos_ic95_sup (votos de margem)",
+       "votos_max_margem": "votos_max_margem (votos de margem)", "votos_max_pior_caso": "votos_max_pior_caso (teto de pior caso, votos de margem)", "votos_margem": "votos_margem (votos de margem)",
+       "soma_votos_sobreviventes_exigente": "soma_votos_sobreviventes_exigente (votos de margem)", "soma_votos_sobreviventes_pior_caso": "soma_votos_sobreviventes_pior_caso (teto de pior caso, votos de margem)",
+       "maximo_individual_pior_caso": "maximo_individual_pior_caso (teto de pior caso, votos de margem)", "soma_de_todos_exigente": "soma_de_todos_exigente (votos de margem)",
+       "votos_perdidos": "votos_perdidos (votos, contagem)", "votos_perdidos_liquidos_somados": "votos_perdidos_liquidos_somados (votos, contagem)", "ganho_liquido_nacional": "ganho_liquido_nacional (votos, contagem)"}
+
+
 def tab(df, fmts=None, cab=None):
     """tabela markdown. fmts: {coluna: funcao}."""
     fmts = fmts or {}
     cols = list(df.columns)
-    linhas = ["| " + " | ".join(cab or cols) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
+    linhas = ["| " + " | ".join(cab or [ROT.get(c, c) for c in cols]) + " |", "|" + "|".join(["---"] * len(cols)) + "|"]
     for _, r in df.astype(object).iterrows():
         linhas.append("| " + " | ".join(((fmts[c](r[c]) if c in fmts else str(r[c])).replace("|", "/")) for c in cols) + " |")
     return "\n".join(linhas)
@@ -84,6 +91,7 @@ hs = {s: hashlib.sha256(open(os.path.join(os.path.dirname(os.path.abspath(__file
 L = []
 A = L.append
 A("# Dossiê: auditoria dos dados do 2º turno presidencial de 2026 (Lula x Flávio Bolsonaro)\n")
+A("> **Unidades.** \"Votos de margem\" é a variação da diferença Lula menos Flávio: a troca de um voto muda a margem em 2. Todo teto, estimativa central e agregado em votos neste documento está em votos de margem e deve ser lido contra a margem oficial de 4.430.191. \"Votos (contagem)\" é número simples de votos, e vem rotulado assim. Definição completa em Metodologia.\n")
 A("Gerado em 2026-10-28 a partir dos arquivos públicos do TSE. Todos os números deste texto vêm dos CSVs em `results/fase1/` (script `03_monta_dossie.py`). Previsões e critérios foram fixados antes dos dados em `00_preregistro.md`.\n")
 
 # ------------------------------------------------------------------------------------------------ 1
@@ -95,9 +103,9 @@ A(f"4. H1: com efeito fixo de local de votação e controle do voto da própria 
 A(f"5. H3 e H4: a contagem do relatório foi reproduzida ({n(cr26.de_17h01_a_17h15)} seções entre 17h01 e 17h15 pelo relógio cru da urna). {n(cr26.a_partir_de_19h)} seções registraram encerramento a partir das 19h no relógio da urna, contra {n(cr22.a_partir_de_19h)} em 2022/T2. Nelas, o voto em Lula não difere das demais seções do mesmo local; tetos de {pc(h4reg.pct_pior_caso.min())} a {pc(h4reg.pct_pior_caso.max())} da margem.")
 A("6. O número de votos dados depois das 17h não é mensurável com estes dados (o BWeb não traz log de votação).")
 A(f"7. H5 a H8 e régua histórica: o comparecimento, os outliers locais e os dígitos de 2026 ficam dentro da faixa observada em 2014, 2018 e 2022. Nenhum dos padrões A, B ou C se ajusta pelo critério fixado (C: {n(ab.C)} de {n(ab.metricas)} métricas; ver 3.13).")
-A(f"8. Dois testes mostram excesso depois de Holm: votos de Flávio por apto x taxa manual (teto {n(sflav.votos_max_pior_caso)} votos, {pc(sflav.pct_pior_caso)} da margem, sentido favorável a Flávio) e variação de voto em Lula entre anos x variação da taxa manual (teto {n(h2b.votos_max_pior_caso)} votos, {pc(h2b.pct_pior_caso)}).")
+A(f"8. Dois testes mostram excesso depois de Holm: votos de Flávio por apto x taxa manual (teto de pior caso, não estimativa: {n(sflav.votos_max_pior_caso)} votos de margem, {pc(sflav.pct_pior_caso)} da margem, sentido favorável a Flávio) e variação de voto em Lula entre anos x variação da taxa manual (teto de pior caso, não estimativa: {n(h2b.votos_max_pior_caso)} votos de margem, {pc(h2b.pct_pior_caso)}).")
 A(f"9. Residuais sem causa identificada: {n(c639.secoes)} seções com comparecimento >= 95% ({n(r26.razao,1)} vezes o esperado pela composição; {n(r26t1.razao,1)} vezes já no T1; teto {pc(h5r.pct_pior_caso)}) e seções novas (+{n(100*h6reg.est_2026T2,2)} p.p. de Lula no T2 dado o T1; +1,34 p.p. em 2018; teto de pior caso {pc(h6reg.pct_pior_caso)}).")
-A(f"10. Impacto agregado: a soma dos tetos dos testes com excesso detectado é {n(sd.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos no sentido pró-Lula ({pc(sd.loc['PT','pct_margem_sobreviventes_pior_caso'])} da margem) e {n(sd.loc['OPO','soma_votos_sobreviventes_pior_caso'])} no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança {n(MARGEM)} votos. Não executado: cruzamento com boletins impressos (sem insumo).\n")
+A(f"10. Impacto agregado: a soma dos tetos de pior caso (não estimativas) dos testes com excesso detectado é {n(sd.loc['PT','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Lula ({pc(sd.loc['PT','pct_margem_sobreviventes_pior_caso'])} da margem) e {n(sd.loc['OPO','soma_votos_sobreviventes_pior_caso'])} votos de margem no sentido pró-Flávio. Nenhum achado, isolado ou somado, alcança {n(MARGEM)} votos. Não executado: cruzamento com boletins impressos (sem insumo).\n")
 
 # ------------------------------------------------------------------------------------------------ 2
 A("## 2. Dados e versões\n")
@@ -127,7 +135,7 @@ A("Método comum: regressão com efeito fixo de local de votação (`uf_local`),
 A("Regra de veredito (Adendo 2 do pré-registro): **excesso detectado e relevante** = Holm < 0,05 e pior caso >= 1% da margem; **excesso detectável, magnitude irrelevante** = Holm < 0,05 e < 1%; **refutada** = Holm >= 0,05 e < 1%; **inconclusiva** = Holm >= 0,05 e >= 1%.\n")
 
 A("### 3.1 Síntese\n")
-A("| H | Previsão se houver desvio | Previsão se não houver | Resultado | Placebo | Efeito máx. (votos) | % da margem | p Holm | Veredito |\n|---|---|---|---|---|---|---|---|---|")
+A("| H | Previsão se houver desvio | Previsão se não houver | Resultado | Placebo | Efeito máx. (votos de margem) | % da margem | p Holm | Veredito |\n|---|---|---|---|---|---|---|---|---|")
 A(f"| H1 manual x voto Lula (T2, com T1) | coef. > 0 e > placebos, dose-resposta crescente | mesma magnitude nos placebos | {n(s1.est_2026T2,4)} (ep {n(s1.ep,4)}) | 2022/T2: {n(s1.b_comp,4)} | {n(s1.votos_max_pior_caso)} | {pc(s1.pct_pior_caso)} | {n(s1.p_holm,3)} | refutada |")
 A(f"| H1 sem controle do T1 | idem | idem | 2026/T2: {n(s0.est_2026T2,4)}; 2026/T1: {n(a0(2026,1).coef,4)} | 2026/T1: {n(s0.b_comp,4)} (2022: {n(a0(2022,1).coef,4)} e {n(a0(2022,2).coef,4)}) | {n(s0.votos_max_margem)} (vs T1/2026); {n(s0.votos_max_pior_caso)} (vs 2022/T1) | {pc(s0.pct_margem)}; {pc(s0.pct_pior_caso)} | {n(s0.p_holm,3)} | inconclusiva pelo critério, mas a associação é igual no T1 (ver 3.2) |")
 A(f"| H1 simétrico: votos de Flávio/apto | sem efeito | sem efeito | {n(sflav.est_2026T2,4)} (ep {n(sflav.ep,4)}) | 2022/T2: {n(sflav.b_comp,4)} | {n(sflav.votos_max_pior_caso)} | {pc(sflav.pct_pior_caso)} | {n(sflav.p_holm,3)} | excesso detectado, **sentido favorável a Flávio** |")
@@ -258,8 +266,8 @@ A("A classificação em A/B/C depende do critério numérico fixado, que é arbi
 
 # ------------------------------------------------------------------------------------------------ 4
 A("## 4. Anomalias residuais que sobreviveram aos controles\n")
-A(f"1. **Votos de Flávio por apto x taxa manual (H1).** Coeficiente {n(sflav.est_2026T2,4)} contra {n(sflav.b_comp,4)} em 2022; teto {n(sflav.votos_max_pior_caso)} votos, {pc(sflav.pct_pior_caso)} da margem, **no sentido favorável a Flávio**. Testado e não explicado por: composição do T1 (o coeficiente aumenta), nível de comparecimento do T1. Não testado: perfil de idade e escolaridade por seção (conjunto não disponível por seção).")
-A(f"2. **Variação de voto em Lula entre anos x variação da taxa manual (H2).** T2: {n(h2b.est_2026T2,4)}; T1 (placebo): {n(h2b.b_comp,4)}; diferença estatisticamente detectável, teto {n(h2b.votos_max_pior_caso)} votos ({pc(h2b.pct_pior_caso)}). O T1 de 2026 tem candidatos diferentes do T1 de 2022, então o placebo é imperfeito.")
+A(f"1. **Votos de Flávio por apto x taxa manual (H1).** Coeficiente {n(sflav.est_2026T2,4)} contra {n(sflav.b_comp,4)} em 2022; teto de pior caso, não estimativa, {n(sflav.votos_max_pior_caso)} votos de margem, {pc(sflav.pct_pior_caso)} da margem, **no sentido favorável a Flávio**. Testado e não explicado por: composição do T1 (o coeficiente aumenta), nível de comparecimento do T1. Não testado: perfil de idade e escolaridade por seção (conjunto não disponível por seção).")
+A(f"2. **Variação de voto em Lula entre anos x variação da taxa manual (H2).** T2: {n(h2b.est_2026T2,4)}; T1 (placebo): {n(h2b.b_comp,4)}; diferença estatisticamente detectável, teto de pior caso, não estimativa, {n(h2b.votos_max_pior_caso)} votos de margem ({pc(h2b.pct_pior_caso)}). O T1 de 2026 tem candidatos diferentes do T1 de 2022, então o placebo é imperfeito.")
 A(f"3. **Associação manual x Lula de 2026 (H1, sem controle do T1).** {n(a0(2026,1).coef,3)} no T1 e {n(a0(2026,2).coef,3)} no T2, contra {n(a0(2022,1).coef,3)} e {n(a0(2022,2).coef,3)} em 2022. Presente antes do 2º turno e inalterada por tamanho, comparecimento e modelo da urna. Causa não identificada. Não é específica do 2º turno, então não decorre de nada exclusivo daquele dia (a prorrogação, por exemplo). Uma causa comum aos dois turnos, seja de característica das seções ou da urna, seja de outra natureza, não é distinguível por estes dados.")
 A(f"4. **Seções com comparecimento >= 95% (H5).** {n(c639.secoes)} em 2026/T2; {n(r26.razao,1)} vezes o esperado pela composição de tipo de local e tamanho; presente no T1 ({n(r26t1.razao,1)} vezes). Testado: tipo de local (indígena, prisional, hospital, quilombola, militar, rural), tamanho, seção nova, UF, taxa manual, atraso de fechamento, \"só no T2\" ({n(h5s.dessas_so_no_T2.iloc[0])} seções, {n(h5s.votos_validos_dessas.iloc[0])} votos válidos), numerador contra denominador. Nenhum fator isolado elimina o excesso. Não testado: cancelamento de títulos e revisão do eleitorado entre 2022 e 2026 (não há dado). Teto de efeito: {pc(h5r.pct_pior_caso)} da margem.")
 A(f"5. **Seções novas (H6).** +{n(100*h6reg.est_2026T2,2)} p.p. de Lula no T2 dado o T1 (2018: +1,34; 2022: 0,00); robusto a interação, tamanho e comparecimento. Teto de pior caso {pc(h6reg.pct_pior_caso)}.\n")
