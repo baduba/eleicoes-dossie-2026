@@ -1,5 +1,7 @@
 # Propostas de novos pontos cegos e testes (memorando exploratório)
 
+> Continuação: `docs/propostas/gatilhos-e-inversao.md` (tese da inversão de voto + empilhamento de bandeiras).
+
 Data: 2026-10-29. Autor: sessão exploratória (subagente). **Tudo neste documento é exploratório**: os números
 calculados abaixo foram produzidos depois de ver os dados e **não têm veredito formal** — o projeto pré-registra
 antes de concluir. Scripts novos em `scripts/exploratorio/`, saídas em `results/exploratorio/`.

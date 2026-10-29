@@ -1,0 +1,110 @@
+SG_UF,CD_MUNICIPIO,nome,n_bandeiras,b_a31_extremo,b_a31b_df1,b_a20_razao_alta,b_a20b_idosos,b_a27_secoes_novas95,b_a33_escola_extrema,b_a32_top50_manual,b_a12_secao_zero_voto,P,dL,dF,dC
+AM,2054,ATALAIA DO NORTE,3,False,True,False,False,False,True,False,True,238,456,-218,78
+MA,8958,SANTA HELENA,3,False,True,False,False,False,True,False,True,1128,1423,-295,22
+MA,9490,VIANA,3,False,True,False,False,False,True,False,True,435,1153,-718,-1256
+PA,4073,ALENQUER,3,False,True,False,False,False,True,False,True,457,939,-482,-1608
+PA,4421,NOVO REPARTIMENTO,3,False,True,False,False,False,True,False,True,1100,1176,-76,-929
+PA,5053,ORIXIMINÁ,3,False,True,False,False,False,True,False,True,270,1575,-1305,-2096
+PI,12394,JATOBÁ DO PIAUÍ,3,False,True,True,False,False,True,False,False,139,229,-90,-115
+SP,70718,SANTOS,3,False,False,False,False,True,True,True,False,40144,27900,12244,9998
+AL,28134,OLHO D'ÁGUA DAS FLORES,2,False,True,False,False,False,False,True,False,988,1052,-64,99
+AL,28193,OLIVENÇA,2,False,True,False,False,False,True,False,False,334,439,-105,-350
+AL,28274,PÃO DE AÇÚCAR,2,False,True,False,False,False,True,False,False,807,882,-75,-111
+AM,2135,BENJAMIN CONSTANT,2,False,True,False,False,False,False,False,True,354,445,-91,-42
+AM,2216,CARAUARI,2,False,True,False,False,False,False,False,True,636,959,-323,-133
+AM,2399,IPIXUNA,2,False,True,False,False,False,True,False,False,113,437,-324,-104
+AM,2410,ITACOATIARA,2,True,True,False,False,False,False,False,False,55,1114,-1059,-2783
+AM,2690,PARINTINS,2,False,True,False,False,False,False,False,True,641,825,-184,-1514
+AM,2739,SANTO ANTÔNIO DO IÇÁ,2,False,True,False,False,False,False,False,True,297,540,-243,-88
+AM,2755,SÃO PAULO DE OLIVENÇA,2,False,True,False,False,False,False,False,True,512,678,-166,-1
+AM,98477,TABATINGA,2,False,True,False,False,False,False,False,True,1042,1297,-255,65
+BA,30872,DIAS D'ÁVILA,2,False,False,False,False,False,True,True,False,5380,4861,519,1795
+BA,33090,ÉRICO CARDOSO,2,False,False,False,False,False,True,False,True,704,501,203,287
+BA,33871,BREJOLÂNDIA,2,False,True,False,False,False,True,False,False,347,411,-64,12
+BA,34290,CANDEIAS,2,False,False,False,False,False,True,True,False,6486,6090,396,3174
+BA,36854,LAURO DE FREITAS,2,False,False,False,False,False,True,True,False,20800,17390,3410,9249
+BA,37311,MONTE SANTO,2,False,False,False,False,True,True,False,False,2236,2039,197,1140
+BA,38830,SÃO FRANCISCO DO CONDE,2,False,False,False,False,False,True,True,False,2895,2597,298,1366
+BA,38890,SÃO SEBASTIÃO DO PASSÉ,2,False,False,False,False,False,True,True,False,2985,2767,218,1506
+BA,39039,SENTO SÉ,2,False,True,False,False,False,False,False,True,1079,1259,-180,-230
+BA,39136,SIMÕES FILHO,2,False,False,False,False,False,True,True,False,10790,9541,1249,4639
+BA,39330,TERRA NOVA,2,False,False,False,False,False,True,True,False,948,911,37,387
+BA,39918,TANQUE NOVO,2,False,False,False,False,False,True,True,False,1316,1148,168,550
+CE,13137,ALTO SANTO,2,False,True,False,False,False,True,False,False,795,834,-39,218
+CE,13269,POTIRETAMA,2,False,True,False,False,False,True,False,False,143,189,-46,-45
+CE,13382,BANABUIÚ,2,False,True,False,False,False,True,False,False,206,374,-168,-420
+CE,13811,COREAÚ,2,False,True,False,False,False,True,False,False,874,941,-67,-156
+CE,14516,LAVRAS DA MANGABEIRA,2,False,True,False,False,False,True,False,False,1464,1488,-24,447
+CE,14990,PACUJÁ,2,False,True,False,False,False,True,False,False,365,389,-24,-59
+CE,15296,QUIXERAMOBIM,2,False,True,False,False,False,True,False,False,3341,3508,-167,781
+CE,15415,SANTANA DO ACARAÚ,2,False,True,False,False,False,True,False,False,1341,1353,-12,71
+CE,15920,IBICUITINGA,2,False,True,False,False,False,True,False,False,284,377,-93,-299
+GO,96253,TRINDADE,2,False,False,False,False,False,True,True,False,16384,9123,7261,1625
+MA,7005,ÁGUA DOCE DO MARANHÃO,2,False,True,False,False,False,False,False,True,440,504,-64,-35
+MA,7056,ALDEIAS ALTAS,2,False,True,False,False,False,True,False,False,1048,1097,-49,241
+MA,7102,ARAGUANÃ,2,False,True,False,False,False,True,False,False,100,253,-153,-174
+MA,7137,ANAJATUBA,2,False,True,False,False,False,True,False,False,367,537,-170,-451
+MA,7331,BARREIRINHAS,2,False,True,False,False,False,False,False,True,1508,2038,-530,-839
+MA,7714,CURURUPU,2,False,True,False,False,False,False,False,True,207,501,-294,-894
+MA,7773,ESPERANTINÓPOLIS,2,False,True,False,False,False,True,False,False,665,753,-88,-15
+MA,7927,MARANHÃOZINHO,2,False,True,False,False,False,False,False,True,171,245,-74,-107
+MA,7935,GRAJAÚ,2,False,True,False,False,False,False,False,True,2338,2356,-18,142
+MA,8010,IGARAPÉ GRANDE,2,False,True,False,False,False,True,False,False,247,278,-31,-115
+MA,8206,SANTA FILOMENA DO MARANHÃO,2,False,True,False,True,False,False,False,False,136,189,-53,-66
+MA,8303,SÃO JOÃO DO CARÚ,2,False,True,False,False,False,True,False,False,260,371,-111,-86
+MA,8494,PAÇO DO LUMIAR,2,False,False,False,False,False,True,True,False,6097,5588,509,-775
+MA,8524,SERRANO DO MARANHÃO,2,False,True,False,False,False,False,False,True,67,145,-78,-207
+MA,8605,TURILÂNDIA,2,False,True,False,False,False,True,False,False,510,791,-281,-226
+MA,8796,PRESIDENTE DUTRA,2,False,True,False,False,False,True,False,False,1859,1887,-28,182
+MA,9075,SÃO BENTO,2,False,True,False,False,False,False,False,True,874,1160,-286,-331
+MA,9156,SÃO FRANCISCO DO MARANHÃO,2,False,True,False,False,False,True,False,False,622,637,-15,254
+MT,90018,ACORIZAL,2,False,True,True,False,False,False,False,False,23,119,-96,-335
+PA,4030,ACARÁ,2,False,True,False,False,False,True,False,False,1674,1727,-53,-925
+PA,4090,ALMEIRIM,2,False,True,False,False,False,False,False,True,288,578,-290,-644
+PA,4200,JACAREACANGA,2,False,True,False,False,False,False,False,True,36,108,-72,-481
+PA,4316,BONITO,2,False,True,False,False,False,True,False,False,461,485,-24,-340
+PA,4570,CURUÇÁ,2,False,True,False,False,False,True,False,False,611,890,-279,-1233
+PA,4626,PLACAS,2,False,True,False,False,False,True,False,False,267,268,-1,-337
+PA,4715,ITAITUBA,2,False,True,False,False,False,True,False,False,2608,2878,-270,-1387
+PA,4804,BELTERRA,2,False,True,False,False,False,True,False,False,552,607,-55,-337
+PA,4820,SÃO JOÃO DA PONTA,2,False,True,True,False,False,False,False,False,108,163,-55,-315
+PA,4863,MOJUÍ DOS CAMPOS,2,False,True,False,False,False,True,False,False,443,833,-390,-714
+PA,4936,MOJU,2,False,True,False,False,False,False,False,True,1636,1796,-160,-1441
+PA,4979,MUANÁ,2,False,True,False,False,False,True,False,False,324,340,-16,-1113
+PA,5010,ÓBIDOS,2,False,True,False,False,False,True,False,False,726,1112,-386,-1168
+PA,5096,PARAGOMINAS,2,False,True,False,False,False,False,False,True,2909,3260,-351,-853
+PA,5177,PORTO DE MOZ,2,False,True,False,False,False,True,False,False,111,357,-246,-818
+PA,5657,VISEU,2,False,True,False,False,False,False,False,True,693,830,-137,-1295
+PB,19542,SÃO JOSÉ DO BREJO DO CRUZ,2,False,True,True,False,False,False,False,False,120,124,-4,-40
+PB,19828,RIACHO DE SANTO ANTÔNIO,2,False,True,True,False,False,False,False,False,124,167,-43,-48
+PB,22071,SAPÉ,2,False,True,False,False,False,False,False,True,3271,3272,-1,771
+PE,23671,CALUMBI,2,False,True,True,False,False,False,False,False,341,342,-1,57
+PE,23817,CARUARU,2,False,False,False,False,False,True,True,False,26143,20593,5550,8676
+PE,24139,FLORESTA,2,False,True,False,False,False,False,False,True,1771,1778,-7,619
+PE,25070,PARNAMIRIM,2,False,True,False,False,False,True,False,False,960,1000,-40,368
+PI,10057,ALTO LONGÁ,2,False,True,False,False,False,True,False,False,218,267,-49,-359
+PI,10103,BURITI DOS MONTES,2,False,True,False,False,False,True,False,False,135,182,-47,-121
+PI,10243,CORONEL JOSÉ DIAS,2,False,True,False,False,False,True,False,False,70,113,-43,-175
+PI,10278,BARRO DURO,2,False,True,False,False,False,True,False,False,78,135,-57,-140
+PI,10545,SIGEFREDO PACHECO,2,False,True,False,False,False,True,False,False,54,120,-66,-399
+PI,11410,DOMINGOS MOURÃO,2,False,True,False,False,False,True,False,False,162,171,-9,-2
+PI,11754,REGENERAÇÃO,2,False,True,False,False,False,True,False,False,498,556,-58,2
+PI,12041,SEBASTIÃO BARROS,2,False,True,True,False,False,False,False,False,258,271,-13,17
+PI,12424,LAGOA DO PIAUÍ,2,False,True,False,False,False,True,False,False,122,125,-3,-121
+PI,12610,SÃO GONÇALO DO GURGUÉIA,2,False,True,False,False,False,True,False,False,27,56,-29,-87
+PI,12629,SÃO LUIS DO PIAUÍ,2,False,True,True,False,False,False,False,False,43,62,-19,-122
+PR,79294,TOMAZINA,2,False,False,False,False,False,True,True,False,486,309,177,84
+PR,79332,UBIRATÃ,2,False,False,False,False,False,True,True,False,1400,888,512,417
+RJ,58190,CAMPOS DOS GOYTACAZES,2,False,True,False,False,False,True,False,False,23433,24822,-1389,-3898
+RJ,60011,RIO DE JANEIRO,2,False,False,False,False,True,False,True,False,496718,373874,122844,155972
+RN,16101,BODÓ,2,False,True,True,False,False,False,False,False,163,176,-13,1
+RN,17833,PASSAGEM,2,False,True,True,False,False,False,False,False,212,245,-33,-8
+RN,18937,RAFAEL GODEIRO,2,True,True,False,False,False,False,False,False,34,314,-280,-59
+RS,87734,OSÓRIO,2,False,False,False,False,False,True,True,False,4148,2586,1562,1021
+RS,89770,COTIPORÃ,2,False,False,False,False,False,True,True,False,380,122,258,86
+SC,81639,ITAPEMA,2,False,False,False,False,False,True,True,False,4260,2345,1915,1200
+SE,31437,FEIRA NOVA,2,False,True,False,False,False,True,False,False,227,277,-50,-113
+SP,68411,PEDREGULHO,2,False,False,False,False,False,True,True,False,1045,837,208,350
+SP,71072,SÃO PAULO,2,False,False,False,False,False,True,True,False,1149181,812005,337176,277660
+TO,95214,PARANÃ,2,False,True,False,False,False,False,False,True,103,163,-60,-173
+TO,96210,TOCANTINÓPOLIS,2,False,True,False,False,False,False,False,True,451,592,-141,26
