@@ -10,7 +10,7 @@ Textos prontos para protocolo ao TSE e aos TREs, um por assunto. Cada pedido ped
 | `04_logs_de_totalizacao.md` | incidente de 04/10, retenção até 19h em 25/10, horários por seção | A18, A1 |
 | `05_fiscais_credenciados.md` | fiscais por seção, agregado | A23 |
 | `06_assinatura_e_chaves.md` | certificados, especificação e ferramenta de verificação | A4, A18 |
-| `07_ata_e_folha_de_votacao.md` | ata da mesa receptora e folha de votação (nomes tarjados) de 50 seções (lista em `07_secoes.csv`) | A32 |
+| `07_ata_e_folha_de_votacao.md` | ata da mesa receptora e folha de votação (nomes tarjados) de 83 seções (50 do A32 e 33 das 20 escolas extremas do A33; lista em `07_secoes.csv`) | A32, A33 |
 | `08_modelo_requerimento_partidos.md` | **modelo** de requerimento de partido ou coligação ao cartório eleitoral, para o mesmo fim (revisão por advogado eleitoral; não é pedido LAI) | A32 |
 
 ## Quem recebe cada pedido e por qual canal (A28, Fase 3.1)
