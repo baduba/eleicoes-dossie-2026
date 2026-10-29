@@ -27,4 +27,4 @@ Abra uma *issue* com o número ou a tabela contestada, o script que reproduz a s
 Código: MIT. Texto, tabelas e figuras: CC BY 4.0. Os dados de origem são do TSE e não são redistribuídos aqui.
 
 ## Autoria
-[a preencher por Julio antes da publicação]
+{{AUTORIA}}

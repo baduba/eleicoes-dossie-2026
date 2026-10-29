@@ -67,38 +67,41 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 ## A1: Desvio da curva de apuração contra a permutação dentro da UF (teste de forma; sem conversão em votos)
 
 - **Linha do registro:** curva de apuracao: desvio maximo da curva real contra permutacao dentro da UF (p.p. do PT)
-- **Veredito pelo critério pré-registrado:** EXCESSO DETECTADO (teste de forma, sem conversao em votos) (ressalva de desenho: o envelope B (permutacao dentro da UF) e rejeitado nos quatro anos; a partir de 10% das secoes o desvio de 2026/T2 fica abaixo dos placebos (analise posterior))
+- **RESSALVA DE DESENHO (leia primeiro):** o desenho pré-registrado desta linha produz o rótulo de excesso sem manipulação (demonstração e correção em [Resultados da Fase 2](resultados-fase2.md)). O rótulo abaixo **não indica manipulação**.
+- **Pré-registrado (mantido):** EXCESSO DETECTADO (teste de forma, sem conversao em votos), com a ressalva de desenho acima (o envelope B (permutacao dentro da UF) e rejeitado nos quatro anos; a partir de 10% das secoes o desvio de 2026/T2 fica abaixo dos placebos (analise posterior))
+- **Corrigido (pós-registro):** SEM EXCESSO (teste de forma, sem conversao em votos)
 - **Direção do efeito:** n/a
-- **Estimativa central:** não convertível em votos (teste de forma)
-- **Teto de pior caso:** n/d votos (n/d% da margem)
+- **Estimativa em votos:** sem interpretação causal nesta linha; valores no Apêndice "Agregado sem interpretação causal" de Resultados da Fase 2.
 - **Explicações mundanas testadas:** o envelope é rejeitado em todos os anos; a partir de 10% das seções 2026/T2 fica abaixo dos placebos
 - **Não testadas:** snapshots do site Resultados
 - **O que resolveria:** série de divulgação com horário
-- **Causa:** não identificada.
+- **Causa:** o desenho do teste (ver ressalva); não há resíduo a explicar nesta linha.
 
 ## A2: Frequência de seções em que o oponente perde votos absolutos (11,8% das seções; teste de forma)
 
 - **Linha do registro:** oponente perde votos absolutos do T1 ao T2 em secao com comparecimento estavel ou crescente (% das secoes)
-- **Veredito pelo critério pré-registrado:** EXCESSO DETECTADO (teste de forma, sem conversao em votos) (ressalva de desenho: o placebo por papel (oponente) e inadequado: em 2022 o PT, lider do T1, perdeu votos em 12,6% das secoes, espelho dos 11,8% do oponente em 2026 (analise posterior))
+- **RESSALVA DE DESENHO (leia primeiro):** o desenho pré-registrado desta linha produz o rótulo de excesso sem manipulação (demonstração e correção em [Resultados da Fase 2](resultados-fase2.md)). O rótulo abaixo **não indica manipulação**.
+- **Pré-registrado (mantido):** EXCESSO DETECTADO (teste de forma, sem conversao em votos), com a ressalva de desenho acima (o placebo por papel (oponente) e inadequado: em 2022 o PT, lider do T1, perdeu votos em 12,6% das secoes, espelho dos 11,8% do oponente em 2026 (analise posterior))
+- **Corrigido (pós-registro):** SEM EXCESSO (teste de forma, sem conversao em votos)
 - **Direção do efeito:** n/a
-- **Estimativa central:** não convertível em votos (teste de forma)
-- **Teto de pior caso:** n/d votos (n/d% da margem)
+- **Estimativa em votos:** sem interpretação causal nesta linha; valores no Apêndice "Agregado sem interpretação causal" de Resultados da Fase 2.
 - **Explicações mundanas testadas:** espelho: em 2022 o PT perdeu em 12,6%; por faixa de terceiros/candidato as frequências são parecidas
 - **Não testadas:** por que o líder do 1º turno perde votos absolutos onde há poucos terceiros
 - **O que resolveria:** pesquisa individual (painel)
-- **Causa:** não identificada.
+- **Causa:** o desenho do teste (ver ressalva); não há resíduo a explicar nesta linha.
 
 ## A3: Coeficiente ecológico oponente no T1 → PT no T2 (2026 é o menos negativo; com EF de município, o mais negativo)
 
 - **Linha do registro:** ecologica: fracao de eleitores do oponente no T1 que aparece como voto no PT no T2
-- **Veredito pelo critério pré-registrado:** EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) (ressalva de desenho: coeficientes negativos em todos os anos (nao medem conversao); com EF de municipio o coeficiente de 2026 e o mais negativo (analise posterior))
+- **RESSALVA DE DESENHO (leia primeiro):** o desenho pré-registrado desta linha produz o rótulo de excesso sem manipulação (demonstração e correção em [Resultados da Fase 2](resultados-fase2.md)). O rótulo abaixo **não indica manipulação**.
+- **Pré-registrado (mantido):** EXCESSO DETECTADO e relevante (pior caso >= 1% da margem), com a ressalva de desenho acima (coeficientes negativos em todos os anos (nao medem conversao); com EF de municipio o coeficiente de 2026 e o mais negativo (analise posterior))
+- **Corrigido (pós-registro):** REFUTADA (sem excesso, teto <1% da margem)
 - **Direção do efeito:** a favor de Lula (diferença entre anos)
-- **Estimativa central:** 1.276.379 votos de margem (IC95 635.578 a 1.917.180), contra o placebo mais exigente (2022)
-- **Teto de pior caso:** 9.385.617 votos (211,86% da margem)
+- **Estimativa em votos:** sem interpretação causal nesta linha; valores no Apêndice "Agregado sem interpretação causal" de Resultados da Fase 2.
 - **Explicações mundanas testadas:** efeito fixo de município; contabilidade por identidade
 - **Não testadas:** conversão individual (sigilo)
 - **O que resolveria:** painel de eleitores ou dados de pesquisa pós-eleitoral
-- **Causa:** não identificada.
+- **Causa:** o desenho do teste (ver ressalva); não há resíduo a explicar nesta linha.
 
 ## A10: Modelo de urna novo (UE2022) sem equivalente em 2022, teto de pior caso acima de 1% da margem por ser pouco preciso
 
@@ -127,14 +130,15 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 ## A12: Seções com zero voto para o oponente (razão observado/esperado)
 
 - **Linha do registro:** secoes com zero voto para o oponente no T2: razao observado/esperado (p do T1)
-- **Veredito pelo critério pré-registrado:** excesso detectavel, magnitude irrelevante (<1% da margem) (ressalva de desenho: os placebos tem razao observado/esperado abaixo de 1 porque o estimador de p pelo T1 e inadequado onde ha terceiros relevantes no T1 (2018, 2014); o teste direto observado contra esperado em 2026 (z=1,33) nao e significativo (analise posterior))
+- **RESSALVA DE DESENHO (leia primeiro):** o desenho pré-registrado desta linha produz o rótulo de excesso sem manipulação (demonstração e correção em [Resultados da Fase 2](resultados-fase2.md)). O rótulo abaixo **não indica manipulação**.
+- **Pré-registrado (mantido):** excesso detectavel, magnitude irrelevante (<1% da margem), com a ressalva de desenho acima (os placebos tem razao observado/esperado abaixo de 1 porque o estimador de p pelo T1 e inadequado onde ha terceiros relevantes no T1 (2018, 2014); o teste direto observado contra esperado em 2026 (z=1,33) nao e significativo (analise posterior))
+- **Corrigido (pós-registro):** REFUTADA (sem excesso, teto <1% da margem)
 - **Direção do efeito:** a favor de Lula
-- **Estimativa central:** 566 votos de margem (IC95 216 a 916), contra o placebo mais exigente (2022)
-- **Teto de pior caso:** 1.478 votos (0,03% da margem)
+- **Estimativa em votos:** sem interpretação causal nesta linha; valores no Apêndice "Agregado sem interpretação causal" de Resultados da Fase 2.
 - **Explicações mundanas testadas:** esperado pelo voto da seção no T1 e pelos vizinhos do mesmo local
 - **Não testadas:** n/a
 - **O que resolveria:** n/a
-- **Causa:** não identificada.
+- **Causa:** o desenho do teste (ver ressalva); não há resíduo a explicar nesta linha.
 
 ## A5: Associação entre votos depois do horário nominal e Lula% no mesmo local
 
@@ -160,12 +164,15 @@ Entram nesta página todo resultado classificado como inconclusivo, "excesso det
 - **O que resolveria:** n/a
 - **Causa:** não identificada.
 
-## Soma agregada
+## Soma agregada (sem as linhas com ressalva de desenho)
 
 | sentido | itens_com_votos | soma_central | ic95 | soma_pior_caso | pct_margem_central | pct_margem_pior_caso |
 |---|---|---|---|---|---|---|
-| pró-Lula | 10 | -4.114.519 | -4.993.930 a -3.235.109 | 11.035.315 | -92,87% | 249,09% |
+| pró-Lula | 8 | -5.391.465 | -5.993.741 a -4.789.188 | 1.648.221 | -121,70% | 37,20% |
 | pró-Flávio | 1 | 101.285 | 75.956 a 126.614 | 122.543 | 2,29% | 2,77% |
+
+Esta soma **exclui as linhas A1, A2, A3 e A12** (ressalva de desenho). As versões corrigidas dessas linhas não mostram excesso e não somam votos. Considerando todas as linhas, o agregado é publicado só no apêndice "Agregado sem interpretação causal" de [Resultados da Fase 2](resultados-fase2.md), porque inclui um teto sem sentido causal.
+
 
 O intervalo da soma supõe independência entre os itens (aproximação declarada; os itens usam as mesmas seções, então o intervalo é aproximado). Os sentidos pró-Lula e pró-Flávio não se compensam. Itens de forma, sem conversão em votos, não entram na soma. Nenhum item, isolado ou somado, alcança a margem de 4.430.191 votos.
 

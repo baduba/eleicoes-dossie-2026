@@ -2,15 +2,30 @@
 
 Previsões, critérios e placebos foram registrados no [Adendo 4 do pré-registro](preregistro.md) **antes** de rodar as análises. O registro de testes é combinado com o da Fase 1 (38 testes); o p corrigido (Holm e Benjamini-Hochberg) é sobre a família completa. Veredito: regra do [Adendo 2](preregistro.md). Margem oficial: 4.430.191 votos. Tetos em votos são limites superiores sob causalidade, não estimativas.
 
-**Leitura rápida.** Pelos critérios pré-registrados, três análises (A1, A2, A3) saem como "excesso detectado"; cada uma tem **ressalva de desenho** documentada, porque um controle posterior mostrou que o desenho pré-registrado media outra coisa (ver cada seção e [Changelog](changelog.md)). As linhas foram mantidas como saíram e os dois cálculos de impacto agregado (com e sem essas linhas) são publicados.
+**Leitura rápida.** Quatro análises (A1, A2, A3 e A12) saíram do critério pré-registrado com rótulo de excesso e têm **ressalva de desenho**: o mesmo teste acusa excesso em séries ou anos sem manipulação. O resultado original foi mantido e a versão corrigida está ao lado (seção seguinte). Nenhum rótulo de excesso destas linhas indica manipulação.
+
+## Linhas com ressalva de desenho (leia primeiro)
+
+> **Quatro linhas (A1, A2, A3 e A12) saíram do critério pré-registrado com o rótulo "excesso". Em todas, o desenho pré-registrado tinha uma falha que produz esse rótulo sem manipulação.** Abaixo, para cada uma: a falha, a demonstração (o mesmo teste original acusando "excesso" em séries ou anos sem manipulação) e a versão corrigida, publicadas **ao lado** do resultado original, que não foi alterado nem apagado. A correção é **pós-registro**: [Adendo 6](preregistro.md), escrito antes de rodar as versões corrigidas.
+
+| teste | falha de desenho | demonstração (teste original sem manipulação) | pré-registrado (mantido) | corrigido (pós-registro) |
+|---|---|---|---|---|
+| A1 curva de apuração | o nulo "permutação dentro da UF" supõe ordem aleatória dentro da UF; municípios chegam em blocos | 4 de 4 eleições reais saem do envelope, e 20 de 20 simulações sem manipulação também | EXCESSO DETECTADO (teste de forma, sem conversao em votos) (**ressalva de desenho**) | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A2 transições T1→T2 | o placebo por papel (oponente) ignora quem liderou o 1º turno e quantos votos de terceiros havia | o mesmo teste aplicado ao **PT de 2022** (líder do 1º turno; perde votos em 12,6% das seções) também acusa: EXCESSO DETECTADO (teste de forma, sem conversao em votos) | EXCESSO DETECTADO (teste de forma, sem conversao em votos) (**ressalva de desenho**) | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A3 origem dos votos | todos os coeficientes ecológicos são negativos; o teste acusa o ano de maior coeficiente em qualquer conjunto de quatro; o teto em votos não tem sentido causal | o teste original acusa 1 dos 4 anos, o de maior coeficiente (2026); os demais não | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) (**ressalva de desenho**; teto sem interpretação causal) | REFUTADA (sem excesso, teto <1% da margem) |
+| A12 zero voto | o estimador de p pelo 1º turno é enviesado onde havia terceiros relevantes (razões 0,27 a 0,72 nos placebos) | em 200 simulações sem manipulação de 2026, o teste original acusa excesso em 44% (o esperado seria até 5%) | excesso detectavel, magnitude irrelevante (<1% da margem) (**ressalva de desenho**) | REFUTADA (sem excesso, teto <1% da margem) |
+
+O A3 corrigido estima a taxa de transição oponente→PT com restrição de 0 a 1 e dá 0 nos quatro anos: a restrição fica ativa e o bootstrap no limite subestima a incerteza. A leitura honesta é que os dados agregados **não identificam** transição positiva do oponente para o PT, não que ela seja provadamente zero.
+
+Um ponto que a correção do A1 deixa visível: no 1º turno de 2026, a curva fica fora do envelope do nulo corrigido por 240 pontos consecutivos (desvio de 1,67 p.p., perto do limite de 1,76). Isso **não** estava no alvo pré-registrado (o alvo é o 2º turno), por isso não entra no veredito; está registrado aqui por transparência e é coerente com a ordem de chegada irregular do 1º turno (A18).
 
 ## Tabela-resumo
 
 | A | analise | resultado | p_holm | pct_margem_pior_caso | veredito |
 |---|---|---|---|---|---|
-| A1 | curva de apuração | desvio máximo vs permutação dentro da UF: 2,65 p.p. (2026/T2) contra 1,76 (2026/T1), 1,17 (2022/T2), 1,33 (2018/T2) | 0,000 | n/d | EXCESSO DETECTADO (teste de forma, sem conversao em votos) |
-| A2 | transições T1→T2 | oponente perde votos em 11,8% das seções (2022: PT 12,6%); forma do swing não difere dos placebos | 0,000 | n/d | EXCESSO DETECTADO (teste de forma, sem conversao em votos) |
-| A3 | origem dos votos | contabilidade fecha por identidade; coeficiente ecológico não mede conversão | 0,002 | 211,86% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) |
+| A1 | curva de apuração | desvio máximo vs permutação dentro da UF: 2,65 p.p. (2026/T2) contra 1,76 (2026/T1), 1,17 (2022/T2), 1,33 (2018/T2) | 0,000 | n/a (ver ressalva) | COM RESSALVA DE DESENHO. Pré-registrado: EXCESSO DETECTADO (teste de forma, sem conversao em votos). Corrigido: SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A2 | transições T1→T2 | oponente perde votos em 11,8% das seções (2022: PT 12,6%); forma do swing não difere dos placebos | 0,000 | n/a (ver ressalva) | COM RESSALVA DE DESENHO. Pré-registrado: EXCESSO DETECTADO (teste de forma, sem conversao em votos). Corrigido: SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A3 | origem dos votos | contabilidade fecha por identidade; coeficiente ecológico não mede conversão | 0,002 | n/a (ver ressalva) | COM RESSALVA DE DESENHO. Pré-registrado: EXCESSO DETECTADO e relevante (pior caso >= 1% da margem). Corrigido: REFUTADA (sem excesso, teto <1% da margem) |
 | A4 | cadeia da urna | 14.067 seções 2026: 0 divergências BU/RDV/hash | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
 | A5 | logs de urna | votos depois do horário nominal: estimativa nacional 23.094 (IC95 16.895 a 29.704) | 1,000 | 0,09% | REFUTADA (sem excesso, teto <1% da margem) |
 | A6 | urna substituída | urna ≠ esperada em 0,60% das seções; sem efeito no voto | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
@@ -22,6 +37,8 @@ Previsões, critérios e placebos foram registrados no [Adendo 4 do pré-registr
 Todos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/`.
 
 ## A1. Curva de apuração
+
+> **Ressalva de desenho (leia primeiro).** O teste pré-registrado compara a curva real com permutações das seções dentro de cada UF. Essa ordem não é aleatória em nenhuma eleição, então o teste acusa saída do envelope em todas, e também em séries simuladas sem manipulação. Demonstração e versão corrigida no início desta página. O rótulo "excesso" desta linha **não indica manipulação**.
 
 **Alegação testada:** "a curva deveria subir e descer em blocos; linhas retas indicam manipulação".
 
@@ -38,9 +55,9 @@ Todos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/
 
 ![Curva de apuração real contra os nulos A e B](figs/a1_curva_apuracao.png)
 
-**Resultado pré-registrado.** O desvio máximo de 2026/T2 contra o nulo B é 2,65 p.p., maior que o dos placebos (1,76, 1,17, 1,33), e a curva sai do envelope por 861 pontos consecutivos. Pelo critério fixado, a linha sai como **excesso detectado (teste de forma)**.
+**Resultado pré-registrado.** O desvio máximo de 2026/T2 contra o nulo B é 2,65 p.p., maior que o dos placebos (1,76, 1,17, 1,33), e a curva sai do envelope por 861 pontos consecutivos. Pelo critério fixado (mantido, **com a ressalva de desenho acima**), a linha sai como excesso detectado (teste de forma), sem efeito sobre a soma final.
 
-**Ressalva de desenho.** (1) O nulo B é rejeitado nos quatro anos (maior sequência fora do envelope: 861, 942, 988, 957 de 990 pontos): a ordem de chegada dentro da UF não é aleatória em nenhuma eleição, porque municípios e zonas chegam em blocos. (2) Em 2026/T2 o desvio máximo ocorre nos primeiros 1 a 5% das seções; a partir de 10% das seções ele cai a 0,61 p.p., abaixo dos placebos (1,74, 0,74, 1,12); esta é uma análise **posterior**, não pré-registrada. (3) A geografia explica 83% do desvio contra a ordem aleatória total. O efeito sobre a soma final é zero por construção.
+**Demonstração e correção.** (1) O nulo B é rejeitado nos quatro anos (maior sequência fora do envelope: 861, 942, 988, 957 de 990 pontos): a ordem de chegada dentro da UF não é aleatória em nenhuma eleição, porque municípios e zonas chegam em blocos. (2) Em 2026/T2 o desvio máximo ocorre nos primeiros 1 a 5% das seções; a partir de 10% das seções ele cai a 0,61 p.p., abaixo dos placebos (1,74, 0,74, 1,12); esta é uma análise **posterior**, não pré-registrada. (3) A geografia explica 83% do desvio contra a ordem aleatória total. O efeito sobre a soma final é zero por construção.
 
 **Pausa da divulgação.** Em 2026/T2, só 0,37% das seções tinham primeira totalização antes das 19h, contra 83,0% em 2022 e 88,5% em 2018. Isso é compatível com a pausa descrita pela imprensa (ver [Base legal](base-legal.md)); a fonte oficial não pôde ser aberta.
 
@@ -49,6 +66,8 @@ Todos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/
 **NÃO EXECUTADO:** (i) 2014/T2: o produto `detalhe_votacao_secao` de 2014 não traz horário de totalização e o BWeb de 2014 só tem a data de recebimento; (ii) comparação numérica com o gráfico "Evolução da apuração" do g1 de 25/10/2026: o gráfico não foi fornecido como dado.
 
 ## A2. Transições seção a seção, 1º para 2º turno
+
+> **Ressalva de desenho (leia primeiro).** O placebo "por papel" (oponente) não considera quem liderou o 1º turno. Aplicado ao PT de 2022, o mesmo teste também acusa excesso. A versão corrigida compara o **líder do 1º turno** de cada ano, padronizando pela razão terceiros/líder. O rótulo "excesso" desta linha **não indica manipulação**.
 
 **Alegação testada:** conversão de eleitores do oponente para o PT; compressão de margem ('113x30 vira 77x70'); formato do swing diferente do histórico.
 
@@ -67,9 +86,9 @@ Todos os números abaixo vêm dos CSVs em `results/fase2/`; scripts em `scripts/
 | 2026 | OPO | 450.760 | 53.194 | 11,80 | 186.977 | 0,363 | 0,085 |
 | 2026 | PT | 450.760 | 1.272 | 0,28 | 3.252 | 0,007 | 0,000 |
 
-**Resultado pré-registrado:** o oponente perde votos em 11,8% das seções em 2026, fora da faixa dos placebos de oponente (2014, 2018, 2022: 1,1%, 1,0%, 1,3%). Pelo critério, **excesso detectado (teste de forma)**.
+**Resultado pré-registrado:** o oponente perde votos em 11,8% das seções em 2026, fora da faixa dos placebos de oponente (2014, 2018, 2022: 1,1%, 1,0%, 1,3%). Pelo critério pré-registrado (mantido, **com a ressalva de desenho acima**): excesso detectado (teste de forma).
 
-**Ressalva de desenho (análise posterior).** O placebo "por papel" (oponente) é inadequado: em 2022 foi o **PT**, que liderou o 1º turno, quem perdeu votos absolutos em 12,6% das seções, quase o espelho dos 11,8% do oponente em 2026 (que liderou o 1º turno). Nos dois anos havia poucos votos de terceiros para repartir (cerca de 10 milhões e 9 milhões, contra 26 milhões em 2014 e 2018). Por faixa de "votos de terceiros / votos do candidato no T1" na seção, as frequências são parecidas:
+**Demonstração e correção.** O placebo "por papel" (oponente) é inadequado: em 2022 foi o **PT**, que liderou o 1º turno, quem perdeu votos absolutos em 12,6% das seções, quase o espelho dos 11,8% do oponente em 2026 (que liderou o 1º turno). Nos dois anos havia poucos votos de terceiros para repartir (cerca de 10 milhões e 9 milhões, contra 26 milhões em 2014 e 2018). Por faixa de "votos de terceiros / votos do candidato no T1" na seção, as frequências são parecidas:
 
 | cand | razao_terceiros_sobre_cand_T1 | 2014 | 2018 | 2022 | 2026 |
 |---|---|---|---|---|---|
@@ -114,6 +133,8 @@ Critério de forma: **2026 não difere** (a menor distância, contra 2022, é me
 
 
 ## A3. Origem dos votos novos de Lula
+
+> **Ressalva de desenho (leia primeiro).** Os coeficientes ecológicos são negativos em todos os anos e o teste acusa o ano de maior coeficiente em qualquer conjunto de quatro. O teto em votos desta linha **não mede votos manipulados**. A versão corrigida (taxa restrita a 0 a 1) dá 0 nos quatro anos. O rótulo "excesso" **não indica manipulação**.
 
 **Contabilidade nacional (identidade).** Como no 2º turno não há terceiros, `ΔPT + ΔOPO = Δcomparecimento + terceiros no T1 − Δ(brancos e nulos)`. A identidade fecha em todas as eleições:
 
@@ -167,7 +188,7 @@ Com efeito fixo de município (relativo à abstenção do T1):
 | 2022 | op1 | -0,069 | 0,003 | 5570 | relativo a abstencao T1; EF de municipio |
 | 2026 | op1 | -0,127 | 0,004 | 5571 | relativo a abstencao T1; EF de municipio |
 
-**Resultado pré-registrado:** o coeficiente de 2026 (-0,034) é o menos negativo dos quatro anos, e a linha sai como **excesso detectado e relevante** pelo teto calculado (211,86% da margem). **Ressalva de desenho:** todos os coeficientes são negativos (nenhum mede conversão); a diferença entre anos reflete geografia; com efeito fixo de município o coeficiente de 2026 é o **mais negativo** (−0,127 contra −0,042 a −0,070). O teto em votos derivado dessa diferença não tem interpretação causal. Por isso o H10 é publicado com e sem esta linha.
+**Resultado pelo critério pré-registrado (mantido, com a ressalva acima):** o coeficiente de 2026 (-0,034) é o menos negativo dos quatro anos e a linha sai como excesso; o teto em votos calculado para essa linha está no Apêndice B, sem interpretação causal. **Demonstração e correção:** todos os coeficientes são negativos (nenhum mede conversão); a diferença entre anos reflete geografia; com efeito fixo de município o coeficiente de 2026 é o **mais negativo** (−0,127 contra −0,042 a −0,070). O teto em votos derivado dessa diferença não tem interpretação causal (Apêndice B).
 
 **Limites:** falácia ecológica; o 2º turno de 2026 tem eleitores de candidatos diferentes dos de 2022; a identidade usa o BWeb, que é o mesmo dado que se audita.
 
@@ -186,7 +207,11 @@ Com efeito fixo de município (relativo à abstenção do T1):
 
 **O que foi verificado:** (c) o BU digital coincide com o BWeb em Lula, oponente, brancos, nulos e comparecimento; (b) o RDV recontado coincide com o BU (Lula, oponente, brancos e total; nulos pelo resíduo); vínculo de integridade: o SHA-512 de BU, RDV, imagem e log consta na lista assinada pela urna e o SHA-512 da lista confere com o hash do bloco assinado. A emissão do BU coincide com a do BWeb em 14.067 de 14.067 seções.
 
-**NÃO verificado:** (a) a assinatura criptográfica em si: a chave da urna usa uma curva de 521 bits com OID 1.3.6.1.4.1.44588.2.1, sem suporte em bibliotecas padrão, e a especificação ASN.1 e os scripts de exemplo do TSE não são acessíveis por automação (HTTP 403). Insumo que falta: especificação e ferramenta oficial de verificação. (d) a identificação do software contra a publicada na lacração: só foi possível listar a versão registrada no log (2026: 10.23.0.0; 2022: 8.26.0.0) e a verificação de assinatura de aplicação por etapa (6 etapas, todas "SUCESSO" em todos os logs lidos). Insumo que falta: hashes de lacração para comparar.
+**Assinatura criptográfica: NÃO EXECUTADO PARCIAL.** *Verificado:* o certificado X.509 embutido no arquivo de assinatura de cada seção de Roraima em 2026 (1.519 seções lidas, 0 erros): o CN do certificado é `UEAO` + número da urna do BWeb em 1.519 de 1.519; a validade cobre a data da eleição em 1.519 de 1.519; os emissores são `AC UE2020` (922), `AC UE2022` (597) (organização `TSE`); o OID do algoritmo é `1.3.6.1.4.1.44588.2.1`, com chave de 66 bytes e assinatura de 132 bytes (tamanhos compatíveis com curva de 521 bits; o OID não corresponde a algoritmo de biblioteca padrão). *Não verificado:* a assinatura em si (**0% das seções verificadas**) e a cadeia até a raiz, porque o certificado raiz, a chave pública oficial e a especificação não puderam ser obtidos por fonte oficial (o site do TSE responde HTTP 403 a automação). **Nenhuma chave de fonte não oficial foi usada.** Uma apresentação do TSE de 2021 (vista apenas em resultado de busca, sem abrir o documento) cita assinaturas de curva elíptica de 256 bits e EdDSA/Curve25519 para o QR code do BU; é outro artefato e também não foi verificado aqui. Script: `scripts/13_cert_urna.py`; resultado: `results/fase2/cert_RR_2026.csv`. Os anos de 2022 não foram lidos (layout do arquivo diferente). Insumo que falta: certificados raiz e especificação oficiais acessíveis.
+
+**NÃO verificado:** (d) a identificação do software contra a publicada na lacração: só foi possível listar a versão registrada no log (2026: 10.23.0.0; 2022: 8.26.0.0) e a verificação de assinatura de aplicação por etapa (6 etapas, todas "SUCESSO" em todos os logs lidos). Insumo que falta: hashes de lacração para comparar.
+
+> **O que A4 e H9 verificam e o que não verificam.** Verificam **consistência entre arquivos que o próprio TSE publica** (BU, RDV, imagem do BU, log, BWeb, totalização) e o vínculo de hash entre eles. Esses arquivos são gerados pelo mesmo software da urna e pelo mesmo fluxo de totalização. Por isso **não excluem uma alteração coerente feita antes da publicação** (que alterasse todos os artefatos de modo consistente), nem verificam se o voto registrado corresponde ao voto digitado pelo eleitor. Ver [A18](a18-alteracao-no-meio.md) e [A19](a19-voto-digitado.md).
 
 **Divergências individuais:**
 
@@ -403,7 +428,7 @@ O exterior tem 0 seções com comparecimento ≥95% em todas as eleições; as c
 
 ## A11. Transferência de votos dos derrotados no 1º turno
 
-**Contexto com fonte.** Zema, Caiado e Cury apoiaram Flávio no 2º turno e Renan Santos liberou os eleitores ([A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/); Caiado: [Diário do Nordeste](https://diariodonordeste.verdesmares.com.br/pontopoder/ronaldo-caiado-anuncia-apoio-a-flavio-bolsonaro-no-2-turno-das-eleicoes-2026-1.3796893)). Os apoios de Clariana Barão, Hertz Dias, Edmilson Costa e Samara Martins e a posição de Rui Costa Pimenta foram informados ao autor desta auditoria, mas **não foi localizada fonte**; os blocos seguem a classificação informada e isso está declarado.
+**Contexto com fonte.** Zema, Caiado e Cury apoiaram Flávio no 2º turno e Renan Santos liberou os eleitores ([A Crítica](https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/); Caiado: [Diário do Nordeste](https://diariodonordeste.verdesmares.com.br/pontopoder/ronaldo-caiado-anuncia-apoio-a-flavio-bolsonaro-no-2-turno-das-eleicoes-2026-1.3796893)). Conferência nome a nome em [O Povo, 10/10/2026](https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/10/quem-os-candidatos-a-presidente-derrotados-apoiam-no-2-turno.html): Zema, Caiado, Cury e Clariana Barão declararam apoio a Flávio; Hertz Dias e Edmilson Costa anunciaram voto crítico em Lula; Renan Santos ficou neutro; Wilson Grassi não se posicionou. **Divergências com a classificação informada:** Samara Martins aparece apenas como orientação do partido (UP: "vote 13"), e Rui Costa Pimenta aparece **sem posição definida** em 10/10 (o PCO faria uma conferência), não como voto nulo; Leonardo Alves não aparece. A segunda fonte indicada (Space Money) responde HTTP 403 a automação e não foi aberta. Os blocos seguem a classificação informada para Samara Martins e Rui Costa Pimenta, e isso está declarado.
 
 **Votos de cada candidato no 1º turno, confirmados no BWeb:**
 
@@ -500,6 +525,8 @@ A identidade fecha com resíduo zero. Os terceiros do 1º turno (9,32 milhões),
 
 ## A12. Seções com zero voto para um candidato
 
+> **Ressalva de desenho (leia primeiro).** A linha pré-registrada compara a razão observado/esperado de 2026 com razões de anos em que o estimador de p pelo 1º turno é enviesado. Em simulações sem manipulação, o teste original acusa excesso em boa parte das séries. A versão corrigida (p pelos vizinhos do mesmo local) não mostra excesso. O rótulo "excesso detectável" **não indica manipulação**.
+
 **Alegação testada:** "109 seções com zero voto". A origem do número não foi informada e nenhuma reportagem foi localizada; por isso reporto todas as definições razoáveis.
 
 | ano | turno | definicao | secoes | zero_oponente | zero_PT | votos_PT_nas_zero_oponente | votos_oponente_nas_zero_PT |
@@ -558,7 +585,7 @@ Em 2026 o observado para o oponente (106) fica próximo do esperado pelo voto da
 
 A lista seção a seção (UF, município, local, tipo, aptos, comparecimento, resultado em 2026 T1, 2022 e 2018, liberação manual, encerramento, modelo de urna) está em `results/fase2/A12_a12_secoes_zero_2026.csv`.
 
-**Veredito:** excesso detectavel, magnitude irrelevante (<1% da margem).
+**Veredito pré-registrado (mantido, com a ressalva de desenho acima):** excesso detectavel, magnitude irrelevante (<1% da margem). **Corrigido (pós-registro):** REFUTADA (sem excesso, teto <1% da margem).
 
 ## A13. Curva de apuração: inversões, trechos lineares e o "método do vídeo"
 
@@ -689,23 +716,21 @@ Em 2026 nenhum modelo difere da UE2020 dentro do mesmo local.
 
 ## Impacto agregado (H10 combinado)
 
-| criterio | sentido | n_testes_com_votos | n_sobreviventes | soma_votos_sobreviventes_exigente | soma_votos_sobreviventes_pior_caso | maximo_individual_pior_caso | soma_de_todos_exigente | pct_margem_sobreviventes_pior_caso | pct_margem_soma_todos_exigente |
-|---|---|---|---|---|---|---|---|---|---|
-| como registrado | PT | 29 | 3 | 1.853.448 | 9.425.488 | 9.385.617 | 2.239.567 | 212,76 | 50,55 |
-| como registrado | OPO | 1 | 1 | 122.543 | 122.543 | 122.543 | 122.543 | 2,77 | 2,77 |
-| excluindo linhas com ressalva de desenho | PT | 29 | 1 | 38.394 | 38.394 | 9.385.617 | 2.239.567 | 0,87 | 50,55 |
-| excluindo linhas com ressalva de desenho | OPO | 1 | 1 | 122.543 | 122.543 | 122.543 | 122.543 | 2,77 | 2,77 |
+Aqui entram **apenas** os testes sem ressalva de desenho. Soma dos tetos de pior caso dos testes com excesso detectado (Holm < 0,05) em cada sentido:
 
-Sobreviventes (Holm < 0,05) e a ressalva de cada um:
+| agregado | pró-Lula (votos) | % da margem | pró-Flávio (votos) | % da margem |
+|---|---|---|---|---|
+| excluindo as linhas com ressalva de desenho (A1, A2, A3, A12) | 38.394 | 0,87% | 122.543 | 2,77% |
+| com as versões corrigidas no lugar das originais (0 das 4 versões corrigidas mostram excesso) | 38.394 | 0,87% | 122.543 | 2,77% |
 
-| Unnamed: 0 | H | teste | sentido | p_holm | votos_max_margem | votos_max_pior_caso | pct_pior_caso | veredito | ressalva |
-|---|---|---|---|---|---|---|---|---|---|
-| 6 | H1 | S1 Flavio/Bolsonaro votos/apto | OPO | 0,000 | 122.543 | 122.543 | 2,77% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) | nan |
-| 9 | H2 | delta voto Lula (2022->2026) ~ delta taxa manual, T2 | PT | 0,000 | 38.394 | 38.394 | 0,87% | excesso detectavel, magnitude irrelevante (<1% da margem) | nan |
-| 25 | A3 | ecologica: fracao de eleitores do oponente no T1 que aparece como voto no PT no T2 | PT | 0,002 | 1.814.194 | 9.385.617 | 211,86% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) | coeficientes negativos em todos os anos (nao medem conversao); com EF de municipio o coeficiente de 2026 e o mais negativo (analise posterior) |
-| 35 | A12 | secoes com zero voto para o oponente no T2: razao observado/esperado (p do T1) | PT | 0,025 | 860 | 1.478 | 0,03% | excesso detectavel, magnitude irrelevante (<1% da margem) | os placebos tem razao observado/esperado abaixo de 1 porque o estimador de p pelo T1 e inadequado onde ha terceiros relevantes no T1 (2018, 2014); o teste direto observado contra esperado em 2026 (z=1,33) nao e significativo (analise posterior) |
+Sobreviventes (Holm < 0,05) sem ressalva de desenho:
 
-Os tetos não são aditivos independentes e os sentidos PT e oponente não se compensam.
+| H | teste | sentido | p_holm | votos_max_margem | votos_max_pior_caso | pct_pior_caso | veredito |
+|---|---|---|---|---|---|---|---|
+| H1 | S1 Flavio/Bolsonaro votos/apto | OPO | 0,000 | 122.543 | 122.543 | 2,77% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) |
+| H2 | delta voto Lula (2022->2026) ~ delta taxa manual, T2 | PT | 0,000 | 38.394 | 38.394 | 0,87% | excesso detectavel, magnitude irrelevante (<1% da margem) |
+
+Os tetos não são aditivos independentes e os sentidos PT e oponente não se compensam. A margem é 4.430.191 votos.
 
 ## NÃO EXECUTADO (resumo)
 
@@ -726,3 +751,66 @@ Os tetos não são aditivos independentes e os sentidos PT e oponente não se co
 | A14/A14 curva de divulgacao e atraso totalizado->divulgado | nao ha snapshots publicos do site Resultados com horario; e o video original, onde a captura sugere 7,28%, nao foi fornecido |
 | BU | NaoExecutado: teste direto com boletins impressos: nenhuma foto/PDF de BU foi fornecido (nem em Downloads, nem no projeto). Envie imagens com o QR code visivel ou uma planilha zona;secao;turno;votos para o cruzamento com o BWeb. Divergencia de qualquer tamanho sera reportada. |
 
+
+## Apêndice A: registro completo, com a ressalva na mesma linha
+
+| H | teste | p_holm | pct_pior_caso | veredito |
+|---|---|---|---|---|
+| H1 | S1 T2 com lag T1, Lula% ~ taxa manual | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| H1 | S0 sem lag, Lula% ~ taxa manual | 1,000 | 30,18% | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| H1 | S0 sem lag + controles (comparecimento, log aptos) | 1,000 | 29,99% | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| H1 | S1 reduto de Flavio (Lula T1<40%) | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| H1 | S1 reduto de Lula (Lula T1>60%) | 1,000 | 0,13% | REFUTADA (sem excesso, teto <1% da margem) |
+| H1 | S1 Lula votos/apto | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| H1 | S1 Flavio/Bolsonaro votos/apto | 0,000 | 2,77% | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) |
+| H1 | S1 dose: taxa manual >= 20% vs <20% (share de Lula) | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| H2 | delta voto Lula (T1->T2) ~ delta taxa manual, dentro do ano | 1,000 | 0,04% | REFUTADA (sem excesso, teto <1% da margem) |
+| H2 | delta voto Lula (2022->2026) ~ delta taxa manual, T2 | 0,000 | 0,87% | excesso detectavel, magnitude irrelevante (<1% da margem) |
+| H4 | fecha >= 15 min apos 17h: Lula% (c/ lag, EF local) | 1,000 | 0,03% | REFUTADA (sem excesso, teto <1% da margem) |
+| H4 | fecha >= 15 min apos 17h: Lula% (s/ lag, EF local) | 1,000 | 0,13% | REFUTADA (sem excesso, teto <1% da margem) |
+| H4 | fecha >= 60 min apos 17h: Lula% (c/ lag, EF local) | 1,000 | 0,09% | REFUTADA (sem excesso, teto <1% da margem) |
+| H4 | fecha >= 60 min apos 17h: Lula% (s/ lag, EF local) | 1,000 | 0,19% | REFUTADA (sem excesso, teto <1% da margem) |
+| H4 | fecha >= 115 min apos 17h: Lula% (c/ lag, EF local) | 1,000 | 0,09% | REFUTADA (sem excesso, teto <1% da margem) |
+| H4 | fecha >= 115 min apos 17h: Lula% (s/ lag, EF local) | 1,000 | 0,18% | REFUTADA (sem excesso, teto <1% da margem) |
+| H5 | secoes com comparecimento >=95% no T2/2026: excesso sobre o esperado pela composicao (tipo x tamanho, taxas 2022) | 0,270 | 0,43% | REFUTADA (sem excesso, teto <1% da margem) |
+| H6 | secoes novas vs antigas do mesmo local: Lula% no T2 dado o T1 | 1,000 | 2,08% | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| H7 | outliers locais para cima (pro-PT), /z ajustado/ > 3, por 10 mil secoes | 1,000 | 0,46% | REFUTADA (sem excesso, teto <1% da margem) |
+| H7 | assimetria: proporcao de outliers que sao pro-PT | 1,000 | 0,19% | REFUTADA (sem excesso, teto <1% da margem) |
+| H8 | ultimo digito: V de Cramer de PT no T2/2026 | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| H8 | ultimo digito: V de Cramer de OPO no T2/2026 | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| H8 | percentual inteiro exato (PT e OPO, simetrico): obs/esperado no T2/2026 | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A1 | curva de apuracao: desvio maximo da curva real contra permutacao dentro da UF (p.p. do PT) | 0,000 | n/a (ver ressalva) | EXCESSO DETECTADO (teste de forma, sem conversao em votos) (COM RESSALVA DE DESENHO; sem interpretação causal) |
+| A2 | oponente perde votos absolutos do T1 ao T2 em secao com comparecimento estavel ou crescente (% das secoes) | 0,000 | n/a (ver ressalva) | EXCESSO DETECTADO (teste de forma, sem conversao em votos) (COM RESSALVA DE DESENHO; sem interpretação causal) |
+| A3 | ecologica: fracao de eleitores do oponente no T1 que aparece como voto no PT no T2 | 0,002 | n/a (ver ressalva) | EXCESSO DETECTADO e relevante (pior caso >= 1% da margem) (COM RESSALVA DE DESENHO; sem interpretação causal) |
+| A4 | secoes com BU, RDV ou vinculo de hash divergentes (amostra de arquivos de urna, 2026/T2) | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A5 | share de votos depois do horario nominal (log) e Lula% no T2 dado o T1, EF de local | 1,000 | 0,09% | REFUTADA (sem excesso, teto <1% da margem) |
+| A6 | urna efetivada diferente da esperada: Lula% no T2 dado o T1, EF de local | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| A8 | secoes com total de algum cargo diferente da regra (total = comparecimento x vagas), 2026 T1+T2 | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A9 | zonas com comparecimento facultativo fora de [Q1-3 IQR, Q3+3 IQR] de 2022/T1 (% das zonas), so 1o turno | 1,000 | n/d | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A10 | modelo de urna UE2013 contra UE2020, mesmo local: Lula% no T2 dado o T1 | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| A10 | modelo de urna UE2015 contra UE2020, mesmo local: Lula% no T2 dado o T1 | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| A10 | modelo de urna UE2022 contra UE2020, mesmo local: Lula% no T2 dado o T1 | 1,000 | 3,11% | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+| A11 | bloco pro-Flavio no T1 (Zema, Caiado, Cury, Clariana) -> votos do PT no T2 por apto, EF de municipio | 1,000 | 0,00% | REFUTADA (sem excesso, teto <1% da margem) |
+| A12 | secoes com zero voto para o oponente no T2: razao observado/esperado (p do T1) | 0,025 | n/a (ver ressalva) | excesso detectavel, magnitude irrelevante (<1% da margem) (COM RESSALVA DE DESENHO; sem interpretação causal) |
+| A15 | 2022: UE2009 contra UE2020, mesmo local: Lula% no T2 dado o T1 | 1,000 | 0,45% | REFUTADA (sem excesso, teto <1% da margem) |
+| A15 | 2022: UE2010 contra UE2020, mesmo local: Lula% no T2 dado o T1 | 1,000 | 1,09% | INCONCLUSIVA (sem excesso, mas teto >=1% da margem) |
+
+Versões corrigidas (pós-registro, [Adendo 6](preregistro.md)):
+
+| H | teste | p_holm | veredito |
+|---|---|---|---|
+| A1-corrigida | curva de apuracao: desvio maximo contra nulo D (municipios em ordem aleatoria dentro da UF), a partir de 10% das secoes (p.p. do PT) | 1,000 | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A2-corrigida | lider do 1o turno perde votos absolutos (% das secoes, padronizado pela razao terceiros/lider com pesos de 2026) | 1,000 | SEM EXCESSO (teste de forma, sem conversao em votos) |
+| A3-corrigida | taxa de transicao oponente (T1) para PT (T2), restrita a [0,1], por municipio, com bootstrap | 1,000 | REFUTADA (sem excesso, teto <1% da margem) |
+| A12-corrigida | secoes com zero voto para o oponente no T2: razao observado/esperado (p dos vizinhos do mesmo local, leave-one-out) | 1,000 | REFUTADA (sem excesso, teto <1% da margem) |
+
+## Apêndice B: Agregado sem interpretação causal
+
+> **Esta tabela não mede votos manipulados.** Ela soma os tetos de pior caso de todas as linhas do registro, inclusive A3, cujo teto vem de um coeficiente ecológico negativo em todos os anos, multiplicado por um fator e pelos votos do oponente no 1º turno. O teto cresce com o tamanho do universo e **não** com qualquer evidência de troca de votos. Está aqui só para que quem faça a soma ingênua encontre o número com a explicação. Para o impacto agregado use a seção "Impacto agregado (H10 combinado)".
+
+| sentido | soma dos tetos de todas as linhas do registro (votos) | % da margem | o que entra |
+|---|---|---|---|
+| pró-Lula | 9.425.488 | 212,76% | sem interpretação causal: inclui A3 |
+| pró-Flávio | 122.543 | 2,77% | igual ao agregado sem ressalva |
+
+Por que a linha A3 infla o total: o teto é fator × máx(0, diferença + 1,645·ep) × votos do oponente no 1º turno. Como todos os coeficientes dos quatro anos são negativos (nenhum mede conversão), a "diferença" entre 2026 e o placebo é uma diferença entre números negativos de geografias diferentes, e o produto pelos 56 milhões de votos do oponente dá milhões de votos sem que haja um voto trocado. A versão corrigida (taxa restrita a 0 a 1) dá 0 nos quatro anos.
