@@ -760,6 +760,74 @@ fixando antes de consultar: se as pesquisas indicarem ≥70% de transferência p
 é comportamental e o teste de fluxo perde força; se indicarem ≤30%, o desvio permanece inexplicado e sobe
 para a lista de anomalias primárias.
 
+# PARTE 7 — Verificações Fase 5 (checagem factual de alegações externas, 30/10/2026)
+
+> **EXPLORATÓRIO, sem pré-registro** — é verificação de alegação de terceiros, não teste registrado.
+> Script: `scripts/exploratorio/11_verifica_alegacoes_fase5.py` → `results/exploratorio/ALE_*.csv`.
+
+## 7.1. Alegação 1 (candidata a A41): "23 municípios da Bahia com mais eleitores do que habitantes"
+
+**Insumo**: população total municipal **não está no repo**. O que existe localmente é
+`results/fase3/A20_mapa_tse_ibge.csv` (pop16, pop80/90/100+ por município, Censo 2022, já usada em A20/A20b).
+Para fechar o corte exato da alegação (aptos > população **total**) falta: população total Censo 2022 por
+município (SIDRA/IBGE, tabela 4714 ou 9605/9514). Fechou-se com aproximação (pop16 ≈ 81% do total ⇒
+aptos > pop_total exige razão aptos/pop16 ≳ 1,23–1,25).
+
+**O que rodou (números reais)** — municípios BA com aptos acima da população 16+ (Censo 2022):
+
+| recorte | 2018 T2 | 2022 T2 | 2026 T1 | 2026 T2 |
+|---|---|---|---|---|
+| BA: aptos > pop16 | 236/417 (57%) | 341/417 (82%) | 333/417 | 334/417 (80%) |
+| BA: razão > 1,25 (≈ aptos > pop **total**) | 11 | 33 | 39 | 39 |
+| BA: **comparecimento** > pop16 | 3 | 17 | 34 | 51 |
+| BR: aptos > pop16 | 2.889/5.557 (52%) | 3.775 (68%) | 3.975 (72%) | 3.978 (72%) |
+| BR: comparecimento > pop16 | 232 | 593 | 1.020 | 1.087 |
+
+**Leitura (3 linhas)**: a alegação é compatível em ordem de grandeza (~39 municípios BA no corte aproximado
+"aptos > pop total", contra os 23 alegados — o número exato depende da população total, que falta localmente),
+mas **o fenômeno não é novo nem específico de 2026 nem da Bahia**: já eram 11 em 2018 e 33 em 2022 na BA, e
+nacionalmente 72% dos municípios têm aptos > pop16 (razão nacional 0,985 — A20 já documentou: cadastro
+eleitoral cresce com envelhecimento e migração sem transferência de domicílio). O dado genuinamente novo e que
+merece atenção é outro: **comparecimento acima de toda a população 16+** subiu de 3 (2018) para 51 municípios
+baianos (1.087 no Brasil) em 2026 T2 — isto sim é um salto recente e pré-registrável (candidato a A41).
+
+## 7.2. Alegação 2 (candidata a A40): "em seções com alta taxa manual, o voto no incumbente sobe linearmente acima de 61%"
+
+**Curva descritiva** (share de Lula sobre válidos, pooled, por faixa de `manual_rate`; base APURADA, UF≠ZZ,
+comparecimento ≥ 30):
+
+| faixa taxa manual | 2018 T2 | 2022 T2 | 2026 T1 | 2026 T2 | n seções 2026 T2 |
+|---|---|---|---|---|---|
+| 0–5% | 42,5% | 49,6% | 48,6% | 51,1% | 175.625 |
+| 5–10% | 44,5% | 49,7% | 48,5% | 51,5% | 237.802 |
+| 10–20% | 47,3% | 52,4% | 51,0% | 54,0% | 80.296 |
+| 20–30% | 57,2% | 59,9% | 55,7% | 58,1% | 3.679 |
+| >30% | **61,9%** | **67,5%** | 55,1% | 59,8% | 348 |
+
+Correlação ponderada (manual × share, nível seção): 2018 T2 r=0,174; 2022 T2 r=0,145; **2026 T1 r=0,049;
+2026 T2 r=0,064** — a associação existe em todos os anos e **enfraqueceu** em 2026.
+
+**Controles (2026 T2)**: por UF, o padrão é heterogêneo — na BA sobe (69,7%→76,9%), mas a BA já está acima de
+61% em **todas** as faixas (efeito regional, não da taxa manual); em SP a curva *cai* de 47,3% para 38,6% nas
+faixas 0–30% e só salta para 53,6% na faixa >30% (348 seções no Brasil inteiro). Escola vs não-escola
+(nome do local, `locais_2026`): o gradiente é mais forte em escolas (51,9%→66,6%) que fora delas
+(50,7%→54,0%) — composição de território, não do prédio.
+
+**Leitura (3 linhas)**: a curva sobe, mas **não é linear** (plana até 10%, salto concentrado nas faixas
+extremas com poucas seções) e **não é específica de 2026 nem do incumbente**: existe mais forte em 2018
+(61,9% na faixa >30%, ano em que o PT perdeu e não era incumbente) e 2022 (67,5%, incumbente Bolsonaro) do que
+em 2026, quando *recuou* (59,8%, abaixo dos 61% alegados). O padrão é estrutural e geográfico (seções de alta
+taxa manual concentram-se no Norte/Nordeste, mais pobres e com menor cobertura biométrica — H1/A20b/A32 já
+documentaram); a versão causal da alegação ("liberação manual favorece o incumbente") é refutada pela série.
+Alegação **não se sustenta** como anomalia de 2026.
+
+## Saídas desta rodada (30/10, verificações Fase 5)
+
+- `scripts/exploratorio/11_verifica_alegacoes_fase5.py`
+- `results/exploratorio/ALE_municipios_aptos_vs_pop16.csv`, `ALE_resumo_aptos_vs_pop16.csv`,
+  `ALE_ba_aptos_maior_pop16_lista.csv`, `ALE_curva_manual_por_ano.csv`, `ALE_curva_manual_por_uf_2026t2.csv`,
+  `ALE_curva_manual_escola_2026t2.csv`, `ALE_linearidade_manual.csv`
+
 ## Saídas desta rodada (30/10, fluxo)
 
 - `scripts/exploratorio/10_fechamento_fluxo.py`
