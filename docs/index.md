@@ -17,6 +17,33 @@ Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde 
 
 **[Envie a foto do seu boletim](boletins-impressos.html)**: pelo formulário de envio no GitHub.
 
+## Duas eras eleitorais
+
+<div class="duo">
+<div>
+<h3>Como se ganhava um 2º turno antes de 2014</h3>
+<ul>
+<li>De 1989 a 2010, nenhuma eleição direta foi decidida por menos de 6 pontos; a margem média foi de <strong>15,6 p.p.</strong> (1989: 6,06; 2002: 22,54; 2006: 21,66; 2010: 12,10).</li>
+<li>A aritmética era de herança: o vencedor herdava os eliminados que o endossavam, mais o comparecimento novo. 2002: Lula ganhou +13,3 milhões com o pool de Ciro e Garotinho. 2006: +11,6 milhões com Heloísa Helena e Cristovam, enquanto Alckmin perdeu votos.</li>
+<li>Margens grandes demais para qualquer ajuste pequeno mudar o resultado; e parte do processo ainda tinha rastro físico.</li>
+</ul>
+</div>
+<div>
+<h3>Desde 2014, o cenário mudou em três pontos</h3>
+<ul>
+<li><strong>Eleição apertada virou a norma.</strong> As quatro menores margens da história são 2022 (1,80 p.p.), 2014 (3,28) e 2026 (3,58), com 2018 (10,26) ainda abaixo da média antiga; média 2014-2026: <strong>4,7 p.p.</strong></li>
+<li><strong>O canal físico de verificação foi extinto no mesmo período.</strong> Registro impresso suspenso em 2013 e declarado inconstitucional em 2018: as quatro eleições mais apertadas da história ocorreram sem nenhuma via de recontagem independente.</li>
+<li><strong>2026 é o primeiro vira-vira da série.</strong> Pela primeira vez desde 1989, quem liderou o 1º turno perdeu o 2º.</li>
+</ul>
+</div>
+</div>
+
+<h3>A hipótese do teto</h3>
+<p>Existe uma leitura que organiza toda a série: uma operação com <strong>teto de cerca de 10 milhões de votos</strong>. Sob ela, 2014 (margem de 3,46 milhões), 2022 (2,14 milhões) e 2026 (4,43 milhões) seriam reversíveis; 2018 não seria (margem de 10,76 milhões, acima do teto, com a onda pós-facada e um adversário sem força própria). O teste de fechamento de fluxo deste dossiê mede um desvio sem fonte de +4,8 a +6,7 milhões em 2026, mais o espelho de cerca de 5 milhões do outro lado: a ordem de grandeza bate com o teto.</p>
+<p><strong>A hipótese não pode ser confirmada nem refutada com dados internos</strong>: "o declínio seria a estratégia" explica qualquer padrão. O que a sustenta em pé como pergunta é que 2018, a eleição fora do alcance do teto, é também a única fora da era apertada. O que a decide: pesquisa de transferência de voto, folha de votação, boletim impresso, teste de integridade.</p>
+
+<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma operação desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>
+
 ## Os dois gatilhos mais óbvios, checados primeiro
 
 Estes dois padrões pareciam o lugar óbvio onde uma alteração passaria barato; por isso foram testados primeiro, com os dados por seção.

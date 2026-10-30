@@ -15,6 +15,33 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 This is not evidence of anything, on either side: it is a map of where an alteration would pass invisible to public data.
 
+## Two electoral eras
+
+<div class="duo">
+<div>
+<h3>How a runoff was won before 2014</h3>
+<ul>
+<li>From 1989 to 2010, no direct election was decided by less than 6 points; the average margin was <strong>15.6 p.p.</strong> (1989: 6.06; 2002: 22.54; 2006: 21.66; 2010: 12.10).</li>
+<li>The arithmetic was inheritance: the winner inherited the eliminated candidates who endorsed them, plus new turnout. 2002: Lula gained +13.3 million from the Ciro and Garotinho pool. 2006: +11.6 million from Heloísa Helena and Cristovam, while Alckmin lost votes.</li>
+<li>Margins too large for any small adjustment to change the outcome; and part of the process still had a physical trail.</li>
+</ul>
+</div>
+<div>
+<h3>Since 2014, the picture changed in three points</h3>
+<ul>
+<li><strong>Close elections became the norm.</strong> The four smallest margins in history are 2022 (1.80 p.p.), 2014 (3.28) and 2026 (3.58), with 2018 (10.26) still below the old average; 2014-2026 average: <strong>4.7 p.p.</strong></li>
+<li><strong>The physical verification channel was extinguished in the same period.</strong> The printed record was suspended in 2013 and ruled unconstitutional in 2018: the four closest elections in history took place with no independent recount channel.</li>
+<li><strong>2026 is the first reversal of the series.</strong> For the first time since 1989, the first-round leader lost the runoff.</li>
+</ul>
+</div>
+</div>
+
+<h3>The ceiling hypothesis</h3>
+<p>There is a reading that organizes the whole series: an operation with a <strong>ceiling of about 10 million votes</strong>. Under it, 2014 (margin of 3.46 million), 2022 (2.14 million) and 2026 (4.43 million) would be reversible; 2018 would not (margin of 10.76 million, above the ceiling, with the post-stabbing wave and an opponent without strength of his own). The flow-closure test in this dossier measures an unaccounted deviation of +4.8 to +6.7 million in 2026, plus a mirror of about 5 million on the other side: the order of magnitude matches the ceiling.</p>
+<p><strong>The hypothesis can be neither confirmed nor refuted with internal data</strong>: "the decline would be the strategy" explains any pattern. What keeps it standing as a question is that 2018, the election beyond the ceiling's reach, is also the only one outside the close-election era. What settles it: vote-transfer polling, voting sheets, printed receipts, the integrity test.</p>
+
+<p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for an operation of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
+
 ## The two most obvious triggers, checked first
 
 These two patterns looked like the obvious place where an alteration would come cheap; that is why they were tested first, with section-level data.
