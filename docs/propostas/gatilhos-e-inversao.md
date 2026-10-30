@@ -363,7 +363,129 @@ da inversão a montante.
 
 ---
 
-## Saídas desta rodada
+---
+
+# PARTE 3 — RODADA COM DADOS BRUTOS (30/10/2026): empates/±1 e Nordeste sem-biometria × troca
+
+*Dados brutos agora nesta máquina (`parquet/`, `parquet2/`, `cesp/`, `dados_locais/`). Tudo EXPLORATÓRIO, sem
+veredito formal. Scripts: `scripts/exploratorio/06_empates_margem1.py` e `07_nordeste_biom_troca.py`; saídas:
+`results/exploratorio/A_empates_resumo.csv`, `A_distribuicao_margem_obs_esp.csv`, `A_empates_troca_urna.csv`,
+`B_nordeste_biom_troca.csv`.*
+
+## 3.A. Investigação A — "aperto artificial"? Empates e margens de ±1 voto
+
+**O que o dono quer dizer.** Se alguém "amarra" o placar — igualando urnas ou dando +1 — apareceriam empates e
+vitórias por 1 voto em excesso, e assimetria no +1.
+
+**Definição usada:** seções apuradas, sem exterior, com votos válidos > 0. As contagens do dono **reproduzem
+quase exatamente**: empates 2.150 (ele achou 2.155 — 5 seções de diferença, provavelmente filtro de exterior ou
+de válidos); ±1: 4.517 (ele: 4.525); 2022: 1.936 (ele: 1.940) e 3.805 (ele: 3.821). A leitura usa as minhas
+contagens; a diferença é de definição de universo, documentada.
+
+**A) Tamanho real dos conjuntos (respostas diretas às perguntas do dono).**
+
+| conjunto | 2026 | 2022 |
+|---|---|---|
+| seções empatadas | 2.150 | 1.936 |
+| **votos válidos nas seções de empate** | **517.768** | **467.950** |
+| seções decididas por exatamente 1 voto | 4.517 (Lula+1: 2.268; Flávio+1: 2.249) | 3.805 (PT+1: 1.845; Bolsonaro+1: 1.960) |
+| **votos válidos nas seções de ±1** | **1.087.289** | **926.697** |
+
+Custo de fabricar um empate artificialmente: para uma seção com margem m, bastam ⌈m/2⌉+1 votos movidos (troca) ou
+⌈m/2⌉ votos retirados — na mediana, seções têm ~260 comparecimento, então "amarrar" uma seção típica exigiria
+dezenas de votos por seção, e 2.150 seções exigiriam coordenação em dezenas de milhares de votos **dentro de cada
+zona eleitoral**, seção por seção, sem deixar rastro de fluxo (A31 mede exatamente isso e não achou).
+
+**B) O teste nulo correto — observado vs. esperado sob acaso puro.** Nulo: em cada seção, votos dos finalistas ~
+Binomial(n = válidos, p = share de Lula da zona eleitoral, leave-one-out). Esperado = soma das probabilidades de
+|margem| = m, m = 0..10:
+
+| ano | empates obs. | esperado | razão | ±1 obs. | esperado | razão |
+|---|---|---|---|---|---|---|
+| 2026 | 2.150 | 2.336,8 | **0,920** | 4.517 | 4.672,0 | **0,967** |
+| 2022 | 1.936 | 2.028,3 | **0,954** | 3.805 | 4.037,6 | **0,942** |
+
+O observado fica levemente **ABAIXO** do esperado sob o nulo nos dois anos e em todas as faixas |margem| = 0..10
+(razões 0,92–0,98 em 2026; 0,94–0,97 em 2022). O déficit sistemático é o artefato conhecido do nulo binomial:
+votos reais têm sobredispersão (o eleitorado de uma seção é mais homogêneo que a média da zona), o que afasta a
+margem de zero. O ponto para o dono: **2026 não tem excesso de empates nem de ±1 — tem menos que o nulo e menos,
+em razão obs/esp, que 2022**. Por seção, a frequência de empates cresceu 5,1% de 2022 para 2026 (razão 1,051),
+praticamente o crescimento do número de seções (5,7%).
+
+**C) Simetria do ±1 (2026).** Lula+1: 2.268 × Flávio+1: 2.249; teste binomial de simetria p = **0,789**
+(2022: p = 0,065, levemente pró-oponente). Simetria quase perfeita: contra-evidência direta de "amarração
+dirigida".
+
+**D) Composição.** Empates não são fenômeno de urna minúscula: mediana de comparecimento 259 (empates) vs. 263
+(geral); ±1: 258. São seções de tamanho típico — é aí que |margem| pequena é mais provável em massa.
+
+**E) Troca de urna.** 2026 (juncão CESP validada: reproduz os 0,60% de A6 no geral): empates com urna trocada
+0,84% (18 seções) vs. 0,61% no geral; ±1: 0,47% (21 seções) — **na taxa nacional ou abaixo**. (Para 2022 a
+juncão rápida CESP×BWeb não é confiável — numeração divergente, dá 95% de "troca" contra 1,72% medido por A6; uso
+o número de A6 como referência e registro a limitação.)
+
+**O que os números sustentam.** Padrão compatível com acaso: sem excesso de empates/±1, sem assimetria, sem
+sobrerrepresentação de troca de urna. Se as contagens do dono fossem sinal de amarração, o sinal teria de estar
+**melhor** escondido em 2026 do que em 2022 — e 2026 é o ano com *menos* empates relativos ao nulo.
+
+**O que fecharia.** Boletins impressos das seções de empate/±1 (lista exportável em 1 linha a partir de
+`A_empates_*`) — cobrem o braço a jusante (A18); para o elo a montante, o teste de integridade (A37).
+
+## 3.B. Investigação B — Nordeste: sem-biometria × troca de urna × domínio
+
+**O que o dono quer dizer.** No NE, onde Lula domina, seções com muita habilitação sem biometria e urna trocada
+seriam o canal dos votos "movíveis".
+
+**A) Correlação por taxa, município a município (n = 1.794 municípios do NE, 2026/T2).** O olho vê "capitais têm
+os dois" porque capital é grande; em **taxa**, a correlação quase não existe: Spearman ρ = **0,055** (CSV do dono)
+e ρ = **0,059** (recomputado dos parquets + CESP), ambos p ≈ 0,01–0,02 só pelo tamanho da amostra. ρ ≈ 0,06 é
+substantivamente zero: quem tem taxa alta de sem-biometria **não** tem mais troca de urna.
+
+**B) Sobreposição (o "pulo do gato" quantificado).** NE, 2026/T2: seções com Lula ≥ 80% dos válidos = **31.506**.
+Dessas, com urna trocada OU município no p90 de taxa sem-biometria (> 11,9%): **3.469 seções, 645.034 votos de
+Lula, saldo líquido 537.354**; teto de pior caso (fator 2) = 1.074.708 votos de margem = **24,3% da margem**.
+
+**C) O mesmo corte em 2022 (controle de forma — obrigatório).** 2022/T2, mesma regra (sem a flag de troca, cuja
+juncão 2022 não é confiável — ou seja, comparação conservadora a favor de 2022): **3.766 seções, 703.521 votos de
+Lula, saldo 602.222, teto 27,2% da margem**. O padrão é **igual ou maior em 2022** — eleição que o campo do dono
+considera legítima. Conclusão sem cerimônia: o perfil NE (sem-biometria alta no interior, domínio eleitoral do PT)
+é **estrutural**, não específico de 2026; ele prediz 2022 tão bem quanto 2026.
+
+**D) Oponente com 0 a 10 votos, Brasil (confirmação do 3.042 do dono).**
+
+| ano | seções | votos de Lula nelas | saldo | teto fator 2 | NE (seções) | NE (votos Lula) |
+|---|---|---|---|---|---|---|
+| 2026 | **3.029** (dono: 3.042; diferença de 13 = filtro de universo) | 394.960 | 376.149 (dono: 376.347 ✓) | 752.298 = 17,0% da margem | 1.968 (65%) | 256.695 |
+| 2022 | **4.097** | 530.613 | 505.308 | 1.010.616 | 3.010 (73%) | 405.615 |
+
+O conjunto **encolheu** de 2022 para 2026 (−26% nas seções, −26% no saldo), e em ambos os anos é dominado pelo
+interior do NE e do Norte — seções pequenas, rurais, indígenas e quilombolas, o mesmo perfil documentado em A12,
+A27 e A31b. Se o padrão fosse fraude de 2026, teria de ter sido *maior* na eleição de 2022.
+
+**O que fecharia.** Listas de habilitação (folhas de votação) das seções do corte B — o pedido LAI 07 e o
+modelo para partidos já existem (`lai/`, A32 item 5; e `dados_locais/ne_secoes_troca_e_alta_sem_biom.csv` já é a
+lista das 190); atas de troca de urna das 190 seções (TREs); e boletins impressos dessas seções para o braço a
+jusante. Enquanto isso, o padrão medido é o de 2022, só que menor.
+
+## 3.C. Síntese da rodada
+
+| investigação | o que o dono quer dizer | o que os números sustentam | o que fecharia |
+|---|---|---|---|
+| A. empates/±1 | fraude "amarrando" o placar | **acaso puro explica e sobra**: obs./esp. 0,92 (empates) e 0,97 (±1) em 2026, ambos abaixo do nulo e piores em 2022 que em 2026; simetria p=0,789; troca de urna na taxa nacional | BUs impressos das 6.667 seções (braço a jusante); TI (a montante) |
+| B. NE biom × troca × domínio | canal de votos movíveis no NE | correlação por taxa ≈ 0 (ρ=0,06); sobreposição de 2026 **menor** que a de 2022 no mesmo corte; conjunto 0–10 votos encolheu 26% | folhas de votação das 190 seções (LAI 07), atas de troca, BUs |
+
+Nenhum número novo aqui altera o mapa de pontos cegos: o elo aberto continua sendo digitado→registrado (A19/A37),
+e o instrumento que o fecha é o teste de integridade consolidado + coleta de BUs. O que esta rodada adiciona é
+**contra-evidência de forma**: os dois padrões propostos como "gatilho" aparecem em 2022 em igual ou maior
+intensidade.
+
+## Saídas desta rodada (30/10)
+
+- `scripts/exploratorio/06_empates_margem1.py` → `results/exploratorio/A_empates_resumo.csv`,
+  `A_distribuicao_margem_obs_esp.csv`, `A_empates_troca_urna.csv`
+- `scripts/exploratorio/07_nordeste_biom_troca.py` → `results/exploratorio/B_nordeste_biom_troca.csv`
+
+## Saídas das rodadas anteriores (29/10)
 
 - `scripts/exploratorio/03_gatilhos_intersecoes.py`
 - `results/exploratorio/empilhamento_nas_secoes_zero_voto.csv`

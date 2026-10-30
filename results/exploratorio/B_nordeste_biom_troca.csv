@@ -1,0 +1,7 @@
+bloco,fonte,ano,n,estatistica,leitura,secoes,votos_lula,validos,saldo_lula_menos_opo,teto_votos_margem_fator2,teto_pct_margem,secoes_dominio_total,secoes_dominio_sem_flag,saldo
+"A correlacao NE (nivel municipal, taxa x taxa)",CSV do dono,2026,1794.0,"Spearman rho = 0.055, p = 0.0191",correlacao positiva por taxa,,,,,,,,,
+"A correlacao NE (nivel municipal, taxa x taxa)",recomputado dos parquets + CESP,2026,1794.0,"Spearman rho = 0.059, p = 0.0125",correlacao positiva por taxa,,,,,,,,,
+B sobreposicao NE: Lula >= 80% dos validos E (troca OU municipio no p90 sem-biom),,2026,,,p90 taxa sem-biom do ano = 11.9%,3469.0,645034.0,752714.0,537354.0,1074708.0,24.26,31506.0,28037.0,
+B sobreposicao NE: Lula >= 80% dos validos E (troca OU municipio no p90 sem-biom),,2022,,,p90 taxa sem-biom do ano = 20.6%; sem a flag de troca (juncao CESP-2022 nao confiavel) — comparacao conservadora a favor de 2022,3766.0,703521.0,804820.0,602222.0,1204444.0,27.19,35758.0,31992.0,
+D oponente com 0 a 10 votos,,2026,,,"CO: 112 secoes, 18097 votos Lula; N: 667 secoes, 101520 votos Lula; NE: 1968 secoes, 256695 votos Lula; S: 47 secoes, 3669 votos Lula; SE: 235 secoes, 14979 votos Lula",3029.0,394960.0,413771.0,,752298.0,16.98,,,376149.0
+D oponente com 0 a 10 votos,,2022,,,"CO: 90 secoes, 13722 votos Lula; N: 566 secoes, 81383 votos Lula; NE: 3010 secoes, 405615 votos Lula; S: 62 secoes, 4242 votos Lula; SE: 369 secoes, 25651 votos Lula",4097.0,530613.0,555918.0,,1010616.0,22.81,,,505308.0

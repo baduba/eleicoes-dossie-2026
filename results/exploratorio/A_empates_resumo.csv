@@ -1,0 +1,3 @@
+ano,secoes,empates,validos_nas_secoes_empate,votos_a_mover_para_criar_cada_empate,decididas_por_1,validos_nas_secoes_1,lula_mais1,opo_mais1,empates_esperados_nulo,razao_empate_obs_esp,um_esperado_nulo,razao_um_obs_esp,p_simetria_binomial,mediana_comparecimento_empate,mediana_comparecimento_geral,mediana_comparecimento_1voto,razao_empates_2026_2022_por_secao
+2026,497897,2150,517768,ceil((|margem|)/2)+1 votos movidos viram empate; soma minima = 1 voto por secao de +-1,4517,1087289,2268,2249,2336.8,0.92,4672.0,0.9668331188034898,0.7888,259.0,263.0,258.0,1.051
+2022,471010,1936,467950,ceil((|margem|)/2)+1 votos movidos viram empate; soma minima = 1 voto por secao de +-1,3805,926697,1845,1960,2028.3,0.954,4037.6,0.9423911010565317,0.0646,263.0,270.0,265.0,1.123
