@@ -560,7 +560,108 @@ de pesquisa de 2026 (2,6–2,8 p.p., fora da margem) é o único desvio da séri
 de verificação como "explicar o erro das pesquisas finais de 2026" (coleta das séries históricas de erro dos
 institutos, com fonte, para saber quão atípico é 2,8 p.p. na história recente; insumo externo).
 
-## Saídas desta rodada (30/10, H20)
+---
+
+# PARTE 5 — Teoria da rotação (30/10/2026)
+
+*A tese do dono: as práticas antigas são reduzidas gradativamente (para parecer melhora) enquanto novas técnicas
+entram com jitter, e a SOMA controla o resultado. **Posição registrada desta auditoria, compartilhada com o dono:
+na forma geral a teoria é não-falsificável com dados internos** — "o declínio é a estratégia" explica qualquer
+padrão, e um texto público deve dizer isso explicitamente, porque é o que a protege de desmonte retórico. **Mas ela
+tem um núcleo testável**: rotação prevê componentes encolhendo com o resíduo total se mantendo ou migrando de
+lugar; estrutura benigna prevê o total sumindo junto com os componentes. É isso que se testa aqui. EXPLORATÓRIO.
+Script: `scripts/exploratorio/09_rotacao_residuo.py`; saídas: `results/exploratorio/ROT_*.csv`.*
+
+## 5.1. Resíduo total por ano
+
+Componentes recomputados dos parquets com o **mesmo método nos 4 anos** (T2, apuradas, sem exterior): c1 = seções
+com oponente 0–10 votos; c2 = PT ≥ 80% dos válidos; c3 = turnout ≥ 95% (corte H5); c4 = sem-biometria > 30%
+(corte A32; **só 2018+** — `biom_nh` não é populado em 2014); c5 = excesso A31 versionado (teto incondicional por
+ano, de `A31_municipios.csv` — é teto de modelo, não saldo bruto; cobertura declarada). c1–c4 se sobrepõem; por
+isso o total usa a **união disjunta por seção**.
+
+| ano | c1 saldo | c2 saldo | c3 saldo | c4 saldo | **união c1–c4 (disjunta)** | c5 excesso A31 |
+|---|---|---|---|---|---|---|
+| 2014 | 670.512 | 6.933.821 | 25.869 | s/ dado | **6.945.085** | 7.843.578 |
+| 2018 | 928.308 | 7.108.559 | −16.311 | 126.043 | **7.077.808** | 2.975.220 |
+| 2022 | 505.308 | 6.239.447 | 6.636 | 282.930 | **6.302.810** | 2.038.696 |
+| 2026 | 376.149 | 5.604.858 | 37.737 | 13.840 | **5.614.724** | 2.193.368 |
+
+**Leitura:** o resíduo total **cai junto com os componentes** (−21% do pico de 2018 para 2026 na união; o excesso
+de A31 cai de 7,8 M para ~2,1–2,2 M e fica no nível de 2022). A previsão da rotação (total mantido enquanto
+componentes encolhem) **não se observa**; a previsão da estrutura benigna, sim. Ressalvas honestas: (i) c1–c4 são
+saldos brutos de conjuntos, não excessos sobre nulo — incluem votos legítimos de reduto; (ii) a cobertura de c4 é
+só 2018+; (iii) c5 mede outra coisa (teto de modelo A31). Nada disso muda a direção: nenhuma leitura mostra o
+total se sustentando enquanto as partes caem.
+
+## 5.2. Estabilidade de onde a margem é construída
+
+Por ano, distribuição municipal da contribuição à margem (saldo municipal, T2):
+
+| ano | Gini da contribuição abs. | top-100 municípios (% do saldo abs.) | Spearman do ranking vs. eleição anterior |
+|---|---|---|---|
+| 2014 | 0,732 | 36,4% | — |
+| 2018 | 0,725 | 35,4% | 0,932 |
+| 2022 | 0,686 | 28,5% | 0,974 |
+| 2026 | 0,676 | 27,6% | **0,986** |
+
+**Leitura:** a geografia da margem fica **mais estável a cada eleição** (correlação de rankings 0,93 → 0,99) e
+**menos concentrada** (Gini e top-100 caindo). A rotação prevê oscilação geográfica (a técnica migra para onde a
+disputa aperta); o observado é o oposto — estende H20b da periferia (seções extremas) para a margem total.
+
+## 5.3. O teste do jitter
+
+Sinal das variações ano a ano por componente (2014→2018→2022→2026):
+
+| componente | sinais | mudanças de sinal | leitura |
+|---|---|---|---|
+| c1, c2, união c1–c4 | **+ − −** | 1 | pico em 2018 (ano da derrota do PT), declínio depois — não é jitter, é o pico de 2018 |
+| c3 (turnout ≥95%) | − + + | 1 | sobe depois de 2018, mas são centenas de seções e dezenas de milhares de votos — ordem pequena |
+| c4 (sem-biom >30%) | + − | 1 | colapsa em 2026 (282.930 → 13.840 de saldo) com a biometria expandindo |
+| c5 (excesso A31) | − − + | 1 | cai até 2022, leve alta em 2026 dentro do mesmo nível |
+
+Nenhum componente oscila (+−+−); todos têm no máximo **uma** mudança de sinal, e o padrão dominante é "máximo em
+2018, declínio desde então". Jitter (sobe-e-desce de compensação) **não aparece**.
+
+## 5.4. O fio que sobrou: erro das pesquisas
+
+Série (repo, A7 + Parte 1b): **2018: 0,13 p.p.; 2022: 1,1 p.p.; 2026: 2,6–2,8 p.p. (as duas finais, fora da
+margem declarada)**. É o único desvio que aponta para 2026 e é compatível com a rotação ("2026 introduziu algo que
+as pesquisas não capturaram") — mas também com um erro de pesquisa grande. Para virar teste: (i) série histórica
+completa de erros das pesquisas finais Ibope/Datafolha/AtlasIntel (2002–2026) **com fonte** (registros TSE +
+arquivos dos institutos; o repo hoje tem só 4 pontos); (ii) erro por UF/região se os institutos publicarem quebra
+(a rotação geográfica implicaria erro concentrado onde a técnica atuou); (iii) boca de urna do T2 de 2026 (âncora
+do dia, fora do software). Até lá: **INCONCLUSIVO, documentado, sem conversão em evidência**.
+
+## 5.5. Síntese e redação para o portal
+
+O que os números sustentam: (a) o resíduo total cai junto com os componentes (−21% do pico); (b) a geografia da
+margem é cada vez mais estável (Spearman 0,93→0,99) e menos concentrada; (c) não há jitter — nenhuma oscilação
++−+− em seis componentes; (d) o único desvio a favor da tese é o erro das pesquisas de 2026, indecidível sem a
+série histórica dos institutos.
+
+O que não sustentam: não provam que nunca existiu nada — dados internos são à prova de inversão coerente por
+construção (A19/Parte 1b), e a teoria da rotação **na forma geral não é falsificável com dados internos**: "o
+declínio é a estratégia" acomoda qualquer série.
+
+**Redação honesta sugerida para o portal** (a hipótese com previsão testável, o que a refutiria, e o aviso de
+não-falsificabilidade):
+
+> *"A hipótese de uma técnica rotativa de longa data não pode ser refutada com os arquivos que o próprio sistema
+> publica: se a premissa é que os arquivos são coerentes por construção, nenhuma consistência interna a exclui.
+> O que os dados internos permitem testar é o núcleo quantitativo da tese — e ele não se confirma: o total medido
+> dos conjuntos apontados cai junto com as partes (−21% desde 2018), a geografia da margem é a mais estável da
+> série, e não há oscilação compensatória. O que decidiria a questão está fora dos arquivos: o relatório
+> consolidado do teste de integridade (TCU), boletins impressos fotografados contra o BWeb (alteração depois da
+> impressão), e a série histórica de erros das pesquisas finais. Enquanto essas âncoras não forem trazidas, a
+> posição desta auditoria é: hipótese aberta por construção, núcleo testável não confirmado."*
+
+## Saídas desta rodada (30/10, rotação)
+
+- `scripts/exploratorio/09_rotacao_residuo.py`
+- `results/exploratorio/ROT_componentes_por_ano.csv`, `ROT_geografia_margem.csv`, `ROT_jitter.csv`
+
+Da rodada (30/10, H20):
 
 - `scripts/exploratorio/08_h20_serie_historica.py`
 - `results/exploratorio/H20_serie_indicadores.csv`, `H20_permanencia_municipios_extremos.csv`

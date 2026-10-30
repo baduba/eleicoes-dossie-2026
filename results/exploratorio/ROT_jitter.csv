@@ -1,0 +1,7 @@
+componente,anos,serie,sinais_das_variacoes,mudancas_de_sinal,monotonico
+UNIAO c1-c4 (disjunta por secao),4,"6,945,085 / 7,077,808 / 6,302,810 / 5,614,724",+--,1,False
+c1_opo_0a10,4,"670,512 / 928,308 / 505,308 / 376,149",+--,1,False
+c2_dom80,4,"6,933,821 / 7,108,559 / 6,239,447 / 5,604,858",+--,1,False
+c3_turnout95,4,"25,869 / -16,311 / 6,636 / 37,737",-++,1,False
+c4_sem_biom_30,3,"126,043 / 282,930 / 13,840",+-,1,False
+c5 excesso A31 (teto versionado),4,"7,843,578 / 2,975,220 / 2,038,696 / 2,193,368",--+,1,False

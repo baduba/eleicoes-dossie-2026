@@ -1,0 +1,5 @@
+ano,municipios,saldo_nacional,gini_contribuicao_abs,top100_pct_do_saldo_abs,saldo_top100_positivo,spearman_ranking_vs_anterior,municipios_pareados
+2014,5570,3533025,0.7321,36.35,5490666,,
+2018,5570,-10679000,0.7249,35.41,3371436,0.9321,5570.0
+2022,5570,2132004,0.6857,28.5,4651382,0.9736,5570.0
+2026,5571,4401534,0.6763,27.59,5905409,0.9864,5570.0
