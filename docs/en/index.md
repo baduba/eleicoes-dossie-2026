@@ -15,6 +15,35 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 This is not evidence of anything, on either side: it is a map of where an alteration would pass invisible to public data.
 
+## The two most obvious triggers, checked first
+
+These two patterns looked like the obvious place where an alteration would come cheap; that is why they were tested first, with section-level data.
+
+<div class="duo">
+<div>
+<h3>Exact ties and 1-vote margins</h3>
+<ul>
+<li><strong>2,150 sections with an exact tie</strong> between Lula and Flávio in 2026, with <strong>517,768 valid votes</strong>; <strong>4,517 sections decided by exactly 1 vote</strong>, with <strong>1,087,289 votes</strong>.</li>
+<li>Against the per-section binomial null: 2,150 ties observed vs 2,337 expected (ratio 0.92); 1-vote margins: 4,517 vs 4,672 (0.97). In every margin band from 0 to 10, 2026 sits <strong>below the null</strong>, as does 2022. The growth in ties (+5.1%) is the growth in the number of sections itself (+5.7%).</li>
+<li>Symmetry of the 1-vote margins: 2,268 for Lula and 2,249 for Flávio (p = 0.789): no side favored. Machine swapped in these sections: at or below the national rate.</li>
+<li><strong>Verdict: consistent with chance.</strong></li>
+</ul>
+</div>
+<div>
+<h3>Northeast: no-biometrics clearance and machine swap</h3>
+<ul>
+<li>Municipality-by-municipality correlation (1,794 municipalities, by rate): Spearman ρ = 0.06, substantially zero; "capitals have both" is a size effect.</li>
+<li>Sections with Lula ≥ 80% and (machine swap or top-10% no-biometrics municipality): <strong>3,469 sections</strong> in 2026, net 537,354 margin votes, ceiling of 24.3% of the margin; in 2022 the same pattern was <strong>larger</strong> (3,766 sections, net 602,222, ceiling 27.2%): it is structural, not specific to 2026.</li>
+<li>Opponent between 0 and 10 votes: 3,029 sections in 2026 (net 376,149; 65% in the Northeast), vs 4,097 in 2022 (net 505,308; 73% in the NE): the set <strong>shrank by 26%</strong>.</li>
+<li><strong>Verdict: structural, larger in 2022, with no rate correlation.</strong></li>
+</ul>
+</div>
+</div>
+
+<p class="destaque">A refuted pattern does not close the question. Anyone who wants to contest the numbers has the scripts and the data here; the 190 Northeastern sections with machine swap and high no-biometrics clearance are still asking for the voting sheet and the poll record (LAI request 07 already filed). These two were the most obvious triggers; the ones still open are in <a href="perguntas-em-aberto.html">Open questions</a>.</p>
+
+Details and calculations: [exploratory memo](https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/propostas/gatilhos-e-inversao.md) (in Portuguese).
+
 ## What we know and what we do not yet know
 
 ### Verified result

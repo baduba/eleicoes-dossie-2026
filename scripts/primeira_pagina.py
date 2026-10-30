@@ -62,6 +62,38 @@ def hero(raiz, readme=False):
     return "\n".join(L)
 
 
+def padroes(raiz, readme=False):
+    """Os dois gatilhos mais obvios, checados primeiro: empates e margens de 1 voto; Nordeste (sem biometria x troca de urna).
+    Numeros da analise com os parquets por secao (out/2026); memorando em docs/propostas/gatilhos-e-inversao.md."""
+    memo = "https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/propostas/gatilhos-e-inversao.md"
+    perg = "https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/perguntas-em-aberto.md" if readme else "perguntas-em-aberto.html"
+    L = ["## Os dois gatilhos mais óbvios, checados primeiro\n",
+         "Estes dois padrões pareciam o lugar óbvio onde uma alteração passaria barato; por isso foram testados primeiro, com os dados por seção.\n",
+         '<div class="duo">',
+         "<div>",
+         "<h3>Empates e margens de 1 voto</h3>",
+         "<ul>",
+         "<li><strong>2.150 seções com empate exato</strong> entre Lula e Flávio em 2026, com <strong>517.768 votos válidos</strong>; <strong>4.517 seções decididas por exatamente 1 voto</strong>, com <strong>1.087.289 votos</strong>.</li>",
+         "<li>Contra o nulo binomial por seção: empates observados 2.150 contra 2.337 esperados (razão 0,92); margens de 1 voto: 4.517 contra 4.672 (0,97). Em todas as faixas de margem de 0 a 10, 2026 fica <strong>abaixo do nulo</strong>, como 2022. O crescimento dos empates (+5,1%) é o do próprio número de seções (+5,7%).</li>",
+         "<li>Simetria das margens de 1 voto: 2.268 a favor de Lula e 2.249 a favor de Flávio (p = 0,789): nenhum lado favorecido. Urna trocada nessas seções: na taxa nacional ou abaixo.</li>",
+         "<li><strong>Veredito: compatível com o acaso.</strong></li>",
+         "</ul>",
+         "</div>",
+         "<div>",
+         "<h3>Nordeste: habilitação sem biometria e troca de urna</h3>",
+         "<ul>",
+         "<li>Correlação município a município (1.794 municípios, por taxa): Spearman ρ = 0,06, substancialmente zero; \"as capitais têm os dois\" é efeito de tamanho.</li>",
+         "<li>Seções com Lula ≥ 80% e (troca de urna ou município no top-10% de habilitação sem biometria): <strong>3.469 seções</strong> em 2026, saldo de 537.354 votos de margem, teto de 24,3% da margem; em 2022 o mesmo padrão era <strong>maior</strong> (3.766 seções, saldo 602.222, teto de 27,2%): é estrutural, não específico de 2026.</li>",
+         "<li>Oponente entre 0 e 10 votos: 3.029 seções em 2026 (saldo 376.149; 65% no Nordeste), contra 4.097 em 2022 (saldo 505.308; 73% no NE): o conjunto <strong>encolheu 26%</strong>.</li>",
+         "<li><strong>Veredito: estrutural, maior em 2022, sem correlação por taxa.</strong></li>",
+         "</ul>",
+         "</div>",
+         "</div>\n",
+         f'<p class="destaque">Padrão refutado não fecha a pergunta. Quem quiser contestar os números tem os scripts e os dados aqui; as 190 seções do Nordeste com troca de urna e alta habilitação sem biometria seguem pedindo folha de votação e ata (pedido LAI 07 já protocolado). Estes dois eram os gatilhos mais óbvios; os que restam abertos estão nas <a href="{perg}">Perguntas em aberto</a>.</p>\n',
+         f"Detalhamento e contas: [memorando exploratório]({memo}).\n"]
+    return "\n".join(L)
+
+
 def cartao(r, readme):
     anc = "" if readme else f'<a id="{str(r.id).lower()}"></a>\n'
     if pd.notna(r.teto_pior_caso):
