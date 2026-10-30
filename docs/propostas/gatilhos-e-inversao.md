@@ -55,7 +55,7 @@ n=298 para 95% — `poder_bu_impresso.csv`).
 
 | âncora | o que veria uma inversão | cobertura no dossiê | poder contra inversão de 1,8% |
 |---|---|---|---|
-| boletim impresso fotografado | BU impresso ≠ BU digital na mesma seção | 0 conferidos; infra pronta (`04_cruza_bu_impresso.py`, listas A31/A31b/A33) | 0,83 (n=100) a ≈1 (n=300) — **o gargalo é coleta, não poder** |
+| boletim impresso fotografado | BU impresso ≠ BU digital na mesma seção | 0 conferidos; infra pronta (`04_cruza_bu_impresso.py`, listas A31/A31b/A33) | 0,83 (n=100) a ≈1 (n=300) — **o gargalo é coleta, não poder**. **CORREÇÃO (29/10, cenário de inversão total):** o BU é impresso pelo mesmo software que inverteria; a foto bate com o BWeb mesmo sob inversão **a montante** (no ato do registro). BU só detecta inversão/alteração **a jusante** do papel (transmissão, totalização, republicação — A18). O detector do elo digitado→registrado é o teste de integridade e as âncoras externas — ver seção "Cenário de inversão total" |
 | teste de integridade (TCU) | voto de papel ≠ voto registrado na urna sorteada | levantamento de poder feito (A19); resultado consolidado pendente | ≈1,0 se a inversão for uniforme; cai se a inversão evitar urnas sorteadas (por isso A24 importa) |
 | coerência presidente × governador (A22) | presidente "destoando" do governador alinhado na mesma seção | NÃO EXECUTÁVEL em 2026 (nenhuma UF elegível pela regra; variante 9b com 2 UFs, poder muito baixo) | baixo em 2026; cobriria só inversão restrita ao cargo de presidente |
 | transições T1→T2 (A31) | inversão concentrada apareceria como f extremo | executado; Silva Jardim dentro da cauda; 20 extremos caracterizados | inversão **uniforme** é invisível (se confunde com transferência legítima); concentrada, parcialmente visível |
@@ -79,12 +79,16 @@ as curvas de poder (G2). Não vi nenhum boletim impresso (0 conferidos) nem o re
 
 **Métricas e regras de decisão (cada uma pré-compromissada).**
 
-1. **Boletins impressos (principal).** Para cada BU fotografado recebido (via página `boletins-impressos` ou
-   coleta dirigida às listas A31b_20, A33_20 e A32_50): divergência de **um voto** em qualquer candidato entre
-   impresso e BWeb é reportada individualmente. Regra: f̂ = divergências de troca 13↔22 / votos conferidos;
-   IC95 por Wilson. **Refuta a inversão de magnitude m** se o limite superior do IC95 < m com n calculado pela
-   tabela de poder já versionada (`poder_bu_impresso.csv`: n=298 para refutar 1% com 95%; n=149 para 2%).
-   Convenção de sentido: troca em qualquer direção conta; desequilíbrio de sentido é reportado à parte.
+1. **Boletins impressos (limitado à inversão a jusante).** Para cada BU fotografado recebido (via página
+   `boletins-impressos` ou coleta dirigida às listas A31b_20, A33_20 e A32_50): divergência de **um voto** em
+   qualquer candidato entre impresso e BWeb é reportada individualmente. Regra: f̂ = divergências de troca 13↔22 /
+   votos conferidos; IC95 por Wilson. **Refuta a inversão de magnitude m** se o limite superior do IC95 < m com n
+   calculado pela tabela de poder já versionada (`poder_bu_impresso.csv`: n=298 para refutar 1% com 95%; n=149
+   para 2%). Convenção de sentido: troca em qualquer direção conta; desequilíbrio de sentido é reportado à parte.
+   **Escopo corrigido (29/10):** este braço cobre só a inversão/alteração **a jusante do BU** (depois da impressão:
+   transmissão, totalização, republicação — hipótese A18). Ele **não** cobre a inversão **a montante** (no
+   registro, antes do BU), porque o papel é impresso pelo mesmo software que inverteria; para a montante valem os
+   braços 2 e 4 e o pré-registro A37b (seção "Cenário de inversão total").
 2. **Teste de integridade (TCU).** Quando o relatório consolidado sair: se o número de urnas com divergência
    papel×registro para presidente for 0 em n urnas, o limite superior de f é 3/n (regra dos três), e A37 registra
    "inversão ≥ 3/n REFUTADA pelo teste de integridade, **sob a premissa de que a inversão não evita urnas
@@ -215,6 +219,150 @@ uso inferencial exige pré-registro **antes** de olhar o ranking — incluído a
 
 ---
 
+---
+
+# PARTE 1b — CENÁRIO DE INVERSÃO TOTAL (o resultado publicado é o espelho do real)
+
+*Adicionado em 29/10/2026, a pedido do dono: a tese é de inversão em massa (13↔22 trocados nacionalmente), não de
+uma fração pequena. EXPLORATÓRIO; as âncoras internas usadas abaixo são outputs já versionados (A2, A31, A7) —
+reusá-los para esta pergunta é leitura posterior, não veredito pré-registrado, exceto onde indicado.*
+
+## 1b.0. Correção analítica (registrada também em A37, braço 1)
+
+**Boletim impresso NÃO detecta inversão no ato do registro.** O BU é impresso pelo mesmo software que faria a
+inversão: sob inversão **a montante** (digitado → registrado), o papel sai já invertido e a foto do BU bate com o
+BWeb. BU impresso detecta apenas alteração **a jusante** do papel (transmissão, recepção, totalização,
+republicação — a hipótese A18). O detector do elo a montante é o **teste de integridade** (votação paralela
+auditada, papel×registro) e **âncoras externas ao software da urna** (outros cargos na mesma cédula, outro turno,
+pesquisas, boca de urna). A37 foi ajustado para deixar a distinção explícita.
+
+## 1b.1. Taxonomia das variantes e assinatura detectável de cada uma
+
+### a. Inversão total só no 2º turno vs. nos dois turnos
+
+**Só no T2.** O 1º turno publicado seria o voto real. Duas assinaturas obrigatórias, ambas **já medidas**:
+
+1. **Eixo T1→T2 por seção viraria de sinal.** Sob inversão só no T2, a margem publicada no T2 é o negativo da
+   margem real, e a margem real seção-a-seção é fortemente correlacionada com a do T1; logo
+   `margem_T2_publicada ~ margem_T1` teria coeficiente fortemente **negativo** (≈ −0,9). O coeficiente versionado
+   (A2, `A2_a2_swing.csv`, EF de município) é **+0,940 em 2026 — o MAIS ALTO da série** (2014: 0,824; 2018: 0,758;
+   2022: 0,915). Distância do valor esperado sob inversão: centenas de erros padrão. A forma da distribuição do
+   swing também está dentro dos placebos (KS 2026×placebo mais próximo = 0,019 < maior KS entre placebos = 0,123;
+   `A2_a2_criterio_forma.csv`).
+2. **Herança do pool (A31).** Sob inversão só no T2, o PT herdaria a base do oponente e perderia a própria:
+   o f nacional (fração do pool T1→T2 capturada pelo PT) sairia de perto de 0/negativo — e os municípios
+   mostrariam transições absurdas em escala nacional, não só em Itacoatiara. O f nacional versionado é **0,737**
+   (PT capturou 73,7% do pool), dentro da faixa histórica (2014: 0,411; 2018: 0,645; 2022: 0,302 — ano em que o
+   pool era pequeno e o PT, líder do T1), e a identidade contábil A3/A11 fecha município a município em todos os
+   anos. **Leitura explícita: o padrão nacional de transição é compatível com herança normal, e incompatível com
+   inversão total só no T2.**
+
+**Nos dois turnos.** A âncora do T1 some; a comparação pesquisa→resultado precisa errar nos dois turnos, e a
+inversão passa a ser testável principalmente por (b) e pelas âncoras externas (§1b.2).
+
+### b. Inversão só na presidência vs. em todos os cargos
+
+**Só na presidência.** Os votos de deputado federal/estadual, senador e governador na **mesma cédula** não seriam
+invertidos. A correlação seção-a-seção entre o share do candidato a presidente e o share dos deputados do seu
+partido — altíssima em qualquer eleição normal — **desmoronaria** em 2026 contra 2022/2018/2014. Este é o teste
+interno mais forte contra a variante, é **computável com dados públicos** (`votacao_secao` tem todos os cargos;
+os parquets por cargo `cargos_*` são gerados por `05_extras_bweb.py`) e está **pendente de insumo nesta máquina**
+(os parquets não estão aqui — script pronto: `scripts/exploratorio/05_a37b_presidente_x_deputado.py`, falha com
+NãoExecutado explícito sem o diretório).
+
+**PRÉ-REGISTRO A37b — alinhamento presidente × deputado (a revisar ANTES de rodar).**
+
+- **Declaração de ordem (a preencher).** Antes deste adendo vi apenas os agregados de A22 e a existência dos
+  parquets por cargo; nenhuma correlação presidente×deputado foi calculada.
+- **H0.** Sem inversão: o alinhamento seção-a-seção presidente×deputado do mesmo campo partidário em 2026/T2 está
+  dentro do envelope dos placebos.
+- **Unidade e pares.** Seção apurada (sem exterior), 2º turno, 2014/2018/2022/2026. Pares: Lula × federação PT
+  (PT+PCdoB+PV) e Flávio × PL em 2026 e 2022; Haddad × PT e Bolsonaro × PSL em 2018; Dilma × PT e Aécio × PSDB em
+  2014 (T1 de 2014 para o par presidencial, com o T1 de 2026/2022/2018 como sensibilidade simétrica).
+- **Métrica (fixada).** Por UF e par: correlação de Spearman entre share do presidente (válidos do cargo) e share
+  do partido nos votos de deputado federal da seção; estatística nacional = mediana das 27 UFs, ponderada por
+  seções. Métrica secundária: R² da regressão seção share_pres ~ share_dep com EF de município.
+- **Regra de decisão.** Interseção-união: EXCESSO (compatível com inversão só-presidente) só se a estatística de
+  2026 ficar **abaixo** do mínimo dos três placebos por mais de 2 erros padrão (bootstrap por município, 1.000
+  reamostragens, semente 20261029), nos dois pares (PT e oponente). Dentro do envelope = inversão total
+  só-presidente REFUTADA na magnitude nacional (qualquer inversão residual teria de ser pequena e localizada).
+- **Teto em votos de margem se INCONCLUSIVO** (poder insuficiente ou dados faltantes): a menor inversão detectável
+  dado o desvio padrão residual da regressão, convertida por fator 2 sobre os válidos; calculado ao rodar.
+- **Limite declarado.** Não detecta inversão simultânea em todos os cargos (essa exige âncora externa), nem
+  inversão só-presidente em escala muito pequena.
+
+**Em todos os cargos e turnos.** Nenhuma âncora interna resta: RDV, BU, BWeb, totalização, correlações entre
+cargos e entre turnos seriam todos coerentes por construção. Restam só âncoras externas ao software: teste de
+integridade, boca de urna, pesquisas, e o custo político da operação (§1b.2 e §1b.3).
+
+### c. Relação entre as três variantes
+
+A37 (já registrado) cobre a inversão **parcial** (fração f dos votos, uniforme ou concentrada), detectável por
+amostragem (teste de integridade; BU só a jusante). A inversão **total só no T2** é a variante mais fraca da tese
+do dono — já contraindicada pelos eixos internos (a). A inversão **total só-presidente nos dois turnos** é a
+variante testável restante — via A37b. A inversão **total em todos os cargos e turnos** é o ponto cego terminal
+— só âncoras externas.
+
+## 1b.2. Âncoras externas com poder real contra inversão total
+
+**Pesquisas pré-eleitorais (A7, já versionado) — cálculo sob as duas hipóteses** (saída:
+`results/exploratorio/inversao_total_ancoras.csv`). Margem oficial = 3,57 p.p. dos válidos; a inversão total
+desloca cada share por 1× a margem (a distância entre os dois mundos é 2× = 7,14 p.p.).
+
+| hipótese | erro esperado da pesquisa final contra o resultado publicado | erro observado 2026 |
+|---|---|---|
+| sem inversão | pequeno (série do repo: 0,13 p.p. em 2018; 1,1 p.p. em 2022) | **2,79 p.p. (Datafolha), 2,59 p.p. (AtlasIntel)** — os maiores da série, fora da margem declarada (já registrado em A7) |
+| inversão total | ≈ 1× margem = **3,57 p.p.** contra o publicado (e ~0 contra o espelho) | 2,79 / 2,59 p.p. contra o publicado; **0,79 / 0,99 p.p. contra o espelho** |
+
+**Leitura honesta (correção ao enunciado que eu mesmo faria):** a pesquisa pré-eleitoral **não decide** a
+inversão total. Os erros observados são consistentes com as duas hipóteses — ou as duas pesquisas finais erraram
+~2,7 p.p. na mesma direção (o maior erro da série do repo, fora da margem declarada), ou acertaram a realidade
+espelhada. O que a pesquisa exclui é uma inversão total **com pesquisas corretas sobre o mundo publicado**: se
+alguém afirma que "as pesquisas estavam certas e o resultado é real", o erro de 2,7 p.p. precisa ser explicado;
+se afirma inversão total, o erro de 0,8–1,0 p.p. contra o espelho é compatível. A série histórica de erros de
+boca de urna/Ibope (o "quanto seria o maior erro da história") **não está no repo** — insumo a coletar, com fonte
+(registros TSE + arquivos dos institutos).
+
+**Pesquisas pré-T1 × resultado do T1 (assinatura da variante "só no T2").** Se a inversão fosse só no T2, o T1
+publicado bate com as pesquisas de boca de urna do T1. **Insumo a coletar:** resultados de boca de urna do 1º
+turno de 2026 (Datafolha/Ibope publicam no dia) — não há no repo; as pesquisas registradas estão em
+`data/pesquisas_registro_tse_24out2026.csv`, mas sem os resultados (A7 já registrou essa limitação).
+
+**Boca de urna (exit poll) do T2.** Mede o voto real no dia, fora do software: sob inversão total, divergiria do
+publicado por ~1× margem (3,6 p.p.) — muito além do erro típico de exit poll (1–2 p.p.). **Não há dado de boca
+de urna no repo** — insumo a coletar com fonte (Datafolha/Ibope/publicações dos institutos; nada automatizável do
+TSE).
+
+**Teste de integridade (TCU).** Único detector direto do elo digitado→registrado. Contra inversão **total**, o
+poder é ≈1 mesmo com dezenas de urnas (fração alterada ~100%). Resultado consolidado pendente; premissa declarada
+de sempre (a inversão não evita urnas sorteadas; A24 segue NÃO EXECUTADO). Notícia pública de outubro/2026 já
+citada no dossiê ("teste de integridade confirma correspondência entre cédulas e votos registrados") aponta zero
+divergências parciais — a consolidar no relatório.
+
+**Custo político-organizacional (não é teste, é contabilidade de exigências).** Inversão total em todos os cargos
+e turnos exigiria silêncio simultâneo de: partidos e fiscais em 499 mil seções (o BU impresso bateria com o
+publicado mesmo sob inversão, mas fiscais e mesários lembram do movimento, das parciais anotadas e das
+zerésimas), mesários que registram ocorrências em ata, institutos de pesquisa (pré-eleitorais e boca de urna),
+e as instituições do teste de integridade (TCU, MP, partidos, OAB, Forças Armadas). Não é prova de
+impossibilidade; é a lista do que a tese precisa carregar.
+
+## 1b.3. Síntese: variante × detector × cobertura × veredito provisório honesto
+
+| variante | detector decisivo | cobertura atual | veredito provisório (exploratório) |
+|---|---|---|---|
+| parcial uniforme/concentrada (A37) | teste de integridade; BU só a jusante | TI pendente; 0 BUs | **NÃO FECHADO — janela de ~1,8% aberta** até TI/BUs |
+| total só no 2º turno | eixo T1→T2 (A2), herança do pool (A31), identidade A3 | já medido | **fortemente contraindicada**: coef. swing 2026 = +0,940 (maior da série; sob inversão seria ≈ −0,9); f nacional 0,737 dentro da faixa histórica |
+| total, dois turnos, só na presidência | **A37b** (correlação presidente×deputado) | script pronto; **pendente dos parquets por cargo** (ausentes nesta máquina) | **TESTÁVEL, não executado** — é o próximo teste a rodar |
+| total, todos os cargos e turnos | teste de integridade; boca de urna; pesquisas (fracas); custo político | TI pendente; sem boca de urna no repo | **ponto cego quase filosófico** — não refutável por dados públicos de urna; carrega exigência de silêncio universal e a previsão pré-registrável de exit polls divergindo ~3,6 p.p. do publicado |
+
+**Consequência prática para o projeto.** Ordem de trabalho sugerida: (1) rodar A37b assim que os parquets por
+cargo estiverem disponíveis (fecha a variante testável restante); (2) coletar boca de urna do T1 e do T2 de 2026
+com fonte (âncora externa barata); (3) registrar o resultado consolidado do TCU quando sair, com a regra dos três
+já fixada em A37; (4) manter a coleta de BUs impressos para o braço a jusante (A18), sem vendê-lo como detector
+da inversão a montante.
+
+---
+
 ## Saídas desta rodada
 
 - `scripts/exploratorio/03_gatilhos_intersecoes.py`
@@ -224,4 +372,11 @@ uso inferencial exige pré-registro **antes** de olhar o ranking — incluído a
 - `results/exploratorio/empilhamento_por_municipio_2mais.csv` (109 municípios com 2+ bandeiras, com as bandeiras)
 - `results/exploratorio/empilhamento_por_uf.csv`
 - `docs/propostas/gatilhos-e-inversao.md` (este memorando: tese da inversão + pré-registro A37 + empilhamento +
-  esboço A38)
+  esboço A38 + **PARTE 1b: cenário de inversão total, A37b**)
+
+Rodada da inversão total (29/10):
+- `scripts/exploratorio/04_inversao_total_ancoras.py` → `results/exploratorio/inversao_total_ancoras.csv`
+  (eixo T1→T2 sob as duas hipóteses; erros de pesquisa contra o publicado e contra o espelho; escala da margem)
+- `scripts/exploratorio/05_a37b_presidente_x_deputado.py` (pré-registrado, **pendente de insumo**: falha com
+  NãoExecutado sem os parquets `cargos_*`)
+- correção do braço "boletim impresso" de A37 e da tabela de âncoras (montante vs. jusante do BU)

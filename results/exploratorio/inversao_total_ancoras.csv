@@ -1,0 +1,14 @@
+bloco,ano,medida,valor,ep,esperado_sob_inversao_total_so_T2,leitura,instituto
+eixo_T1_T2,2014,coef margem_T2 ~ margem_T1 (EF municipio),0.8242,0.00693,fortemente negativo (~ -coef. real),incompativel com inversao total so no T2,
+eixo_T1_T2,2018,coef margem_T2 ~ margem_T1 (EF municipio),0.7577,0.00503,fortemente negativo (~ -coef. real),incompativel com inversao total so no T2,
+eixo_T1_T2,2022,coef margem_T2 ~ margem_T1 (EF municipio),0.9146,0.00553,fortemente negativo (~ -coef. real),incompativel com inversao total so no T2,
+eixo_T1_T2,2026,coef margem_T2 ~ margem_T1 (EF municipio),0.9396,0.00253,fortemente negativo (~ -coef. real),incompativel com inversao total so no T2,
+eixo_T1_T2,2026,f nacional = fracao do pool capturada pelo PT (A31),0.7367,,proximo de 0 ou negativo (PT herdaria a base do oponente e perderia a propria),"dentro da faixa historica 0,30-0,74; heranca normal",
+eixo_T1_T2,2022,f nacional = fracao do pool capturada pelo PT (A31),0.3017,,proximo de 0 ou negativo (PT herdaria a base do oponente e perderia a propria),"dentro da faixa historica 0,30-0,74; heranca normal",
+eixo_T1_T2,2018,f nacional = fracao do pool capturada pelo PT (A31),0.6452,,proximo de 0 ou negativo (PT herdaria a base do oponente e perderia a propria),"dentro da faixa historica 0,30-0,74; heranca normal",
+eixo_T1_T2,2014,f nacional = fracao do pool capturada pelo PT (A31),0.4108,,proximo de 0 ou negativo (PT herdaria a base do oponente e perderia a propria),"dentro da faixa historica 0,30-0,74; heranca normal",
+pesquisa,2026,erro do oponente (p.p.) contra o publicado / contra o espelho,2.79 / 0.79,,erro contra o publicado ~= 1x margem = 3.57 p.p. (a inversao desloca cada share por 1 margem; 2x margem = 7.14 p.p. e a distancia entre os dois mundos),"AMBAS as hipoteses consistentes: sem inversao, a pesquisa errou 2.79 p.p. (maior da serie, fora da margem declarada); com inversao total, a pesquisa acertou a realidade (erro 0.79 p.p.)",Datafolha
+pesquisa,2026,erro do oponente (p.p.) contra o publicado / contra o espelho,2.59 / 0.99,,erro contra o publicado ~= 1x margem = 3.57 p.p. (a inversao desloca cada share por 1 margem; 2x margem = 7.14 p.p. e a distancia entre os dois mundos),"AMBAS as hipoteses consistentes: sem inversao, a pesquisa errou 2.59 p.p. (maior da serie, fora da margem declarada); com inversao total, a pesquisa acertou a realidade (erro 0.99 p.p.)",AtlasIntel
+pesquisa (referencia historica),2018,erro do PT na pesquisa final (p.p.),0.13,,n/a,"serie de erros: 0,13 (2018), 1,1 (2022), 2,6-2,8 (2026)",Datafolha
+pesquisa (referencia historica),2022,erro do PT na pesquisa final (p.p.),1.1,,n/a,"serie de erros: 0,13 (2018), 1,1 (2022), 2,6-2,8 (2026)",Datafolha
+escala,2026,margem oficial em p.p. dos validos,3.57,,—,inversao total desloca o resultado em 2x isto = 7.14 p.p.,
