@@ -39,6 +39,7 @@ footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.82rem;padding:
 .destaque{font-size:1.15rem;font-weight:700}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}.duo>div{border:1px solid var(--bd);border-radius:6px;padding:.6rem 1rem}.duo h3{margin-top:.6rem}
 @media(max-width:720px){.duo{grid-template-columns:1fr}}
+.ciclo{max-width:560px;margin:1rem auto;text-align:center}.ciclo>div{border:1px solid var(--bd);border-radius:6px;padding:.5rem .8rem;background:var(--cd)}.ciclo>div+div{margin-top:1.35rem;position:relative}.ciclo>div+div::before{content:"↓";position:absolute;top:-1.3rem;left:50%;transform:translateX(-50%);color:var(--mut)}
 blockquote{border-left:4px solid var(--ac);background:var(--cd);margin:1rem 0;padding:.5rem .9rem}blockquote p{margin:.35rem 0}
 .langsel{display:flex;gap:0;margin-top:.5rem;font-size:.95rem;font-weight:600;border:1.5px solid var(--ac);border-radius:999px;overflow:hidden;width:max-content}
 .langsel a,.langsel span{padding:.25rem 1rem;text-decoration:none;color:var(--ac)}

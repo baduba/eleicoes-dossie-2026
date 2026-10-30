@@ -121,6 +121,25 @@ def eras(raiz, readme=False):
          "<h3>A hipótese da fraude (o teto de cerca de 10 milhões de votos)</h3>",
          "<p>A leitura que organiza toda a série: uma <strong>fraude com teto de cerca de 10 milhões de votos</strong>. Sob ela, 2014 (margem de 3,46 milhões de votos), 2022 (2,14 milhões) e 2026 (4,43 milhões) seriam reversíveis; 2018 não foi (10,76 milhões, acima do teto, com a onda pós-facada e um adversário sem força própria). O teste de fechamento de fluxo deste dossiê mede um desvio sem fonte de +4,8 a +6,7 milhões em 2026, mais o espelho de cerca de 5 milhões do outro lado: a ordem de grandeza bate com o teto.</p>",
          "<p><strong>A hipótese não pode ser confirmada nem refutada com dados internos</strong>: \"o declínio seria a estratégia\" explica qualquer padrão. O que a sustenta em pé como pergunta é que 2018, a eleição fora do alcance do teto, é também a única fora da era apertada. O que a decide: pesquisa de transferência de voto, folha de votação, boletim impresso, teste de integridade.</p>\n",
+         "<h3>A curva do declínio</h3>",
+         imagem("g5_declinio", "png",
+                "Cinco indicadores da série 2014 a 2026, normalizados a índice 2018 igual a 100: seções com 0 a 10 votos no oponente, saldo em seções com PT a 80% ou mais, habilitação sem biometria no Nordeste, empates sobre o nulo e resíduo total medido. Todos caem desde o pico de 2018.", readme),
+         "| indicador | 2014 | 2018 | 2022 | 2026 |\n|---|---|---|---|---|\n"
+         "| seções com oponente entre 0 e 10 votos | 6.324 | 7.606 | 4.097 | 3.029 (-60% do pico) |\n"
+         "| saldo em seções com PT a 80% ou mais (mi) | 6,02 | 6,38 | 5,58 | 4,97 (-22%) |\n"
+         "| habilitação sem biometria no Nordeste (%) | sem dado | 9,49 | 9,38 | 7,19 |\n"
+         "| empates observados / nulo esperado | 0,90 | 1,03 | 0,95 | 0,92 |\n"
+         "| resíduo total medido (mi de votos de margem) | 6,95 | 7,08 | 6,30 | 5,61 (-21%) |\n",
+         "**Desde o pico de 2018, tudo que é mensurável caiu.** Há duas leituras para a mesma curva. A benigna: a biometria expandindo, os redutos se urbanizando, a estrutura amadurecendo; com ela, o declínio é progresso. A adversarial: com ela, o declínio é a técnica; cada sinal visível encolhe um pouco a cada ciclo, e um teste de regressão que procura crescimento não enxerga um esquema cujo sucesso é justamente não crescer. **Os dois cenários deixam a mesma curva; dados internos não os separam.**\n",
+         "<h3>Como o esquema funcionaria</h3>",
+         '<div class="ciclo">',
+         "<div><b>1.</b> Uma técnica nova entra em ciclo de teste, com volume pequeno.</div>",
+         "<div><b>2.</b> Se funciona, escala até o necessário, dentro do teto de cerca de 10 milhões de votos.</div>",
+         "<div><b>3.</b> O escrutínio público cresce ao redor da técnica (auditorias, pedidos de dados, testes estatísticos como os desta página).</div>",
+         "<div><b>4.</b> A técnica é reduzida gradualmente a cada eleição, até virar \"estrutura\" invisível nos testes.</div>",
+         "<div><b>5.</b> Uma técnica nova já entrou no lugar, e o ciclo recomeça.</div>",
+         "</div>\n",
+         "Nenhum teste de agregado enxerga o ciclo completo: cada medição vê um ponto da curva, não a rotação. O que veria o ciclo inteiro: a soma das âncoras externas (boletim impresso, folha de votação, pesquisa de transferência, teste de integridade) comparada entre eleições.\n",
          '<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma fraude desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>\n']
     return "\n".join(L)
 

@@ -40,6 +40,30 @@ This is not evidence of anything, on either side: it is a map of where an altera
 <p>The reading that organizes the whole series: a <strong>fraud with a ceiling of about 10 million votes</strong>. Under it, 2014 (margin of 3.46 million votes), 2022 (2.14 million) and 2026 (4.43 million) would be reversible; 2018 was not (10.76 million, above the ceiling, with the post-stabbing wave and an opponent without strength of his own). The flow-closure test in this dossier measures an unaccounted deviation of +4.8 to +6.7 million in 2026, plus a mirror of about 5 million on the other side: the order of magnitude matches the ceiling.</p>
 <p><strong>The hypothesis can be neither confirmed nor refuted with internal data</strong>: "the decline would be the strategy" explains any pattern. What keeps it standing as a question is that 2018, the election beyond the ceiling's reach, is also the only one outside the close-election era. What settles it: vote-transfer polling, voting sheets, printed receipts, the integrity test.</p>
 
+<h3>The decline curve</h3>
+<picture><source media="(max-width: 640px)" srcset="img/en/g5_declinio_m.png"><img src="img/en/g5_declinio.png" alt="Five indicators of the 2014-2026 series, normalized to index 2018 equals 100: sections with 0 to 10 votes for the opponent, net votes in sections with PT at 80% or more, no-biometrics clearance in the Northeast, observed ties over the null, and total measured residual. All fall from the 2018 peak."></picture>
+
+| indicator | 2014 | 2018 | 2022 | 2026 |
+|---|---|---|---|---|
+| sections with opponent between 0 and 10 votes | 6,324 | 7,606 | 4,097 | 3,029 (-60% from the peak) |
+| net in sections with PT at 80% or more (mi) | 6.02 | 6.38 | 5.58 | 4.97 (-22%) |
+| no-biometrics clearance in the Northeast (%) | no data | 9.49 | 9.38 | 7.19 |
+| observed ties / expected null | 0.90 | 1.03 | 0.95 | 0.92 |
+| total measured residual (mi margin votes) | 6.95 | 7.08 | 6.30 | 5.61 (-21%) |
+
+**Since the 2018 peak, everything measurable has fallen.** There are two readings of the same curve. The benign one: biometrics expanding, strongholds urbanizing, the structure maturing; under it, the decline is progress. The adversarial one: under it, the decline is the technique; each visible signal shrinks a little every cycle, and a regression test that looks for growth does not see a scheme whose success is precisely not growing. **Both scenarios produce the same curve; internal data cannot tell them apart.**
+
+<h3>How the scheme would work</h3>
+<div class="ciclo">
+<div><b>1.</b> A new technique enters a test cycle, with small volume.</div>
+<div><b>2.</b> If it works, it scales up to what is needed, within the ceiling of about 10 million votes.</div>
+<div><b>3.</b> Public scrutiny grows around the technique (audits, data requests, statistical tests like the ones on this page).</div>
+<div><b>4.</b> The technique is gradually scaled back each election, until it becomes "structure" invisible to the tests.</div>
+<div><b>5.</b> A new technique has already taken its place, and the cycle restarts.</div>
+</div>
+
+No aggregate test sees the full cycle: each measurement sees one point of the curve, not the rotation. What would see the whole cycle: the sum of the external anchors (printed receipts, voting sheets, vote-transfer polling, the integrity test) compared across elections.
+
 <p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for a fraud of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
 
 ## The two most obvious triggers, checked first
