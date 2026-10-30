@@ -47,6 +47,33 @@ These two patterns looked like the obvious place where an alteration would come 
 
 Details and calculations: [exploratory memo](https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/propostas/gatilhos-e-inversao.md) (in Portuguese).
 
+## The count that doesn't add up: where did the runoff votes come from
+
+In every runoff since 2002, the votes each finalist gains have to come from somewhere: from aligned eliminated candidates, from those who cast blank or null ballots in the first round, and from new turnout. In 2026, this count does not close without a remainder.
+
+<div class="duo">
+<div>
+<h3>Lula's side</h3>
+<ul>
+<li>Lula gained <strong>+10.38 million</strong> votes between the first and the second round. Naturally aligned sources explain 3.7 to 5.5 million. <strong>An unaccounted +4.8 to +6.7 million remain.</strong></li>
+<li>To close the count without a remainder, 90 to 99% of the votes of Cury, Caiado and Zema (6.42 million, all with declared endorsement of Flávio) would have had to go to Lula. In the historical series, when an eliminated candidate endorses a finalist, about 73% of their votes follow the endorsement (2014). Cross-over on this scale has no precedent in 2002-2022.</li>
+</ul>
+</div>
+<div>
+<h3>The other side, and the honest controls</h3>
+<ul>
+<li>Mirror: Flávio gained only <strong>+3.72 million</strong>, with an endorsed right-wing pool of about 8.9 million.</li>
+<li>Deviations of 2 to 7 million between expected and observed happened in all 7 elections of the series (2014 had an even larger one, against the PT: -6.73 million). What is unprecedented in 2026 is not the size of the deviation: it is the <strong>direction and the composition</strong>. The finalist with the smaller pool gained the largest volume, and the benign closure requires unprecedented electoral behavior.</li>
+</ul>
+</div>
+</div>
+
+Reconciliation with the municipal test: the municipality-by-municipality transitions already published (A31) reproduce exactly in this analysis (f 2026: 0.7360 vs 0.7367 versioned). The two readings are consistent; the national closure with ideological pools measures what the agnostic municipal test does not.
+
+**Status:** **exploratory** analysis; pre-registration A39 proposed (implicit cross-over vs runoff vote-transfer polls of 2026); data and script in `results/exploratorio/FLX_*` and `scripts/exploratorio/10_fechamento_fluxo.py`.
+
+<p class="destaque">A count that doesn't add up is proof of nothing: it could be the largest electoral wave of the series, and no test separates wave from operation with internal data. But it is the first time that closing the count requires believing in something that has never happened. What decides is not this dossier: it is runoff vote-transfer polling, voting sheets and printed receipts. Until they arrive, the question stays on record.</p>
+
 ## What we know and what we do not yet know
 
 ### Verified result

@@ -49,6 +49,33 @@ Estes dois padrões pareciam o lugar óbvio onde uma alteração passaria barato
 
 Detalhamento e contas: [memorando exploratório](https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/propostas/gatilhos-e-inversao.md).
 
+## A conta que não fecha: de onde vieram os votos do 2º turno
+
+Em todo 2º turno desde 2002, os votos que cada finalista ganha têm que vir de algum lugar: dos eliminados alinhados, de quem votou branco ou nulo no 1º turno e do comparecimento novo. Em 2026, essa conta não fecha sem sobra.
+
+<div class="duo">
+<div>
+<h3>O lado de Lula</h3>
+<ul>
+<li>Lula ganhou <strong>+10,38 milhões</strong> de votos entre o 1º e o 2º turno. As fontes naturalmente alinhadas explicam de 3,7 a 5,5 milhões. <strong>Sobram de +4,8 a +6,7 milhões sem fonte óbvia.</strong></li>
+<li>Para fechar a conta sem sobra, seria preciso que <strong>90 a 99%</strong> dos votos de Cury, Caiado e Zema (6,42 milhões, todos com endosso declarado a Flávio) tivessem ido para Lula. Na série histórica, quando um eliminado endossa um finalista, cerca de 73% dos votos seguem o endosso (2014). Cross-over nessa escala não tem precedente em 2002-2022.</li>
+</ul>
+</div>
+<div>
+<h3>O outro lado, e os controles honestos</h3>
+<ul>
+<li>Espelho: Flávio ganhou só <strong>+3,72 milhões</strong>, tendo um pool de direita endossado de cerca de 8,9 milhões.</li>
+<li>Desvios de 2 a 7 milhões entre esperado e observado aconteceram nas 7 eleições da série (2014 teve desvio maior ainda, contra o PT: -6,73 milhões). O que é sem precedente em 2026 não é o tamanho do desvio: é a <strong>direção e a composição</strong>. O finalista com o menor pool ganhou o maior volume, e o fechamento benigno exige comportamento eleitoral inédito.</li>
+</ul>
+</div>
+</div>
+
+Reconciliação com o teste municipal: as transições município a município já publicadas (A31) reproduzem exatamente nesta análise (f 2026: 0,7360 contra 0,7367 versionado). As duas leituras são consistentes; o fechamento nacional com pools ideológicos mede o que o municipal agnóstico não mede.
+
+**Status:** análise **exploratória**; pré-registro A39 proposto (cross-over implícito x pesquisas de transferência do 2º turno de 2026); dados e script em `results/exploratorio/FLX_*` e `scripts/exploratorio/10_fechamento_fluxo.py`.
+
+<p class="destaque">Uma conta que não fecha não é prova de nada: pode ser a maior onda eleitoral da série, e nenhum teste separa onda de operação com dados internos. Mas é a primeira vez que fechar a conta exige acreditar em algo que nunca aconteceu. O que decide não é este dossiê: é pesquisa de transferência de voto do 2º turno, folha de votação e boletim impresso. Enquanto isso não chega, a pergunta fica registrada.</p>
+
 ## O que sabemos e o que ainda não sabemos
 
 ### Resultado verificado
