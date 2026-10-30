@@ -479,7 +479,93 @@ e o instrumento que o fecha é o teste de integridade consolidado + coleta de BU
 **contra-evidência de forma**: os dois padrões propostos como "gatilho" aparecem em 2022 em igual ou maior
 intensidade.
 
-## Saídas desta rodada (30/10)
+---
+
+# PARTE 4 — A objeção dos 20 anos (H20: mecanismo estrutural de longa data)
+
+*30/10/2026. A objeção do dono é analiticamente correta: constância 2022/2026 não refuta uma técnica antiga — pode
+datá-la. Testada com a série completa disponível: **2014, 2018, 2022, 2026** (T2; `parquet/bu_{ano}_t2.parquet`).
+EXPLORATÓRIO. Script: `scripts/exploratorio/08_h20_serie_historica.py`; saídas:
+`results/exploratorio/H20_serie_indicadores.csv`, `H20_permanencia_municipios_extremos.csv`.*
+
+## 4.1. H20a — constância: a tabela-ano
+
+Todas as medidas com os pares corretos por ano (Dilma×Aécio 2014; Haddad×Bolsonaro 2018; Lula×Bolsonaro 2022;
+Lula×Flávio 2026). "Razão" = observado/esperado sob o nulo binomial por seção (p da zona, leave-one-out).
+
+| ano | empates razão | ±1 razão | seções oponente 0–10 | saldo nelas | % no NE | saldo em seções PT≥80% (NE) | taxa sem-biom NE | saldo PT nacional |
+|---|---|---|---|---|---|---|---|---|
+| 2014 | 0,901 | 0,926 | **6.324** | **670.512** | 77,2% | **6.024.408** | s/ dado* | +3,53 M (Dilma venceu) |
+| 2018 | **1,030** | **1,041** | **7.606** | **928.308** | 75,5% | **6.377.075** | 9,49% | **−10,68 M (Haddad perdeu)** |
+| 2022 | 0,954 | 0,942 | 4.097 | 505.308 | 73,5% | 5.581.970 | 9,38% | +2,13 M (Lula venceu) |
+| 2026 | 0,920 | 0,967 | **3.029** | **376.149** | 65,0% | **4.967.243** | 7,19% | +4,40 M (Lula venceu) |
+
+\* `biom_nh` vem zerado em 2014 (campo não populado naquele ano); série válida 2018→2026.
+
+**Leitura H20a: confirmada como constância.** Todos os indicadores existem nos quatro anos com a mesma ordem de
+grandeza. E mais: o padrão é **monotonicamente decrescente** — seções de domínio extremo caem a cada eleição
+(7.606 → 4.097 → 3.029), o saldo concentrado no NE cai (6,4 M → 5,0 M), e a taxa sem-biometria do NE cai (9,5% →
+7,2%) conforme a biometria expande. Se é uma "técnica", é uma técnica em **encolhimento há 8 anos**, inclusive no
+período em que o PT perdeu.
+
+## 4.2. H20b — mobilidade geográfica: ferramenta móvel ou estrutura fixa?
+
+Municípios "extremos" = top 5% por saldo do candidato do PT por apto (T2). Permanência entre eleições:
+
+| par | permanecem da anterior |
+|---|---|
+| 2014→2018 | 53,0% |
+| 2018→2022 | 78,5% |
+| 2022→2026 | 76,0% |
+| 2026 ∩ as três anteriores | **38,7%** (sob independência seria ~0,01%) |
+
+**Leitura H20b: fixidez geográfica.** Uma ferramenta "ativada onde a disputa aperta" trocaria de território a cada
+eleição; o observado são os **mesmos municípios** (interior do NE/Norte) há 12 anos, com 3/4 de permanência entre
+eleições consecutivas. Isso é o que demografia estável (interiorização, seções pequenas, homogeneidade local)
+produz; e é o contrário do que uma ferramenta oportunista produziria.
+
+## 4.3. H20c — discriminação de vencedor
+
+2018 é o ano-teste: o PT perdeu por 10,68 milhões — e é **o ano com os maiores valores da série** nas medidas de
+domínio extremo (7.606 seções com Bolsonaro 0–10 votos; saldo de 928 mil nelas; razões de empate/±1 levemente
+**acima** do nulo, 1,03–1,04, as únicas acima de 1). Se esses padrões fossem o mecanismo que decide eleições,
+2018 é inexplicável: o "mecanismo" estava no máximo histórico no ano em que o suposto beneficiário perdeu feio.
+**Leitura H20c: o padrão não discrimina vencedor.**
+
+## 4.4. Pesquisas × resultado (série do repo, A7 + ancoras da Parte 1b)
+
+Erro absoluto da pesquisa final contra o resultado: **2018: 0,13 p.p.; 2022: 1,1 p.p.; 2026: 2,6–2,8 p.p.** (os
+dois últimos fora da margem declarada). Sob a leitura "a técnica é antiga e os números publicados sempre batem com
+a pesquisa", o erro deveria ser pequeno em todos os anos — e 2026 é o maior da série. Esse é o **único indicador
+que aponta na direção do dono**: ou as duas pesquisas finais de 2026 erraram ~2,7 p.p. na mesma direção (o maior
+erro da série), ou mediram uma realidade diferente da publicada. As duas leituras cabem nos dados; a Parte 1b já
+mostrou por que a pesquisa sozinha não decide.
+
+## 4.5. Síntese — o que cada número sustenta e o que não sustenta
+
+| hipótese | veredito exploratório | base |
+|---|---|---|
+| H20a constância | **confirma-se como estrutura estável** — e em declínio há 8 anos | tabela 4.1 |
+| H20b mobilidade | **refutada a ferramenta móvel; confirmada a estrutura fixa** (76–78% de permanência; 38,7% nos 4 anos) | 4.2 |
+| H20c discrimina vencedor | **refutada**: máximos da série em 2018, ano da derrota do PT por 10,7 M | 4.1, 4.3 |
+| "pesquisas sempre batem" | **único ponto a favor da atenção**: 2026 é o maior erro da série (2,6–2,8 p.p.) | 4.4 |
+
+**A leitura mais parcimoniosa** dos quatro fatos juntos é demografia e estrutura eleitoral do interior do
+NE/Norte, com biometria expandindo e o fenômeno encolhendo. Para sustentar a leitura contrária (técnica antiga),
+seria necessário explicar (i) por que o mecanismo foi máximo em 2018 e falhou, (ii) por que encolhe
+monotonicamente, e (iii) por que só a pesquisa de 2026 destoa. **O que fecharia a questão não existe em dado
+público histórico**: folhas de votação de anos anteriores não são públicas; as âncoras possíveis são as de sempre,
+só que agora — teste de integridade consolidado (A37) e BUs impressos (a jusante). Gatilho novo registrado: o erro
+de pesquisa de 2026 (2,6–2,8 p.p., fora da margem) é o único desvio da série que aponta para 2026 — entra na fila
+de verificação como "explicar o erro das pesquisas finais de 2026" (coleta das séries históricas de erro dos
+institutos, com fonte, para saber quão atípico é 2,8 p.p. na história recente; insumo externo).
+
+## Saídas desta rodada (30/10, H20)
+
+- `scripts/exploratorio/08_h20_serie_historica.py`
+- `results/exploratorio/H20_serie_indicadores.csv`, `H20_permanencia_municipios_extremos.csv`
+
+Da rodada anterior (30/10, empates/NE):
 
 - `scripts/exploratorio/06_empates_margem1.py` → `results/exploratorio/A_empates_resumo.csv`,
   `A_distribuicao_margem_obs_esp.csv`, `A_empates_troca_urna.csv`
