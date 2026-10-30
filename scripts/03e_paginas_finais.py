@@ -35,7 +35,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import primeira_pagina as pp
 NT = ("Ver [Questões em aberto](residuos.md), [Pontos cegos](pontos-cegos.md), [Fase 3](fase3.md) e a lista de **NÃO EXECUTADO**: cruzamento com boletins impressos (0 conferidos; sem insumo), assinatura criptográfica da urna "
       "(certificado lido, assinatura 0% verificada), curva de divulgação do site Resultados, perfil de comparecimento de 2026/2º turno, 2014 na curva de apuração, as \"472 urnas\" do vídeo, e os testes A21 (parcial), A22, A23, A24 e A25 (parcial) da Fase 3.")
-P1 = pp.eras(RAIZ) + "\n" + pp.hero(RAIZ) + "\n" + pp.padroes(RAIZ) + "\n" + pp.fluxo(RAIZ) + "\n" + pp.resultado(RAIZ) + "\n" + pp.resumo_perguntas(RAIZ)
+P1 = pp.manchete(RAIZ) + "\n" + pp.eras(RAIZ) + "\n" + pp.hero(RAIZ) + "\n" + pp.padroes(RAIZ) + "\n" + pp.fluxo(RAIZ) + "\n" + pp.resultado(RAIZ) + "\n" + pp.resumo_perguntas(RAIZ)
 CONTRIB = pp.contribuir(RAIZ)
 P1R = pp.resultado(RAIZ) + "\n" + pp.perguntas(RAIZ, True) + "\n" + pp.contribuir(RAIZ, True)
 

@@ -4,6 +4,8 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 > **Preliminary version (v0.9.3).** v1.0 will be released after the consolidated TCU (federal audit court) report on the integrity tests (deadline Nov 24, 2026), the verification of the cryptographic signature, and an initial batch of checked printed poll-receipts ([how to submit](boletins-impressos.md)).
 
+<p class="manchete">Since 2014, no election has had a margin large enough for a <strong>fraud</strong> of 10 million votes to be irrelevant, and none has had enough physical verification for it to be impossible. The two have never coincided again.</p>
+
 ## Two electoral eras
 
 <div class="duo">
@@ -53,7 +55,7 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 No aggregate test sees the full cycle: each measurement sees one point of the curve, not the rotation. What would see the whole cycle: the sum of the external anchors (printed receipts, voting sheets, vote-transfer polling, the integrity test) compared across elections.
 
-<p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for a fraud of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
+<p class="destaque">This page does not claim the hypothesis is true. It claims that no one can claim it is false with the published data: and it shows where the numbers add up, where they do not, and what would settle it.</p>
 
 
 ## How much of the vote chain public verification covers

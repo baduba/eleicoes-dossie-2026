@@ -4,6 +4,8 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 
 > **Versão preliminar (v0.9.3).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
 
+<p class="manchete">Desde 2014, nenhuma eleição teve margem grande o bastante para que uma <strong>fraude</strong> de 10 milhões de votos fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>
+
 ## Duas eras eleitorais
 
 <div class="duo">
@@ -53,7 +55,7 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 
 Nenhum teste de agregado enxerga o ciclo completo: cada medição vê um ponto da curva, não a rotação. O que veria o ciclo inteiro: a soma das âncoras externas (boletim impresso, folha de votação, pesquisa de transferência, teste de integridade) comparada entre eleições.
 
-<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma fraude desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>
+<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma que ninguém pode afirmar que é falsa com os dados publicados: e mostra onde os números fecham, onde não fecham e o que decidiria.</p>
 
 ## O quanto da cadeia do voto a verificação pública cobre
 

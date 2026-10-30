@@ -37,6 +37,7 @@ code,pre{background:var(--cd);border-radius:4px;font-size:.88em}code{padding:.1e
 footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.82rem;padding:1rem 16px;text-align:center}
 .aviso{border-left:4px solid var(--ac);background:var(--cd);padding:.6rem .9rem;margin:1rem 0}
 .destaque{font-size:1.15rem;font-weight:700}
+.manchete{font-size:clamp(1.5rem,3.5vw,2.3rem);font-weight:800;line-height:1.25;margin:.4rem 0 1.2rem}.manchete strong{color:var(--ac)}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}.duo>div{border:1px solid var(--bd);border-radius:6px;padding:.6rem 1rem}.duo h3{margin-top:.6rem}
 @media(max-width:720px){.duo{grid-template-columns:1fr}}
 .ciclo{max-width:560px;margin:1rem auto;text-align:center}.ciclo>div{border:1px solid var(--bd);border-radius:6px;padding:.5rem .8rem;background:var(--cd)}.ciclo>div+div{margin-top:1.35rem;position:relative}.ciclo>div+div::before{content:"↓";position:absolute;top:-1.3rem;left:50%;transform:translateX(-50%);color:var(--mut)}

@@ -96,6 +96,12 @@ def padroes(raiz, readme=False):
     return "\n".join(L)
 
 
+def manchete(raiz, readme=False):
+    """Manchete do index: a tese em tipografia de manchete, primeiro elemento da pagina. 'fraude' permitida aqui e em eras()."""
+    return ('<p class="manchete">Desde 2014, nenhuma eleição teve margem grande o bastante para que uma <strong>fraude</strong> de 10 milhões de votos fosse irrelevante, '
+            "e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>\n")
+
+
 def eras(raiz, readme=False):
     """Narrativa em duas eras (1989-2010 x 2014-2026) e a hipotese do teto de ~10 milhoes de votos.
     A hipotese e apresentada rotulada como hipotese; numeros fixos conferidos na serie historica."""
@@ -140,7 +146,7 @@ def eras(raiz, readme=False):
          "<div><b>5.</b> Uma técnica nova já entrou no lugar, e o ciclo recomeça.</div>",
          "</div>\n",
          "Nenhum teste de agregado enxerga o ciclo completo: cada medição vê um ponto da curva, não a rotação. O que veria o ciclo inteiro: a soma das âncoras externas (boletim impresso, folha de votação, pesquisa de transferência, teste de integridade) comparada entre eleições.\n",
-         '<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma fraude desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>\n']
+         '<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma que ninguém pode afirmar que é falsa com os dados publicados: e mostra onde os números fecham, onde não fecham e o que decidiria.</p>\n']
     return "\n".join(L)
 
 
