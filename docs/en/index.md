@@ -4,17 +4,6 @@ This is an **independent audit**. It is not an official report, expert examinati
 
 > **Preliminary version (v0.9.3).** v1.0 will be released after the consolidated TCU (federal audit court) report on the integrity tests (deadline Nov 24, 2026), the verification of the cryptographic signature, and an initial batch of checked printed poll-receipts ([how to submit](boletins-impressos.md)).
 
-## How much of the vote chain public verification covers
-
-<picture><source media="(max-width: 640px)" srcset="img/en/g0_verificacao_m.png"><img src="img/en/g0_verificacao.png" alt="Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). Below, a second bar indicates that 100% of votes pass through at least one non-verifiable link."></picture>
-
-- **33% of the vote chain fully verified with public data** (4 of 12 links; [full map, G1](#g1-map-of-the-vote-chain)).
-- **25% not verifiable** (3 of 12: typed vote → recorded vote, checked printed poll-receipt, transmission).
-- **100% of votes pass through at least one non-verifiable link.**
-- **0 tests found an effect capable of altering the outcome**; the largest worst-case ceiling, not an estimate, is 40.35% of the margin ([A20b](fase3.html#a20b)).
-
-This is not evidence of anything, on either side: it is a map of where an alteration would pass invisible to public data.
-
 ## Two electoral eras
 
 <div class="duo">
@@ -65,6 +54,18 @@ This is not evidence of anything, on either side: it is a map of where an altera
 No aggregate test sees the full cycle: each measurement sees one point of the curve, not the rotation. What would see the whole cycle: the sum of the external anchors (printed receipts, voting sheets, vote-transfer polling, the integrity test) compared across elections.
 
 <p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for a fraud of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
+
+
+## How much of the vote chain public verification covers
+
+<picture><source media="(max-width: 640px)" srcset="img/en/g0_verificacao_m.png"><img src="img/en/g0_verificacao.png" alt="Stacked bar of the 12 links in the vote chain: 4 verified (33%), 5 partially verified (42%) and 3 not verifiable with public data (25%). Below, a second bar indicates that 100% of votes pass through at least one non-verifiable link."></picture>
+
+- **33% of the vote chain fully verified with public data** (4 of 12 links; [full map, G1](#g1-map-of-the-vote-chain)).
+- **25% not verifiable** (3 of 12: typed vote → recorded vote, checked printed poll-receipt, transmission).
+- **100% of votes pass through at least one non-verifiable link.**
+- **0 tests found an effect capable of altering the outcome**; the largest worst-case ceiling, not an estimate, is 40.35% of the margin ([A20b](fase3.html#a20b)).
+
+This is not evidence of anything, on either side: it is a map of where an alteration would pass invisible to public data.
 
 ## The two most obvious triggers, checked first
 

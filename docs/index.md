@@ -4,19 +4,6 @@ Esta é uma **auditoria independente**. Não é laudo, perícia oficial nem docu
 
 > **Versão preliminar (v0.9.3).** A v1.0 sai depois do relatório consolidado do TCU sobre os testes de integridade (prazo até 24/11/2026), da verificação da assinatura criptográfica e de um lote inicial de boletins impressos conferidos ([como enviar](boletins-impressos.md)).
 
-## O quanto da cadeia do voto a verificação pública cobre
-
-<picture><source media="(max-width: 640px)" srcset="img/g0_verificacao_m.png"><img src="img/g0_verificacao.png" alt="Barra empilhada dos 12 elos da cadeia do voto: 4 verificados (33%), 5 parcialmente verificados (42%) e 3 não verificáveis com dados públicos (25%). Abaixo, uma segunda barra indica que 100% dos votos atravessam pelo menos um elo não verificável."></picture>
-
-- **33% da cadeia do voto totalmente verificada com dados públicos** (4 de 12 elos; [mapa completo, G1](#g1-mapa-da-cadeia-do-voto)).
-- **25% não verificáveis** (3 de 12: voto digitado → registrado, boletim impresso conferido, transmissão).
-- **100% dos votos atravessam pelo menos um elo não verificável.**
-- **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b](fase3.html#a20b)).
-
-Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.
-
-**[Envie a foto do seu boletim](boletins-impressos.html)**: pelo formulário de envio no GitHub.
-
 ## Duas eras eleitorais
 
 <div class="duo">
@@ -67,6 +54,19 @@ Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde 
 Nenhum teste de agregado enxerga o ciclo completo: cada medição vê um ponto da curva, não a rotação. O que veria o ciclo inteiro: a soma das âncoras externas (boletim impresso, folha de votação, pesquisa de transferência, teste de integridade) comparada entre eleições.
 
 <p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma fraude desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>
+
+## O quanto da cadeia do voto a verificação pública cobre
+
+<picture><source media="(max-width: 640px)" srcset="img/g0_verificacao_m.png"><img src="img/g0_verificacao.png" alt="Barra empilhada dos 12 elos da cadeia do voto: 4 verificados (33%), 5 parcialmente verificados (42%) e 3 não verificáveis com dados públicos (25%). Abaixo, uma segunda barra indica que 100% dos votos atravessam pelo menos um elo não verificável."></picture>
+
+- **33% da cadeia do voto totalmente verificada com dados públicos** (4 de 12 elos; [mapa completo, G1](#g1-mapa-da-cadeia-do-voto)).
+- **25% não verificáveis** (3 de 12: voto digitado → registrado, boletim impresso conferido, transmissão).
+- **100% dos votos atravessam pelo menos um elo não verificável.**
+- **0 testes encontraram efeito capaz de alterar o resultado**; o maior teto de pior caso, não estimativa, é 40,35% da margem ([A20b](fase3.html#a20b)).
+
+Isto não é evidência de nada, nem de um lado nem do outro: é o mapa de onde uma alteração passaria invisível aos dados públicos.
+
+**[Envie a foto do seu boletim](boletins-impressos.html)**: pelo formulário de envio no GitHub.
 
 ## Os dois gatilhos mais óbvios, checados primeiro
 
