@@ -656,6 +656,116 @@ não-falsificabilidade):
 > impressão), e a série histórica de erros das pesquisas finais. Enquanto essas âncoras não forem trazidas, a
 > posição desta auditoria é: hipótese aberta por construção, núcleo testável não confirmado."*
 
+# PARTE 6 — Fechamento de fluxo T1→T2, 2002–2026 (30/10/2026)
+
+> **EXPLORATÓRIO.** Teste pedido pelo dono: os ganhos brutos de cada finalista entre T1 e T2 fecham com os
+> pools ideológicos dos eliminados + migração de brancos/nulos + variação de comparecimento? A estimativa do
+> dono era de excesso de 5–7M para Lula em 2026 além do pool. Script: `scripts/exploratorio/10_fechamento_fluxo.py`.
+
+## 6.1. Método congelado antes de rodar
+
+- **Identidade contábil**: `dX = votos_X(T2) − votos_X(T1)`, X ∈ {PT, opositor}. Fontes possíveis de dX:
+  pool dos eliminados (por bloco ideológico), migração líquida de B+N (`dBN = BN_T1 − BN_T2`) e variação de
+  comparecimento (`dComp = Comp_T2 − Comp_T1`). `dPT + dOPO = pool_total + dBN + dComp` exatamente.
+- **Classificação ideológica congelada** (2026 segue os blocos documentados de A11): pró-Flávio =
+  {Cury, Caiado, Zema, Clariana} = **6.420.248** votos; esquerda = {UP, PSTU, PCB, PCO} = **203.731**;
+  neutro = {Renan Santos, Grassi, Leonardo} = **2.698.014**. Anos anteriores classificados pela posição
+  histórica documentada no md do dono.
+- **Faixas benignas fixas** (mesmas para todos os anos, sem ajuste por ano): tESQ→PT [0,80–0,95];
+  centro-esq→PT [0,55–0,80]; centro → 40–60% PT; cross-over PT sobre pool de direita declarada [0,05–0,15];
+  B+N migrantes → 40–60% PT; dComp → share PT do T2 ± 5 p.p.
+- **Validação**: a tabela do md do dono confere exatamente contra os parquets 2014–2026 (0 voto de diferença
+  em todos os totais de candidatos, T1 e T2 — `FLX_validacao_md_vs_parquet.csv`).
+- **Reconciliação com A31**: `f = dPT/(dPT+dOPO)` reproduz o f nacional versionado de A31 (|dif| ≤ 0,003 em
+  todos os anos com parquet; 2026: 0,7360 vs 0,7367 — `FLX_reconciliacao_A31.csv`).
+
+## 6.2. Tabela-ano (desvio do PT = dPT − esperado_mid; em milhões de votos)
+
+| ano | dPT | dOPO | pool total | dBN | dComp | esperado PT [lo–hi] | desvio PT | % da margem T2 |
+|---|---|---|---|---|---|---|---|---|
+| 2002 | +13,34 | +13,67 | 27,00 | n/d | n/d | [14,3–20,7] | **−4,16** | −21,4% |
+| 2006 | +11,63 | −2,43 | 9,21 | n/d | n/d | [6,8–8,4] | **+4,04** | +19,5% |
+| 2010 | +8,10 | +10,58 | 18,68 | n/d | n/d | [11,6–16,7] | **−6,09** | −50,5% |
+| 2014 | +11,23 | +16,14 | 27,38 | +3,96 | −2,44 | [14,6–21,3] | **−6,73** | −194,5% |
+| 2018 | +15,70 | +8,52 | 24,22 | −0,78 | −1,43 | [8,6–13,3] | **+4,75** | +44,2% |
+| 2022 | +3,09 | +7,13 | 10,22 | −0,25 | +0,57 | [4,3–6,3] | **−2,20** | −102,9% |
+| 2026 | **+10,38** | **+3,72** | 14,10 | +1,82 | +2,96 | [3,7–5,5] | **+5,77** | +130,2% |
+
+(dBN/dComp de 2002–2010 indisponíveis: sem parquet local; fechamento só via pools. Fontes ≤2014: md do dono
+com referências Wikipedia/TSE; 2018+: BWeb.)
+
+## 6.3. Leitura honesta — dois achados, não um
+
+**Achado 1 — o modelo de faixas fixas falha em TODOS os anos.** Nenhum ano fecha dentro da faixa benigna
+("dentro_da_faixa" = False em 7/7). Desvios de 2–7M são a norma histórica: 2010 (−6,09M), 2014 (−6,73M),
+2018 (+4,75M), 2026 (+5,77M). Em magnitude absoluta, o desvio de 2026 **não é recorde** — 2014 foi maior.
+Conclusão necessária: desvio grande por si só não é assinatura de nada; os fluxos reais entre turnos sempre
+foram maiores e mais transversais que qualquer faixa paramétrica razoável.
+
+**Achado 2 — a assinatura de 2026 é qualitativamente distinta, e é aí que mora o teste.** Nos desvios
+históricos grandes, a direção do desvio era explicável por um pool **mal classificado ou contestado**: 2014,
+o PT ficou 6,7M *abaixo* do esperado porque Aécio capturou ~30% extra (6,7M) do pool Marina (22,8M) — um pool
+centro-esquerda ideologicamente fluido, cujo cross-flow massivo tem precedente documentado. Em 2026 ocorre o
+oposto: o desvio exige cross-over de **90–99%** (cenário benigno extremo: ~90%) do pool de **direita declarada**
+para Lula — Cury, Caiado e Zema declararam apoio a Flávio. Mesmo assim, dos 6,42M desse pool, Flávio reteve
+apenas o suficiente para um ganho total de +3,72M (que ainda precisa incluir sua parte do centro, de B+N e do
+comparecimento novo). Ou seja: para fechar as contas de forma benigna, os eleitores de candidatos que
+declararam apoio a Flávio teriam migrado em massa para Lula — o inverso do endosso dos seus candidatos.
+
+Contra-hipóteses benignas quantificadas:
+- **Cross-over anti-endosso**: não há precedente na série de cross-over >15% de um bloco com endosso explícito
+  (2014 foi cross-flow de pool *sem* endosso ao PSDB; Marina declarou apoio a Aécio *no T2* e mesmo assim o
+  fluxo foi ~73% — ou seja, endosso de Marina funcionou; o cross-over de 2026 teria de falhar quase
+  completamente).
+- **B+N e comparecimento**: já contabilizados nas faixas; juntos explicam no máximo ~2,9M do dPT no cenário
+  benigno extremo — insuficiente.
+- **Pool mal classificado**: trocar Renan Santos (2,68M) de neutro para direita não resolve — aumenta o pool
+  de direita e portanto o cross-over necessário; movê-lo para centro-esquerda adiciona no máximo 2,15M ao
+  esperado e ainda deixa gap ≥ 3,6M.
+- **Erro de classificação de "declarado"**: Cury, Caiado e Zema declararam apoio a Flávio (documentado em
+  A11). Se o endosso fosse ignorado e o pool tratado como neutro, o esperado PT subiria para ~6,9–8,5M —
+  ainda 1,9–3,5M abaixo do observado.
+
+## 6.4. Onde isso encaixa na tese
+
+- O teste de fluxo é **ancoragem externa parcial**: usa só totais oficiais (T1 e T2), que sob inversão/adição
+  a montante são exatamente os números alterados — ou seja, *se* houve adição de votos no T2, ela aparece
+  aqui como desvio de fechamento; mas o desvio também aparece se o comportamento eleitoral foi
+  extraordinário. O teste **não separa** fraude de onda eleitoral sem âncora externa (pesquisas,
+  transferências pesquisadas por instituto — Datafolha/Ipec publicam intenção de voto de eleitores de
+  eliminados no T2).
+- A magnitude (+5,8M de desvio; cross-over implícito de 90–99% de bloco endossado) é o desvio mais anômalo
+  da série **em direção**: o maior desvio pró-PT (superação do esperado) da história, superando 2018 (+4,75M,
+  ano em que o PT perdeu), e sem a explicação de pool fluido que 2014 tem.
+- **Limite declarado**: as faixas foram fixadas a priori e falham em todos os anos; o que é específico de 2026
+  não é "estar fora da faixa" (todos estão), e sim (i) o sinal (único grande desvio pró-PT com pool de direita
+  endossado), (ii) o cross-over implícito sem precedente, (iii) a coerência com o erro de pesquisas de 2026
+  (Parte 4.4/5.4: 2,6–2,8 p.p., fora da margem declarada) e com f=0,737 de A31 (o mais alto da série com
+  parquet).
+
+**Redação honesta sugerida:**
+
+> *"Os ganhos de Lula entre os turnos (+10,38M) não fecham com os pools dos eliminados, a migração de
+> brancos/nulos e o comparecimento novo sob nenhuma combinação de hipóteses comportamentais razoáveis: faltam
+> explicar 4,8–6,7M votos, o que exigiria que ~90–99% dos eleitores de Cury, Caiado e Zema — que declararam
+> apoio a Flávio — tivessem votado em Lula. Desvios dessa magnitude já ocorreram (2010, 2014, 2018), mas
+> sempre na direção explicável por pools ideologicamente fluidos; um cross-over quase total contra o endosso
+> declarado dos próprios candidatos não tem precedente na série 2002–2026. Este teste não prova fraude —
+> prova que o fechamento contábil de 2026 é o mais anômalo da série e exige âncora externa: as pesquisas de
+> transferência de voto por candidato eliminado (Datafolha/Ipec, T2) ou o relatório consolidado do TCU."*
+
+**Proposta de pré-registro A39** (aguardando dono): comparar o cross-over implícito (90–99%) com as
+pesquisas de transferência do T2 2026 (intenção de voto entre eleitores declarados de Cury/Caiado/Zema),
+fixando antes de consultar: se as pesquisas indicarem ≥70% de transferência para Lula nesse bloco, o desvio
+é comportamental e o teste de fluxo perde força; se indicarem ≤30%, o desvio permanece inexplicado e sobe
+para a lista de anomalias primárias.
+
+## Saídas desta rodada (30/10, fluxo)
+
+- `scripts/exploratorio/10_fechamento_fluxo.py`
+- `results/exploratorio/FLX_fechamento_por_ano.csv`, `FLX_validacao_md_vs_parquet.csv`,
+  `FLX_reconciliacao_A31.csv`
+
 ## Saídas desta rodada (30/10, rotação)
 
 - `scripts/exploratorio/09_rotacao_residuo.py`
