@@ -25,8 +25,8 @@ These two patterns looked like the obvious place where an alteration would come 
 <ul>
 <li><strong>2,150 sections with an exact tie</strong> between Lula and Flávio in 2026, with <strong>517,768 valid votes</strong>; <strong>4,517 sections decided by exactly 1 vote</strong>, with <strong>1,087,289 votes</strong>.</li>
 <li>Against the per-section binomial null: 2,150 ties observed vs 2,337 expected (ratio 0.92); 1-vote margins: 4,517 vs 4,672 (0.97). In every margin band from 0 to 10, 2026 sits <strong>below the null</strong>, as does 2022. The growth in ties (+5.1%) is the growth in the number of sections itself (+5.7%).</li>
-<li>Symmetry of the 1-vote margins: 2,268 for Lula and 2,249 for Flávio (p = 0.789): no side favored. Machine swapped in these sections: at or below the national rate.</li>
-<li><strong>Verdict: consistent with chance.</strong></li>
+<li>Symmetry of the 1-vote margins: 2,268 for Lula and 2,249 for Flávio (p = 0.789). Machine swapped in these sections: at or below the national rate.</li>
+<li><strong>Reading:</strong> 2,150 tied machines and 4,517 decided by 1 vote concentrate 1.6 million votes where <strong>neither side can build an advantage</strong>. If the strategy were to tie the score machine by machine, this would be exactly the playing field. The numbers show no statistical surplus (0.92 of expected) and no direction (2,268 to 2,249; p = 0.789); and it is precisely the absence of surplus that demands explanation, because a small tied machine leaves no trace in aggregate tests. <strong>What closes this: the printed receipt of each of these machines, one by one.</strong></li>
 </ul>
 </div>
 <div>
@@ -34,13 +34,16 @@ These two patterns looked like the obvious place where an alteration would come 
 <ul>
 <li>Municipality-by-municipality correlation (1,794 municipalities, by rate): Spearman ρ = 0.06, substantially zero; "capitals have both" is a size effect.</li>
 <li>Sections with Lula ≥ 80% and (machine swap or top-10% no-biometrics municipality): <strong>3,469 sections</strong> in 2026, net 537,354 margin votes, ceiling of 24.3% of the margin; in 2022 the same pattern was <strong>larger</strong> (3,766 sections, net 602,222, ceiling 27.2%): it is structural, not specific to 2026.</li>
-<li>Opponent between 0 and 10 votes: 3,029 sections in 2026 (net 376,149; 65% in the Northeast), vs 4,097 in 2022 (net 505,308; 73% in the NE): the set <strong>shrank by 26%</strong>.</li>
-<li><strong>Verdict: structural, larger in 2022, with no rate correlation.</strong></li>
+<li>Opponent between 0 and 10 votes: 3,029 sections in 2026 (net 376,149; 65% in the Northeast), vs 4,097 in 2022 (net 505,308; 73% in the NE): the set shrank by 26%.</li>
+<li><strong>Reading:</strong> the set shrank by 26% since 2022 and the pattern is larger in 2022. It could be structure; it could be exactly what a deliberately scaled-down technique would leave. With internal data there is no way to tell one from the other; that is why these sections stay at the top of the verification queue: <strong>the 190 with machine swap and high no-biometrics clearance are asking for the voting sheet and the poll record (LAI request 07 already filed)</strong>.</li>
 </ul>
 </div>
 </div>
 
-<p class="destaque">A refuted pattern does not close the question. Anyone who wants to contest the numbers has the scripts and the data here; the 190 Northeastern sections with machine swap and high no-biometrics clearance are still asking for the voting sheet and the poll record (LAI request 07 already filed). These two were the most obvious triggers; the ones still open are in <a href="perguntas-em-aberto.html">Open questions</a>.</p>
+<h3>The hypothesis that cannot be taken down on its own</h3>
+<p>A sophisticated operation would scale back the visible techniques and introduce new ones, on purpose, so that each isolated test would find "structure" or "decline". With internal data, this hypothesis can be neither confirmed nor refuted: any observed pattern is compatible with it. What keeps it standing as a question, and what would settle it, are the external anchors: printed receipts, the integrity test, the historical series of polls. <strong>This scenario the dossier cannot see; only physical verification can.</strong></p>
+
+<p class="destaque">A refuted pattern does not close the question; a structural one, even less. Anyone who wants to contest the numbers has the scripts and the data here. These two were the most obvious triggers; the ones still open are in <a href="perguntas-em-aberto.html">Open questions</a>.</p>
 
 Details and calculations: [exploratory memo](https://github.com/baduba/eleicoes-dossie-2026/blob/main/docs/propostas/gatilhos-e-inversao.md) (in Portuguese).
 
