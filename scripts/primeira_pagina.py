@@ -118,10 +118,10 @@ def eras(raiz, readme=False):
          "</ul>",
          "</div>",
          "</div>\n",
-         "<h3>A hipótese do teto</h3>",
-         "<p>Existe uma leitura que organiza toda a série: uma operação com <strong>teto de cerca de 10 milhões de votos</strong>. Sob ela, 2014 (margem de 3,46 milhões), 2022 (2,14 milhões) e 2026 (4,43 milhões) seriam reversíveis; 2018 não seria (margem de 10,76 milhões, acima do teto, com a onda pós-facada e um adversário sem força própria). O teste de fechamento de fluxo deste dossiê mede um desvio sem fonte de +4,8 a +6,7 milhões em 2026, mais o espelho de cerca de 5 milhões do outro lado: a ordem de grandeza bate com o teto.</p>",
+         "<h3>A hipótese da fraude (o teto de cerca de 10 milhões de votos)</h3>",
+         "<p>A leitura que organiza toda a série: uma <strong>fraude com teto de cerca de 10 milhões de votos</strong>. Sob ela, 2014 (margem de 3,46 milhões de votos), 2022 (2,14 milhões) e 2026 (4,43 milhões) seriam reversíveis; 2018 não foi (10,76 milhões, acima do teto, com a onda pós-facada e um adversário sem força própria). O teste de fechamento de fluxo deste dossiê mede um desvio sem fonte de +4,8 a +6,7 milhões em 2026, mais o espelho de cerca de 5 milhões do outro lado: a ordem de grandeza bate com o teto.</p>",
          "<p><strong>A hipótese não pode ser confirmada nem refutada com dados internos</strong>: \"o declínio seria a estratégia\" explica qualquer padrão. O que a sustenta em pé como pergunta é que 2018, a eleição fora do alcance do teto, é também a única fora da era apertada. O que a decide: pesquisa de transferência de voto, folha de votação, boletim impresso, teste de integridade.</p>\n",
-         '<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma operação desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>\n']
+         '<p class="destaque">Esta página não afirma que a hipótese é verdadeira. Afirma algo mais incômodo: desde 2014, nenhuma eleição teve margem grande o bastante para que uma fraude desse tamanho fosse irrelevante, e nenhuma teve verificação física o bastante para que fosse impossível. As duas coisas nunca mais coincidiram.</p>\n']
     return "\n".join(L)
 
 

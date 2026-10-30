@@ -32,6 +32,15 @@ def test_todo_cartao_com_teto_traz_a_ressalva_na_mesma_linha():
             assert "teto de pior caso, não estimativa" in linha, linha
 
 
+def test_fraude_escopada_a_eras():
+    """A palavra 'fraude' e permitida apenas na hipotese do teto (eras); nas demais secoes geradas, proibida."""
+    assert "fraude" in pp.eras(RAIZ).lower()
+    outros = (pp.hero(RAIZ) + pp.padroes(RAIZ) + pp.fluxo(RAIZ) + pp.resultado(RAIZ)
+              + pp.perguntas(RAIZ) + pp.contribuir(RAIZ) + pp.resumo_perguntas(RAIZ))
+    assert "fraude" not in outros.lower()
+    assert "—" not in pp.eras(RAIZ) and "–" not in pp.eras(RAIZ)
+
+
 def test_resultado_vem_antes_das_perguntas():
     t = pagina(False)
     assert t.index("Resultado verificado") < t.index("Perguntas em aberto")

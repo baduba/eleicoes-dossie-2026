@@ -36,11 +36,11 @@ This is not evidence of anything, on either side: it is a map of where an altera
 </div>
 </div>
 
-<h3>The ceiling hypothesis</h3>
-<p>There is a reading that organizes the whole series: an operation with a <strong>ceiling of about 10 million votes</strong>. Under it, 2014 (margin of 3.46 million), 2022 (2.14 million) and 2026 (4.43 million) would be reversible; 2018 would not (margin of 10.76 million, above the ceiling, with the post-stabbing wave and an opponent without strength of his own). The flow-closure test in this dossier measures an unaccounted deviation of +4.8 to +6.7 million in 2026, plus a mirror of about 5 million on the other side: the order of magnitude matches the ceiling.</p>
+<h3>The fraud hypothesis (the ceiling of about 10 million votes)</h3>
+<p>The reading that organizes the whole series: a <strong>fraud with a ceiling of about 10 million votes</strong>. Under it, 2014 (margin of 3.46 million votes), 2022 (2.14 million) and 2026 (4.43 million) would be reversible; 2018 was not (10.76 million, above the ceiling, with the post-stabbing wave and an opponent without strength of his own). The flow-closure test in this dossier measures an unaccounted deviation of +4.8 to +6.7 million in 2026, plus a mirror of about 5 million on the other side: the order of magnitude matches the ceiling.</p>
 <p><strong>The hypothesis can be neither confirmed nor refuted with internal data</strong>: "the decline would be the strategy" explains any pattern. What keeps it standing as a question is that 2018, the election beyond the ceiling's reach, is also the only one outside the close-election era. What settles it: vote-transfer polling, voting sheets, printed receipts, the integrity test.</p>
 
-<p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for an operation of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
+<p class="destaque">This page does not claim the hypothesis is true. It claims something more uncomfortable: since 2014, no election has had a margin large enough for a fraud of that size to be irrelevant, and none has had physical verification enough for it to be impossible. The two have never coincided again.</p>
 
 ## The two most obvious triggers, checked first
 
