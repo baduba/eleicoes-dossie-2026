@@ -237,3 +237,5 @@ https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_coligacao/consulta_colig
 https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_coligacao/consulta_coligacao_2022.zip
 https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_coligacao/consulta_coligacao_2026.zip
 https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitor_secao/perfil_eleitor_secao_{2018,2022,2026}_{UF}.zip   (27 UFs + ZZ; ver scripts/30_perfil_secao.py)
+https://apisidra.ibge.gov.br/values/t/4714/n6/all/v/allxp/p/2022   (IBGE SIDRA 4714, Censo 2022: população residente total por município)
+https://apisidra.ibge.gov.br/values/t/9514/n6/all/p/2022/c287/100362,93070,93084,93085,6572   (IBGE SIDRA 9514, Censo 2022: população por município — Total e faixas 0-4, 5-9, 10-14, 15 anos; usado para derivar população 16+)

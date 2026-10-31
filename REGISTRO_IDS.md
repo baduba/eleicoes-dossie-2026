@@ -56,10 +56,10 @@ números, sem pré-registro formal) | **REFUTADO** | **RETIRADO** | **PROPOSTO**
 | A38 | Índice de exposição por seção | esboço em `gatilhos-e-inversao.md` §2.4 | S1 | PROPOSTO |
 | A39 | Fechamento de fluxo T1→T2, 2002–2026 | proposta de pré-registro em `gatilhos-e-inversao.md` PARTE 6 | S1 | EXPLORATÓRIO com números (`results/exploratorio/FLX_*`; desvio 2026 +5,8M, cross-over implícito 90–99%) |
 | A40 | Curva taxa manual × voto no incumbente ("sobe linearmente acima de 61%") | — | S1 | **REFUTADO PUBLICADO** (inventário de alegações, `docs/alegacoes.md`, com figura `a40_curva_manual`; curva estrutural, mais fraca em 2026, máx. 59,8%) |
-| A41 | Comparecimento acima da população 16+ (reescreve "23 municípios BA") | **19** | S1 | REGISTRADO — **bloqueado: não rodar até o denominador IBGE (SIDRA 4714/9605) entrar em `data/` com hash** |
+| A41 | Comparecimento acima da população 16+ (reescreve "23 municípios BA") | **19** | S1 | REGISTRADO — insumo pronto (`data/ibge_populacao_municipios_2022.csv`, sha256 292dbf32…, 31/10; ver `docs/propostas/a41-insumo-sidra.md`); **autorizado a rodar** |
 | A42 | Leitura completa dos logs por UF (etapa B do A43) | a escrever neste lote (Adendo 21) | S1 | **RESERVADO** (reserva do dono, 31/10/2026) |
 | A43 | Série temporal dos votos a cada 15 minutos (M1–M6) | **18** | S2 | REGISTRADO (Etapa A pendente; Etapa B depende de A42) |
-| A44 | Quedas verticais na curva acumulada de apuração (vídeo Prof. Trindade) | **20** | S1 | REGISTRADO — autorizado a rodar |
+| A44 | Quedas verticais na curva acumulada de apuração (vídeo Prof. Trindade) | **20** | S1 | **RODADO (31/10) — EXPLICADO**: quedas só na janela inicial de base pequena (máx. −3,02 p.p. às 19:03; ≤0,091 p.p. após 20h), 100% dos 95 eventos fecham com o lote (dif. 0,0), mistas não adicionam eventos, placebo 2022 tem quedas maiores (−8,41 p.p.); memorando `docs/propostas/a44-quedas-curva.md` |
 
 ## Colisões resolvidas
 
