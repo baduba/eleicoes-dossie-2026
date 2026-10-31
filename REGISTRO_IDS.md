@@ -55,7 +55,7 @@ números, sem pré-registro formal) | **REFUTADO** | **RETIRADO** | **PROPOSTO**
 | A37b | Presidente × deputado (braço de A37) | idem, PARTE 1b; script `scripts/exploratorio/05_a37b_presidente_x_deputado.py` escrito | S1 | REGISTRADO (pendente de rodar; insumo `parquet2/cargos_*` já local) |
 | A38 | Índice de exposição por seção | esboço em `gatilhos-e-inversao.md` §2.4 | S1 | PROPOSTO |
 | A39 | Fechamento de fluxo T1→T2, 2002–2026 | proposta de pré-registro em `gatilhos-e-inversao.md` PARTE 6 | S1 | EXPLORATÓRIO com números (`results/exploratorio/FLX_*`; desvio 2026 +5,8M, cross-over implícito 90–99%) |
-| A40 | Curva taxa manual × voto no incumbente ("sobe linearmente acima de 61%") | — | S1 | **REFUTADO** na verificação exploratória (curva estrutural, mais fraca em 2026, máx. 59,8%; decisão do dono: publicar como refutado) |
+| A40 | Curva taxa manual × voto no incumbente ("sobe linearmente acima de 61%") | — | S1 | **REFUTADO PUBLICADO** (inventário de alegações, `docs/alegacoes.md`, com figura `a40_curva_manual`; curva estrutural, mais fraca em 2026, máx. 59,8%) |
 | A41 | Comparecimento acima da população 16+ (reescreve "23 municípios BA") | **19** | S1 | REGISTRADO — **bloqueado: não rodar até o denominador IBGE (SIDRA 4714/9605) entrar em `data/` com hash** |
 | A42 | Leitura completa dos logs por UF (etapa B do A43) | a escrever neste lote (Adendo 21) | S1 | **RESERVADO** (reserva do dono, 31/10/2026) |
 | A43 | Série temporal dos votos a cada 15 minutos (M1–M6) | **18** | S2 | REGISTRADO (Etapa A pendente; Etapa B depende de A42) |
