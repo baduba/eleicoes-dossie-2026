@@ -58,7 +58,7 @@ números, sem pré-registro formal) | **REFUTADO** | **RETIRADO** | **PROPOSTO**
 | A40 | Curva taxa manual × voto no incumbente ("sobe linearmente acima de 61%") | — | S1 | **REFUTADO PUBLICADO** (inventário de alegações, `docs/alegacoes.md`, com figura `a40_curva_manual`; curva estrutural, mais fraca em 2026, máx. 59,8%) |
 | A41 | Comparecimento acima da população 16+ (reescreve "23 municípios BA") | **19** | S1 | REGISTRADO — insumo pronto (`data/ibge_populacao_municipios_2022.csv`, sha256 292dbf32…, 31/10; ver `docs/propostas/a41-insumo-sidra.md`); **autorizado a rodar** |
 | A42 | Leitura completa dos logs por UF (etapa B do A43) | **21** | S1 | REGISTRADO (Adendo 21, 31/10/2026; regra de decisão a ser fixada pelo dono antes de assinar) |
-| A43 | Série temporal dos votos a cada 15 minutos (M1–M6) | **18** | S2 | REGISTRADO (Etapa A pendente; Etapa B depende de A42) |
+| A43 | Série temporal dos votos a cada 15 minutos (M1–M6) | **18** | S2 | **ETAPA A RODADA-parcial (31/10, S1)**: extrator pronto (`scripts/50_a43_etapaA_janelas.py`), amostra RR 2026/2022 T2 100% lida, sem anomalias (0,05% de votos após 17h nos dois anos); medição de escala feita (3,5–7,5 h CPU total, ver `docs/propostas/a43-etapaA-amostra.md`); regra de horário com fonte pendente (TRE-PE 403, `fontes/`); Etapa B = A42 (Adendo 21), aguardando assinatura do dono |
 | A44 | Quedas verticais na curva acumulada de apuração (vídeo Prof. Trindade) | **20** | S1 | **RODADO (31/10) — EXPLICADO**: quedas só na janela inicial de base pequena (máx. −3,02 p.p. às 19:03; ≤0,091 p.p. após 20h), 100% dos 95 eventos fecham com o lote (dif. 0,0), mistas não adicionam eventos, placebo 2022 tem quedas maiores (−8,41 p.p.); memorando `docs/propostas/a44-quedas-curva.md` |
 
 ## Colisões resolvidas
